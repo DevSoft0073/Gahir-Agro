@@ -1,0 +1,42 @@
+PODS:
+  - Alamofire (5.2.2)
+  - IQKeyboardManagerSwift (6.5.6)
+  - LGSideMenuController (2.1.1)
+  - SCLAlertView (0.8)
+  - SDWebImage (4.4.8):
+    - SDWebImage/Core (= 4.4.8)
+  - SDWebImage/Core (4.4.8)
+  - SKCountryPicker (1.2.9)
+  - SVProgressHUD-0.8.1 (0.8)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.2)
+  - IQKeyboardManagerSwift
+  - LGSideMenuController
+  - SCLAlertView
+  - SDWebImage (~> 4.0)
+  - SKCountryPicker
+  - SVProgressHUD-0.8.1
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - IQKeyboardManagerSwift
+    - LGSideMenuController
+    - SCLAlertView
+    - SDWebImage
+    - SKCountryPicker
+    - SVProgressHUD-0.8.1
+
+SPEC CHECKSUMS:
+  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  LGSideMenuController: ae40c80983ab8b8801c7cef0a6804d43aaa72d45
+  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
+  SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
+  SKCountryPicker: 7ad1e7dfb482cfb26855e33c2d70dbf1eaf218fe
+  SVProgressHUD-0.8.1: ee9e6e58b5b5ffaf3f1a62c2dc409763470df143
+
+PODFILE CHECKSUM: 74ebd97694ace20851cd16b898bbd551c7810dc8
+
+COCOAPODS: 1.9.3

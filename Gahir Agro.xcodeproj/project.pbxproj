@@ -1,0 +1,898 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		184B113925E36C74003007A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B113825E36C74003007A2 /* AppDelegate.swift */; };
+		184B113B25E36C74003007A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B113A25E36C74003007A2 /* SceneDelegate.swift */; };
+		184B113D25E36C74003007A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B113C25E36C74003007A2 /* ViewController.swift */; };
+		184B114025E36C74003007A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 184B113E25E36C74003007A2 /* Main.storyboard */; };
+		184B114225E36C74003007A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 184B114125E36C74003007A2 /* Assets.xcassets */; };
+		184B114525E36C74003007A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 184B114325E36C74003007A2 /* LaunchScreen.storyboard */; };
+		184B115025E36C75003007A2 /* Gahir_AgroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B114F25E36C75003007A2 /* Gahir_AgroTests.swift */; };
+		184B115B25E36C75003007A2 /* Gahir_AgroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B115A25E36C75003007A2 /* Gahir_AgroUITests.swift */; };
+		184B117725E36E76003007A2 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 184B117625E36E76003007A2 /* Auth.storyboard */; };
+		184B117C25E36E91003007A2 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B117B25E36E91003007A2 /* SignInVC.swift */; };
+		184B118125E36EB7003007A2 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B118025E36EB7003007A2 /* SignUpVC.swift */; };
+		184B118625E36EC9003007A2 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B118525E36EC9003007A2 /* ForgotPasswordVC.swift */; };
+		184B11A025E37149003007A2 /* AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B119B25E37148003007A2 /* AppExtensions.swift */; };
+		184B11A225E37149003007A2 /* AppFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B119D25E37149003007A2 /* AppFunctions.swift */; };
+		184B11A425E37149003007A2 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B119F25E37149003007A2 /* ImagePicker.swift */; };
+		184B11B825E37244003007A2 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11B525E37244003007A2 /* AppConstants.swift */; };
+		184B11B925E37244003007A2 /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11B625E37244003007A2 /* ValidationManager.swift */; };
+		184B11BA25E37244003007A2 /* DisplayAlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11B725E37244003007A2 /* DisplayAlertManager.swift */; };
+		184B11C125E37259003007A2 /* Activityloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11BE25E37259003007A2 /* Activityloader.swift */; };
+		184B11C225E37259003007A2 /* HelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11BF25E37259003007A2 /* HelperMethods.swift */; };
+		184B11C325E37259003007A2 /* ChangeBottamColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C025E37259003007A2 /* ChangeBottamColor.swift */; };
+		184B11CA25E3726E003007A2 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C725E3726D003007A2 /* Constant.swift */; };
+		184B11CB25E3726E003007A2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C825E3726D003007A2 /* Reachability.swift */; };
+		184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C925E3726D003007A2 /* AFWrapperClass.swift */; };
+		3CB4907F28A61967136EDF38 /* Pods_Gahir_Agro_Gahir_AgroUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B9B12110EF8CE43EAF794BD /* Pods_Gahir_Agro_Gahir_AgroUITests.framework */; };
+		C7709140CDDB62FAAB1F3256 /* Pods_Gahir_AgroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AAE070BC20C968B3596A80 /* Pods_Gahir_AgroTests.framework */; };
+		D4C3FF461F43E538AC8997E9 /* Pods_Gahir_Agro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B541B8D40B28A414D29DC4B /* Pods_Gahir_Agro.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		184B114C25E36C75003007A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 184B112D25E36C74003007A2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 184B113425E36C74003007A2;
+			remoteInfo = "Gahir Agro";
+		};
+		184B115725E36C75003007A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 184B112D25E36C74003007A2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 184B113425E36C74003007A2;
+			remoteInfo = "Gahir Agro";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		184B113525E36C74003007A2 /* Gahir Agro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gahir Agro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		184B113825E36C74003007A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		184B113A25E36C74003007A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		184B113C25E36C74003007A2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		184B113F25E36C74003007A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		184B114125E36C74003007A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		184B114425E36C74003007A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		184B114625E36C74003007A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		184B114B25E36C75003007A2 /* Gahir AgroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Gahir AgroTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		184B114F25E36C75003007A2 /* Gahir_AgroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gahir_AgroTests.swift; sourceTree = "<group>"; };
+		184B115125E36C75003007A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		184B115625E36C75003007A2 /* Gahir AgroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Gahir AgroUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		184B115A25E36C75003007A2 /* Gahir_AgroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gahir_AgroUITests.swift; sourceTree = "<group>"; };
+		184B115C25E36C75003007A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		184B117625E36E76003007A2 /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
+		184B117B25E36E91003007A2 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		184B118025E36EB7003007A2 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		184B118525E36EC9003007A2 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
+		184B119B25E37148003007A2 /* AppExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppExtensions.swift; sourceTree = "<group>"; };
+		184B119D25E37149003007A2 /* AppFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFunctions.swift; sourceTree = "<group>"; };
+		184B119F25E37149003007A2 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		184B11B525E37244003007A2 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		184B11B625E37244003007A2 /* ValidationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
+		184B11B725E37244003007A2 /* DisplayAlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayAlertManager.swift; sourceTree = "<group>"; };
+		184B11BE25E37259003007A2 /* Activityloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activityloader.swift; sourceTree = "<group>"; };
+		184B11BF25E37259003007A2 /* HelperMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperMethods.swift; sourceTree = "<group>"; };
+		184B11C025E37259003007A2 /* ChangeBottamColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeBottamColor.swift; sourceTree = "<group>"; };
+		184B11C725E3726D003007A2 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		184B11C825E3726D003007A2 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		184B11C925E3726D003007A2 /* AFWrapperClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWrapperClass.swift; sourceTree = "<group>"; };
+		1B9B12110EF8CE43EAF794BD /* Pods_Gahir_Agro_Gahir_AgroUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gahir_Agro_Gahir_AgroUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		23D80917952C851FF3338D0E /* Pods-Gahir Agro-Gahir AgroUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gahir Agro-Gahir AgroUITests.release.xcconfig"; path = "Target Support Files/Pods-Gahir Agro-Gahir AgroUITests/Pods-Gahir Agro-Gahir AgroUITests.release.xcconfig"; sourceTree = "<group>"; };
+		57BC1352E392AD5308718162 /* Pods-Gahir Agro-Gahir AgroUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gahir Agro-Gahir AgroUITests.debug.xcconfig"; path = "Target Support Files/Pods-Gahir Agro-Gahir AgroUITests/Pods-Gahir Agro-Gahir AgroUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		63F230E125C1F13D62A80238 /* Pods-Gahir AgroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gahir AgroTests.release.xcconfig"; path = "Target Support Files/Pods-Gahir AgroTests/Pods-Gahir AgroTests.release.xcconfig"; sourceTree = "<group>"; };
+		66494D8EF3C9A00338812024 /* Pods-Gahir Agro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gahir Agro.release.xcconfig"; path = "Target Support Files/Pods-Gahir Agro/Pods-Gahir Agro.release.xcconfig"; sourceTree = "<group>"; };
+		6CA038B38BA7B2CD6C45D41E /* Pods-Gahir AgroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gahir AgroTests.debug.xcconfig"; path = "Target Support Files/Pods-Gahir AgroTests/Pods-Gahir AgroTests.debug.xcconfig"; sourceTree = "<group>"; };
+		72DE4941DF827465C9F49D0C /* Pods-Gahir Agro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gahir Agro.debug.xcconfig"; path = "Target Support Files/Pods-Gahir Agro/Pods-Gahir Agro.debug.xcconfig"; sourceTree = "<group>"; };
+		8B541B8D40B28A414D29DC4B /* Pods_Gahir_Agro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gahir_Agro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5AAE070BC20C968B3596A80 /* Pods_Gahir_AgroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gahir_AgroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		184B113225E36C74003007A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4C3FF461F43E538AC8997E9 /* Pods_Gahir_Agro.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		184B114825E36C75003007A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7709140CDDB62FAAB1F3256 /* Pods_Gahir_AgroTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		184B115325E36C75003007A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CB4907F28A61967136EDF38 /* Pods_Gahir_Agro_Gahir_AgroUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		184B112C25E36C74003007A2 = {
+			isa = PBXGroup;
+			children = (
+				184B113725E36C74003007A2 /* Gahir Agro */,
+				184B114E25E36C75003007A2 /* Gahir AgroTests */,
+				184B115925E36C75003007A2 /* Gahir AgroUITests */,
+				184B113625E36C74003007A2 /* Products */,
+				6D0D7AC69A71FCFD5CE47B72 /* Pods */,
+				E83D135456B608AC96BF0CD9 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		184B113625E36C74003007A2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				184B113525E36C74003007A2 /* Gahir Agro.app */,
+				184B114B25E36C75003007A2 /* Gahir AgroTests.xctest */,
+				184B115625E36C75003007A2 /* Gahir AgroUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		184B113725E36C74003007A2 /* Gahir Agro */ = {
+			isa = PBXGroup;
+			children = (
+				184B116B25E36D8C003007A2 /* App */,
+				184B116C25E36D95003007A2 /* Controllers */,
+				184B116D25E36DA0003007A2 /* Views */,
+				184B116E25E36DAC003007A2 /* Resources */,
+				184B113C25E36C74003007A2 /* ViewController.swift */,
+				184B114625E36C74003007A2 /* Info.plist */,
+			);
+			path = "Gahir Agro";
+			sourceTree = "<group>";
+		};
+		184B114E25E36C75003007A2 /* Gahir AgroTests */ = {
+			isa = PBXGroup;
+			children = (
+				184B114F25E36C75003007A2 /* Gahir_AgroTests.swift */,
+				184B115125E36C75003007A2 /* Info.plist */,
+			);
+			path = "Gahir AgroTests";
+			sourceTree = "<group>";
+		};
+		184B115925E36C75003007A2 /* Gahir AgroUITests */ = {
+			isa = PBXGroup;
+			children = (
+				184B115A25E36C75003007A2 /* Gahir_AgroUITests.swift */,
+				184B115C25E36C75003007A2 /* Info.plist */,
+			);
+			path = "Gahir AgroUITests";
+			sourceTree = "<group>";
+		};
+		184B116B25E36D8C003007A2 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				184B117225E36E1C003007A2 /* Classes */,
+				184B117125E36DF1003007A2 /* Formatting */,
+				184B117025E36DE5003007A2 /* Managers */,
+				184B116F25E36DDC003007A2 /* Constant */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		184B116C25E36D95003007A2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				184B117325E36E23003007A2 /* Auth */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		184B116D25E36DA0003007A2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				184B114325E36C74003007A2 /* LaunchScreen.storyboard */,
+				184B113E25E36C74003007A2 /* Main.storyboard */,
+				184B117625E36E76003007A2 /* Auth.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		184B116E25E36DAC003007A2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				184B117525E36E46003007A2 /* Images */,
+				184B117425E36E3E003007A2 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		184B116F25E36DDC003007A2 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				184B11C925E3726D003007A2 /* AFWrapperClass.swift */,
+				184B11C725E3726D003007A2 /* Constant.swift */,
+				184B11C825E3726D003007A2 /* Reachability.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		184B117025E36DE5003007A2 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				184B11B525E37244003007A2 /* AppConstants.swift */,
+				184B11B725E37244003007A2 /* DisplayAlertManager.swift */,
+				184B11B625E37244003007A2 /* ValidationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		184B117125E36DF1003007A2 /* Formatting */ = {
+			isa = PBXGroup;
+			children = (
+				184B11BE25E37259003007A2 /* Activityloader.swift */,
+				184B11C025E37259003007A2 /* ChangeBottamColor.swift */,
+				184B11BF25E37259003007A2 /* HelperMethods.swift */,
+			);
+			path = Formatting;
+			sourceTree = "<group>";
+		};
+		184B117225E36E1C003007A2 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				184B119B25E37148003007A2 /* AppExtensions.swift */,
+				184B119D25E37149003007A2 /* AppFunctions.swift */,
+				184B119F25E37149003007A2 /* ImagePicker.swift */,
+				184B113825E36C74003007A2 /* AppDelegate.swift */,
+				184B113A25E36C74003007A2 /* SceneDelegate.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		184B117325E36E23003007A2 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				184B117B25E36E91003007A2 /* SignInVC.swift */,
+				184B118025E36EB7003007A2 /* SignUpVC.swift */,
+				184B118525E36EC9003007A2 /* ForgotPasswordVC.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		184B117425E36E3E003007A2 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		184B117525E36E46003007A2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				184B114125E36C74003007A2 /* Assets.xcassets */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		6D0D7AC69A71FCFD5CE47B72 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				72DE4941DF827465C9F49D0C /* Pods-Gahir Agro.debug.xcconfig */,
+				66494D8EF3C9A00338812024 /* Pods-Gahir Agro.release.xcconfig */,
+				57BC1352E392AD5308718162 /* Pods-Gahir Agro-Gahir AgroUITests.debug.xcconfig */,
+				23D80917952C851FF3338D0E /* Pods-Gahir Agro-Gahir AgroUITests.release.xcconfig */,
+				6CA038B38BA7B2CD6C45D41E /* Pods-Gahir AgroTests.debug.xcconfig */,
+				63F230E125C1F13D62A80238 /* Pods-Gahir AgroTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E83D135456B608AC96BF0CD9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B541B8D40B28A414D29DC4B /* Pods_Gahir_Agro.framework */,
+				1B9B12110EF8CE43EAF794BD /* Pods_Gahir_Agro_Gahir_AgroUITests.framework */,
+				A5AAE070BC20C968B3596A80 /* Pods_Gahir_AgroTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		184B113425E36C74003007A2 /* Gahir Agro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 184B115F25E36C75003007A2 /* Build configuration list for PBXNativeTarget "Gahir Agro" */;
+			buildPhases = (
+				6D481688B3B01C1E9E84CBC8 /* [CP] Check Pods Manifest.lock */,
+				184B113125E36C74003007A2 /* Sources */,
+				184B113225E36C74003007A2 /* Frameworks */,
+				184B113325E36C74003007A2 /* Resources */,
+				AFB5F6BF3B9E78614D165FED /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Gahir Agro";
+			productName = "Gahir Agro";
+			productReference = 184B113525E36C74003007A2 /* Gahir Agro.app */;
+			productType = "com.apple.product-type.application";
+		};
+		184B114A25E36C75003007A2 /* Gahir AgroTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 184B116225E36C75003007A2 /* Build configuration list for PBXNativeTarget "Gahir AgroTests" */;
+			buildPhases = (
+				3862CE84B8B10E928AF9AD3D /* [CP] Check Pods Manifest.lock */,
+				184B114725E36C75003007A2 /* Sources */,
+				184B114825E36C75003007A2 /* Frameworks */,
+				184B114925E36C75003007A2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				184B114D25E36C75003007A2 /* PBXTargetDependency */,
+			);
+			name = "Gahir AgroTests";
+			productName = "Gahir AgroTests";
+			productReference = 184B114B25E36C75003007A2 /* Gahir AgroTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		184B115525E36C75003007A2 /* Gahir AgroUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 184B116525E36C75003007A2 /* Build configuration list for PBXNativeTarget "Gahir AgroUITests" */;
+			buildPhases = (
+				CA3224DF055D96C6FB9528DC /* [CP] Check Pods Manifest.lock */,
+				184B115225E36C75003007A2 /* Sources */,
+				184B115325E36C75003007A2 /* Frameworks */,
+				184B115425E36C75003007A2 /* Resources */,
+				A29C53E23426F49979FA4289 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				184B115825E36C75003007A2 /* PBXTargetDependency */,
+			);
+			name = "Gahir AgroUITests";
+			productName = "Gahir AgroUITests";
+			productReference = 184B115625E36C75003007A2 /* Gahir AgroUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		184B112D25E36C74003007A2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					184B113425E36C74003007A2 = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					184B114A25E36C75003007A2 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 184B113425E36C74003007A2;
+					};
+					184B115525E36C75003007A2 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 184B113425E36C74003007A2;
+					};
+				};
+			};
+			buildConfigurationList = 184B113025E36C74003007A2 /* Build configuration list for PBXProject "Gahir Agro" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 184B112C25E36C74003007A2;
+			productRefGroup = 184B113625E36C74003007A2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				184B113425E36C74003007A2 /* Gahir Agro */,
+				184B114A25E36C75003007A2 /* Gahir AgroTests */,
+				184B115525E36C75003007A2 /* Gahir AgroUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		184B113325E36C74003007A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				184B117725E36E76003007A2 /* Auth.storyboard in Resources */,
+				184B114525E36C74003007A2 /* LaunchScreen.storyboard in Resources */,
+				184B114225E36C74003007A2 /* Assets.xcassets in Resources */,
+				184B114025E36C74003007A2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		184B114925E36C75003007A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		184B115425E36C75003007A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3862CE84B8B10E928AF9AD3D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Gahir AgroTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6D481688B3B01C1E9E84CBC8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Gahir Agro-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A29C53E23426F49979FA4289 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gahir Agro-Gahir AgroUITests/Pods-Gahir Agro-Gahir AgroUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gahir Agro-Gahir AgroUITests/Pods-Gahir Agro-Gahir AgroUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Gahir Agro-Gahir AgroUITests/Pods-Gahir Agro-Gahir AgroUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AFB5F6BF3B9E78614D165FED /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gahir Agro/Pods-Gahir Agro-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gahir Agro/Pods-Gahir Agro-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Gahir Agro/Pods-Gahir Agro-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA3224DF055D96C6FB9528DC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Gahir Agro-Gahir AgroUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		184B113125E36C74003007A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				184B11B925E37244003007A2 /* ValidationManager.swift in Sources */,
+				184B11BA25E37244003007A2 /* DisplayAlertManager.swift in Sources */,
+				184B113D25E36C74003007A2 /* ViewController.swift in Sources */,
+				184B11CA25E3726E003007A2 /* Constant.swift in Sources */,
+				184B113925E36C74003007A2 /* AppDelegate.swift in Sources */,
+				184B11C125E37259003007A2 /* Activityloader.swift in Sources */,
+				184B11CB25E3726E003007A2 /* Reachability.swift in Sources */,
+				184B11A225E37149003007A2 /* AppFunctions.swift in Sources */,
+				184B118625E36EC9003007A2 /* ForgotPasswordVC.swift in Sources */,
+				184B117C25E36E91003007A2 /* SignInVC.swift in Sources */,
+				184B11A425E37149003007A2 /* ImagePicker.swift in Sources */,
+				184B118125E36EB7003007A2 /* SignUpVC.swift in Sources */,
+				184B11C325E37259003007A2 /* ChangeBottamColor.swift in Sources */,
+				184B11C225E37259003007A2 /* HelperMethods.swift in Sources */,
+				184B113B25E36C74003007A2 /* SceneDelegate.swift in Sources */,
+				184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */,
+				184B11A025E37149003007A2 /* AppExtensions.swift in Sources */,
+				184B11B825E37244003007A2 /* AppConstants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		184B114725E36C75003007A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				184B115025E36C75003007A2 /* Gahir_AgroTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		184B115225E36C75003007A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				184B115B25E36C75003007A2 /* Gahir_AgroUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		184B114D25E36C75003007A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 184B113425E36C74003007A2 /* Gahir Agro */;
+			targetProxy = 184B114C25E36C75003007A2 /* PBXContainerItemProxy */;
+		};
+		184B115825E36C75003007A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 184B113425E36C74003007A2 /* Gahir Agro */;
+			targetProxy = 184B115725E36C75003007A2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		184B113E25E36C74003007A2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				184B113F25E36C74003007A2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		184B114325E36C74003007A2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				184B114425E36C74003007A2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		184B115D25E36C75003007A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		184B115E25E36C75003007A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		184B116025E36C75003007A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72DE4941DF827465C9F49D0C /* Pods-Gahir Agro.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Gahir Agro/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "dharmaniApps.Gahir-Agro";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		184B116125E36C75003007A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66494D8EF3C9A00338812024 /* Pods-Gahir Agro.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Gahir Agro/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "dharmaniApps.Gahir-Agro";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		184B116325E36C75003007A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CA038B38BA7B2CD6C45D41E /* Pods-Gahir AgroTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Gahir AgroTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "dharmaniApps.Gahir-AgroTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gahir Agro.app/Gahir Agro";
+			};
+			name = Debug;
+		};
+		184B116425E36C75003007A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63F230E125C1F13D62A80238 /* Pods-Gahir AgroTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Gahir AgroTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "dharmaniApps.Gahir-AgroTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gahir Agro.app/Gahir Agro";
+			};
+			name = Release;
+		};
+		184B116625E36C75003007A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57BC1352E392AD5308718162 /* Pods-Gahir Agro-Gahir AgroUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Gahir AgroUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "dharmaniApps.Gahir-AgroUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Gahir Agro";
+			};
+			name = Debug;
+		};
+		184B116725E36C75003007A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23D80917952C851FF3338D0E /* Pods-Gahir Agro-Gahir AgroUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Gahir AgroUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "dharmaniApps.Gahir-AgroUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Gahir Agro";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		184B113025E36C74003007A2 /* Build configuration list for PBXProject "Gahir Agro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				184B115D25E36C75003007A2 /* Debug */,
+				184B115E25E36C75003007A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		184B115F25E36C75003007A2 /* Build configuration list for PBXNativeTarget "Gahir Agro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				184B116025E36C75003007A2 /* Debug */,
+				184B116125E36C75003007A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		184B116225E36C75003007A2 /* Build configuration list for PBXNativeTarget "Gahir AgroTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				184B116325E36C75003007A2 /* Debug */,
+				184B116425E36C75003007A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		184B116525E36C75003007A2 /* Build configuration list for PBXNativeTarget "Gahir AgroUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				184B116625E36C75003007A2 /* Debug */,
+				184B116725E36C75003007A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 184B112D25E36C74003007A2 /* Project object */;
+}
