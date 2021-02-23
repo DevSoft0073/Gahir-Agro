@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180847B725E4BE2A00D04E69 /* SignInWithVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180847B625E4BE2A00D04E69 /* SignInWithVC.swift */; };
+		180847BC25E4BE4700D04E69 /* AddPhoneNumberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180847BB25E4BE4700D04E69 /* AddPhoneNumberVC.swift */; };
+		180847C125E4BE5F00D04E69 /* OTPVerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180847C025E4BE5F00D04E69 /* OTPVerificationVC.swift */; };
+		180847CE25E4DBA200D04E69 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180847CD25E4DBA200D04E69 /* HomeVC.swift */; };
+		180847D325E4DBB000D04E69 /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180847D225E4DBB000D04E69 /* SideMenuVC.swift */; };
 		180EEADB25E3B73100D6327A /* Poppins-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 180EEAC825E3B72D00D6327A /* Poppins-SemiBold.otf */; };
 		180EEADC25E3B73100D6327A /* Poppins-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 180EEAC925E3B72D00D6327A /* Poppins-ThinItalic.otf */; };
 		180EEADD25E3B73100D6327A /* Poppins-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 180EEACA25E3B72E00D6327A /* Poppins-Italic.otf */; };
@@ -73,6 +78,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180847B625E4BE2A00D04E69 /* SignInWithVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithVC.swift; sourceTree = "<group>"; };
+		180847BB25E4BE4700D04E69 /* AddPhoneNumberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhoneNumberVC.swift; sourceTree = "<group>"; };
+		180847C025E4BE5F00D04E69 /* OTPVerificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVerificationVC.swift; sourceTree = "<group>"; };
+		180847CD25E4DBA200D04E69 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		180847D225E4DBB000D04E69 /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		180EEAC825E3B72D00D6327A /* Poppins-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.otf"; sourceTree = "<group>"; };
 		180EEAC925E3B72D00D6327A /* Poppins-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.otf"; sourceTree = "<group>"; };
 		180EEACA25E3B72E00D6327A /* Poppins-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Italic.otf"; sourceTree = "<group>"; };
@@ -161,6 +171,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		180847C825E4DB5000D04E69 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				180847CD25E4DBA200D04E69 /* HomeVC.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		180847C925E4DB5800D04E69 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				180847D225E4DBB000D04E69 /* SideMenuVC.swift */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
 		184B112C25E36C74003007A2 = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +254,8 @@
 		184B116C25E36D95003007A2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				180847C925E4DB5800D04E69 /* SideMenu */,
+				180847C825E4DB5000D04E69 /* Home */,
 				184B117325E36E23003007A2 /* Auth */,
 			);
 			path = Controllers;
@@ -297,7 +325,10 @@
 		184B117325E36E23003007A2 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				180847B625E4BE2A00D04E69 /* SignInWithVC.swift */,
 				184B117B25E36E91003007A2 /* SignInVC.swift */,
+				180847BB25E4BE4700D04E69 /* AddPhoneNumberVC.swift */,
+				180847C025E4BE5F00D04E69 /* OTPVerificationVC.swift */,
 				184B118025E36EB7003007A2 /* SignUpVC.swift */,
 				184B118525E36EC9003007A2 /* ForgotPasswordVC.swift */,
 			);
@@ -622,19 +653,24 @@
 				184B11B925E37244003007A2 /* ValidationManager.swift in Sources */,
 				184B11BA25E37244003007A2 /* DisplayAlertManager.swift in Sources */,
 				184B113D25E36C74003007A2 /* ViewController.swift in Sources */,
+				180847D325E4DBB000D04E69 /* SideMenuVC.swift in Sources */,
 				184B11CA25E3726E003007A2 /* Constant.swift in Sources */,
 				184B113925E36C74003007A2 /* AppDelegate.swift in Sources */,
 				184B11C125E37259003007A2 /* Activityloader.swift in Sources */,
 				184B11CB25E3726E003007A2 /* Reachability.swift in Sources */,
 				184B11A225E37149003007A2 /* AppFunctions.swift in Sources */,
 				184B118625E36EC9003007A2 /* ForgotPasswordVC.swift in Sources */,
+				180847CE25E4DBA200D04E69 /* HomeVC.swift in Sources */,
 				184B117C25E36E91003007A2 /* SignInVC.swift in Sources */,
+				180847C125E4BE5F00D04E69 /* OTPVerificationVC.swift in Sources */,
+				180847BC25E4BE4700D04E69 /* AddPhoneNumberVC.swift in Sources */,
 				184B11A425E37149003007A2 /* ImagePicker.swift in Sources */,
 				184B118125E36EB7003007A2 /* SignUpVC.swift in Sources */,
 				184B11C325E37259003007A2 /* ChangeBottamColor.swift in Sources */,
 				184B11C225E37259003007A2 /* HelperMethods.swift in Sources */,
 				184B113B25E36C74003007A2 /* SceneDelegate.swift in Sources */,
 				184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */,
+				180847B725E4BE2A00D04E69 /* SignInWithVC.swift in Sources */,
 				184B11A025E37149003007A2 /* AppExtensions.swift in Sources */,
 				184B11B825E37244003007A2 /* AppConstants.swift in Sources */,
 			);

@@ -7,23 +7,36 @@
 
 import UIKit
 
-class SignInVC: UIViewController {
+class SignInVC: UIViewController ,UITextFieldDelegate{
 
+    @IBOutlet weak var passwordTxtFld: UITextField!
+    @IBOutlet weak var passwordView: UIView!
+    @IBOutlet weak var emailTxtFld: UITextField!
+    @IBOutlet weak var emailView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == emailTxtFld{
+            emailView.borderColor = #colorLiteral(red: 0.7788546085, green: 0.0326503776, blue: 0.1003007665, alpha: 1)
+            passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        }else if textField == passwordTxtFld{
+            emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            passwordView.borderColor = #colorLiteral(red: 0.7788546085, green: 0.0326503776, blue: 0.1003007665, alpha: 1)
+        }
     }
-    */
-
+    
+    @IBAction func logInButtonAction(_ sender: Any) {
+        let vc = AddPhoneNumberVC.instantiate(fromAppStoryboard: .Auth)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func forgotPasswordButtonAction(_ sender: Any) {
+        let vc = ForgotPasswordVC.instantiate(fromAppStoryboard: .Auth)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
