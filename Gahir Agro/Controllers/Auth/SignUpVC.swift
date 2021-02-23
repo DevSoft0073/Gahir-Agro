@@ -50,8 +50,14 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
     }
     
     @IBAction func signUpButton(_ sender: Any) {
+        let story = UIStoryboard(name: "Main", bundle: nil)
+        let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
+        self.navigationController?.pushViewController(rootViewController, animated: true)
     }
     
     @IBAction func gotoSignInBUtton(_ sender: Any) {
+        let vc = SignInVC.instantiate(fromAppStoryboard: .Auth)
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
 }

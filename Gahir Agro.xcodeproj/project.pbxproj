@@ -31,6 +31,8 @@
 		180EEAEB25E3B73100D6327A /* Poppins-ExtraLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 180EEAD825E3B73100D6327A /* Poppins-ExtraLightItalic.otf */; };
 		180EEAEC25E3B73100D6327A /* Poppins-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 180EEAD925E3B73100D6327A /* Poppins-Black.otf */; };
 		180EEAED25E3B73100D6327A /* Poppins-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 180EEADA25E3B73100D6327A /* Poppins-BoldItalic.otf */; };
+		18157E1225E5095300E4451C /* ProductDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18157E1125E5095300E4451C /* ProductDetailsVC.swift */; };
+		18157E1725E50FBD00E4451C /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18157E1625E50FBD00E4451C /* SideMenuController.swift */; };
 		184B113925E36C74003007A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B113825E36C74003007A2 /* AppDelegate.swift */; };
 		184B113B25E36C74003007A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B113A25E36C74003007A2 /* SceneDelegate.swift */; };
 		184B113D25E36C74003007A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B113C25E36C74003007A2 /* ViewController.swift */; };
@@ -102,6 +104,8 @@
 		180EEAD825E3B73100D6327A /* Poppins-ExtraLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.otf"; sourceTree = "<group>"; };
 		180EEAD925E3B73100D6327A /* Poppins-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Black.otf"; sourceTree = "<group>"; };
 		180EEADA25E3B73100D6327A /* Poppins-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.otf"; sourceTree = "<group>"; };
+		18157E1125E5095300E4451C /* ProductDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsVC.swift; sourceTree = "<group>"; };
+		18157E1625E50FBD00E4451C /* SideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
 		184B113525E36C74003007A2 /* Gahir Agro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gahir Agro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		184B113825E36C74003007A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		184B113A25E36C74003007A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				180847CD25E4DBA200D04E69 /* HomeVC.swift */,
+				18157E1125E5095300E4451C /* ProductDetailsVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 		180847C925E4DB5800D04E69 /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
+				18157E1625E50FBD00E4451C /* SideMenuController.swift */,
 				180847D225E4DBB000D04E69 /* SideMenuVC.swift */,
 			);
 			path = SideMenu;
@@ -660,6 +666,7 @@
 				184B11CB25E3726E003007A2 /* Reachability.swift in Sources */,
 				184B11A225E37149003007A2 /* AppFunctions.swift in Sources */,
 				184B118625E36EC9003007A2 /* ForgotPasswordVC.swift in Sources */,
+				18157E1725E50FBD00E4451C /* SideMenuController.swift in Sources */,
 				180847CE25E4DBA200D04E69 /* HomeVC.swift in Sources */,
 				184B117C25E36E91003007A2 /* SignInVC.swift in Sources */,
 				180847C125E4BE5F00D04E69 /* OTPVerificationVC.swift in Sources */,
@@ -667,6 +674,7 @@
 				184B11A425E37149003007A2 /* ImagePicker.swift in Sources */,
 				184B118125E36EB7003007A2 /* SignUpVC.swift in Sources */,
 				184B11C325E37259003007A2 /* ChangeBottamColor.swift in Sources */,
+				18157E1225E5095300E4451C /* ProductDetailsVC.swift in Sources */,
 				184B11C225E37259003007A2 /* HelperMethods.swift in Sources */,
 				184B113B25E36C74003007A2 /* SceneDelegate.swift in Sources */,
 				184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */,

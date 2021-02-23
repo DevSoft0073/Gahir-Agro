@@ -16,6 +16,11 @@ class OTPVerificationVC: UIViewController {
     }
     
     @IBAction func backButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func verifyButton(_ sender: Any) {
+        let vc = SignUpVC.instantiate(fromAppStoryboard: .Auth)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

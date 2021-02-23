@@ -21,6 +21,10 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func generateOtpButton(_ sender: Any) {
+        let vc = OTPVerificationVC.instantiate(fromAppStoryboard: .Auth)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    
     
 }

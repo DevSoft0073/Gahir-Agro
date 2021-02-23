@@ -30,13 +30,18 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
     }
     
     @IBAction func logInButtonAction(_ sender: Any) {
-        let vc = AddPhoneNumberVC.instantiate(fromAppStoryboard: .Auth)
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+        let story = UIStoryboard(name: "Main", bundle: nil)
+        let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
+        self.navigationController?.pushViewController(rootViewController, animated: true)
     }
     
     @IBAction func forgotPasswordButtonAction(_ sender: Any) {
         let vc = ForgotPasswordVC.instantiate(fromAppStoryboard: .Auth)
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    @IBAction func backButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
