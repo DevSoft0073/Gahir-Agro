@@ -14,15 +14,16 @@ class HomeVC: UIViewController {
     var tableViewDataArray = [TableViewData]()
     @IBOutlet weak var allItemsTBView: UITableView!
     @IBOutlet weak var itemsCollectionView: UICollectionView!
+    var nameArray = ["TRACKTORS","TRACKTORS","TRACKTORS","TRACKTORS","TRACKTORS","TRACKTORS","TRACKTORS"]
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableViewDataArray.append(TableViewData(image: "bg-1", name: "Product-1", modelName: "HP-28", details: "Drive"))
-        tableViewDataArray.append(TableViewData(image: "bg-1", name: "Product-2", modelName: "HP-28", details: "Drive"))
-        tableViewDataArray.append(TableViewData(image: "bg-1", name: "Product-3", modelName: "HP-28", details: "Drive"))
-        tableViewDataArray.append(TableViewData(image: "bg-1", name: "Product-4", modelName: "HP-28", details: "Drive"))
-        tableViewDataArray.append(TableViewData(image: "bg-1", name: "Product-5", modelName: "HP-28", details: "Drive"))
-        tableViewDataArray.append(TableViewData(image: "bg-1", name: "Product-6", modelName: "HP-28", details: "Drive"))
+        tableViewDataArray.append(TableViewData(image: "im", name: "Product-1", modelName: "HP-28", details: "Drive"))
+        tableViewDataArray.append(TableViewData(image: "im", name: "Product-2", modelName: "HP-28", details: "Drive"))
+        tableViewDataArray.append(TableViewData(image: "im", name: "Product-3", modelName: "HP-28", details: "Drive"))
+        tableViewDataArray.append(TableViewData(image: "im", name: "Product-4", modelName: "HP-28", details: "Drive"))
+        tableViewDataArray.append(TableViewData(image: "im1", name: "Product-5", modelName: "HP-28", details: "Drive"))
+        tableViewDataArray.append(TableViewData(image: "im", name: "Product-6", modelName: "HP-28", details: "Drive"))
         
         collectionViewDataArray.append((CollectionViewData(name: "TRACKTORS", selected: false)))
         collectionViewDataArray.append((CollectionViewData(name: "TRACKTORS", selected: false)))
@@ -52,7 +53,6 @@ class HomeVC: UIViewController {
 class ItemsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var nameLbl: UILabel!
-    @IBOutlet weak var dataView: UIView!
     override class func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -104,8 +104,8 @@ extension HomeVC : UICollectionViewDelegate , UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemsCollectionViewCell", for: indexPath) as! ItemsCollectionViewCell
-        cell.dataView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        cell.nameLbl.text = collectionViewDataArray[indexPath.item].name
+//        cell.dataView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        cell.nameLbl.text = nameArray[indexPath.item]
         return cell
     }
 }
