@@ -18,6 +18,7 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        allItemsTBView.separatorStyle = .none
         tableViewDataArray.append(TableViewData(image: "im", name: "Product-1", modelName: "HP-28", details: "Drive"))
         tableViewDataArray.append(TableViewData(image: "im", name: "Product-2", modelName: "HP-28", details: "Drive"))
         tableViewDataArray.append(TableViewData(image: "im", name: "Product-3", modelName: "HP-28", details: "Drive"))
@@ -34,7 +35,7 @@ class HomeVC: UIViewController {
         collectionViewDataArray.append((CollectionViewData(name: "TRACKTORS", selected: false)))
 
         allItemsTBView.reloadData()
-//        itemsCollectionView.reloadData()
+        itemsCollectionView.reloadData()
 
         // Do any additional setup after loading the view.
     }
@@ -45,9 +46,9 @@ class HomeVC: UIViewController {
     }
     
     @IBAction func searchButton(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as! SearchVC
+        self.present(vc, animated: true, completion: nil)
     }
-    
-
 }
 
 class ItemsCollectionViewCell: UICollectionViewCell {
@@ -92,14 +93,14 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 350
+        return 330
     }
     
 }
 
 extension HomeVC : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionViewDataArray[section].name.count
+        return collectionViewDataArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

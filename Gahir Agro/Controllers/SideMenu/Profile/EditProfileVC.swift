@@ -34,13 +34,13 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
         emailTxtFld.isUserInteractionEnabled = false
         passwordTxtFld.isUserInteractionEnabled = false
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
-//        getData()
+        
         guard let country = CountryManager.shared.currentCountry else {
             self.flagImage.isHidden = true
             return
         }
 
-        addCountryButton.setTitle(country.dialingCode, for: .normal)
+//        addCountryButton.setTitle(country.dialingCode, for: .normal)
         flagImage.image = country.flag
         addCountryButton.clipsToBounds = true
         
@@ -170,8 +170,8 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == addressTxtFld {
-            addressView.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-            bioView.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            addressView.borderColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+            bioView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             
             
         } else if textField == emailTxtFld{
@@ -182,7 +182,7 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView == bioTxtView{
             bioView.borderColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-            addressView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            addressView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         }
     }
     
