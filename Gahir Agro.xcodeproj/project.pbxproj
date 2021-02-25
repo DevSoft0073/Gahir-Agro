@@ -64,6 +64,12 @@
 		184B11CB25E3726E003007A2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C825E3726D003007A2 /* Reachability.swift */; };
 		184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C925E3726D003007A2 /* AFWrapperClass.swift */; };
 		18B87C7625E684C200837E6C /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B87C7525E684C200837E6C /* SearchVC.swift */; };
+		18E84AD425E7AACE004A2148 /* EnquiryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AD325E7AACE004A2148 /* EnquiryVC.swift */; };
+		18E84AD925E7AAE4004A2148 /* DelaerProductDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AD825E7AAE4004A2148 /* DelaerProductDetailsVC.swift */; };
+		18E84ADE25E7AC08004A2148 /* BookOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84ADD25E7AC08004A2148 /* BookOrderVC.swift */; };
+		18E84AE825E7AC57004A2148 /* RequestSubmitPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AE725E7AC57004A2148 /* RequestSubmitPopUpVC.swift */; };
+		18E84AED25E7AC9E004A2148 /* SuccesfullyBookedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AEC25E7AC9E004A2148 /* SuccesfullyBookedVC.swift */; };
+		18E84AF225E7B0DE004A2148 /* DealerHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AF125E7B0DE004A2148 /* DealerHomeVC.swift */; };
 		3CB4907F28A61967136EDF38 /* Pods_Gahir_Agro_Gahir_AgroUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B9B12110EF8CE43EAF794BD /* Pods_Gahir_Agro_Gahir_AgroUITests.framework */; };
 		C7709140CDDB62FAAB1F3256 /* Pods_Gahir_AgroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AAE070BC20C968B3596A80 /* Pods_Gahir_AgroTests.framework */; };
 		D4C3FF461F43E538AC8997E9 /* Pods_Gahir_Agro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B541B8D40B28A414D29DC4B /* Pods_Gahir_Agro.framework */; };
@@ -150,6 +156,12 @@
 		184B11C825E3726D003007A2 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		184B11C925E3726D003007A2 /* AFWrapperClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWrapperClass.swift; sourceTree = "<group>"; };
 		18B87C7525E684C200837E6C /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		18E84AD325E7AACE004A2148 /* EnquiryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnquiryVC.swift; sourceTree = "<group>"; };
+		18E84AD825E7AAE4004A2148 /* DelaerProductDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelaerProductDetailsVC.swift; sourceTree = "<group>"; };
+		18E84ADD25E7AC08004A2148 /* BookOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookOrderVC.swift; sourceTree = "<group>"; };
+		18E84AE725E7AC57004A2148 /* RequestSubmitPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSubmitPopUpVC.swift; sourceTree = "<group>"; };
+		18E84AEC25E7AC9E004A2148 /* SuccesfullyBookedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccesfullyBookedVC.swift; sourceTree = "<group>"; };
+		18E84AF125E7B0DE004A2148 /* DealerHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerHomeVC.swift; sourceTree = "<group>"; };
 		1B9B12110EF8CE43EAF794BD /* Pods_Gahir_Agro_Gahir_AgroUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gahir_Agro_Gahir_AgroUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23D80917952C851FF3338D0E /* Pods-Gahir Agro-Gahir AgroUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gahir Agro-Gahir AgroUITests.release.xcconfig"; path = "Target Support Files/Pods-Gahir Agro-Gahir AgroUITests/Pods-Gahir Agro-Gahir AgroUITests.release.xcconfig"; sourceTree = "<group>"; };
 		57BC1352E392AD5308718162 /* Pods-Gahir Agro-Gahir AgroUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gahir Agro-Gahir AgroUITests.debug.xcconfig"; path = "Target Support Files/Pods-Gahir Agro-Gahir AgroUITests/Pods-Gahir Agro-Gahir AgroUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -288,6 +300,7 @@
 		184B116C25E36D95003007A2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				18E84AD225E7AA9D004A2148 /* Dealer */,
 				180847C925E4DB5800D04E69 /* SideMenu */,
 				180847C825E4DB5000D04E69 /* Home */,
 				184B117325E36E23003007A2 /* Auth */,
@@ -402,6 +415,19 @@
 				184B114125E36C74003007A2 /* Assets.xcassets */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		18E84AD225E7AA9D004A2148 /* Dealer */ = {
+			isa = PBXGroup;
+			children = (
+				18E84AD325E7AACE004A2148 /* EnquiryVC.swift */,
+				18E84AD825E7AAE4004A2148 /* DelaerProductDetailsVC.swift */,
+				18E84ADD25E7AC08004A2148 /* BookOrderVC.swift */,
+				18E84AE725E7AC57004A2148 /* RequestSubmitPopUpVC.swift */,
+				18E84AEC25E7AC9E004A2148 /* SuccesfullyBookedVC.swift */,
+				18E84AF125E7B0DE004A2148 /* DealerHomeVC.swift */,
+			);
+			path = Dealer;
 			sourceTree = "<group>";
 		};
 		6D0D7AC69A71FCFD5CE47B72 /* Pods */ = {
@@ -692,6 +718,8 @@
 				184B113D25E36C74003007A2 /* ViewController.swift in Sources */,
 				180847D325E4DBB000D04E69 /* SideMenuVC.swift in Sources */,
 				184B11CA25E3726E003007A2 /* Constant.swift in Sources */,
+				18E84AF225E7B0DE004A2148 /* DealerHomeVC.swift in Sources */,
+				18E84AE825E7AC57004A2148 /* RequestSubmitPopUpVC.swift in Sources */,
 				184B113925E36C74003007A2 /* AppDelegate.swift in Sources */,
 				184B11C125E37259003007A2 /* Activityloader.swift in Sources */,
 				184B11CB25E3726E003007A2 /* Reachability.swift in Sources */,
@@ -702,16 +730,20 @@
 				180847CE25E4DBA200D04E69 /* HomeVC.swift in Sources */,
 				184B117C25E36E91003007A2 /* SignInVC.swift in Sources */,
 				18B87C7625E684C200837E6C /* SearchVC.swift in Sources */,
+				18E84AED25E7AC9E004A2148 /* SuccesfullyBookedVC.swift in Sources */,
+				18E84AD425E7AACE004A2148 /* EnquiryVC.swift in Sources */,
 				180847C125E4BE5F00D04E69 /* OTPVerificationVC.swift in Sources */,
 				180847BC25E4BE4700D04E69 /* AddPhoneNumberVC.swift in Sources */,
 				184B11A425E37149003007A2 /* ImagePicker.swift in Sources */,
 				184B118125E36EB7003007A2 /* SignUpVC.swift in Sources */,
+				18E84AD925E7AAE4004A2148 /* DelaerProductDetailsVC.swift in Sources */,
 				184B11C325E37259003007A2 /* ChangeBottamColor.swift in Sources */,
 				18157E1225E5095300E4451C /* ProductDetailsVC.swift in Sources */,
 				184B11C225E37259003007A2 /* HelperMethods.swift in Sources */,
 				184B113B25E36C74003007A2 /* SceneDelegate.swift in Sources */,
 				181704C625E63E02003825D7 /* EditProfileVC.swift in Sources */,
 				184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */,
+				18E84ADE25E7AC08004A2148 /* BookOrderVC.swift in Sources */,
 				180847B725E4BE2A00D04E69 /* SignInWithVC.swift in Sources */,
 				181704CB25E63E11003825D7 /* MyOrderVC.swift in Sources */,
 				184B11A025E37149003007A2 /* AppExtensions.swift in Sources */,
