@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1807058425E7690C00DBE739 /* DealerUI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1807058325E7690C00DBE739 /* DealerUI.storyboard */; };
 		180847B725E4BE2A00D04E69 /* SignInWithVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180847B625E4BE2A00D04E69 /* SignInWithVC.swift */; };
 		180847BC25E4BE4700D04E69 /* AddPhoneNumberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180847BB25E4BE4700D04E69 /* AddPhoneNumberVC.swift */; };
 		180847C125E4BE5F00D04E69 /* OTPVerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180847C025E4BE5F00D04E69 /* OTPVerificationVC.swift */; };
@@ -86,6 +87,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1807058325E7690C00DBE739 /* DealerUI.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DealerUI.storyboard; sourceTree = "<group>"; };
 		180847B625E4BE2A00D04E69 /* SignInWithVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithVC.swift; sourceTree = "<group>"; };
 		180847BB25E4BE4700D04E69 /* AddPhoneNumberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhoneNumberVC.swift; sourceTree = "<group>"; };
 		180847C025E4BE5F00D04E69 /* OTPVerificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVerificationVC.swift; sourceTree = "<group>"; };
@@ -297,8 +299,9 @@
 			isa = PBXGroup;
 			children = (
 				184B114325E36C74003007A2 /* LaunchScreen.storyboard */,
-				184B113E25E36C74003007A2 /* Main.storyboard */,
 				184B117625E36E76003007A2 /* Auth.storyboard */,
+				184B113E25E36C74003007A2 /* Main.storyboard */,
+				1807058325E7690C00DBE739 /* DealerUI.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				180EEAEA25E3B73100D6327A /* Poppins-Bold.otf in Resources */,
 				180EEAE125E3B73100D6327A /* SIL Open Font License.txt in Resources */,
 				180EEAE025E3B73100D6327A /* Poppins-ExtraBold.otf in Resources */,
+				1807058425E7690C00DBE739 /* DealerUI.storyboard in Resources */,
 				180EEAED25E3B73100D6327A /* Poppins-BoldItalic.otf in Resources */,
 				180EEAE225E3B73100D6327A /* Poppins-ExtraBoldItalic.otf in Resources */,
 				184B117725E36E76003007A2 /* Auth.storyboard in Resources */,
@@ -889,14 +893,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 426857CSP4;
 				INFOPLIST_FILE = "Gahir Agro/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dharmaniApps.Gahir-Agro";
+				PRODUCT_BUNDLE_IDENTIFIER = com.thetattz.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = thetettz_dev_23dec2020;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -908,14 +915,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 426857CSP4;
 				INFOPLIST_FILE = "Gahir Agro/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dharmaniApps.Gahir-Agro";
+				PRODUCT_BUNDLE_IDENTIFIER = com.thetattz.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = thetettz_dev_23dec2020;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -13,7 +13,7 @@ class SideMenuController: LGSideMenuController , LGSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        leftViewPresentationStyle = LGSideMenuPresentationStyle.slideBelow
+        leftViewPresentationStyle = LGSideMenuPresentationStyle.slideAbove
         leftViewWidth = self.view.frame.size.width - 80.0
         sideMenuController?.delegate = self;
     }
