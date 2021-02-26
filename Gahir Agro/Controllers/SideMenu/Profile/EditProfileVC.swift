@@ -52,6 +52,12 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
         profileImage.layer.cornerRadius = profileImage.frame.height/2
     }
     
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     //MARK:-->    Upload Images
     
     func showActionSheet(){
@@ -185,6 +191,15 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
             addressView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         }
     }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+
     
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

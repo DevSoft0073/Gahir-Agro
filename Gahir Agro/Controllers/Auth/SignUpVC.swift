@@ -8,7 +8,7 @@
 import UIKit
 
 class SignUpVC: UIViewController ,UITextFieldDelegate{
-
+    
     @IBOutlet weak var selectUnselectImage: UIImageView!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var passwordTxtFld: UITextField!
@@ -17,9 +17,11 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var nameTxtFld: UITextField!
     @IBOutlet weak var nameView: UIView!
+    var unchecked = Bool()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -43,10 +45,28 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
         }
     }
     
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     @IBAction func checkUncheckButton(_ sender: Any) {
+        if (unchecked == false)
+        {
+            checkButton.setBackgroundImage(UIImage(named: "check"), for: UIControl.State.normal)
+            unchecked = true
+        }
+        else
+        {
+            checkButton.setBackgroundImage(UIImage(named: "uncheck"), for: UIControl.State.normal)
+            unchecked = false
+        }
     }
     
     @IBAction func openLink(_ sender: Any) {
+        guard let url = URL(string: "https://stackoverflow.com") else { return }
+        UIApplication.shared.open(url)
     }
     
     @IBAction func signUpButton(_ sender: Any) {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchVC: UIViewController {
+class SearchVC: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var searchDataTBView: UITableView!
     @IBOutlet weak var searchTxtFld: UITextField!
@@ -22,7 +22,11 @@ class SearchVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }
 
 class SearchDataTBViewCell: UITableViewCell {

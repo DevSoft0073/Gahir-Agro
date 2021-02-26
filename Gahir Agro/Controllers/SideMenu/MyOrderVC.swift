@@ -17,11 +17,11 @@ class MyOrderVC: UIViewController {
         super.viewDidLoad()
         myOrderTBView.separatorStyle = .none
         // Do any additional setup after loading the view.
-        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "440", image: "im"))
-        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "440", image: "im"))
-        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "440", image: "im"))
-        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "440", image: "im"))
-        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "440", image: "im"))
+        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
+        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
+        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
+        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
+        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
         
     }
 
@@ -59,7 +59,7 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 170
+        return 125
     }
     
 }

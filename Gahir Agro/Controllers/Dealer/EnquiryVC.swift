@@ -14,6 +14,7 @@ class EnquiryVC: UIViewController {
     @IBOutlet weak var detailsLbl: UILabel!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var showImage: UIImageView!
+    var indexesNeedPicker: [NSIndexPath]?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,4 +44,17 @@ class EnquiryDataTBViewCell: UITableViewCell {
     override class func awakeFromNib() {
         super.awakeFromNib()
     }
+}
+
+extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EnquiryDataTBViewCell", for: indexPath) as! EnquiryDataTBViewCell
+        return cell
+    }
+    
+    
 }

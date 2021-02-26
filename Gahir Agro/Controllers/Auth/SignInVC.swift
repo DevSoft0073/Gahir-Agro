@@ -29,6 +29,19 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    @IBAction func signUpButton(_ sender: Any) {
+        let vc = AddPhoneNumberVC.instantiate(fromAppStoryboard: .Auth)
+        self.navigationController?.pushViewController(vc, animated: true)
+//        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
+    
     @IBAction func logInButtonAction(_ sender: Any) {
         
         let story = UIStoryboard(name: "Main", bundle: nil)

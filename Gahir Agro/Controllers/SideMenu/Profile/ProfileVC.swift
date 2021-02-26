@@ -31,6 +31,10 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
         profileImage.layer.cornerRadius = profileImage.frame.height/2
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
     
     @IBAction func gotoEditProfile(_ sender: Any) {

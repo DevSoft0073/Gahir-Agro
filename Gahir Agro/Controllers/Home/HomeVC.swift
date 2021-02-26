@@ -9,7 +9,7 @@ import UIKit
 import LGSideMenuController
 
 class HomeVC: UIViewController {
-
+    
     var collectionViewDataArray = [CollectionViewData]()
     var tableViewDataArray = [TableViewData]()
     @IBOutlet weak var allItemsTBView: UITableView!
@@ -23,7 +23,7 @@ class HomeVC: UIViewController {
         tableViewDataArray.append(TableViewData(image: "im", name: "Product-2", modelName: "HP-28", details: "Drive"))
         tableViewDataArray.append(TableViewData(image: "im", name: "Product-3", modelName: "HP-28", details: "Drive"))
         tableViewDataArray.append(TableViewData(image: "im", name: "Product-4", modelName: "HP-28", details: "Drive"))
-        tableViewDataArray.append(TableViewData(image: "im1", name: "Product-5", modelName: "HP-28", details: "Drive"))
+        tableViewDataArray.append(TableViewData(image: "im", name: "Product-5", modelName: "HP-28", details: "Drive"))
         tableViewDataArray.append(TableViewData(image: "im", name: "Product-6", modelName: "HP-28", details: "Drive"))
         
         collectionViewDataArray.append((CollectionViewData(name: "TRACKTORS", selected: false)))
@@ -33,10 +33,10 @@ class HomeVC: UIViewController {
         collectionViewDataArray.append((CollectionViewData(name: "TRACKTORS", selected: false)))
         collectionViewDataArray.append((CollectionViewData(name: "TRACKTORS", selected: false)))
         collectionViewDataArray.append((CollectionViewData(name: "TRACKTORS", selected: false)))
-
+        
         allItemsTBView.reloadData()
         itemsCollectionView.reloadData()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -82,6 +82,7 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlItemsTBViewCell", for: indexPath) as! AlItemsTBViewCell
         cell.showImage.image = UIImage(named: tableViewDataArray[indexPath.row].image)
         cell.nameLbl.text = tableViewDataArray[indexPath.row].name
+        cell.showImage.roundTop()
         cell.modelLbl.text = tableViewDataArray[indexPath.row].modelName
         cell.detailsLbl.text = tableViewDataArray[indexPath.row].details
         return cell
@@ -105,7 +106,7 @@ extension HomeVC : UICollectionViewDelegate , UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemsCollectionViewCell", for: indexPath) as! ItemsCollectionViewCell
-//        cell.dataView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        //        cell.dataView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         cell.nameLbl.text = nameArray[indexPath.item]
         return cell
     }
@@ -133,5 +134,17 @@ struct TableViewData {
         self.name = name
         self.modelName = modelName
         self.details = details
+    }
+}
+
+extension  UIView {
+    func roundTop(radius:CGFloat = 12){
+        self.clipsToBounds = true
+        self.layer.cornerRadius = radius
+        if #available(iOS 11.0, *) {
+            self.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        } else {
+            // Fallback on earlier versions
+        }
     }
 }
