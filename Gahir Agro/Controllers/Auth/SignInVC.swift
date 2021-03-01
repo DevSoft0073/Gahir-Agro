@@ -8,14 +8,15 @@
 import UIKit
 
 class SignInVC: UIViewController ,UITextFieldDelegate{
-
+    
     @IBOutlet weak var passwordTxtFld: UITextField!
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var emailTxtFld: UITextField!
     @IBOutlet weak var emailView: UIView!
+    var messgae = String()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -37,16 +38,63 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
     @IBAction func signUpButton(_ sender: Any) {
         let vc = AddPhoneNumberVC.instantiate(fromAppStoryboard: .Auth)
         self.navigationController?.pushViewController(vc, animated: true)
-//        self.navigationController?.popViewController(animated: true)
     }
     
+    func signIn()  {
+        
+        if Reachability.isConnectedToNetwork() == true {
+            print("Internet connection OK")
+            IJProgressView.shared.showProgressView()
+            let url = Constant.shared.baseUrl + Constant.shared.SignIn
+           
+            let params = ["username":emailTxtFld.text ?? "","password":passwordTxtFld.text ?? "" , "device_token" : "" ,"device_type" : "1"] as [String : Any]
+            AFWrapperClass.requestPOSTURL(url, params: params, success: { (response) in
+                IJProgressView.shared.hideProgressView()
+                self.messgae = response["message"] as? String ?? ""
+                let status = response["status"] as? Int
+                if status == 1{
+                    let allData = response as? [String:Any] ?? [:]
+                    if let data = allData["data"] as? [String:Any]  {
+                        UserDefaults.standard.set(1, forKey: "tokenFString")
+                        UserDefaults.standard.set(data["user_id"], forKey: "id")
+                        UserDefaults.standard.setValue(data["role"], forKey: "checkRole")
+                    }
+                    let story = UIStoryboard(name: "Main", bundle: nil)
+                    let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
+                    self.navigationController?.pushViewController(rootViewController, animated: true)
+                }else{
+                    IJProgressView.shared.hideProgressView()
+                    alert(Constant.shared.appTitle, message: self.messgae, view: self)
+                }
+            }) { (error) in
+                IJProgressView.shared.hideProgressView()
+                alert(Constant.shared.appTitle, message: error.localizedDescription, view: self)
+                print(error)
+            }
+            
+        } else {
+            print("Internet connection FAILED")
+            alert(Constant.shared.appTitle, message: "Check internet connection", view: self)
+        }
+    }
     
     
     @IBAction func logInButtonAction(_ sender: Any) {
         
-        let story = UIStoryboard(name: "Main", bundle: nil)
-        let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
-        self.navigationController?.pushViewController(rootViewController, animated: true)
+        if (emailTxtFld.text?.isEmpty)!{
+            
+            ValidateData(strMessage: " Please enter email")
+            
+        } else if (passwordTxtFld.text?.isEmpty)!{
+            
+            ValidateData(strMessage: " Please enter password")
+            
+        }else{
+            
+            self.signIn()
+            
+        }
+        
     }
     
     @IBAction func forgotPasswordButtonAction(_ sender: Any) {

@@ -75,7 +75,7 @@ extension SideMenuVC : UITableViewDelegate , UITableViewDataSource{
         }
         
         else if(indexPath.row == 2) {
-            let vc = NotificationVC.instantiate(fromAppStoryboard: .Main)
+            let vc = EnquiryVC.instantiate(fromAppStoryboard: .DealerUI)
             (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
             
         }

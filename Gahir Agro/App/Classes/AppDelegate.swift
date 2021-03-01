@@ -7,6 +7,9 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import Firebase
+import UserNotifications
+
 
 func appDelegate() -> AppDelegate {
     return UIApplication.shared.delegate as! AppDelegate
@@ -23,6 +26,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
         self.navigateVC()
+        FirebaseApp.configure()
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        
+        application.registerForRemoteNotifications()
         return true
     }
 
@@ -39,6 +58,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let deviceTokenString = deviceToken.hexString
+        print(deviceTokenString)
+        UserDefaults.standard.setValue(deviceTokenString, forKey: "deviceToken")
+    }
 
     func navigateVC() {
         let storyBoard = UIStoryboard.init(name: "Auth", bundle: nil)
@@ -51,3 +76,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+@available(iOS 10.0, *)
+extension AppDelegate : UNUserNotificationCenterDelegate {
+    
+    // Receive displayed notifications for iOS 10 devices.
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+}
+
+//extension Data {
+//    var hexString: String {
+//        let hexString = map { String(format: "%02.2hhx", $0) }.joined()
+//        return hexString
+//    }
+//}

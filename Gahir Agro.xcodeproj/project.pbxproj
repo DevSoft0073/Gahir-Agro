@@ -63,6 +63,8 @@
 		184B11CA25E3726E003007A2 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C725E3726D003007A2 /* Constant.swift */; };
 		184B11CB25E3726E003007A2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C825E3726D003007A2 /* Reachability.swift */; };
 		184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C925E3726D003007A2 /* AFWrapperClass.swift */; };
+		187A8BEF25ECC4FD00DCA747 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 187A8BEE25ECC4FD00DCA747 /* GoogleService-Info.plist */; };
+		18AD8F0325EADA9C00072166 /* OpenPIcker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD8F0225EADA9C00072166 /* OpenPIcker.swift */; };
 		18B87C7625E684C200837E6C /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B87C7525E684C200837E6C /* SearchVC.swift */; };
 		18E84AD425E7AACE004A2148 /* EnquiryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AD325E7AACE004A2148 /* EnquiryVC.swift */; };
 		18E84AD925E7AAE4004A2148 /* DelaerProductDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AD825E7AAE4004A2148 /* DelaerProductDetailsVC.swift */; };
@@ -157,6 +159,9 @@
 		184B11C725E3726D003007A2 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		184B11C825E3726D003007A2 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		184B11C925E3726D003007A2 /* AFWrapperClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWrapperClass.swift; sourceTree = "<group>"; };
+		187A8BE925ECC13200DCA747 /* Gahir Agro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Gahir Agro.entitlements"; sourceTree = "<group>"; };
+		187A8BEE25ECC4FD00DCA747 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Certifacate and gooleinfolist/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		18AD8F0225EADA9C00072166 /* OpenPIcker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPIcker.swift; sourceTree = "<group>"; };
 		18B87C7525E684C200837E6C /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		18E84AD325E7AACE004A2148 /* EnquiryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnquiryVC.swift; sourceTree = "<group>"; };
 		18E84AD825E7AAE4004A2148 /* DelaerProductDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelaerProductDetailsVC.swift; sourceTree = "<group>"; };
@@ -262,6 +267,8 @@
 		184B113725E36C74003007A2 /* Gahir Agro */ = {
 			isa = PBXGroup;
 			children = (
+				187A8BE925ECC13200DCA747 /* Gahir Agro.entitlements */,
+				187A8BED25ECC34300DCA747 /* GoogleInfoList */,
 				184B116B25E36D8C003007A2 /* App */,
 				184B116C25E36D95003007A2 /* Controllers */,
 				184B116D25E36DA0003007A2 /* Views */,
@@ -370,6 +377,7 @@
 				184B119F25E37149003007A2 /* ImagePicker.swift */,
 				184B113825E36C74003007A2 /* AppDelegate.swift */,
 				184B113A25E36C74003007A2 /* SceneDelegate.swift */,
+				18AD8F0225EADA9C00072166 /* OpenPIcker.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -381,10 +389,10 @@
 				180847B625E4BE2A00D04E69 /* SignInWithVC.swift */,
 				184B117B25E36E91003007A2 /* SignInVC.swift */,
 				180847BB25E4BE4700D04E69 /* AddPhoneNumberVC.swift */,
+				18F9B70D25E8E8240034D978 /* PopUpVC.swift */,
 				180847C025E4BE5F00D04E69 /* OTPVerificationVC.swift */,
 				184B118025E36EB7003007A2 /* SignUpVC.swift */,
 				184B118525E36EC9003007A2 /* ForgotPasswordVC.swift */,
-				18F9B70D25E8E8240034D978 /* PopUpVC.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -421,6 +429,14 @@
 				184B114125E36C74003007A2 /* Assets.xcassets */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		187A8BED25ECC34300DCA747 /* GoogleInfoList */ = {
+			isa = PBXGroup;
+			children = (
+				187A8BEE25ECC4FD00DCA747 /* GoogleService-Info.plist */,
+			);
+			path = GoogleInfoList;
 			sourceTree = "<group>";
 		};
 		18E84AD225E7AA9D004A2148 /* Dealer */ = {
@@ -569,6 +585,7 @@
 			files = (
 				180EEAE625E3B73100D6327A /* Poppins-Medium.otf in Resources */,
 				180EEADB25E3B73100D6327A /* Poppins-SemiBold.otf in Resources */,
+				187A8BEF25ECC4FD00DCA747 /* GoogleService-Info.plist in Resources */,
 				180EEAEA25E3B73100D6327A /* Poppins-Bold.otf in Resources */,
 				180EEAE125E3B73100D6327A /* SIL Open Font License.txt in Resources */,
 				180EEAE025E3B73100D6327A /* Poppins-ExtraBold.otf in Resources */,
@@ -721,6 +738,7 @@
 				184B11B925E37244003007A2 /* ValidationManager.swift in Sources */,
 				181704D525E654EC003825D7 /* NotificationVC.swift in Sources */,
 				184B11BA25E37244003007A2 /* DisplayAlertManager.swift in Sources */,
+				18AD8F0325EADA9C00072166 /* OpenPIcker.swift in Sources */,
 				184B113D25E36C74003007A2 /* ViewController.swift in Sources */,
 				180847D325E4DBB000D04E69 /* SideMenuVC.swift in Sources */,
 				184B11CA25E3726E003007A2 /* Constant.swift in Sources */,
@@ -933,10 +951,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Gahir Agro/Gahir Agro.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 426857CSP4;
 				INFOPLIST_FILE = "Gahir Agro/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -955,10 +975,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Gahir Agro/Gahir Agro.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 426857CSP4;
 				INFOPLIST_FILE = "Gahir Agro/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

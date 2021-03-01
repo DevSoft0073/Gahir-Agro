@@ -14,6 +14,8 @@ target 'Gahir Agro' do
     pod 'SDWebImage', '~> 4.0'
     pod 'SKCountryPicker'
     pod 'LGSideMenuController'
+    pod 'Firebase/Auth'
+
 
   target 'Gahir AgroTests' do
     inherit! :search_paths

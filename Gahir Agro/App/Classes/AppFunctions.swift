@@ -13,6 +13,7 @@ import UIKit
 enum AppStoryboard : String {
     case Auth
     case Main
+    case DealerUI
     
 }
 

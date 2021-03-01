@@ -7,128 +7,208 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9872A2E8-EF1F-4805-B7D0-933B2DD4D4E9"
+            uuid = "DE614491-6A14-4265-8A73-C72631421EA4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Auth/OTPVerificationVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "textFieldDidChange(textField:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9F48E65B-EC65-4613-81D7-6BB641FFC186"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Auth/OTPVerificationVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "textFieldDidChange(textField:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AD9C4C6C-A42C-4BB1-9CAD-E14A05D9B992"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Auth/OTPVerificationVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "textFieldDidChange(textField:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B266DDAD-6016-4D7F-80B7-89A1A102E3DA"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Auth/OTPVerificationVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "textFieldDidChange(textField:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B644D4D7-F4EE-4F54-A553-FF77994DC869"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Auth/OTPVerificationVC.swift"
+            filePath = "Gahir Agro/Controllers/Auth/SignInVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
             endingLineNumber = "53"
-            landmarkName = "textFieldDidChange(textField:)"
+            landmarkName = "signIn()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "03A696A2-EA0B-4F84-97AA-70856109E804"
+            uuid = "D453E6A4-99F3-4D04-A355-0A038636457A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Auth/OTPVerificationVC.swift"
+            filePath = "Gahir Agro/Controllers/Auth/AddPhoneNumberVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "textFieldDidChange(textField:)"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "dismissPopUP(sendData:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0BE7BF2B-AD17-4BB0-9DD2-506BD514B6CD"
+            uuid = "978F4C81-8E2F-4E5F-B469-23827492FB6F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Auth/OTPVerificationVC.swift"
+            filePath = "Gahir Agro/Controllers/Auth/PopUpVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "textFieldDidChange(textField:)"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "dismissPopUp(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1B24F0A7-A295-4290-92D5-DD271D9BBC9D"
+            uuid = "041AA474-F15B-4C04-9FB9-103A9F97D079"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Auth/OTPVerificationVC.swift"
+            filePath = "Gahir Agro/Controllers/Auth/PopUpVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "textFieldDidChange(textField:)"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "dismissPopUp(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F0A46E9E-24C1-45AA-BC53-28113D15A6E1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gahir Agro/Controllers/Auth/PopUpVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "handleTap(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F0A46E9E-24C1-45AA-BC53-28113D15A6E1 - fc591e15ab4ed7a6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Gahir_Agro.PopUpVC.handleTap(__C.UITapGestureRecognizer) -&gt; ()"
+                  moduleName = "Gahir Agro"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/Happy%20Guleria/Gahir%20Agro/Gahir%20Agro/Controllers/Auth/PopUpVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "F0A46E9E-24C1-45AA-BC53-28113D15A6E1 - c5f89f245529b549"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Gahir_Agro.PopUpVC.handleTap(__C.UITapGestureRecognizer) -&gt; ()"
+                  moduleName = "Gahir Agro"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/Happy%20Guleria/Gahir%20Agro/Gahir%20Agro/Controllers/Auth/PopUpVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "22B64EBC-15F8-47B4-9DE6-BE9D1AC4604A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gahir Agro/Controllers/Auth/PopUpVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "dismissPopUp(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "22B64EBC-15F8-47B4-9DE6-BE9D1AC4604A - 29a89e5208ed9224"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #2 (Swift.Bool) -&gt; () in Gahir_Agro.PopUpVC.dismissPopUp(() -&gt; ()) -&gt; ()"
+                  moduleName = "Gahir Agro"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/Happy%20Guleria/Gahir%20Agro/Gahir%20Agro/Controllers/Auth/PopUpVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  uuid = "22B64EBC-15F8-47B4-9DE6-BE9D1AC4604A - 434d68f2069cfef5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 ((Swift.String, Swift.Bool)) -&gt; Swift.Bool in closure #1 () -&gt; () in closure #2 (Swift.Bool) -&gt; () in Gahir_Agro.PopUpVC.dismissPopUp(() -&gt; ()) -&gt; ()"
+                  moduleName = "Gahir Agro"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/Happy%20Guleria/Gahir%20Agro/Gahir%20Agro/Controllers/Auth/PopUpVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B379D92F-AFF1-4628-913C-56B2CBA8C099"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gahir Agro/Controllers/Auth/PopUpVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "handleTap(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C3E74525-820E-4446-AD53-55F27B3670BD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gahir Agro/App/Classes/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "userNotificationCenter(_:willPresent:withCompletionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6257E51C-D3BB-4C72-AFB8-A186DB70F522"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gahir Agro/App/Classes/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "application(_:didRegisterForRemoteNotificationsWithDeviceToken:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

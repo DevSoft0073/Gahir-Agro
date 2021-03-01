@@ -107,6 +107,7 @@ extension DealerHomeVC : UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewDataCell", for: indexPath) as! TableViewDataCell
         cell.showImage.image = UIImage(named: tableViewDataArray[indexPath.row].image)
+        cell.showImage.roundTop()
         cell.nameLbl.text = tableViewDataArray[indexPath.row].name
         cell.detailslbl.text = tableViewDataArray[indexPath.row].modelName
         cell.subDetailsLbl.text = tableViewDataArray[indexPath.row].details

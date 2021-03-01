@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
     
@@ -13,6 +14,7 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
     @IBOutlet weak var textTheww: UITextField!
     @IBOutlet weak var textTwo: UITextField!
     @IBOutlet weak var textOne: UITextField!
+    var phoneNumber = String()
     var otpText = String()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +100,9 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
     }
     
     @IBAction func verifyButton(_ sender: Any) {
+        
+        
+        
         let vc = SignUpVC.instantiate(fromAppStoryboard: .Auth)
         self.navigationController?.pushViewController(vc, animated: true)
     }

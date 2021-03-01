@@ -13,16 +13,13 @@ class Constant: NSObject {
     static let shared = Constant()
     let appTitle  = "Gahir Agro"
     
-    let baseUrl = "https://www.dharmani.com/Candaceyoung7/webservice/"
-    let SignUp = "SignUp.php"
-    let SignIn = "Login.php"
-    let ForgotPassword = "ForgetPassword.php"
-    let Profile = "GetProfileDetails.php"
-    let Addlink = "AddLink.php"
-    let CategoryType = "GetAllCategory.php"
-    let EditProfile = "EditUserProfile.php"
-    let ChangePassword = "ChangePassword.php"
-    let DetailsByCat = "GetAllDetailsBycategoryid.php"
+    let baseUrl = "https://www.dharmani.com/gahir/api/"
+    
+    let SignUp = "DealerSignup.php"
+    let PhoneLogin = "DealerPhoneLogin.php"
+    let SignIn = "DealerLogin.php"
+    let ForgotPassword = ""
+    let AllProduct = "GetAllProducts.php"
     
 }
 

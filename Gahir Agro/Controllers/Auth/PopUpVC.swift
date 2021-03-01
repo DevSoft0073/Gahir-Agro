@@ -9,15 +9,17 @@ import UIKit
 
 
 protocol PopViewControllerDelegate: class {
-    func dismissPopUP()
+    func dismissPopUP(sendData :String)
 }
 
 
-class PopUpVC: UIViewController {
+class PopUpVC: UIViewController{
 
     @IBOutlet weak var tableView: UIView!
     var delegates: PopViewControllerDelegate?
     var centerFrame : CGRect!
+    
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     var nameArray = [("Delaer",true),("Customer",false),("Sales",false)]
     @IBOutlet weak var selectTypeTBView: UITableView!
     @IBOutlet weak var popupView: UIView!
@@ -32,7 +34,11 @@ class PopUpVC: UIViewController {
     }
     
     @objc func handleTap(_ sender:UITapGestureRecognizer){
-        self.dismiss(animated: true, completion: nil)
+        
+        dismiss(animated: true) {
+            let selectedData = self.nameArray.filter({$0.1}).first
+            self.delegates?.dismissPopUP(sendData: selectedData?.0 ?? "")
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -51,6 +57,9 @@ class PopUpVC: UIViewController {
         }, completion: nil)
     }
     
+    func data() {
+        
+    }
     
     func dismissPopUp(_ dismissed:@escaping ()->())  {
         
@@ -60,8 +69,8 @@ class PopUpVC: UIViewController {
             
         },completion:{ (completion) in
             self.dismiss(animated: false, completion: {
-                self.selectTypeTBView.isHidden = true
-                dismissed()
+                let selectedData = self.nameArray.filter({$0.1}).first
+                self.delegates?.dismissPopUP(sendData: selectedData?.0 ?? "")
             })
         })
     }
@@ -86,13 +95,18 @@ extension PopUpVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SelectTypeTBViewCell", for: indexPath) as! SelectTypeTBViewCell
         cell.selectUnselect.image = (self.nameArray[indexPath.row].1 == true) ? self.returnImage(name: "check") : self.returnImage(name: "uncheck")
+        DispatchQueue.main.async {
+//            self.heightConstraint.constant = self.nameArray.contentSize.height
+            self.heightConstraint.constant = CGFloat((self.nameArray.count ) * 80)
+        }
         cell.selectUnselectButton.tag = indexPath.row
         cell.typelbl.text = nameArray[indexPath.row].0
         cell.selectUnselectButton.addTarget(self, action: #selector(increaseCounter(sender:)), for:  .touchUpInside)
-        
         return cell
     }
-    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 50
+//    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
     }

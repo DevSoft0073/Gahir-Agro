@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
 
@@ -19,16 +20,38 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
     @IBOutlet weak var selectTypeView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        dealerTxtFld.text = UserDefaults.standard.value(forKey: "data") as? String ?? ""
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        dealerTxtFld.text = UserDefaults.standard.value(forKey: "data") as? String ?? ""
+        
     }
     
     @IBAction func generateOtpButton(_ sender: Any) {
-        let vc = OTPVerificationVC.instantiate(fromAppStoryboard: .Auth)
-        self.navigationController?.pushViewController(vc, animated: true)
+        if mobileTxtFld.text?.isEmpty == true{
+            ValidateData(strMessage: "Please enter phone number")
+        }else if dealerTxtFld.text?.isEmpty == true{
+            ValidateData(strMessage: "Please select role for your account")
+        }else{
+            getOtp()
+            let vc = OTPVerificationVC.instantiate(fromAppStoryboard: .Auth)
+            vc.phoneNumber = mobileTxtFld.text ?? ""
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    
+    func getOtp() {
+        PhoneAuthProvider.provider().verifyPhoneNumber(mobileTxtFld.text ?? "", uiDelegate: nil) { (verificationID, error) in
+          if let error = error {
+//            self.showMessagePrompt(error.localizedDescription)
+            alert(Constant.shared.appTitle, message: error.localizedDescription, view: self)
+            return
+          }
+          // Sign in using the verificationID and the code sent to the user
+          // ...
+            
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -40,7 +63,16 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "PopUpVC") as! PopUpVC
         vc.modalPresentationStyle = .overCurrentContext
+        vc.delegates = self
         self.present(vc, animated: true, completion: nil)
     }
     
+}
+
+//MARK:- Get data from popup view
+
+extension AddPhoneNumberVC : PopViewControllerDelegate {
+    func dismissPopUP(sendData: String) {
+        self.dealerTxtFld.text = sendData
+    }
 }
