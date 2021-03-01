@@ -10,29 +10,37 @@ import Firebase
 
 class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
     
+    @IBOutlet weak var numberButton: UIButton!
+    @IBOutlet weak var textSixth: UITextField!
+    @IBOutlet weak var textFifth: UITextField!
     @IBOutlet weak var textFour: UITextField!
     @IBOutlet weak var textTheww: UITextField!
     @IBOutlet weak var textTwo: UITextField!
     @IBOutlet weak var textOne: UITextField!
     var phoneNumber = String()
     var otpText = String()
+    var message = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        numberButton.setTitle(phoneNumber, for: .normal)
         
         if #available(iOS 12.0, *) {
             textOne.textContentType = .oneTimeCode
             textTwo.textContentType = .oneTimeCode
             textTheww.textContentType = .oneTimeCode
             textFour.textContentType = .oneTimeCode
+            textFifth.textContentType = .oneTimeCode
+            textSixth.textContentType = .oneTimeCode
         }
         
         textOne.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
         textTwo.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
         textTheww.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
         textFour.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
-//        textOne.becomeFirstResponder()
+        textFifth.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
+        textSixth.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
+        //        textOne.becomeFirstResponder()
         
         self.view.resignFirstResponder()
         // Do any additional setup after loading the view.
@@ -44,13 +52,13 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
         return true
     }
     
-
+    
     //When changed value in textField
     @objc func textFieldDidChange(textField: UITextField){
         let text = textField.text
         if  text?.count == 1 {
             switch textField{
-                
+            
             case textOne:
                 textTwo.becomeFirstResponder()
                 
@@ -61,7 +69,13 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
                 textFour.becomeFirstResponder()
                 
             case textFour:
-                textFour.becomeFirstResponder()
+                textFifth.becomeFirstResponder()
+                
+            case textFifth:
+                textSixth.becomeFirstResponder()
+                
+            case textSixth:
+                textSixth.becomeFirstResponder()
                 self.dismissKeyboard()
             default:
                 break
@@ -77,6 +91,10 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
                 textTwo.becomeFirstResponder()
             case textFour:
                 textTheww.becomeFirstResponder()
+            case textFifth:
+                textFour.becomeFirstResponder()
+            case textSixth:
+                textFifth.becomeFirstResponder()
             default:
                 break
             }
@@ -101,10 +119,63 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
     
     @IBAction func verifyButton(_ sender: Any) {
         
+        let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
+        let credential = PhoneAuthProvider.provider().credential(
+            withVerificationID: verificationID!,
+            verificationCode: otpText)
+        
+        Auth.auth().signIn(with: credential) { (success, error) in
+            if error == nil{
+                print(success ?? "")
+                //  print(Auth.auth().currentUser?.uid)
+                self.updateNumberApi()
+            }else{
+                alert(Constant.shared.appTitle, message: error?.localizedDescription ?? "", view: self)
+                //   print(error?.localizedDescription)
+            }
+        }
+        
+    }
+    
+    func updateNumberApi() {
         
         
-        let vc = SignUpVC.instantiate(fromAppStoryboard: .Auth)
-        self.navigationController?.pushViewController(vc, animated: true)
+        let signUpWithPhoneUrl = Constant.shared.baseUrl + Constant.shared.PhoneLogin
+        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        print(deviceID ?? "")
+        if deviceID == nil  {
+            deviceID = "777"
+        }
+        let parms : [String:Any] = ["phone": phoneNumber,"device_token": deviceID ?? "","device_type":"1"]
+        print(parms)
+        AFWrapperClass.requestPOSTURL(signUpWithPhoneUrl, params: parms, success: { (response) in
+            PKWrapperClass.svprogressHudDismiss(view: self)
+            self.message = response["message"] as? String ?? ""
+            if let status = response["status"] as? Int{
+                if status == 1{
+                    UserDefaults.standard.set(true, forKey: "tokenFString")
+                    
+                    if let dataDict = response as? NSDictionary{
+                        print(dataDict)
+                        let userId = dataDict["user_id"] as? String
+                        print(userId ?? 0)
+                        UserDefaults.standard.set(userId, forKey: "userId")
+                        let storyBoard: UIStoryboard = UIStoryboard(name: "Profile", bundle: nil)
+                        let newViewController = storyBoard.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
+                        self.navigationController?.pushViewController(newViewController, animated: true)
+                    }
+                }else {
+                    let vc = SignUpVC.instantiate(fromAppStoryboard: .Auth)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+        }) { (error) in
+            IJProgressView.shared.hideProgressView()
+            alert(Constant.shared.appTitle, message: "Data not found", view: self)
+            print(error)
+        }
+        
     }
     
 }

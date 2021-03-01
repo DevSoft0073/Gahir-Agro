@@ -17,7 +17,7 @@ class SignInWithVC: UIViewController{
     
     
     @IBAction func logInWithPhoneButtonAction(_ sender: Any) {
-        let vc = AddPhoneNumberVC.instantiate(fromAppStoryboard: .Auth)
+        let vc = SignInWithPhone.instantiate(fromAppStoryboard: .Auth)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func logInWithMailButtonAction(_ sender: Any) {

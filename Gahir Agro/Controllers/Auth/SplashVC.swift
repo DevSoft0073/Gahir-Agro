@@ -34,6 +34,7 @@ class SplashVC: UIViewController {
         self.splashImage.transform = CGAffineTransform(scaleX: 0, y: 0)
         UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.splashImage.transform = .identity
+
             self.schedule()
         }, completion:nil)
     }

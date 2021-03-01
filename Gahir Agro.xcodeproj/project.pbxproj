@@ -64,6 +64,8 @@
 		184B11CB25E3726E003007A2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C825E3726D003007A2 /* Reachability.swift */; };
 		184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C925E3726D003007A2 /* AFWrapperClass.swift */; };
 		187A8BEF25ECC4FD00DCA747 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 187A8BEE25ECC4FD00DCA747 /* GoogleService-Info.plist */; };
+		187A8C0825ECF2DA00DCA747 /* PKWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A8C0725ECF2DA00DCA747 /* PKWrapperClass.swift */; };
+		187A8C2525ECF9B600DCA747 /* SignInWithPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A8C2425ECF9B600DCA747 /* SignInWithPhone.swift */; };
 		18AD8F0325EADA9C00072166 /* OpenPIcker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD8F0225EADA9C00072166 /* OpenPIcker.swift */; };
 		18B87C7625E684C200837E6C /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B87C7525E684C200837E6C /* SearchVC.swift */; };
 		18E84AD425E7AACE004A2148 /* EnquiryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AD325E7AACE004A2148 /* EnquiryVC.swift */; };
@@ -161,6 +163,8 @@
 		184B11C925E3726D003007A2 /* AFWrapperClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWrapperClass.swift; sourceTree = "<group>"; };
 		187A8BE925ECC13200DCA747 /* Gahir Agro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Gahir Agro.entitlements"; sourceTree = "<group>"; };
 		187A8BEE25ECC4FD00DCA747 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Certifacate and gooleinfolist/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		187A8C0725ECF2DA00DCA747 /* PKWrapperClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWrapperClass.swift; sourceTree = "<group>"; };
+		187A8C2425ECF9B600DCA747 /* SignInWithPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithPhone.swift; sourceTree = "<group>"; };
 		18AD8F0225EADA9C00072166 /* OpenPIcker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPIcker.swift; sourceTree = "<group>"; };
 		18B87C7525E684C200837E6C /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		18E84AD325E7AACE004A2148 /* EnquiryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnquiryVC.swift; sourceTree = "<group>"; };
@@ -344,6 +348,7 @@
 			children = (
 				184B11C925E3726D003007A2 /* AFWrapperClass.swift */,
 				184B11C725E3726D003007A2 /* Constant.swift */,
+				187A8C0725ECF2DA00DCA747 /* PKWrapperClass.swift */,
 				184B11C825E3726D003007A2 /* Reachability.swift */,
 			);
 			path = Constant;
@@ -388,6 +393,7 @@
 				18F9B6CC25E8CB020034D978 /* SplashVC.swift */,
 				180847B625E4BE2A00D04E69 /* SignInWithVC.swift */,
 				184B117B25E36E91003007A2 /* SignInVC.swift */,
+				187A8C2425ECF9B600DCA747 /* SignInWithPhone.swift */,
 				180847BB25E4BE4700D04E69 /* AddPhoneNumberVC.swift */,
 				18F9B70D25E8E8240034D978 /* PopUpVC.swift */,
 				180847C025E4BE5F00D04E69 /* OTPVerificationVC.swift */,
@@ -745,6 +751,7 @@
 				18E84AF225E7B0DE004A2148 /* DealerHomeVC.swift in Sources */,
 				18F9B6CD25E8CB020034D978 /* SplashVC.swift in Sources */,
 				18E84AE825E7AC57004A2148 /* RequestSubmitPopUpVC.swift in Sources */,
+				187A8C2525ECF9B600DCA747 /* SignInWithPhone.swift in Sources */,
 				184B113925E36C74003007A2 /* AppDelegate.swift in Sources */,
 				184B11C125E37259003007A2 /* Activityloader.swift in Sources */,
 				184B11CB25E3726E003007A2 /* Reachability.swift in Sources */,
@@ -771,6 +778,7 @@
 				184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */,
 				18E84ADE25E7AC08004A2148 /* BookOrderVC.swift in Sources */,
 				180847B725E4BE2A00D04E69 /* SignInWithVC.swift in Sources */,
+				187A8C0825ECF2DA00DCA747 /* PKWrapperClass.swift in Sources */,
 				181704CB25E63E11003825D7 /* MyOrderVC.swift in Sources */,
 				184B11A025E37149003007A2 /* AppExtensions.swift in Sources */,
 				184B11B825E37244003007A2 /* AppConstants.swift in Sources */,

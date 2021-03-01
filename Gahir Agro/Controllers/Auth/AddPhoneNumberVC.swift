@@ -20,6 +20,7 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
     @IBOutlet weak var selectTypeView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        dealerTxtFld.isUserInteractionEnabled = false
 //        dealerTxtFld.text = UserDefaults.standard.value(forKey: "data") as? String ?? ""
     }
     
@@ -35,6 +36,7 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
         }else{
             getOtp()
             let vc = OTPVerificationVC.instantiate(fromAppStoryboard: .Auth)
+            UserDefaults.standard.set("2", forKey: "comesFromPhoneLogin")
             vc.phoneNumber = mobileTxtFld.text ?? ""
             self.navigationController?.pushViewController(vc, animated: true)
         }

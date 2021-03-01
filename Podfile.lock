@@ -50,6 +50,7 @@ PODS:
     - SDWebImage/Core (= 4.4.8)
   - SDWebImage/Core (4.4.8)
   - SKCountryPicker (1.2.9)
+  - SVProgressHUD (2.2.5)
   - SVProgressHUD-0.8.1 (0.8)
 
 DEPENDENCIES:
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - SCLAlertView
   - SDWebImage (~> 4.0)
   - SKCountryPicker
+  - SVProgressHUD
   - SVProgressHUD-0.8.1
 
 SPEC REPOS:
@@ -79,6 +81,7 @@ SPEC REPOS:
     - SCLAlertView
     - SDWebImage
     - SKCountryPicker
+    - SVProgressHUD
     - SVProgressHUD-0.8.1
 
 SPEC CHECKSUMS:
@@ -97,8 +100,9 @@ SPEC CHECKSUMS:
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
   SKCountryPicker: 7ad1e7dfb482cfb26855e33c2d70dbf1eaf218fe
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SVProgressHUD-0.8.1: ee9e6e58b5b5ffaf3f1a62c2dc409763470df143
 
-PODFILE CHECKSUM: 52d3e6901a48f02accb94bf81dd29fc12d2ffd1f
+PODFILE CHECKSUM: f1f1a69a4771ecbbb868129109b69e83e8ae786a
 
 COCOAPODS: 1.9.3

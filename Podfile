@@ -15,6 +15,7 @@ target 'Gahir Agro' do
     pod 'SKCountryPicker'
     pod 'LGSideMenuController'
     pod 'Firebase/Auth'
+    pod 'SVProgressHUD'
 
 
   target 'Gahir AgroTests' do

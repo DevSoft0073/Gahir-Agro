@@ -44,28 +44,41 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
         
         if Reachability.isConnectedToNetwork() == true {
             print("Internet connection OK")
-            IJProgressView.shared.showProgressView()
+            PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
             let url = Constant.shared.baseUrl + Constant.shared.SignIn
-           
-            let params = ["username":emailTxtFld.text ?? "","password":passwordTxtFld.text ?? "" , "device_token" : "" ,"device_type" : "1"] as [String : Any]
+            var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+            print(deviceID ?? "")
+            if deviceID == nil  {
+                deviceID = "777"
+            }
+            let params = ["username":emailTxtFld.text ?? "","password":passwordTxtFld.text ?? "" , "device_token" : deviceID! ,"device_type" : "IOS"] as [String : Any]
+            print(params)
+            
             AFWrapperClass.requestPOSTURL(url, params: params, success: { (response) in
-                IJProgressView.shared.hideProgressView()
-                self.messgae = response["message"] as? String ?? ""
+                PKWrapperClass.svprogressHudDismiss(view: self)
+                let signUpStatus = response["app_signup"] as? Int ?? 0
                 let status = response["status"] as? Int
+                self.messgae = response["message"] as? String ?? ""
                 if status == 1{
-                    let allData = response as? [String:Any] ?? [:]
-                    if let data = allData["data"] as? [String:Any]  {
-                        UserDefaults.standard.set(1, forKey: "tokenFString")
-                        UserDefaults.standard.set(data["user_id"], forKey: "id")
-                        UserDefaults.standard.setValue(data["role"], forKey: "checkRole")
+                    if signUpStatus == 1{
+                        let vc = SignUpVC.instantiate(fromAppStoryboard: .Auth)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }else{
+                        let allData = response as? [String:Any] ?? [:]
+                        if let data = allData["data"] as? [String:Any]  {
+                            UserDefaults.standard.set(1, forKey: "tokenFString")
+                            UserDefaults.standard.set(data["user_id"], forKey: "id")
+                            UserDefaults.standard.setValue(data["role"], forKey: "checkRole")
+                        }
+                        let story = UIStoryboard(name: "Main", bundle: nil)
+                        let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
+                        self.navigationController?.pushViewController(rootViewController, animated: true)
                     }
-                    let story = UIStoryboard(name: "Main", bundle: nil)
-                    let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
-                    self.navigationController?.pushViewController(rootViewController, animated: true)
                 }else{
                     IJProgressView.shared.hideProgressView()
                     alert(Constant.shared.appTitle, message: self.messgae, view: self)
                 }
+                
             }) { (error) in
                 IJProgressView.shared.hideProgressView()
                 alert(Constant.shared.appTitle, message: error.localizedDescription, view: self)
