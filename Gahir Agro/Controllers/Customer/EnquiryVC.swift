@@ -34,8 +34,13 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         pickerToolBar.setItems([spaceButton,doneBtn], animated: false)
         pickerToolBar.isUserInteractionEnabled = true
-        
+        self.enquiryDataTBView.reloadData()
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.heightConstraint.constant = self.enquiryDataTBView.contentSize.height
+
     }
     
     @objc func onDoneButtonTapped(sender:UIButton) {
@@ -109,21 +114,19 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EnquiryDataTBViewCell", for: indexPath) as! EnquiryDataTBViewCell
-//        DispatchQueue.main.async {
-//            self.heightConstraint.constant = self.enquiryDataTBView.contentSize.height
-//        }
         cell.namelbl.text = tbaleViewArray[indexPath.row]
         cell.dropDownbutton.addTarget(self, action: #selector(openPickerView), for: .touchUpInside)
         cell.openPicker.inputView = picker
         cell.titleLbl.text = selectedValue
         return cell
     }
+    
     @objc func openPickerView() {
         picker.isHidden = false
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return 60
     }
     
 }

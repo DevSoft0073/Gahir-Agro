@@ -21,6 +21,7 @@ class ForgotPasswordVC: UIViewController , UITextFieldDelegate{
     func forgotPassword() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
         let url = Constant.shared.baseUrl + Constant.shared.SignIn
+        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
         var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
         print(deviceID ?? "")
         if deviceID == nil  {

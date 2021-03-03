@@ -9,16 +9,26 @@ import UIKit
 
 class ProductDetailsVC: UIViewController {
 
-    
-    var detailsDataArray = [DetailsData]()
-    @IBOutlet weak var detailsTBView: UITableView!
+    @IBOutlet weak var grainTankLbl: UILabel!
+    @IBOutlet weak var thresherLbl: UILabel!
+    @IBOutlet weak var cuttingCapacityLbl: UILabel!
+    @IBOutlet weak var drumDiaLbl: UILabel!
+    @IBOutlet weak var numberOfStrawlbl: UILabel!
+    @IBOutlet weak var hpRequiredLbl: UILabel!
+    @IBOutlet weak var heightOfCutMin: UILabel!
+    @IBOutlet weak var heightOfCutMaxLbl: UILabel!
+    @IBOutlet weak var widthOfCutLbl: UILabel!
+    @IBOutlet weak var chassisNoLbl: UILabel!
     @IBOutlet weak var detailsLbl: UILabel!
     @IBOutlet weak var modelLbl: UILabel!
     @IBOutlet weak var namelbl: UILabel!
     @IBOutlet weak var showImage: UIImageView!
+    var detailsDataArray = [DetailsData]()
+    var messgae = String()
+    var id = String()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        productDetails()
         // Do any additional setup after loading the view.
     }
     
@@ -33,6 +43,35 @@ class ProductDetailsVC: UIViewController {
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    
+    func productDetails() {
+        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+        let url = Constant.shared.baseUrl + Constant.shared.ProductDetails
+        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+        print(deviceID ?? "")
+        if deviceID == nil  {
+            deviceID = "777"
+        }
+        let params = ["id": id,"access_token": accessToken]  as? [String : AnyObject] ?? [:]
+        print(params)
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+            print(response.data)
+            PKWrapperClass.svprogressHudDismiss(view: self)
+            let status = response.data["status"] as? String ?? ""
+            self.messgae = response.data["message"] as? String ?? ""
+            if status == "1"{
+                
+            }else{
+                PKWrapperClass.svprogressHudDismiss(view: self)
+                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            }
+        } failure: { (error) in
+            print(error)
+            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+        }
+    }    
 }
 
 class DetailsTBViewCell: UITableViewCell {

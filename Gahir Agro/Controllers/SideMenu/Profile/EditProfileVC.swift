@@ -9,9 +9,11 @@ import UIKit
 import SDWebImage
 import SKCountryPicker
 import AVFoundation
+import Alamofire
 
 class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var nameTxtFld: UITextField!
     @IBOutlet weak var bioTxtView: UITextView!
     @IBOutlet weak var addCountryButton: UIButton!
     @IBOutlet weak var flagImage: UIImageView!
@@ -23,12 +25,15 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
     @IBOutlet weak var addressTxtFld: UITextField!
     @IBOutlet weak var addressView: UIView!
     @IBOutlet weak var emailTxtFld: UITextField!
-    var message = String()
+    var messgae = String()
     var name = String()
     var imagePicker: ImagePicker!
     var imagePickers = UIImagePickerController()
     var base64String = String()
     var flagBase64 = String()
+    var userDetails = [String:Any]()  
+    var countryName = String()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTxtFld.isUserInteractionEnabled = false
@@ -154,18 +159,16 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
     
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        //        guard let image = info[UIImagePickerController.InfoKey.originalImage]
         guard let image = info[UIImagePickerController.InfoKey.editedImage]
             as? UIImage else {
                 return
         }
-        //        let imgData3 = image.jpegData(compressionQuality: 0.4)
-//        self.profileImage.contentMode = .scaleToFill
-//        self.profileImage.image = image
+        
+        self.profileImage.contentMode = .scaleToFill
+        self.profileImage.image = image
         guard let imgData3 = image.jpegData(compressionQuality: 0.2) else {return}
         base64String = imgData3.base64EncodedString(options: .lineLength64Characters)
         dismiss(animated: true, completion: nil)
-        
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -206,6 +209,7 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
     }
     
     @IBAction func uploadImageButton(_ sender: Any) {
+        showActionSheet()
     }
     
     @IBAction func uploadCountryButton(_ sender: Any) {
@@ -225,8 +229,39 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
     }
     
     @IBAction func submitButton(_ sender: Any) {
+        updateData()
     }
     
+    func updateData()  {
+        
+        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+        let url = Constant.shared.baseUrl + Constant.shared.EditProfile
+        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+        print(deviceID ?? "")
+        if deviceID == nil  {
+            deviceID = "777"
+        }
+        let params = ["access_token": accessToken,"bio": bioTxtView.text ?? "","first_name":nameTxtFld.text ?? "","country":"","flag_image":flagBase64 , "image" : base64String]  as? [String : AnyObject] ?? [:]
+        print(params)
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+            print(response.data)
+            PKWrapperClass.svprogressHudDismiss(view: self)
+            let status = response.data["status"] as? String ?? ""
+            self.messgae = response.data["message"] as? String ?? ""
+            if status == "1"{
+                showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }else{
+                PKWrapperClass.svprogressHudDismiss(view: self)
+                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            }
+        } failure: { (error) in
+            print(error)
+            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+        }
+    }
 }
 
 
@@ -256,5 +291,19 @@ extension UIImage {
     func toStrings() -> String? {
         let data: Data? = self.pngData()
         return data?.base64EncodedString(options: .endLineWithLineFeed)
+    }
+}
+
+extension String {
+    
+    static func random(length: Int = 8) -> String {
+        let base = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        var randomString: String = ""
+        
+        for _ in 0..<length {
+            let randomValue = arc4random_uniform(UInt32(base.count))
+            randomString += "\(base[base.index(base.startIndex, offsetBy: Int(randomValue))])"
+        }
+        return randomString
     }
 }

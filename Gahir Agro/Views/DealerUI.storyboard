@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -45,7 +46,7 @@
                                 <rect key="frame" x="0.0" y="62.5" width="320" height="505.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E9X-jv-Hqa">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="517"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="516"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pko-Gh-WqP">
                                                 <rect key="frame" x="8" y="10" width="304" height="227"/>
@@ -166,10 +167,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pF5-IB-O7z">
-                                                <rect key="frame" x="8" y="247" width="304" height="180"/>
+                                                <rect key="frame" x="8" y="247" width="304" height="200"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="180" id="yCg-ia-qLU"/>
+                                                    <constraint firstAttribute="height" constant="200" id="yCg-ia-qLU"/>
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EnquiryDataTBViewCell" rowHeight="101" id="9AL-hJ-Quk" customClass="EnquiryDataTBViewCell" customModule="Gahir_Agro" customModuleProvider="target">
@@ -182,13 +183,13 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="gLo-zo-vWp">
                                                                     <rect key="frame" x="10" y="28.5" width="222" height="44.5"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xv3-D2-ybW">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xv3-D2-ybW">
                                                                             <rect key="frame" x="0.0" y="0.0" width="222" height="22.5"/>
                                                                             <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="HP-28" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mvc-aG-YxE">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HP-28" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mvc-aG-YxE">
                                                                             <rect key="frame" x="0.0" y="24.5" width="222" height="20"/>
                                                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                                                             <color key="textColor" red="0.45486658810000002" green="0.4549225569" blue="0.45484083889999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -269,7 +270,7 @@
                                                 </connections>
                                             </tableView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oyS-Cy-aAf">
-                                                <rect key="frame" x="24" y="457" width="272" height="34"/>
+                                                <rect key="frame" x="24" y="467" width="272" height="34"/>
                                                 <color key="backgroundColor" red="0.86119788890000004" green="0.17337265609999999" blue="0.1116427258" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="oyS-Cy-aAf" secondAttribute="height" multiplier="48:6" id="gQb-Xm-qn3"/>
@@ -291,8 +292,8 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="pko-Gh-WqP" firstAttribute="top" secondItem="E9X-jv-Hqa" secondAttribute="top" constant="10" id="0uq-hv-5Jh"/>
-                                            <constraint firstItem="oyS-Cy-aAf" firstAttribute="top" secondItem="pF5-IB-O7z" secondAttribute="bottom" constant="30" id="MWP-se-66q"/>
-                                            <constraint firstAttribute="bottom" secondItem="oyS-Cy-aAf" secondAttribute="bottom" constant="26" id="cqN-nT-EgR"/>
+                                            <constraint firstItem="oyS-Cy-aAf" firstAttribute="top" secondItem="pF5-IB-O7z" secondAttribute="bottom" constant="20" id="S1O-vb-gIB"/>
+                                            <constraint firstAttribute="bottom" secondItem="oyS-Cy-aAf" secondAttribute="bottom" constant="15" id="cqN-nT-EgR"/>
                                             <constraint firstItem="pF5-IB-O7z" firstAttribute="top" secondItem="pko-Gh-WqP" secondAttribute="bottom" constant="10" id="rNE-z9-2Nb"/>
                                         </constraints>
                                     </view>

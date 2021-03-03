@@ -40,9 +40,6 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    
-    
-    
     func logIn() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
         let url = Constant.shared.baseUrl + Constant.shared.SignIn
@@ -67,9 +64,9 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
                 }else{
                     let allData = response.data as? [String:Any] ?? [:]
                     let data = allData["user_detail"] as? [String:Any] ?? [:]
-                        UserDefaults.standard.set(1, forKey: "tokenFString")
-                        UserDefaults.standard.set(data["id"], forKey: "id")
-                        UserDefaults.standard.setValue(data["role"], forKey: "checkRole")
+                    UserDefaults.standard.set(1, forKey: "tokenFString")
+                    UserDefaults.standard.set(data["id"], forKey: "id")
+                    UserDefaults.standard.setValue(data["role"], forKey: "checkRole")
                     let story = UIStoryboard(name: "Main", bundle: nil)
                     let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
                     self.navigationController?.pushViewController(rootViewController, animated: true)

@@ -692,10 +692,20 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="chassisNoLbl" destination="njm-EH-A3H" id="bLx-61-9fZ"/>
+                        <outlet property="cuttingCapacityLbl" destination="sjg-pA-wEp" id="Oet-EF-fff"/>
                         <outlet property="detailsLbl" destination="F5p-xL-oXw" id="ihc-tl-GHz"/>
+                        <outlet property="drumDiaLbl" destination="Ke3-j3-Lll" id="5Di-Vd-SLH"/>
+                        <outlet property="grainTankLbl" destination="bdM-Yk-rgj" id="bKG-DC-MqA"/>
+                        <outlet property="heightOfCutMaxLbl" destination="LC9-Ie-OtP" id="FRv-TG-u8x"/>
+                        <outlet property="heightOfCutMin" destination="suE-gQ-8de" id="PMf-Cr-uzp"/>
+                        <outlet property="hpRequiredLbl" destination="7LX-Zz-Y2D" id="PNB-LI-4Ob"/>
                         <outlet property="modelLbl" destination="Y97-KX-RGS" id="3Qm-vm-VK8"/>
                         <outlet property="namelbl" destination="bMh-0z-4Vx" id="1ND-p9-TqG"/>
+                        <outlet property="numberOfStrawlbl" destination="XHJ-gu-Sdw" id="7gM-Fn-A1j"/>
                         <outlet property="showImage" destination="vk8-x4-137" id="wTa-MK-ZiG"/>
+                        <outlet property="thresherLbl" destination="CMR-Ov-Rzf" id="BCM-Bx-imC"/>
+                        <outlet property="widthOfCutLbl" destination="unB-p7-0ke" id="vKN-GY-WmP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -863,10 +873,10 @@
                                                         </constraints>
                                                     </imageView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BBG-bN-R8I">
-                                                        <rect key="frame" x="55" y="10.5" width="270" height="21"/>
+                                                        <rect key="frame" x="55" y="9.5" width="270" height="22.5"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="15"/>
-                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="password"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                                 <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -961,6 +971,11 @@
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="submitButton:" destination="pIq-AA-I11" eventType="touchUpInside" id="0f2-ys-5PM"/>
                                 </connections>
@@ -1755,7 +1770,7 @@
                                                             <constraint firstAttribute="width" secondItem="8Oa-ud-6PP" secondAttribute="height" multiplier="1:1" id="A3T-DP-USi"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MqV-vY-bpJ">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MqV-vY-bpJ">
                                                         <rect key="frame" x="54.5" y="7" width="255" height="22.5"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="15"/>
@@ -2163,7 +2178,7 @@
                                                             <constraint firstAttribute="width" secondItem="wsz-7O-WWG" secondAttribute="height" multiplier="1:1" id="jfg-nG-rPM"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="746-im-Pl3">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="746-im-Pl3">
                                                         <rect key="frame" x="54.5" y="7" width="255" height="22.5"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="15"/>
@@ -2380,20 +2395,25 @@
                                     <action selector="uploadImageButton:" destination="i7e-sB-LXd" eventType="touchUpInside" id="xaG-dg-gxS"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cdt-3L-aTD">
+                                <rect key="frame" x="181.5" y="186.5" width="4" height="21.5"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGH-no-dCA">
-                                <rect key="frame" x="177.5" y="197" width="0.0" height="0.0"/>
+                                <rect key="frame" x="170.5" y="197" width="14" height="0.0"/>
                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2ew-UC-omF">
-                                <rect key="frame" x="180.5" y="188.5" width="17" height="17"/>
+                                <rect key="frame" x="187.5" y="188.5" width="17" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2ew-UC-omF" secondAttribute="height" multiplier="1:1" id="iuH-gu-ItF"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JC8-3G-8Y7">
-                                <rect key="frame" x="180.5" y="188.5" width="37.5" height="37.5"/>
+                                <rect key="frame" x="187.5" y="188.5" width="37.5" height="37.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="JC8-3G-8Y7" secondAttribute="height" multiplier="1:1" id="XS3-8i-8bu"/>
                                 </constraints>
@@ -2475,6 +2495,7 @@
                             <constraint firstItem="EUG-I2-Zm9" firstAttribute="width" secondItem="IMe-pX-naP" secondAttribute="width" id="Cao-vW-3Pf"/>
                             <constraint firstItem="JC8-3G-8Y7" firstAttribute="width" secondItem="MFr-Vo-Na8" secondAttribute="width" multiplier="0.1" id="FJm-0O-uBl"/>
                             <constraint firstItem="J9C-Cn-TpY" firstAttribute="leading" secondItem="E7b-bi-aZK" secondAttribute="leading" id="FqB-Cb-Ndu"/>
+                            <constraint firstItem="cdt-3L-aTD" firstAttribute="centerY" secondItem="QGH-no-dCA" secondAttribute="centerY" id="IZY-wJ-NX4"/>
                             <constraint firstItem="ELE-BR-NRu" firstAttribute="trailing" secondItem="IMe-pX-naP" secondAttribute="trailing" constant="-5" id="JsI-Nt-ipE"/>
                             <constraint firstItem="zks-SS-ETo" firstAttribute="width" secondItem="MFr-Vo-Na8" secondAttribute="width" multiplier="0.1" id="Kf3-G1-cSk"/>
                             <constraint firstItem="EUG-I2-Zm9" firstAttribute="centerX" secondItem="IMe-pX-naP" secondAttribute="centerX" id="LgR-Jc-o7N"/>
@@ -2482,6 +2503,7 @@
                             <constraint firstItem="2ew-UC-omF" firstAttribute="centerY" secondItem="QGH-no-dCA" secondAttribute="centerY" id="QXu-N2-xZy"/>
                             <constraint firstItem="dJz-3R-Yv5" firstAttribute="height" secondItem="MFr-Vo-Na8" secondAttribute="height" multiplier="0.03" id="QZ8-PB-w7M"/>
                             <constraint firstItem="dJz-3R-Yv5" firstAttribute="leading" secondItem="E7b-bi-aZK" secondAttribute="leading" id="Rcj-9L-Cuf"/>
+                            <constraint firstItem="cdt-3L-aTD" firstAttribute="centerX" secondItem="IMe-pX-naP" secondAttribute="centerX" constant="-4" id="Uzd-g0-Mek"/>
                             <constraint firstItem="UQU-VL-eiZ" firstAttribute="top" secondItem="BlN-nr-13g" secondAttribute="bottom" constant="15" id="VUa-li-Ztx"/>
                             <constraint firstItem="2ew-UC-omF" firstAttribute="leading" secondItem="QGH-no-dCA" secondAttribute="trailing" constant="3" id="WBL-6k-DBH"/>
                             <constraint firstItem="KJH-jW-bIc" firstAttribute="top" secondItem="J9C-Cn-TpY" secondAttribute="bottom" id="WC9-kO-WoA"/>
@@ -2511,6 +2533,7 @@
                             <constraint firstItem="J9C-Cn-TpY" firstAttribute="height" secondItem="MFr-Vo-Na8" secondAttribute="height" multiplier="0.04" id="vpo-LG-Cgy"/>
                             <constraint firstItem="2ew-UC-omF" firstAttribute="width" secondItem="MFr-Vo-Na8" secondAttribute="width" multiplier="0.045" id="wPa-A4-GhH"/>
                             <constraint firstItem="0ip-Ln-jmb" firstAttribute="leading" secondItem="E7b-bi-aZK" secondAttribute="leading" id="xFm-VD-0uE"/>
+                            <constraint firstItem="2ew-UC-omF" firstAttribute="leading" secondItem="cdt-3L-aTD" secondAttribute="trailing" constant="2" id="zhD-QC-Gz5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="54W-ev-gGm"/>
@@ -2523,6 +2546,7 @@
                         <outlet property="emailTxtFld" destination="9Lj-Lc-oLU" id="T4J-Ve-Qqv"/>
                         <outlet property="flagImage" destination="2ew-UC-omF" id="p5E-e3-jE0"/>
                         <outlet property="nameLbl" destination="QGH-no-dCA" id="VEY-pA-JdX"/>
+                        <outlet property="nameTxtFld" destination="cdt-3L-aTD" id="oF1-9I-70o"/>
                         <outlet property="passwordTxtFld" destination="yqf-Ku-HWD" id="IYI-Yu-Z6K"/>
                         <outlet property="passwordVIew" destination="26Y-dS-fA8" id="f5z-ll-uvO"/>
                         <outlet property="profileImage" destination="IMe-pX-naP" id="aO5-f1-sam"/>

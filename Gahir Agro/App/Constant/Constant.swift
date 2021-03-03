@@ -20,6 +20,9 @@ class Constant: NSObject {
     let SignIn = "DealerLogin.php"
     let ForgotPassword = "ForgotPassword.php"
     let AllProduct = "GetAllProducts.php"
+    let ProductDetails = "GetProductDetail.php"
+    let contactUS = "ContactUs.php"
+    let EditProfile = "UpdateProfile.php"
     
 }
 
