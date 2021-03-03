@@ -64,7 +64,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
                   endingLineNumber = "72"
-                  offsetFromSymbolStart = "56">
+                  offsetFromSymbolStart = "43">
                </Location>
                <Location
                   uuid = "22B64EBC-15F8-47B4-9DE6-BE9D1AC4604A - 434d68f2069cfef5"
@@ -79,7 +79,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
                   endingLineNumber = "72"
-                  offsetFromSymbolStart = "56">
+                  offsetFromSymbolStart = "34">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -103,31 +103,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "611CFE9B-0E3F-444A-89E7-F7623E247B3B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Auth/OTPVerificationVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "verifyButton(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CCE059A1-1D9A-408D-821F-4E0585489B60"
+            uuid = "202D9EB5-A9E2-48E1-B9D6-7E87F8277ED0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Gahir Agro/Controllers/Auth/SignUpVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "signUp()"
             landmarkType = "7">
          </BreakpointContent>
@@ -135,31 +119,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "382F11E5-D3D8-4D7F-B33C-FB07D5BF3354"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Auth/SignInVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "signIn()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AD467BAB-B29D-4CCA-9B33-12832B2BFCEF"
+            uuid = "9EE9F453-1AD2-428D-AAAC-E92763BC6A31"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Gahir Agro/Controllers/Auth/SignUpVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "signUp()"
             landmarkType = "7">
          </BreakpointContent>
@@ -167,32 +135,112 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7CDDA0E4-89B3-4E76-B011-0475B91E9410"
+            uuid = "8C6ECF2D-EA6A-4A6B-A521-E97B10FE1C06"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Auth/SignUpVC.swift"
+            filePath = "Gahir Agro/Controllers/Home/HomeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "signUp()"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "HomeVC"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A2E73842-2257-4019-8F17-4D0DE13CB3F6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gahir Agro/Controllers/Home/HomeVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "HomeVC"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6A3F5A22-908C-4C20-8F0F-2FEF6E570F56"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gahir Agro/Controllers/Home/HomeVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "HomeVC"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "77DB2998-5C57-4464-8C67-BCE5096F1C76"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gahir Agro/Controllers/Home/HomeVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "HomeVC"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C568F438-B5DC-4820-B9E1-C9BA39A96E83"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gahir Agro/Controllers/Home/HomeVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "HomeVC"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AB54CF56-53E9-47B9-ADE0-9B90371847C7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gahir Agro/Controllers/Auth/ForgotPasswordVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "forgotPassword()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0EF9E408-AA41-490B-8ED2-96203E0509E7"
+            uuid = "EE9CC979-014F-4C53-A01D-7EB90941D4C7"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Auth/SignInVC.swift"
+            filePath = "Gahir Agro/Controllers/Auth/ForgotPasswordVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "signIn()"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "forgotPassword()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

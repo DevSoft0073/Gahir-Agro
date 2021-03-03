@@ -32,6 +32,12 @@ class SideMenuVC: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    func logout()  {
+        UserDefaults.standard.removeObject(forKey: "tokenFString")
+        let appDel = UIApplication.shared.delegate as! AppDelegate
+        appDel.Logout1()
+    }
+    
 }
 
 class SettingTBViewCell: UITableViewCell {
@@ -99,7 +105,7 @@ extension SideMenuVC : UITableViewDelegate , UITableViewDataSource{
             let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
                 print("Ok button click...")
                 UserDefaults.standard.set(false, forKey: "tokenFString")
-                //                self.logout()
+                                self.logout()
             })
             
             // Create Cancel button with action handlder

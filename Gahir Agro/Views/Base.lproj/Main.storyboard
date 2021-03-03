@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Zci-qy-EW0">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -1188,7 +1189,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c2L-Uj-7ND">
-                                                            <rect key="frame" x="18" y="302" width="320" height="40"/>
+                                                            <rect key="frame" x="18" y="310" width="320" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="c2L-Uj-7ND" secondAttribute="height" multiplier="48:6" id="kQF-c0-H7Q"/>
                                                             </constraints>
@@ -1219,7 +1220,7 @@
                                                         <constraint firstItem="aiz-NQ-oYZ" firstAttribute="height" secondItem="qXy-DQ-Ubb" secondAttribute="height" multiplier="0.55" id="lvn-Ob-rd0"/>
                                                         <constraint firstItem="3Mn-J7-lWe" firstAttribute="top" secondItem="aiz-NQ-oYZ" secondAttribute="bottom" constant="10" id="nJI-Xf-rra"/>
                                                         <constraint firstItem="3Mn-J7-lWe" firstAttribute="leading" secondItem="aiz-NQ-oYZ" secondAttribute="leading" constant="10" id="qwm-H6-olJ"/>
-                                                        <constraint firstItem="c2L-Uj-7ND" firstAttribute="top" secondItem="3Mn-J7-lWe" secondAttribute="bottom" constant="7" id="uX6-jU-bV8"/>
+                                                        <constraint firstItem="c2L-Uj-7ND" firstAttribute="top" secondItem="3Mn-J7-lWe" secondAttribute="bottom" constant="15" id="uX6-jU-bV8"/>
                                                         <constraint firstItem="c2L-Uj-7ND" firstAttribute="centerX" secondItem="qXy-DQ-Ubb" secondAttribute="centerX" id="zhB-O7-evv"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>

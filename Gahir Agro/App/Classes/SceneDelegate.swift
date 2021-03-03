@@ -21,8 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let appDel = UIApplication.shared .delegate as! AppDelegate
         appDel.window = window
         navigateVC()
-//        appDel.getLoggedUser()
+        appDel.getLoggedUser()
     }
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

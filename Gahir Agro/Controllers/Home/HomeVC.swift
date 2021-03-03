@@ -12,19 +12,17 @@ class HomeVC: UIViewController {
     
     var collectionViewDataArray = [CollectionViewData]()
     var tableViewDataArray = [TableViewData]()
+    
+    var page = 1
+    var lastPage = 1
+    
     @IBOutlet weak var allItemsTBView: UITableView!
     @IBOutlet weak var itemsCollectionView: UICollectionView!
+    var messgae = String()
     var nameArray = ["TRACKTORS","TRACKTORS","TRACKTORS","TRACKTORS","TRACKTORS","TRACKTORS","TRACKTORS"]
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         allItemsTBView.separatorStyle = .none
-        tableViewDataArray.append(TableViewData(image: "im", name: "Product-1", modelName: "HP-28", details: "Drive"))
-        tableViewDataArray.append(TableViewData(image: "im", name: "Product-2", modelName: "HP-28", details: "Drive"))
-        tableViewDataArray.append(TableViewData(image: "im", name: "Product-3", modelName: "HP-28", details: "Drive"))
-        tableViewDataArray.append(TableViewData(image: "im", name: "Product-4", modelName: "HP-28", details: "Drive"))
-        tableViewDataArray.append(TableViewData(image: "im", name: "Product-5", modelName: "HP-28", details: "Drive"))
-        tableViewDataArray.append(TableViewData(image: "im", name: "Product-6", modelName: "HP-28", details: "Drive"))
         
         collectionViewDataArray.append((CollectionViewData(name: "TRACKTORS", selected: false)))
         collectionViewDataArray.append((CollectionViewData(name: "TRACKTORS", selected: false)))
@@ -34,7 +32,7 @@ class HomeVC: UIViewController {
         collectionViewDataArray.append((CollectionViewData(name: "TRACKTORS", selected: false)))
         collectionViewDataArray.append((CollectionViewData(name: "TRACKTORS", selected: false)))
         
-        allItemsTBView.reloadData()
+        getAllProducts()
         itemsCollectionView.reloadData()
         
         // Do any additional setup after loading the view.
@@ -49,6 +47,80 @@ class HomeVC: UIViewController {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as! SearchVC
         self.present(vc, animated: true, completion: nil)
     }
+    
+    
+    
+    func getAllProducts() {
+        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+        let url = Constant.shared.baseUrl + Constant.shared.AllProduct
+        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+        print(deviceID ?? "")
+        if deviceID == nil  {
+            deviceID = "777"
+        }
+        let params = ["page_no": page,"access_token": accessToken]  as? [String : AnyObject] ?? [:]
+        print(params)
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+            print(response.data)
+            PKWrapperClass.svprogressHudDismiss(view: self)
+            let status = response.data["status"] as? String ?? ""
+            self.messgae = response.data["message"] as? String ?? ""
+            if status == "1"{
+                var newArr = [TableViewData]()
+                let allData = response.data["product_list"] as? [String:Any] ?? [:]
+                for obj in allData["all_products"] as? [[String:Any]] ?? [[:]] {
+                    print(obj)
+                    newArr.append(TableViewData(image: obj["prod_image"] as? String ?? "", name: obj["prod_name"] as? String ?? "", modelName: obj["prod_desc"] as? String ?? "", details: obj["prod_desc"] as? String ?? "", price: obj["prod_price"] as? String ?? "", prod_sno: obj["GAIC2K213000"] as? String ?? "", prod_type: obj["prod_type"] as? String ?? "", id: obj["id"] as? String ?? "", prod_video: obj["prod_video"] as? String ?? "", prod_qty: obj["prod_qty"] as? String ?? "", prod_pdf: obj["prod_pdf"] as? String ?? ""))
+                }
+                for i in 0..<newArr.count{
+                    self.tableViewDataArray.append(newArr[i])
+                }
+                self.allItemsTBView.reloadData()
+            }else{
+                PKWrapperClass.svprogressHudDismiss(view: self)
+                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            }
+        } failure: { (error) in
+            print(error)
+            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+        }
+    }
+    
+    
+//    func getAllProducts() {
+//        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+//        let url = Constant.shared.baseUrl + Constant.shared.AllProduct
+//        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+//        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+//        print(deviceID ?? "")
+//        if deviceID == nil  {
+//            deviceID = "777"
+//        }
+//        let params = ["page_no": page,"access_token": accessToken]  as? [String : AnyObject] ?? [:]
+//        print(params)
+//        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+//            print(response.data)
+//            PKWrapperClass.svprogressHudDismiss(view: self)
+//            let status = response.data["status"] as? String ?? ""
+//            self.messgae = response.data["message"] as? String ?? ""
+//            self.tableViewDataArray.removeAll()
+//            if status == "1"{
+//                let allData = response.data["product_list"] as? [String:Any] ?? [:]
+//                for obj in allData["all_products"] as? [[String:Any]] ?? [[:]] {
+//                    print(obj)
+//                    self.tableViewDataArray.append(TableViewData(image: obj["prod_image"] as? String ?? "", name: obj["prod_name"] as? String ?? "", modelName: obj["prod_desc"] as? String ?? "", details: obj["prod_desc"] as? String ?? "", price: obj["prod_price"] as? String ?? "", prod_sno: obj["GAIC2K213000"] as? String ?? "", prod_type: obj["prod_type"] as? String ?? "", id: obj["id"] as? String ?? "", prod_video: obj["prod_video"] as? String ?? "", prod_qty: obj["prod_qty"] as? String ?? "", prod_pdf: obj["prod_pdf"] as? String ?? ""))
+//                }
+//                self.allItemsTBView.reloadData()
+//            }else{
+//                PKWrapperClass.svprogressHudDismiss(view: self)
+//                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+//            }
+//        } failure: { (error) in
+//            print(error)
+//            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+//        }
+//    }
 }
 
 class ItemsCollectionViewCell: UICollectionViewCell {
@@ -75,12 +147,12 @@ class AlItemsTBViewCell: UITableViewCell {
 
 extension HomeVC : UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableViewDataArray[section].image.count
+        return tableViewDataArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlItemsTBViewCell", for: indexPath) as! AlItemsTBViewCell
-        cell.showImage.image = UIImage(named: tableViewDataArray[indexPath.row].image)
+        cell.showImage.sd_setImage(with: URL(string:tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "im"))
         cell.nameLbl.text = tableViewDataArray[indexPath.row].name
         cell.showImage.roundTop()
         cell.modelLbl.text = tableViewDataArray[indexPath.row].modelName
@@ -94,8 +166,19 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 330
+        return 360
     }
+    
+        func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+            if page <= lastPage{
+                let bottamEdge = Float(self.allItemsTBView.contentOffset.y + self.allItemsTBView.frame.size.height)
+                if bottamEdge >= Float(self.allItemsTBView.contentSize.height) && tableViewDataArray.count > 0 {
+                    page = page + 1
+                    getAllProducts()
+                }
+            }
+        }
+
     
 }
 
@@ -128,12 +211,34 @@ struct TableViewData {
     var name : String
     var modelName : String
     var details : String
+    var price : String
+    var prod_sno : String
+    var prod_type : String
+    var id : String
+    var prod_video : String
+    var prod_qty : String
+    var prod_pdf : String
     
-    init(image : String,name : String,modelName : String,details : String) {
+    init(image : String,name : String,modelName : String,details : String,price : String,prod_sno : String,prod_type : String,id : String,prod_video : String,prod_qty : String,prod_pdf : String) {
         self.image = image
         self.name = name
         self.modelName = modelName
         self.details = details
+        self.price = price
+        self.prod_sno = prod_sno
+        self.prod_type = prod_type
+        self.id = id
+        self.prod_video = prod_video
+        self.prod_qty = prod_qty
+        self.prod_pdf = prod_pdf
+    }
+}
+
+struct AllImages {
+    var images : String
+    
+    init(images : String) {
+        self.images = images
     }
 }
 

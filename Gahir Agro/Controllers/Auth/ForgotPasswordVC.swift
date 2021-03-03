@@ -11,10 +11,38 @@ class ForgotPasswordVC: UIViewController , UITextFieldDelegate{
 
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var emailtxtFld: UITextField!
+    var messgae = String()
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+    }
+    
+    
+    func forgotPassword() {
+        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+        let url = Constant.shared.baseUrl + Constant.shared.SignIn
+        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        print(deviceID ?? "")
+        if deviceID == nil  {
+            deviceID = "777"
+        }
+        let params = ["email":emailtxtFld.text as? String ?? ""] as? [String : AnyObject] ?? [:]
+        print(params)
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+            print(response.data)
+            PKWrapperClass.svprogressHudDismiss(view: self)
+            let status = response.data["status"] as? String ?? ""
+            self.messgae = response.data["message"] as? String ?? ""
+            if status == "1"{
+                self.navigationController?.popViewController(animated: true)
+            }else{
+                PKWrapperClass.svprogressHudDismiss(view: self)
+                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            }
+        } failure: { (error) in
+            print(error)
+            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+        }
     }
     
     
@@ -29,6 +57,19 @@ class ForgotPasswordVC: UIViewController , UITextFieldDelegate{
         }
     }
     
+    @IBAction func submitButton(_ sender: Any) {
+        if (emailtxtFld.text?.isEmpty)!{
+            
+            ValidateData(strMessage: " Please enter email")
+        }
+        else if isValidEmail(testStr: (emailtxtFld.text)!) == false{
+            
+            ValidateData(strMessage: "Enter valid email")
+            
+        }else{
+            forgotPassword()
+        }
+    }
     
 
     @IBAction func backButton(_ sender: Any) {

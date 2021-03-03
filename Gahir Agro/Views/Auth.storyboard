@@ -1274,6 +1274,9 @@
                                         <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="submitButton:" destination="IAX-eE-CQO" eventType="touchUpInside" id="r0N-7o-eVT"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="adx-1B-z2n"/>

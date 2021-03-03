@@ -63,6 +63,7 @@
 		184B11CA25E3726E003007A2 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C725E3726D003007A2 /* Constant.swift */; };
 		184B11CB25E3726E003007A2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C825E3726D003007A2 /* Reachability.swift */; };
 		184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C925E3726D003007A2 /* AFWrapperClass.swift */; };
+		1876B2FF25EF5E9200E5A245 /* ResponseModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876B2FE25EF5E9200E5A245 /* ResponseModal.swift */; };
 		187A8BEF25ECC4FD00DCA747 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 187A8BEE25ECC4FD00DCA747 /* GoogleService-Info.plist */; };
 		187A8C0825ECF2DA00DCA747 /* PKWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A8C0725ECF2DA00DCA747 /* PKWrapperClass.swift */; };
 		187A8C2525ECF9B600DCA747 /* SignInWithPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A8C2425ECF9B600DCA747 /* SignInWithPhone.swift */; };
@@ -161,6 +162,7 @@
 		184B11C725E3726D003007A2 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		184B11C825E3726D003007A2 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		184B11C925E3726D003007A2 /* AFWrapperClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWrapperClass.swift; sourceTree = "<group>"; };
+		1876B2FE25EF5E9200E5A245 /* ResponseModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseModal.swift; sourceTree = "<group>"; };
 		187A8BE925ECC13200DCA747 /* Gahir Agro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Gahir Agro.entitlements"; sourceTree = "<group>"; };
 		187A8BEE25ECC4FD00DCA747 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Certifacate and gooleinfolist/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		187A8C0725ECF2DA00DCA747 /* PKWrapperClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWrapperClass.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				187A8BE925ECC13200DCA747 /* Gahir Agro.entitlements */,
+				1876B2FD25EF5E7A00E5A245 /* Model */,
 				187A8BED25ECC34300DCA747 /* GoogleInfoList */,
 				184B116B25E36D8C003007A2 /* App */,
 				184B116C25E36D95003007A2 /* Controllers */,
@@ -315,10 +318,10 @@
 		184B116C25E36D95003007A2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				18E84AD225E7AA9D004A2148 /* Dealer */,
+				184B117325E36E23003007A2 /* Auth */,
+				18E84AD225E7AA9D004A2148 /* Customer */,
 				180847C925E4DB5800D04E69 /* SideMenu */,
 				180847C825E4DB5000D04E69 /* Home */,
-				184B117325E36E23003007A2 /* Auth */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -437,6 +440,14 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		1876B2FD25EF5E7A00E5A245 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1876B2FE25EF5E9200E5A245 /* ResponseModal.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		187A8BED25ECC34300DCA747 /* GoogleInfoList */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,7 +456,7 @@
 			path = GoogleInfoList;
 			sourceTree = "<group>";
 		};
-		18E84AD225E7AA9D004A2148 /* Dealer */ = {
+		18E84AD225E7AA9D004A2148 /* Customer */ = {
 			isa = PBXGroup;
 			children = (
 				18E84AD325E7AACE004A2148 /* EnquiryVC.swift */,
@@ -455,7 +466,7 @@
 				18E84AEC25E7AC9E004A2148 /* SuccesfullyBookedVC.swift */,
 				18E84AF125E7B0DE004A2148 /* DealerHomeVC.swift */,
 			);
-			path = Dealer;
+			path = Customer;
 			sourceTree = "<group>";
 		};
 		6D0D7AC69A71FCFD5CE47B72 /* Pods */ = {
@@ -780,6 +791,7 @@
 				180847B725E4BE2A00D04E69 /* SignInWithVC.swift in Sources */,
 				187A8C0825ECF2DA00DCA747 /* PKWrapperClass.swift in Sources */,
 				181704CB25E63E11003825D7 /* MyOrderVC.swift in Sources */,
+				1876B2FF25EF5E9200E5A245 /* ResponseModal.swift in Sources */,
 				184B11A025E37149003007A2 /* AppExtensions.swift in Sources */,
 				184B11B825E37244003007A2 /* AppConstants.swift in Sources */,
 				181704D025E64824003825D7 /* ContactUsVC.swift in Sources */,
