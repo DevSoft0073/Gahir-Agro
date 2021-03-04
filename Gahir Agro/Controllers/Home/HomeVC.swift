@@ -15,22 +15,18 @@ class HomeVC: UIViewController {
     
     var page = 1
     var lastPage = 1
-    
+    var productType = String()
+    var messgae = String()
+
     @IBOutlet weak var allItemsTBView: UITableView!
     @IBOutlet weak var itemsCollectionView: UICollectionView!
-    var messgae = String()
-//    var nameArray = ["TRACKTORS","TRACKTORS","TRACKTORS","TRACKTORS","TRACKTORS","TRACKTORS","TRACKTORS"]
     override func viewDidLoad() {
         super.viewDidLoad()
         allItemsTBView.separatorStyle = .none
-        
-        collectionViewDataArray.append((CollectionViewData(name: "TRACKTORS", selected: false)))
-        collectionViewDataArray.append((CollectionViewData(name: "TRACKTORS", selected: false)))
-        collectionViewDataArray.append((CollectionViewData(name: "TRACKTORS", selected: false)))
-        collectionViewDataArray.append((CollectionViewData(name: "TRACKTORS", selected: false)))
-        collectionViewDataArray.append((CollectionViewData(name: "TRACKTORS", selected: false)))
-        collectionViewDataArray.append((CollectionViewData(name: "TRACKTORS", selected: false)))
-        collectionViewDataArray.append((CollectionViewData(name: "TRACKTORS", selected: false)))
+
+        collectionViewDataArray.append(CollectionViewData(name: "Tractor", selected: false, type: "0"))
+        collectionViewDataArray.append(CollectionViewData(name: "Laser", selected: false, type: "1"))
+        collectionViewDataArray.append(CollectionViewData(name: "Pump", selected: false, type: "2"))
         
         getAllProducts()
         itemsCollectionView.reloadData()
@@ -50,6 +46,44 @@ class HomeVC: UIViewController {
         self.present(vc, animated: true, completion: nil)
     }
     
+    
+    func filterdData() {
+        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+        let url = Constant.shared.baseUrl + Constant.shared.FilterProducts
+        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+        print(deviceID ?? "")
+        if deviceID == nil  {
+            deviceID = "777"
+        }
+        let params = ["page_no": page,"access_token": accessToken,"type" : self.productType]  as? [String : AnyObject] ?? [:]
+        print(params)
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+            print(response.data)
+            PKWrapperClass.svprogressHudDismiss(view: self)
+            let status = response.data["status"] as? String ?? ""
+            self.messgae = response.data["message"] as? String ?? ""
+            if status == "1"{
+                
+                var newArr = [TableViewData]()
+                let allData = response.data["product_list"] as? [String:Any] ?? [:]
+                for obj in allData["all_products"] as? [[String:Any]] ?? [[:]] {
+                    print(obj)
+                    newArr.append(TableViewData(image: obj["prod_image"] as? String ?? "", name: obj["prod_name"] as? String ?? "", modelName: obj["prod_desc"] as? String ?? "", details: obj["prod_desc"] as? String ?? "", price: obj["prod_price"] as? String ?? "", prod_sno: obj["GAIC2K213000"] as? String ?? "", prod_type: obj["prod_type"] as? String ?? "", id: obj["id"] as? String ?? "", prod_video: obj["prod_video"] as? String ?? "", prod_qty: obj["prod_qty"] as? String ?? "", prod_pdf: obj["prod_pdf"] as? String ?? ""))
+                }
+                for i in 0..<newArr.count{
+                    self.tableViewDataArray.append(newArr[i])
+                }
+                self.allItemsTBView.reloadData()
+            }else{
+                PKWrapperClass.svprogressHudDismiss(view: self)
+                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            }
+        } failure: { (error) in
+            print(error)
+            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+        }
+    }
     
     
     func getAllProducts() {
@@ -179,6 +213,8 @@ extension HomeVC : UICollectionViewDelegate , UICollectionViewDataSource {
                 var mutableData = data
                 mutableData.selected = false
                 return mutableData
+                
+                
             })
         }else{
             self.collectionViewDataArray = self.collectionViewDataArray.map({ (data) -> CollectionViewData in
@@ -187,6 +223,14 @@ extension HomeVC : UICollectionViewDelegate , UICollectionViewDataSource {
                 return mutableData
             })
             self.collectionViewDataArray[indexPath.row].selected = !self.collectionViewDataArray[indexPath.row].selected
+            print(collectionViewDataArray)
+            let filterArray = collectionViewDataArray.filter({$0.selected == true})
+            print(filterArray)
+            for obj in filterArray{
+                productType = obj.type
+                self.tableViewDataArray.removeAll()
+                filterdData()
+            }
         }
         itemsCollectionView.reloadData()
     }
@@ -195,10 +239,12 @@ extension HomeVC : UICollectionViewDelegate , UICollectionViewDataSource {
 struct CollectionViewData {
     var name : String
     var selected : Bool
+    var type : String
     
-    init(name : String , selected : Bool) {
+    init(name : String , selected : Bool,type : String) {
         self.name = name
         self.selected = selected
+        self.type = type
     }
 }
 

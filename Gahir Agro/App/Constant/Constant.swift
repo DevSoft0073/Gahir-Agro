@@ -23,6 +23,8 @@ class Constant: NSObject {
     let ProductDetails = "GetProductDetail.php"
     let contactUS = "ContactUs.php"
     let EditProfile = "UpdateProfile.php"
+    let FilterProducts = "FilterProduct.php"
+    let SearchData = "SearchProduct.php"
     
 }
 
