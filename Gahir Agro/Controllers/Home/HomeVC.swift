@@ -8,7 +8,7 @@
 import UIKit
 import LGSideMenuController
 
-class HomeVC: UIViewController {
+class HomeVC: UIViewController,UITextFieldDelegate {
     
     var collectionViewDataArray = [CollectionViewData]()
     var tableViewDataArray = [TableViewData]()

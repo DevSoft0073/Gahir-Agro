@@ -23,7 +23,12 @@ class SearchVC: UIViewController,UITextFieldDelegate {
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        recentSearch()
         searchDataTBView.separatorStyle = .none
+        showSearchedDataTBView.separatorStyle = .none
+        showSearchedDataTBView.delegate = self
+        showSearchedDataTBView.dataSource = self
+        showSearchedDataTBView.isHidden = true
     }
     
     @IBAction func cancelButton(_ sender: Any) {
@@ -31,9 +36,43 @@ class SearchVC: UIViewController,UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        filterdData()
+        showSearchedDataTBView.reloadData()
         textField.resignFirstResponder()
         return true
     }
+    
+    func recentSearch() {
+        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+        let url = Constant.shared.baseUrl + Constant.shared.RecentSearches
+        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+        print(deviceID ?? "")
+        if deviceID == nil  {
+            deviceID = "777"
+        }
+        let params = ["access_token": accessToken]  as? [String : AnyObject] ?? [:]
+        print(params)
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+            print(response.data)
+            PKWrapperClass.svprogressHudDismiss(view: self)
+            let status = response.data["status"] as? String ?? ""
+            self.messgae = response.data["message"] as? String ?? ""
+            if status == "1"{
+                let allData = response.data["search_list"]
+                print(allData)
+            }else{
+                PKWrapperClass.svprogressHudDismiss(view: self)
+                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            }
+        } failure: { (error) in
+            print(error)
+            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+        }
+    }
+
+    
+    
     
     func filterdData() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
@@ -44,7 +83,7 @@ class SearchVC: UIViewController,UITextFieldDelegate {
         if deviceID == nil  {
             deviceID = "777"
         }
-        let params = ["page_no": page,"access_token": accessToken,"search" : searchTxtFld.text ?? ""]  as? [String : AnyObject] ?? [:]
+        let params = ["page_no": page,"access_token": accessToken,"search" : ""]  as? [String : AnyObject] ?? [:]
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
             print(response.data)
@@ -61,7 +100,13 @@ class SearchVC: UIViewController,UITextFieldDelegate {
                 for i in 0..<newArr.count{
                     self.tableViewDataArray.append(newArr[i])
                 }
-                self.searchDataTBView.reloadData()
+                DispatchQueue.main.async {
+                    self.showSearchedDataTBView.isHidden = false
+                    self.searchDataTBView.isHidden = true
+                    print(self.tableViewDataArray)
+                    self.showSearchedDataTBView.reloadData()
+
+                }
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
@@ -70,7 +115,6 @@ class SearchVC: UIViewController,UITextFieldDelegate {
             print(error)
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
-
     }
 
     
@@ -87,9 +131,9 @@ class SearchDataTBViewCell: UITableViewCell {
 
 class ShowSearchedDataTBViewCell: UITableViewCell {
     
+    @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var detailsLbl: UILabel!
     @IBOutlet weak var typeLbl: UILabel!
-    @IBOutlet weak var nameLbl: UIStackView!
     @IBOutlet weak var showImage: UIImageView!
     @IBOutlet weak var dataView: UIView!
     
@@ -101,38 +145,42 @@ class ShowSearchedDataTBViewCell: UITableViewCell {
 extension SearchVC : UITableViewDelegate , UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       var numberOfRow = 1
-        switch tableView {
-        case searchDataTBView:
-            numberOfRow = searchArray.count
-        case showSearchedDataTBView:
-            numberOfRow = tableViewDataArray.count
-        default:
-            print("Some things Wrong!!")
+        if tableView == searchDataTBView{
+            return searchArray.count
+        }else{
+            return tableViewDataArray.count
         }
-        return numberOfRow
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
-        var cell = UITableViewCell()
-            switch tableView {
-            case searchDataTBView:
-                cell = tableView.dequeueReusableCell(withIdentifier: "SearchDataTBViewCell", for: indexPath) as! SearchDataTBViewCell
-                
-            case showSearchedDataTBView:
-                cell = tableView.dequeueReusableCell(withIdentifier: "SearchDataTBViewCell", for: indexPath) as! SearchDataTBViewCell
-            default:
-                print("Some things Wrong!!")
-            }
+        if tableView == searchDataTBView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SearchDataTBViewCell", for: indexPath) as! SearchDataTBViewCell
+            cell.nameLbl.text = searchArray[indexPath.row]
             return cell
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ShowSearchedDataTBViewCell", for: indexPath) as! ShowSearchedDataTBViewCell
+            cell.nameLbl.text = tableViewDataArray[indexPath.row].name
+            cell.detailsLbl.text = tableViewDataArray[indexPath.row].details
+            cell.typeLbl.text = tableViewDataArray[indexPath.row].modelName
+            cell.showImage.sd_setImage(with: URL(string:tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "im"))
+            return cell
+        }
+        
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 45
         
+        if tableView == searchDataTBView{
+            return 45
+        }else{
+            return 330
+        }
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
+        vc.id = tableViewDataArray[indexPath.row].id
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 

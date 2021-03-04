@@ -9,11 +9,14 @@ import UIKit
 
 class SideMenuVC: UIViewController {
     
+    @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
     var sideMenuItemsArray = [SideMenuItems]()
+    var messgae = String()
     @IBOutlet weak var settingTBView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getData()
         sideMenuItemsArray.append(SideMenuItems(name: "Home", selectedImage: "home"))
         sideMenuItemsArray.append(SideMenuItems(name: "Orders", selectedImage: "order"))
         sideMenuItemsArray.append(SideMenuItems(name: "Notifications", selectedImage: "noti"))
@@ -36,6 +39,51 @@ class SideMenuVC: UIViewController {
         UserDefaults.standard.removeObject(forKey: "tokenFString")
         let appDel = UIApplication.shared.delegate as! AppDelegate
         appDel.Logout1()
+    }
+    
+    func getData() {
+//        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+        let url = Constant.shared.baseUrl + Constant.shared.ProfileApi
+        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+        print(deviceID ?? "")
+        if deviceID == nil  {
+            deviceID = "777"
+        }
+        let params = ["access_token": accessToken]  as? [String : AnyObject] ?? [:]
+        print(params)
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+            print(response.data)
+//            PKWrapperClass.svprogressHudDismiss(view: self)
+            let status = response.data["status"] as? String ?? ""
+            self.messgae = response.data["message"] as? String ?? ""
+            if status == "1"{
+                let allData = response.data["user_detail"] as? [String:Any] ?? [:]
+               
+                self.profileImage.sd_setImage(with: URL(string:allData["photo"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"))
+                self.nameLbl.text = "\(allData["first_name"] as? String ?? "") " + "\(allData["last_name"] as? String ?? "")"
+                let url = URL(string:allData["photo"] as? String ?? "")
+                if url != nil{
+                    if let data = try? Data(contentsOf: url!)
+                    {
+                        if let image: UIImage = (UIImage(data: data)){
+                            self.profileImage.image = image
+                            self.profileImage.contentMode = .scaleToFill
+                            IJProgressView.shared.hideProgressView()
+                        }
+                    }
+                }
+                else{
+                    self.profileImage.image = UIImage(named: "placehlder")
+                }
+            }else{
+                PKWrapperClass.svprogressHudDismiss(view: self)
+                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            }
+        } failure: { (error) in
+            print(error)
+            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+        }
     }
     
 }
