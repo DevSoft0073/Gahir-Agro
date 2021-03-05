@@ -13,7 +13,7 @@ class SearchVC: UIViewController,UITextFieldDelegate {
     var page = 1
     var lastPage = 1
     var messgae = String()
-    var searchArray = ["First Item","Second Item"]
+    var searchArray = [String]()
     var tableViewDataArray = [SearchTableViewData]()
 
     @IBOutlet weak var showSearchedDataTBView: UITableView!
@@ -54,13 +54,16 @@ class SearchVC: UIViewController,UITextFieldDelegate {
         let params = ["access_token": accessToken]  as? [String : AnyObject] ?? [:]
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
-            print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
-                let allData = response.data["search_list"]
+                let allData = response.data["search_list"] as? [String:Any] ?? [:]
                 print(allData)
+                let searchArrayData = allData["search_list"] as? [String]
+                print(searchArrayData)
+                self.searchArray.append(searchArrayData?[3] ?? "")
+                self.searchDataTBView.reloadData()
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
@@ -177,9 +180,16 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource{
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
-        vc.id = tableViewDataArray[indexPath.row].id
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+        if tableView == showSearchedDataTBView{
+            
+            let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
+            vc.id = tableViewDataArray[indexPath.row].id
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }else{
+            
+        }
     }
 }
 

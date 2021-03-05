@@ -17,7 +17,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
     var lastPage = 1
     var productType = String()
     var messgae = String()
-
+    var currentIndex = String()
     @IBOutlet weak var allItemsTBView: UITableView!
     @IBOutlet weak var itemsCollectionView: UICollectionView!
     override func viewDidLoad() {
@@ -113,9 +113,13 @@ class HomeVC: UIViewController,UITextFieldDelegate {
                     self.tableViewDataArray.append(newArr[i])
                 }
                 self.allItemsTBView.reloadData()
-            }else{
+            }else if status == "0"{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            }else{
+                UserDefaults.standard.removeObject(forKey: "tokenFString")
+                let appDel = UIApplication.shared.delegate as! AppDelegate
+                appDel.Logout1()
             }
         } failure: { (error) in
             print(error)
@@ -158,12 +162,14 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
         cell.showImage.roundTop()
         cell.modelLbl.text = tableViewDataArray[indexPath.row].modelName
         cell.detailsLbl.text = tableViewDataArray[indexPath.row].details
+        currentIndex = tableViewDataArray[indexPath.row].id
+        cell.checkAvailabiltyButton.addTarget(self, action: #selector(goto), for: .touchUpInside)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    @objc func goto() {
         let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
-        vc.id = tableViewDataArray[indexPath.row].id
+        vc.id = currentIndex
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

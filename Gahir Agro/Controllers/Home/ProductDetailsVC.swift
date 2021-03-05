@@ -32,18 +32,16 @@ class ProductDetailsVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    
-    @IBAction func increaseQuantityButton(_ sender: Any) {
-    }
-    
-    @IBAction func decreaseQuantityButton(_ sender: Any) {
-    }
-    
 
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func enquiryButtonVc(_ sender: Any) {
+        let vc = EnquiryVC.instantiate(fromAppStoryboard: .Main)
+        vc.id = self.id
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     func productDetails() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
@@ -89,7 +87,6 @@ extension ProductDetailsVC : UITableViewDelegate , UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailsTBViewCell", for: indexPath) as! DetailsTBViewCell
         return cell
     }
-    
     
 }
 

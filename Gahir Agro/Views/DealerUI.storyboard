@@ -24,10 +24,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--EnquiryVC-->
+        <!--View Controller-->
         <scene sceneID="Qrv-1U-y9P">
             <objects>
-                <viewController storyboardIdentifier="EnquiryVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wo7-91-zOB" customClass="EnquiryVC" customModule="Gahir_Agro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wo7-91-zOB" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9S7-sd-xXn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -166,7 +166,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pF5-IB-O7z">
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pF5-IB-O7z">
                                                 <rect key="frame" x="8" y="247" width="304" height="200"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
@@ -1088,10 +1088,10 @@
             </objects>
             <point key="canvasLocation" x="1867.5" y="116.19718309859155"/>
         </scene>
-        <!--Book OrderVC-->
+        <!--View Controller-->
         <scene sceneID="rdw-4u-9hb">
             <objects>
-                <viewController storyboardIdentifier="BookOrderVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IXQ-x4-MUT" customClass="BookOrderVC" customModule="Gahir_Agro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="IXQ-x4-MUT" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xlX-a2-Lgi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1310,10 +1310,10 @@
             </objects>
             <point key="canvasLocation" x="2572.5" y="115.14084507042254"/>
         </scene>
-        <!--Succesfully BookedVC-->
+        <!--View Controller-->
         <scene sceneID="vlF-io-lO9">
             <objects>
-                <viewController storyboardIdentifier="SuccesfullyBookedVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="z6A-nm-cHX" customClass="SuccesfullyBookedVC" customModule="Gahir_Agro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="z6A-nm-cHX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Oo-Jg-m7y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

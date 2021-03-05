@@ -27,6 +27,7 @@ class Constant: NSObject {
     let SearchData = "SearchProduct.php"
     let ProfileApi = "GetUserProfile.php"
     let RecentSearches = "GetRecentSearch.php"
+    let AddEnquiry = "AddEnquiry.php"
     
 }
 
