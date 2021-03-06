@@ -20,7 +20,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let appDel = UIApplication.shared .delegate as! AppDelegate
         appDel.window = window
-        navigateVC()
         appDel.getLoggedUser()
     }
     
@@ -52,14 +51,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-    func navigateVC() {
-        let storyBoard = UIStoryboard.init(name: "Auth", bundle: nil)
-        let rootVc = storyBoard.instantiateViewController(withIdentifier: "SplashVC") as! SplashVC
-        let nav = UINavigationController(rootViewController: rootVc)
-        nav.isNavigationBarHidden = true
-        self.window?.rootViewController = nav
-        self.window?.makeKeyAndVisible()
-    }
+//    func navigateVC() {
+//        let storyBoard = UIStoryboard.init(name: "Splash", bundle: nil)
+//        let rootVc = storyBoard.instantiateViewController(withIdentifier: "SplashVC") as! SplashVC
+//        let nav = UINavigationController(rootViewController: rootVc)
+//        nav.isNavigationBarHidden = true
+//        self.window?.rootViewController = nav
+//        self.window?.makeKeyAndVisible()
+//    }
 
 }
 

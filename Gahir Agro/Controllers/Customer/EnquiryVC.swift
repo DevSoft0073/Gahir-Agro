@@ -11,25 +11,23 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     
     var jassIndex = Int()
     
-    var tbaleViewArray = ["TYPE","COLOR","QUANTITY","ACCESSORY"]
+    var tbaleViewArray = ["SYSTEM","ACCESSORY"]
     var picker  = UIPickerView()
 
     var pickerToolBar = UIToolbar()
     var selectedValue = String()
     var selectedValue1 = String()
-    var selectedValue2 = String()
-    var selectedValue3 = String()
-    var listingArray = ["First","Second","Third","Fourth"]
-    var colorArray = ["Blue","Red","Yellow","Green"]
-    var quantityArray = ["3","5","8","10","20","30"]
-    var accessoryArray = ["Type","Color","Quantity","Accessory"]
+    var selectedname = String()
+    var selectType = String()
     var currentIndex = Int()
     var count = 0
     var id = String()
     var productId = String()
     var indexesNeedPicker: [NSIndexPath]?
     var messgae = String()
-    
+    var categoryArray = [EnquieyData]()
+    var accessory = [AccessoriesData]()
+    var systemArray = [SystemData]()
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var enquiryDataTBView: UITableView!
     @IBOutlet weak var quantitylbl: UILabel!
@@ -37,6 +35,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var showImage: UIImageView!
     override func viewDidLoad() {
+        productDetails()
         picker = UIPickerView.init()
         picker.delegate = self
         pickerToolBar.sizeToFit()
@@ -59,6 +58,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         self.view.endEditing(true)
     }
     
+     //MARK:- Service call methods
     
     func submitEnquiry() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
@@ -70,7 +70,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
             deviceID = "777"
         }
         
-        let params = ["product_id" : id , "quantity" : selectedValue2, "accessory" : selectedValue3 ,"access_token": accessToken,"system" : selectedValue1 , "type" : selectedValue]  as? [String : AnyObject] ?? [:]
+        let params = ["product_id" : id , "quantity" : "2", "accessory" : selectedValue1 ,"access_token": accessToken,"system" : selectedValue1 , "type" : self.productId]  as? [String : AnyObject] ?? [:]
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
             print(response.data)
@@ -81,6 +81,47 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                 showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
                     self.navigationController?.popViewController(animated: true)
                 }
+            }else{
+                PKWrapperClass.svprogressHudDismiss(view: self)
+                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            }
+        } failure: { (error) in
+            print(error)
+            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+        }
+    }
+    
+    func productDetails() {
+        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+        let url = Constant.shared.baseUrl + Constant.shared.ProductDetails
+        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+        print(deviceID ?? "")
+        if deviceID == nil  {
+            deviceID = "777"
+        }
+        let params = ["id": id,"access_token": accessToken]  as? [String : AnyObject] ?? [:]
+        print(params)
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+            print(response.data)
+            PKWrapperClass.svprogressHudDismiss(view: self)
+            let status = response.data["status"] as? String ?? ""
+            self.messgae = response.data["message"] as? String ?? ""
+            if status == "1"{
+                let allData = response.data["product_detail"] as? [String:Any] ?? [:]
+                print(allData)
+                self.productId = allData["id"] as? String ?? ""
+                let accessories = allData["accessories"] as? [[String:Any]] ?? [[:]]
+                for obj in accessories {
+                    print(obj)
+                    self.accessory.append(AccessoriesData(name: obj["acc_name"] as? String ?? "", id: obj["id"] as? String ?? ""))
+                }
+                let systemData = allData["systems"] as? [[String:Any]] ?? [[:]]
+                for obj in systemData{
+                    self.systemArray.append(SystemData(name: obj["trac_name"] as? String ?? "", id: obj["id"] as? String ?? ""))
+                }
+                self.categoryArray.append(EnquieyData(accessory: self.accessory, system: self.systemArray))
+//                self.picker.reloadAllComponents()
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
@@ -103,14 +144,9 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         let numberOfRows = 0
         print(currentIndex)
         if currentIndex == 0{
-            return listingArray.count
-            
+            return systemArray.count
         }else if currentIndex == 1{
-            return colorArray.count
-        }else if currentIndex == 2{
-            return quantityArray.count
-        }else if currentIndex == 3{
-            return accessoryArray.count
+            return accessory.count
         }else{
             return numberOfRows
         }
@@ -121,25 +157,16 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         
         if currentIndex == 0{
             
-            selectedValue = listingArray[row]
+            selectedValue = systemArray[row].id
+            selectedname = systemArray[row].name
             self.enquiryDataTBView.reloadData()
             print(selectedValue)
             
         }else if currentIndex == 1{
             
-            selectedValue1 = colorArray[row]
+            selectedValue1 = accessory[row].id
+            selectType = accessory[row].name
             print(selectedValue1)
-            self.enquiryDataTBView.reloadData()
-
-        }else if currentIndex == 2{
-            
-            selectedValue2 = quantityArray[row]
-            print(selectedValue2)
-            self.enquiryDataTBView.reloadData()
-        }else if currentIndex == 3{
-            
-            selectedValue3 = accessoryArray[row]
-            print(selectedValue3)
             self.enquiryDataTBView.reloadData()
 
         }else{
@@ -154,30 +181,14 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
             label.textColor = .black
             label.textAlignment = .center
             label.font = UIFont(name: "Poppins-Medium", size: 20)
-            label.text = listingArray[row]
+            label.text = systemArray[row].name
             return label
         }else if currentIndex == 1{
             
             label.textColor = .black
             label.textAlignment = .center
             label.font = UIFont(name: "Poppins-Medium", size: 20)
-            label.text = colorArray[row]
-            return label
-            
-        }else if currentIndex == 2{
-            
-            label.textColor = .black
-            label.textAlignment = .center
-            label.font = UIFont(name: "Poppins-Medium", size: 20)
-            label.text = quantityArray[row]
-            return label
-            
-        }else if currentIndex == 3{
-            
-            label.textColor = .black
-            label.textAlignment = .center
-            label.font = UIFont(name: "Poppins-Medium", size: 20)
-            label.text = accessoryArray[row]
+            label.text = accessory[row].name
             return label
             
         }else{
@@ -191,15 +202,11 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if currentIndex == 0{
-            return listingArray[row]
+            return systemArray[row].name
         }else if currentIndex == 1{
-            return colorArray[row]
-        }else if currentIndex == 2{
-            return quantityArray[row]
-        }else if currentIndex == 3{
-            return accessoryArray[row]
+            return accessory[row].name
         }
-        return listingArray[row]
+        return accessory[row].name
     }
     
     @IBAction func backbutton(_ sender: Any) {
@@ -251,14 +258,9 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
             cell.titleLbl.text = selectedValue
         }else if index == 1{
             cell.titleLbl.text = selectedValue1
-        }else if index == 2{
-            cell.titleLbl.text = selectedValue2
-        }else if index == 3{
-            cell.titleLbl.text = selectedValue3
         }
         cell.dropDownbutton.tag = indexPath.row
         cell.openPicker.tag = indexPath.row
-//        cell.openPicker.inputView = picker
         cell.openPicker.delegate = self
         cell.dropDownbutton.addTarget(self, action: #selector(openPickerView(sender:)), for: .touchUpInside)
         DispatchQueue.main.async {
@@ -266,37 +268,17 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
         }
         return cell
     }
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "EnquiryDataTBViewCell", for: indexPath) as! EnquiryDataTBViewCell
-//        let index = indexPath.row
-////        self.picker.isHidden = false
-////        cell.openPicker.tag = indexPath.row
-////        print("asdssad\(cell.openPicker.tag)")
-////        if indexPath.row == 0{
-////            cell.titleLbl.text = selectedValue
-////        }else if indexPath.row == 1{
-////            cell.titleLbl.text = selectedValue1
-////        }else if indexPath.row == 2{
-////            cell.titleLbl.text = selectedValue2
-////        }else if indexPath.row == 3{
-////            cell.titleLbl.text = selectedValue3
-////        }
-//
-//    }
     
     @objc func openPickerView(sender: UIButton) {
         if let cell = sender.superview?.superview as? EnquiryDataTBViewCell, let indexPath = enquiryDataTBView.indexPath(for: cell){
             currentIndex = sender.tag
+            cell.openPicker.inputView = picker
             cell.openPicker.becomeFirstResponder()
             print("asdssad\(cell.openPicker.tag)")
             if indexPath.row == 0{
-                cell.titleLbl.text = selectedValue
+                cell.titleLbl.text = selectedname
             }else if indexPath.row == 1{
-                cell.titleLbl.text = selectedValue1
-            }else if indexPath.row == 2{
-                cell.titleLbl.text = selectedValue2
-            }else if indexPath.row == 3{
-                cell.titleLbl.text = selectedValue3
+                cell.titleLbl.text = selectType
             }
         }
     }
@@ -305,4 +287,34 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
         return 80
     }
     
+}
+
+
+struct EnquieyData {
+    var accessory : [AccessoriesData]
+    var system : [SystemData]
+    
+    init(accessory : [AccessoriesData],system : [SystemData]) {
+        self.accessory = accessory
+        self.system = system
+    }
+}
+
+struct AccessoriesData {
+    var name : String
+    var id : String
+    
+    init(name : String,id : String) {
+        self.name = name
+        self.id = id
+    }
+}
+struct SystemData {
+    var name : String
+    var id : String
+    
+    init(name : String,id : String) {
+        self.name = name
+        self.id = id
+    }
 }

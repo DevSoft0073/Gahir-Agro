@@ -1620,7 +1620,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2qm-f1-VnE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-959" y="123"/>
+            <point key="canvasLocation" x="-33" y="123"/>
         </scene>
         <!--Sign UpVC-->
         <scene sceneID="mry-BM-Wv3">
@@ -1679,13 +1679,13 @@
                                                                 <rect key="frame" x="0.0" y="27.5" width="319" height="37"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="CDI-HY-Zos">
-                                                                        <rect key="frame" x="10" y="9" width="19" height="19"/>
+                                                                        <rect key="frame" x="10" y="9" width="19.5" height="19"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="CDI-HY-Zos" secondAttribute="height" multiplier="1:1" id="2EQ-Yf-33f"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eB4-UG-QK8">
-                                                                        <rect key="frame" x="49" y="9" width="255" height="19"/>
+                                                                        <rect key="frame" x="49.5" y="9" width="255" height="19"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
@@ -1753,13 +1753,13 @@
                                                                 <rect key="frame" x="0.0" y="27.5" width="319" height="37.5"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail" translatesAutoresizingMaskIntoConstraints="NO" id="70p-aK-Ulz">
-                                                                        <rect key="frame" x="10" y="9.5" width="19" height="19"/>
+                                                                        <rect key="frame" x="10" y="9.5" width="19.5" height="19"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="70p-aK-Ulz" secondAttribute="height" multiplier="1:1" id="WKZ-Ri-hfY"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hyk-fz-yFG">
-                                                                        <rect key="frame" x="49" y="9.5" width="255" height="19"/>
+                                                                        <rect key="frame" x="49.5" y="9.5" width="255" height="19"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
@@ -1827,13 +1827,13 @@
                                                                 <rect key="frame" x="0.0" y="27.5" width="319" height="37.5"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="bhJ-VD-2OX">
-                                                                        <rect key="frame" x="10" y="9" width="19" height="19"/>
+                                                                        <rect key="frame" x="10" y="9" width="19.5" height="19"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="bhJ-VD-2OX" secondAttribute="height" multiplier="1:1" id="5b0-cQ-3rA"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xbz-mZ-aE7">
-                                                                        <rect key="frame" x="49" y="9.5" width="255" height="18"/>
+                                                                        <rect key="frame" x="49.5" y="9.5" width="255" height="18"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
@@ -2038,35 +2038,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VQG-PB-abW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2328.8000000000002" y="812.74362818590714"/>
-        </scene>
-        <!--SplashVC-->
-        <scene sceneID="hl7-ux-Ny5">
-            <objects>
-                <viewController storyboardIdentifier="SplashVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="upF-M8-ZBB" customClass="SplashVC" customModule="Gahir_Agro" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="oFt-LA-tDb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-1" translatesAutoresizingMaskIntoConstraints="NO" id="rj6-Dm-mOL">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="7so-qW-Xd4"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="7so-qW-Xd4" firstAttribute="trailing" secondItem="rj6-Dm-mOL" secondAttribute="trailing" id="6Pb-Cq-zSi"/>
-                            <constraint firstItem="rj6-Dm-mOL" firstAttribute="top" secondItem="oFt-LA-tDb" secondAttribute="top" id="KNK-hi-rC0"/>
-                            <constraint firstItem="rj6-Dm-mOL" firstAttribute="bottom" secondItem="oFt-LA-tDb" secondAttribute="bottom" id="e28-Wn-1Wa"/>
-                            <constraint firstItem="rj6-Dm-mOL" firstAttribute="leading" secondItem="7so-qW-Xd4" secondAttribute="leading" id="x9k-KN-btL"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="splashImage" destination="rj6-Dm-mOL" id="B5H-id-rnd"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xLY-mg-UMK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-92" y="123"/>
         </scene>
     </scenes>
     <resources>

@@ -87,10 +87,10 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
                 self.bioTxtView.text = allData["bio"] as? String
                 self.emailTxtFld.text = allData["username"] as? String
                 self.passwordTxtFld.text = "**********"
-                self.profileImage.sd_setImage(with: URL(string:allData["photo"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"))
-                self.flagImage.sd_setImage(with: URL(string:allData["flag_photo"] as? String ?? ""), placeholderImage: UIImage(named: "flag"))
+                self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"))
+                self.flagImage.sd_setImage(with: URL(string:allData["flag_image"] as? String ?? ""), placeholderImage: UIImage(named: "flag"))
 
-                let url = URL(string:allData["photo"] as? String ?? "")
+                let url = URL(string:allData["image"] as? String ?? "")
                 if url != nil{
                     if let data = try? Data(contentsOf: url!)
                     {
@@ -104,7 +104,7 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
                 else{
                     self.profileImage.image = UIImage(named: "placehlder")
                 }
-                let urls = URL(string:allData["flag_photo"] as? String ?? "")
+                let urls = URL(string:allData["flag_image"] as? String ?? "")
                 if urls != nil{
                     if let data = try? Data(contentsOf: urls!)
                     {
@@ -118,7 +118,6 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
                 else{
                     self.flagImage.image = UIImage(named: "flag")
                 }
-                
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)

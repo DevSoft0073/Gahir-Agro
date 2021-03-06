@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
-        self.navigateVC()
+//        self.navigateVC()
         FirebaseApp.configure()
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
@@ -65,14 +65,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.setValue(deviceTokenString, forKey: "deviceToken")
     }
 
-    func navigateVC() {
-        let storyBoard = UIStoryboard.init(name: "Auth", bundle: nil)
-        let rootVc = storyBoard.instantiateViewController(withIdentifier: "SplashVC") as! SplashVC
-        let nav = UINavigationController(rootViewController: rootVc)
-        nav.isNavigationBarHidden = true
-        self.window?.rootViewController = nav
-        self.window?.makeKeyAndVisible()
-    }
+//    func navigateVC() {
+//        let storyBoard = UIStoryboard.init(name: "Auth", bundle: nil)
+//        let rootVc = storyBoard.instantiateViewController(withIdentifier: "SplashVC") as! SplashVC
+//        let nav = UINavigationController(rootViewController: rootVc)
+//        nav.isNavigationBarHidden = true
+//        self.window?.rootViewController = nav
+//        self.window?.makeKeyAndVisible()
+//    }
 
 }
 
@@ -124,10 +124,3 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     }
     
 }
-
-//extension Data {
-//    var hexString: String {
-//        let hexString = map { String(format: "%02.2hhx", $0) }.joined()
-//        return hexString
-//    }
-//}

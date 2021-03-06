@@ -7,6 +7,7 @@
 
 import UIKit
 import LGSideMenuController
+import SDWebImage
 
 class ProfileVC: UIViewController, CAAnimationDelegate {
 
@@ -59,10 +60,10 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
                 self.bioTxtView.text = allData["bio"] as? String
                 self.emailtxtFld.text = allData["username"] as? String
                 self.passwordTxtFld.text = "**********"
-                self.profileImage.sd_setImage(with: URL(string:allData["photo"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"))
-                self.flagImage.sd_setImage(with: URL(string:allData["flag_photo"] as? String ?? ""), placeholderImage: UIImage(named: "flag"))
+                self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"))
+                self.flagImage.sd_setImage(with: URL(string:allData["flag_image"] as? String ?? ""), placeholderImage: UIImage(named: "flag"))
 
-                let url = URL(string:allData["photo"] as? String ?? "")
+                let url = URL(string:allData["image"] as? String ?? "")
                 if url != nil{
                     if let data = try? Data(contentsOf: url!)
                     {
@@ -76,7 +77,7 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
                 else{
                     self.profileImage.image = UIImage(named: "placehlder")
                 }
-                let urls = URL(string:allData["flag_photo"] as? String ?? "")
+                let urls = URL(string:allData["flag_image"] as? String ?? "")
                 if urls != nil{
                     if let data = try? Data(contentsOf: urls!)
                     {

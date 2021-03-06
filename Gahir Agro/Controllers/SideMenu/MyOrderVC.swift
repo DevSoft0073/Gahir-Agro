@@ -10,11 +10,16 @@ import LGSideMenuController
 
 class MyOrderVC: UIViewController {
 
+    
+    var page = 1
+    var lastPage = 1
+    var messgae = String()
     @IBOutlet weak var myOrderTBView: UITableView!
     var orderHistoryArray = [OrderHistoryData]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        getAllEnquries()
         myOrderTBView.separatorStyle = .none
         // Do any additional setup after loading the view.
         orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
@@ -22,9 +27,51 @@ class MyOrderVC: UIViewController {
         orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
         orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
         orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
-        
+
     }
 
+    func getAllEnquries() {
+        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+        let url = Constant.shared.baseUrl + Constant.shared.EnquiryListing
+        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+        print(deviceID ?? "")
+        if deviceID == nil  {
+            deviceID = "777"
+        }
+        let params = ["page_no": page,"access_token": accessToken]  as? [String : AnyObject] ?? [:]
+        print(params)
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+            print(response.data)
+            PKWrapperClass.svprogressHudDismiss(view: self)
+            let status = response.data["status"] as? String ?? ""
+            self.messgae = response.data["message"] as? String ?? ""
+            if status == "1"{
+                var newArr = [OrderHistoryData]()
+                let allData = response.data["product_list"] as? [String:Any] ?? [:]
+                for obj in allData["all_products"] as? [[String:Any]] ?? [[:]] {
+                    print(obj)
+                }
+                for i in 0..<newArr.count{
+                    self.orderHistoryArray.append(newArr[i])
+                }
+                self.myOrderTBView.reloadData()
+            }else if status == "0"{
+                PKWrapperClass.svprogressHudDismiss(view: self)
+                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            }else{
+                UserDefaults.standard.removeObject(forKey: "tokenFString")
+                let appDel = UIApplication.shared.delegate as! AppDelegate
+                appDel.Logout1()
+            }
+        } failure: { (error) in
+            print(error)
+            PKWrapperClass.svprogressHudDismiss(view: self)
+            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+        }
+    }
+
+    
     @IBAction func openMenu(_ sender: Any) {
         sideMenuController?.showLeftViewAnimated()
 
@@ -62,6 +109,15 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
         return 125
     }
     
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if page <= lastPage{
+            let bottamEdge = Float(self.myOrderTBView.contentOffset.y + self.myOrderTBView.frame.size.height)
+            if bottamEdge >= Float(self.myOrderTBView.contentSize.height) && orderHistoryArray.count > 0 {
+                page = page + 1
+                getAllEnquries()
+            }
+        }
+    }
 }
 
 struct OrderHistoryData {

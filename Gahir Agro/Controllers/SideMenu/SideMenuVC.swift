@@ -11,22 +11,33 @@ class SideMenuVC: UIViewController {
     
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
-    var sideMenuItemsArray = [SideMenuItems]()
+    var sideMenuItemsArray : [SideMenuItems] = []{
+        didSet{
+            settingTBView.reloadData()
+        }
+    }
+    
     var messgae = String()
     @IBOutlet weak var settingTBView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
-        sideMenuItemsArray.append(SideMenuItems(name: "Home", selectedImage: "home"))
-        sideMenuItemsArray.append(SideMenuItems(name: "Orders", selectedImage: "order"))
-        sideMenuItemsArray.append(SideMenuItems(name: "Notifications", selectedImage: "noti"))
-        sideMenuItemsArray.append(SideMenuItems(name: "Contact", selectedImage: "contact"))
-        sideMenuItemsArray.append(SideMenuItems(name: "Privacy Policy", selectedImage: "privacy"))
-        sideMenuItemsArray.append(SideMenuItems(name: "Logout", selectedImage: "logout"))
+        sideMenuItemsArray.append(SideMenuItems(name: "Home", selectedImage: "home", selected: true, unselected: "home-1"))
+        sideMenuItemsArray.append(SideMenuItems(name: "Orders", selectedImage: "order", selected: false, unselected: "order-1"))
+        sideMenuItemsArray.append(SideMenuItems(name: "Notifications", selectedImage: "noti", selected: false, unselected: "noti-1"))
+        sideMenuItemsArray.append(SideMenuItems(name: "Contact", selectedImage: "contact", selected: false, unselected: "contact-1"))
+        sideMenuItemsArray.append(SideMenuItems(name: "Privacy Policy", selectedImage: "privacy", selected: false, unselected: "privacy-1"))
+        sideMenuItemsArray.append(SideMenuItems(name: "Logout", selectedImage: "logout", selected: false, unselected: "logout-1"))
         
         self.settingTBView.separatorStyle = .none
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        profileImage.layer.masksToBounds = true
+        profileImage.layer.cornerRadius = profileImage.frame.height/2
     }
     
     
@@ -60,9 +71,9 @@ class SideMenuVC: UIViewController {
             if status == "1"{
                 let allData = response.data["user_detail"] as? [String:Any] ?? [:]
                
-                self.profileImage.sd_setImage(with: URL(string:allData["photo"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"))
+                self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"))
                 self.nameLbl.text = "\(allData["first_name"] as? String ?? "") " + "\(allData["last_name"] as? String ?? "")"
-                let url = URL(string:allData["photo"] as? String ?? "")
+                let url = URL(string:allData["image"] as? String ?? "")
                 if url != nil{
                     if let data = try? Data(contentsOf: url!)
                     {
@@ -105,7 +116,13 @@ extension SideMenuVC : UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTBViewCell", for: indexPath) as! SettingTBViewCell
         cell.nameLbl.text = sideMenuItemsArray[indexPath.row].name
-        cell.showImage.image = UIImage(named: sideMenuItemsArray[indexPath.row].selectedImage)
+        if sideMenuItemsArray[indexPath.row].selected == true{
+            cell.nameLbl.textColor = #colorLiteral(red: 0.8846299052, green: 0.04529493302, blue: 0, alpha: 1)
+            cell.showImage.image = UIImage(named: sideMenuItemsArray[indexPath.row].unselected)
+        }else{
+            cell.nameLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            cell.showImage.image = UIImage(named: sideMenuItemsArray[indexPath.row].selectedImage)
+        }
         return cell
     }
     
@@ -113,6 +130,12 @@ extension SideMenuVC : UITableViewDelegate , UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        sideMenuItemsArray = sideMenuItemsArray.map({ (obj) -> SideMenuItems in
+            var mutableObj = obj
+            mutableObj.selected = false
+            return mutableObj
+        })
+        sideMenuItemsArray[indexPath.row].selected = true
         sideMenuController?.hideLeftViewAnimated()
         
         if(indexPath.row == 0) {
@@ -179,9 +202,13 @@ extension SideMenuVC : UITableViewDelegate , UITableViewDataSource{
 struct SideMenuItems {
     var name : String
     var selectedImage : String
+    var unselected : String
+    var selected : Bool
     
-    init(name : String , selectedImage : String) {
+    init(name : String , selectedImage : String,selected : Bool,unselected : String) {
         self.name = name
         self.selectedImage = selectedImage
+        self.selected = selected
+        self.unselected = unselected
     }
 }

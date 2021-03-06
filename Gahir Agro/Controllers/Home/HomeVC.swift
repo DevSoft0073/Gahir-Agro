@@ -12,7 +12,6 @@ class HomeVC: UIViewController,UITextFieldDelegate {
     
     var collectionViewDataArray = [CollectionViewData]()
     var tableViewDataArray = [TableViewData]()
-    
     var page = 1
     var lastPage = 1
     var productType = String()

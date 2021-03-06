@@ -149,7 +149,7 @@ class PKWrapperClass{
     {
         SVProgressHUD.show()
         SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.flat)
-        SVProgressHUD.setForegroundColor(#colorLiteral(red: 0.1728489399, green: 0.766541779, blue: 0.8494259715, alpha: 1))
+        SVProgressHUD.setForegroundColor(#colorLiteral(red: 0.8141649961, green: 0.03778114915, blue: 0, alpha: 1))
         SVProgressHUD.setFont(UIFont(name: "Avenir-Black", size: 17)!)
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
         SVProgressHUD.setRingThickness(2)
