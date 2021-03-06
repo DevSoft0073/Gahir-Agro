@@ -60,7 +60,17 @@ class ProductDetailsVC: UIViewController {
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
-                
+                let allData = response.data["product_detail"] as? [String:Any] ?? [:]
+                print(allData)
+//                self.chassisNoLbl.text = allData["Chassis"] as? String
+//                self.widthOfCutLbl.text = allData["Cutting Width"] as? String
+//                self.heightOfCutMaxLbl.text = allData["Chassis"] as? String
+//                self.chassisNoLbl.text = allData["Chassis"] as? String
+//                self.chassisNoLbl.text = allData["Chassis"] as? String
+//                self.chassisNoLbl.text = allData["Chassis"] as? String
+//                self.chassisNoLbl.text = allData["Chassis"] as? String
+//                self.chassisNoLbl.text = allData["Chassis"] as? String
+//                self.chassisNoLbl.text = allData["Chassis"] as? String
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)

@@ -7,7 +7,6 @@
 
 import UIKit
 import Firebase
-
 class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
 
     var picker  = UIPickerView()

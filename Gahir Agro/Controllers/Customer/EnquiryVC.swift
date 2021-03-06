@@ -7,9 +7,11 @@
 
 import UIKit
 
-class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewDelegate,UIPickerViewDataSource {
+class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate {
     
-    var tbaleViewArray = ["TYPE","COLOR","SYSTEM","SYSTEM"]
+    var jassIndex = Int()
+    
+    var tbaleViewArray = ["TYPE","COLOR","QUANTITY","ACCESSORY"]
     var picker  = UIPickerView()
 
     var pickerToolBar = UIToolbar()
@@ -19,8 +21,8 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     var selectedValue3 = String()
     var listingArray = ["First","Second","Third","Fourth"]
     var colorArray = ["Blue","Red","Yellow","Green"]
-    var systemArray = [""]
-    var modelNameArray = [""]
+    var quantityArray = ["3","5","8","10","20","30"]
+    var accessoryArray = ["Type","Color","Quantity","Accessory"]
     var currentIndex = Int()
     var count = 0
     var id = String()
@@ -60,7 +62,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     
     func submitEnquiry() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
-        let url = Constant.shared.baseUrl + Constant.shared.contactUS
+        let url = Constant.shared.baseUrl + Constant.shared.AddEnquiry
         var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
         let accessToken = UserDefaults.standard.value(forKey: "accessToken")
         print(deviceID ?? "")
@@ -68,7 +70,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
             deviceID = "777"
         }
         
-        let params = ["product_id" : id , "quantity" : "quantity", "accessory" : "accessory" ,"access_token": accessToken,"system" : "system" , "type" : "type"]  as? [String : AnyObject] ?? [:]
+        let params = ["product_id" : id , "quantity" : selectedValue2, "accessory" : selectedValue3 ,"access_token": accessToken,"system" : selectedValue1 , "type" : selectedValue]  as? [String : AnyObject] ?? [:]
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
             print(response.data)
@@ -99,16 +101,16 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         let numberOfRows = 0
-        
+        print(currentIndex)
         if currentIndex == 0{
             return listingArray.count
             
         }else if currentIndex == 1{
             return colorArray.count
         }else if currentIndex == 2{
-            return systemArray.count
+            return quantityArray.count
         }else if currentIndex == 3{
-            return systemArray.count
+            return accessoryArray.count
         }else{
             return numberOfRows
         }
@@ -131,12 +133,12 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
 
         }else if currentIndex == 2{
             
-            selectedValue2 = systemArray[row]
+            selectedValue2 = quantityArray[row]
             print(selectedValue2)
             self.enquiryDataTBView.reloadData()
         }else if currentIndex == 3{
             
-            selectedValue3 = systemArray[row]
+            selectedValue3 = accessoryArray[row]
             print(selectedValue3)
             self.enquiryDataTBView.reloadData()
 
@@ -167,7 +169,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
             label.textColor = .black
             label.textAlignment = .center
             label.font = UIFont(name: "Poppins-Medium", size: 20)
-            label.text = systemArray[row]
+            label.text = quantityArray[row]
             return label
             
         }else if currentIndex == 3{
@@ -175,7 +177,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
             label.textColor = .black
             label.textAlignment = .center
             label.font = UIFont(name: "Poppins-Medium", size: 20)
-            label.text = systemArray[row]
+            label.text = accessoryArray[row]
             return label
             
         }else{
@@ -193,9 +195,9 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         }else if currentIndex == 1{
             return colorArray[row]
         }else if currentIndex == 2{
-            return systemArray[row]
+            return quantityArray[row]
         }else if currentIndex == 3{
-            return systemArray[row]
+            return accessoryArray[row]
         }
         return listingArray[row]
     }
@@ -218,7 +220,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     }
 }
 
-class EnquiryDataTBViewCell: UITableViewCell {
+class EnquiryDataTBViewCell: UITableViewCell,UITextFieldDelegate {
     
     var DotBTN:(()->Void)?
     @IBOutlet weak var openPicker: UITextField!
@@ -244,33 +246,59 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EnquiryDataTBViewCell", for: indexPath) as! EnquiryDataTBViewCell
         cell.namelbl.text = tbaleViewArray[indexPath.row]
         cell.titleLbl.text = selectedValue
-        if currentIndex == 0{
+        let index = indexPath.row
+        if index == 0{
             cell.titleLbl.text = selectedValue
-        }else if currentIndex == 1{
+        }else if index == 1{
             cell.titleLbl.text = selectedValue1
-        }else if currentIndex == 2{
+        }else if index == 2{
             cell.titleLbl.text = selectedValue2
-        }else if currentIndex == 3{
+        }else if index == 3{
             cell.titleLbl.text = selectedValue3
         }
         cell.dropDownbutton.tag = indexPath.row
-        cell.dropDownbutton.addTarget(self, action: #selector(openPickerView), for: .allEvents)
+        cell.openPicker.tag = indexPath.row
+//        cell.openPicker.inputView = picker
+        cell.openPicker.delegate = self
+        cell.dropDownbutton.addTarget(self, action: #selector(openPickerView(sender:)), for: .touchUpInside)
         DispatchQueue.main.async {
             self.heightConstraint.constant = CGFloat(self.enquiryDataTBView.contentSize.height)
         }
         return cell
     }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "EnquiryDataTBViewCell", for: indexPath) as! EnquiryDataTBViewCell
+//        let index = indexPath.row
+////        self.picker.isHidden = false
+////        cell.openPicker.tag = indexPath.row
+////        print("asdssad\(cell.openPicker.tag)")
+////        if indexPath.row == 0{
+////            cell.titleLbl.text = selectedValue
+////        }else if indexPath.row == 1{
+////            cell.titleLbl.text = selectedValue1
+////        }else if indexPath.row == 2{
+////            cell.titleLbl.text = selectedValue2
+////        }else if indexPath.row == 3{
+////            cell.titleLbl.text = selectedValue3
+////        }
+//
+//    }
     
     @objc func openPickerView(sender: UIButton) {
-        
-        let section = 0
-        let row = sender.tag
-        let indexPath = IndexPath(row: row, section: section)
-        let cell: EnquiryDataTBViewCell = self.enquiryDataTBView.cellForRow(at: indexPath) as! EnquiryDataTBViewCell
-        print(indexPath.row)
-        currentIndex = indexPath.row
-        cell.openPicker.inputView = picker
-        self.picker.isHidden = false
+        if let cell = sender.superview?.superview as? EnquiryDataTBViewCell, let indexPath = enquiryDataTBView.indexPath(for: cell){
+            currentIndex = sender.tag
+            cell.openPicker.becomeFirstResponder()
+            print("asdssad\(cell.openPicker.tag)")
+            if indexPath.row == 0{
+                cell.titleLbl.text = selectedValue
+            }else if indexPath.row == 1{
+                cell.titleLbl.text = selectedValue1
+            }else if indexPath.row == 2{
+                cell.titleLbl.text = selectedValue2
+            }else if indexPath.row == 3{
+                cell.titleLbl.text = selectedValue3
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
