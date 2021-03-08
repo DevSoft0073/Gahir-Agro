@@ -14,8 +14,9 @@ class SearchVC: UIViewController,UITextFieldDelegate {
     var lastPage = 1
     var messgae = String()
     var searchArray = [String]()
+    var comesFrom = Bool()
     var tableViewDataArray = [SearchTableViewData]()
-
+    var currentIndex = String()
     @IBOutlet weak var showSearchedDataTBView: UITableView!
     @IBOutlet weak var searchDataTBView: UITableView!
     @IBOutlet weak var searchTxtFld: UITextField!
@@ -36,10 +37,29 @@ class SearchVC: UIViewController,UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        filterdData()
-        showSearchedDataTBView.reloadData()
-        textField.resignFirstResponder()
-        return true
+        if comesFrom == true{
+            searchData()
+            showSearchedDataTBView.reloadData()
+            textField.resignFirstResponder()
+            return true
+        }else{
+            filterdData()
+            showSearchedDataTBView.reloadData()
+            textField.resignFirstResponder()
+            return true
+        }
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if comesFrom == true{
+            searchData()
+            showSearchedDataTBView.reloadData()
+            textField.resignFirstResponder()
+        }else{
+            filterdData()
+            showSearchedDataTBView.reloadData()
+            textField.resignFirstResponder()
+        }
+
     }
     
     func recentSearch() {
@@ -58,12 +78,60 @@ class SearchVC: UIViewController,UITextFieldDelegate {
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
+                self.searchArray.removeAll()
                 let allData = response.data["search_list"] as? [String:Any] ?? [:]
                 print(allData)
                 let searchArrayData = allData["search_list"] as? [String]
                 print(searchArrayData)
+                searchArrayData?.forEach({ (n) in
+                    self.searchArray.append(n)
+                    print(n)
+                })
                 self.searchArray.append(searchArrayData?[3] ?? "")
                 self.searchDataTBView.reloadData()
+            }else{
+                PKWrapperClass.svprogressHudDismiss(view: self)
+                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            }
+        } failure: { (error) in
+            print(error)
+            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+        }
+    }
+
+    func searchData() {
+        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+        let url = Constant.shared.baseUrl + Constant.shared.SearchData
+        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+        print(deviceID ?? "")
+        if deviceID == nil  {
+            deviceID = "777"
+        }
+        let params = ["page_no": page,"access_token": accessToken,"search" : searchTxtFld.text ?? ""]  as? [String : AnyObject] ?? [:]
+        print(params)
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+            print(response.data)
+            PKWrapperClass.svprogressHudDismiss(view: self)
+            let status = response.data["status"] as? String ?? ""
+            self.messgae = response.data["message"] as? String ?? ""
+            if status == "1"{
+                var newArr = [SearchTableViewData]()
+                let allData = response.data["product_list"] as? [String:Any] ?? [:]
+                for obj in allData["all_products"] as? [[String:Any]] ?? [[:]] {
+                    print(obj)
+                    newArr.append(SearchTableViewData(image: obj["prod_image"] as? String ?? "", name: obj["prod_name"] as? String ?? "", modelName: obj["prod_desc"] as? String ?? "", details: obj["prod_desc"] as? String ?? "", price: obj["prod_price"] as? String ?? "", prod_sno: obj["GAIC2K213000"] as? String ?? "", prod_type: obj["prod_type"] as? String ?? "", id: obj["id"] as? String ?? "", prod_video: obj["prod_video"] as? String ?? "", prod_qty: obj["prod_qty"] as? String ?? "", prod_pdf: obj["prod_pdf"] as? String ?? ""))
+                }
+                for i in 0..<newArr.count{
+                    self.tableViewDataArray.append(newArr[i])
+                }
+                DispatchQueue.main.async {
+                    self.showSearchedDataTBView.isHidden = false
+                    self.searchDataTBView.isHidden = true
+                    print(self.tableViewDataArray)
+                    self.showSearchedDataTBView.reloadData()
+
+                }
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
@@ -134,6 +202,7 @@ class SearchDataTBViewCell: UITableViewCell {
 
 class ShowSearchedDataTBViewCell: UITableViewCell {
     
+    @IBOutlet weak var checkAvailabiltyButton: UIButton!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var detailsLbl: UILabel!
     @IBOutlet weak var typeLbl: UILabel!
@@ -149,8 +218,20 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == searchDataTBView{
+            
+            if searchArray.count == 0 {
+                self.searchDataTBView.setEmptyMessage("No data")
+            } else {
+                self.searchDataTBView.restore()
+            }
             return searchArray.count
+            
         }else{
+            if tableViewDataArray.count == 0 {
+                self.showSearchedDataTBView.setEmptyMessage("No data")
+            } else {
+                self.showSearchedDataTBView.restore()
+            }
             return tableViewDataArray.count
         }
     }
@@ -164,13 +245,23 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource{
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "ShowSearchedDataTBViewCell", for: indexPath) as! ShowSearchedDataTBViewCell
             cell.nameLbl.text = tableViewDataArray[indexPath.row].name
+            currentIndex = tableViewDataArray[indexPath.row].id
             cell.detailsLbl.text = tableViewDataArray[indexPath.row].details
             cell.typeLbl.text = tableViewDataArray[indexPath.row].modelName
             cell.showImage.sd_setImage(with: URL(string:tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "im"))
+            cell.checkAvailabiltyButton.addTarget(self, action: #selector(goto), for: .touchUpInside)
             return cell
         }
         
     }
+
+    
+    @objc func goto() {
+        let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
+        vc.id = currentIndex
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if tableView == searchDataTBView{
@@ -181,12 +272,10 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if tableView == showSearchedDataTBView{
-            
-            let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
-            vc.id = tableViewDataArray[indexPath.row].id
-            self.navigationController?.pushViewController(vc, animated: true)
-            
+        if tableView == searchDataTBView{
+            self.comesFrom = true
+            self.searchTxtFld.text = searchArray[indexPath.row]
+            searchData()
         }else{
             
         }
@@ -219,5 +308,27 @@ struct SearchTableViewData {
         self.prod_video = prod_video
         self.prod_qty = prod_qty
         self.prod_pdf = prod_pdf
+    }
+}
+
+
+extension UITableView {
+
+    func setEmptyMessage(_ message: String) {
+        let messageLabel = UILabel(frame: CGRect(x: 80, y: 200, width: 290, height: 70))
+        messageLabel.text = message
+        messageLabel.textColor = .black
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = .center
+        messageLabel.font = UIFont(name: "Poppins-SemiBold", size: 20)
+        messageLabel.sizeToFit()
+
+        self.backgroundView = messageLabel
+        self.separatorStyle = .none
+    }
+
+    func restore() {
+        self.backgroundView = nil
+        self.separatorStyle = .singleLine
     }
 }

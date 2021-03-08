@@ -11,6 +11,7 @@ import SDWebImage
 
 class ProfileVC: UIViewController, CAAnimationDelegate {
 
+    @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var flagImage: UIImageView!
     var messgae = String()
     @IBOutlet weak var bioTxtView: UITextView!
@@ -20,7 +21,6 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
     @IBOutlet weak var profileImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        getData()
         emailtxtFld.isUserInteractionEnabled = false
         passwordTxtFld.isUserInteractionEnabled = false
         addressTxtFld.isUserInteractionEnabled = false
@@ -32,6 +32,10 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
         super.viewDidLayoutSubviews()
         profileImage.layer.masksToBounds = true
         profileImage.layer.cornerRadius = profileImage.frame.height/2
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        getData()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -57,6 +61,7 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
                 let allData = response.data["user_detail"] as? [String:Any] ?? [:]
+                self.nameLbl.text = allData["first_name"] as? String ?? ""
                 self.bioTxtView.text = allData["bio"] as? String
                 self.emailtxtFld.text = allData["username"] as? String
                 self.passwordTxtFld.text = "**********"
@@ -110,18 +115,18 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
     }
     
     @IBAction func menuButton(_ sender: Any) {
-        
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let controller = storyBoard.instantiateViewController(withIdentifier: "SideMenuControllerID") as UIViewController
-        let transition = CATransition.init()
-        transition.duration = 0.45
-        transition.timingFunction = CAMediaTimingFunction.init(name: CAMediaTimingFunctionName.default)
-        transition.type = CATransitionType.push //Transition you want like Push, Reveal
-        transition.subtype = CATransitionSubtype.fromLeft // Direction like Left to Right, Right to Left
-        
-        transition.delegate = self
-        view.window!.layer.add(transition, forKey: kCATransition)
-        self.navigationController?.pushViewController(controller, animated: true)
+        sideMenuController?.showLeftViewAnimated()
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//        let controller = storyBoard.instantiateViewController(withIdentifier: "SideMenuControllerID") as UIViewController
+//        let transition = CATransition.init()
+//        transition.duration = 0.45
+//        transition.timingFunction = CAMediaTimingFunction.init(name: CAMediaTimingFunctionName.default)
+//        transition.type = CATransitionType.push //Transition you want like Push, Reveal
+//        transition.subtype = CATransitionSubtype.fromLeft // Direction like Left to Right, Right to Left
+//        
+//        transition.delegate = self
+//        view.window!.layer.add(transition, forKey: kCATransition)
+//        self.navigationController?.pushViewController(controller, animated: true)
         
     }
     

@@ -9,6 +9,8 @@ import UIKit
 
 class ProductDetailsVC: UIViewController {
 
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var productDetailsTBView: UITableView!
     @IBOutlet weak var grainTankLbl: UILabel!
     @IBOutlet weak var thresherLbl: UILabel!
     @IBOutlet weak var cuttingCapacityLbl: UILabel!
@@ -19,7 +21,6 @@ class ProductDetailsVC: UIViewController {
     @IBOutlet weak var heightOfCutMaxLbl: UILabel!
     @IBOutlet weak var widthOfCutLbl: UILabel!
     @IBOutlet weak var chassisNoLbl: UILabel!
-    @IBOutlet weak var detailsLbl: UILabel!
     @IBOutlet weak var modelLbl: UILabel!
     @IBOutlet weak var namelbl: UILabel!
     @IBOutlet weak var showImage: UIImageView!
@@ -55,14 +56,40 @@ class ProductDetailsVC: UIViewController {
         let params = ["id": id,"access_token": accessToken]  as? [String : AnyObject] ?? [:]
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
-            print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
+            self.detailsDataArray.removeAll()
             if status == "1"{
                 let allData = response.data["product_detail"] as? [String:Any] ?? [:]
                 print(allData)
-                
+                self.modelLbl.text = allData["prod_name"] as? String ?? ""
+                self.namelbl.text = "Model"
+                self.showImage.sd_setImage(with: URL(string:allData["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "im"))
+                let url = URL(string:allData["prod_image"] as? String ?? "")
+                if url != nil{
+                    if let data = try? Data(contentsOf: url!)
+                    {
+                        if let image: UIImage = (UIImage(data: data)){
+                            self.showImage.image = image
+                            self.showImage.contentMode = .scaleToFill
+                            IJProgressView.shared.hideProgressView()
+                        }
+                    }
+                }
+                else{
+                    self.showImage.image = UIImage(named: "im")
+                }
+                let productDetails = allData["prod_desc"] as? [String] ?? [""]
+                for product in productDetails{
+                    let splittedProducts = product.split(separator: ":")
+                    if splittedProducts.indices.contains(0) && splittedProducts.indices.contains(1){
+                        self.detailsDataArray.append(DetailsData(fieldData: splittedProducts[0], fieldName: String(splittedProducts[1])))
+                        print(self.detailsDataArray)
+                    }
+                    print("showing data\(splittedProducts)")
+                }
+                self.productDetailsTBView.reloadData()
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
@@ -74,11 +101,15 @@ class ProductDetailsVC: UIViewController {
     }    
 }
 
-class DetailsTBViewCell: UITableViewCell {
+class ProductDetailsTBViewCell: UITableViewCell {
+    
+    @IBOutlet weak var dataLbl: UILabel!
+    @IBOutlet weak var nameLbl: UILabel!
     override class func awakeFromNib() {
         super.awakeFromNib()
     }
 }
+
 
 extension ProductDetailsVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,16 +117,27 @@ extension ProductDetailsVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailsTBViewCell", for: indexPath) as! DetailsTBViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsTBViewCell", for: indexPath) as! ProductDetailsTBViewCell
+        cell.nameLbl.text = "\(detailsDataArray[indexPath.row].fieldData)"
+        cell.dataLbl.text = "\(detailsDataArray[indexPath.row].fieldName)"
+        DispatchQueue.main.async {
+            self.heightConstraint.constant = self.productDetailsTBView.contentSize.height
+        }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        50
     }
     
 }
 
 struct DetailsData {
-    var fieldData : String
+    var fieldName : String
+    var fieldData : Any
     
-    init(fieldData : String) {
+    init(fieldData : Any,fieldName : String) {
         self.fieldData = fieldData
+        self.fieldName = fieldName
     }
 }

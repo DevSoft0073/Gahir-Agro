@@ -42,8 +42,13 @@ class SideMenuVC: UIViewController {
     
     
     @IBAction func gotoProfile(_ sender: Any) {
+        sideMenuController?.hideLeftViewAnimated()
         let vc = ProfileVC.instantiate(fromAppStoryboard: .Main)
-        self.navigationController?.pushViewController(vc, animated: true)
+        (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
+        
+        
+//        let vc = ProfileVC.instantiate(fromAppStoryboard: .Main)
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func logout()  {
@@ -72,7 +77,7 @@ class SideMenuVC: UIViewController {
                 let allData = response.data["user_detail"] as? [String:Any] ?? [:]
                
                 self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"))
-                self.nameLbl.text = "\(allData["first_name"] as? String ?? "") " + "\(allData["last_name"] as? String ?? "")"
+                self.nameLbl.text = allData["first_name"] as? String ?? ""
                 let url = URL(string:allData["image"] as? String ?? "")
                 if url != nil{
                     if let data = try? Data(contentsOf: url!)

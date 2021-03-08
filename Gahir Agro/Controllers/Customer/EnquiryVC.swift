@@ -20,7 +20,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     var selectedname = String()
     var selectType = String()
     var currentIndex = Int()
-    var count = 0
+    var count = 1
     var id = String()
     var productId = String()
     var indexesNeedPicker: [NSIndexPath]?
@@ -61,33 +61,39 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
      //MARK:- Service call methods
     
     func submitEnquiry() {
-        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
-        let url = Constant.shared.baseUrl + Constant.shared.AddEnquiry
-        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
-        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
-        print(deviceID ?? "")
-        if deviceID == nil  {
-            deviceID = "777"
-        }
         
-        let params = ["product_id" : id , "quantity" : "2", "accessory" : selectedValue1 ,"access_token": accessToken,"system" : selectedValue1 , "type" : self.productId]  as? [String : AnyObject] ?? [:]
-        print(params)
-        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
-            print(response.data)
-            PKWrapperClass.svprogressHudDismiss(view: self)
-            let status = response.data["status"] as? String ?? ""
-            self.messgae = response.data["message"] as? String ?? ""
-            if status == "1"{
-                showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
-                    self.navigationController?.popViewController(animated: true)
-                }
-            }else{
-                PKWrapperClass.svprogressHudDismiss(view: self)
-                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+        if count < 1 {
+            showAlertMessage(title: Constant.shared.appTitle, message: "Quantity should not be set to 0", okButton: "Ok", controller: self) {
             }
-        } failure: { (error) in
-            print(error)
-            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+        }else{
+            PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+            let url = Constant.shared.baseUrl + Constant.shared.AddEnquiry
+            var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+            let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+            print(deviceID ?? "")
+            if deviceID == nil  {
+                deviceID = "777"
+            }
+            
+            let params = ["product_id" : id , "quantity" : count, "accessory" : selectedValue1 ,"access_token": accessToken,"system" : selectedValue1 , "type" : self.productId]  as? [String : AnyObject] ?? [:]
+            print(params)
+            PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+                print(response.data)
+                PKWrapperClass.svprogressHudDismiss(view: self)
+                let status = response.data["status"] as? String ?? ""
+                self.messgae = response.data["message"] as? String ?? ""
+                if status == "1"{
+                    showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }else{
+                    PKWrapperClass.svprogressHudDismiss(view: self)
+                    alert(Constant.shared.appTitle, message: self.messgae, view: self)
+                }
+            } failure: { (error) in
+                print(error)
+                showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+            }
         }
     }
     
@@ -220,10 +226,18 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     
     
     @IBAction func addLbl(_ sender: Any) {
-        
+        count = count + 1
+        quantitylbl.text = "\(count)"
     }
     
     @IBAction func minusButton(_ sender: Any) {
+        if count < 1{
+            showAlertMessage(title: Constant.shared.appTitle, message: "Quantity should not be set to 0", okButton: "Ok", controller: self) {
+            }
+        }else{
+            count = count - 1
+            quantitylbl.text = "\(count)"
+        }
     }
 }
 
@@ -236,6 +250,7 @@ class EnquiryDataTBViewCell: UITableViewCell,UITextFieldDelegate {
     @IBOutlet weak var namelbl: UILabel!
     override class func awakeFromNib() {
         super.awakeFromNib()
+
     }
     
     
@@ -255,13 +270,14 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
         cell.titleLbl.text = selectedValue
         let index = indexPath.row
         if index == 0{
-            cell.titleLbl.text = selectedValue
+            cell.titleLbl.text = selectedname
         }else if index == 1{
-            cell.titleLbl.text = selectedValue1
+            cell.titleLbl.text = selectType
         }
         cell.dropDownbutton.tag = indexPath.row
         cell.openPicker.tag = indexPath.row
         cell.openPicker.delegate = self
+        cell.openPicker.inputView = picker
         cell.dropDownbutton.addTarget(self, action: #selector(openPickerView(sender:)), for: .touchUpInside)
         DispatchQueue.main.async {
             self.heightConstraint.constant = CGFloat(self.enquiryDataTBView.contentSize.height)
@@ -271,9 +287,8 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
     
     @objc func openPickerView(sender: UIButton) {
         if let cell = sender.superview?.superview as? EnquiryDataTBViewCell, let indexPath = enquiryDataTBView.indexPath(for: cell){
-            currentIndex = sender.tag
-            cell.openPicker.inputView = picker
             cell.openPicker.becomeFirstResponder()
+            currentIndex = sender.tag
             print("asdssad\(cell.openPicker.tag)")
             if indexPath.row == 0{
                 cell.titleLbl.text = selectedname

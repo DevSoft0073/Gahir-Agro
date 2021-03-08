@@ -85,6 +85,7 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
             if status == "1"{
                 let allData = response.data["user_detail"] as? [String:Any] ?? [:]
                 self.bioTxtView.text = allData["bio"] as? String
+                self.nameTxtFld.text = allData["first_name"] as? String ?? ""
                 self.emailTxtFld.text = allData["username"] as? String
                 self.passwordTxtFld.text = "**********"
                 self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"))

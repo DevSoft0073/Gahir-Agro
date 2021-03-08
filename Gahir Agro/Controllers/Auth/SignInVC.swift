@@ -67,9 +67,11 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
                     UserDefaults.standard.set(1, forKey: "tokenFString")
                     UserDefaults.standard.set(data["id"], forKey: "id")
                     UserDefaults.standard.setValue(data["role"], forKey: "checkRole")
-                    let story = UIStoryboard(name: "Main", bundle: nil)
-                    let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
-                    self.navigationController?.pushViewController(rootViewController, animated: true)
+                    DispatchQueue.main.async {
+                        let story = UIStoryboard(name: "Main", bundle: nil)
+                        let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
+                        self.navigationController?.pushViewController(rootViewController, animated: true)
+                    }
                 }
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
