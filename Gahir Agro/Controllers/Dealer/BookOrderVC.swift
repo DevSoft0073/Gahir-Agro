@@ -27,6 +27,7 @@ class BookOrderVC: UIViewController {
     }
     
     @IBAction func bookOrderButton(_ sender: Any) {
-        
+        let vc = SubmitDetailsVC.instantiate(fromAppStoryboard: .Main)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

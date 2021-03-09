@@ -17,5 +17,9 @@ class SubmitDetailsVC: UIViewController {
     }
     
     
-    
+    @IBAction func submitButtonAction(_ sender: Any) {
+        let story = UIStoryboard(name: "Main", bundle: nil)
+        let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
+        self.navigationController?.pushViewController(rootViewController, animated: true)
+    }
 }

@@ -299,36 +299,112 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
         updateData()
     }
     
+    
     func updateData()  {
         
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
         let url = Constant.shared.baseUrl + Constant.shared.EditProfile
-        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        _ = UserDefaults.standard.value(forKey: "deviceToken") as? String
         let accessToken = UserDefaults.standard.value(forKey: "accessToken")
-        print(deviceID ?? "")
-        if deviceID == nil  {
-            deviceID = "777"
-        }
-        let params = ["access_token": accessToken,"bio": bioTxtView.text ?? "","first_name":nameTxtFld.text ?? "","country":"","flag_image":flagBase64 , "image" : base64String]  as? [String : AnyObject] ?? [:]
+        let nameCountry = UserDefaults.standard.value(forKey: "name")
+        //        userDetails = ["userID" : id,"name" : nameTxtFld.text ?? "","bio" : bioTxtView.text ?? "","countryName" : countryName]
+        
+        let params = ["access_token": accessToken,"bio": bioTxtView.text ?? "","first_name":nameTxtFld.text ?? "","country":nameCountry] as? [String : AnyObject] ?? [:]
         print(params)
-        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
-            print(response.data)
-            PKWrapperClass.svprogressHudDismiss(view: self)
-            let status = response.data["status"] as? String ?? ""
-            self.messgae = response.data["message"] as? String ?? ""
-            if status == "1"{
-                showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
-                    self.navigationController?.popViewController(animated: true)
-                }
-            }else{
-                PKWrapperClass.svprogressHudDismiss(view: self)
-                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+        
+        if base64String != "" {
+            flagBase64 = UserDefaults.standard.value(forKey: "flagImage") as! String
+            let decodedData = NSData(base64Encoded: flagBase64, options: [])
+            if let data = decodedData {
+                let decodedimage = UIImage(data: data as Data)
+                flagImage.image = decodedimage
+            } else {
+                print("error with decodedData")
             }
-        } failure: { (error) in
-            print(error)
-            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+        } else {
+            print("error with base64String")
+        }
+        print(self.userDetails)
+        AF.upload(multipartFormData: { (multipartFormData) in
+            for (key, value) in params {
+                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
+            }
+            print(multipartFormData)
+            let imageData1 = self.profileImage.image!.jpegData(compressionQuality: 0.3)
+            multipartFormData.append(imageData1!, withName: "image" , fileName: "\(String.random(length: 8))", mimeType: "image/jpeg")
+            
+            let imageData2 = self.flagImage.image!.jpegData(compressionQuality: 0.3)
+            multipartFormData.append(imageData2!, withName: "flag_image" , fileName: "\(String.random(length: 8))", mimeType: "image/jpeg")
+            
+        }, to: url, usingThreshold: UInt64.init(), method: .post, headers: nil, interceptor: nil, fileManager: .default)
+        
+        .uploadProgress(closure: { (progress) in
+            print("Upload Progress: \(progress.fractionCompleted)")
+        })
+        .responseJSON { (response) in
+            PKWrapperClass.svprogressHudDismiss(view: self)
+            switch response.result {
+            case .success(let value):
+                if let JSON = value as? [String: Any] {
+                    if let dataDict = JSON as? NSDictionary{
+                        let message = dataDict["message"] as? String ?? ""
+                        let status = JSON["status"] as? String ?? ""
+                        if status == "1"{
+                            showAlertMessage(title: Constant.shared.appTitle, message: message, okButton: "Ok", controller: self) {
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                        }else{
+                            alert(Constant.shared.appTitle, message: message, view: self)
+                        }
+                    }
+                }
+                
+            case .failure(let error):
+                if let JSON2 = error as? AFError {
+                    PKWrapperClass.svprogressHudDismiss(view: self)
+                    print(JSON2)
+                    alert(Constant.shared.appTitle, message: "\(JSON2)", view: self)
+                }
+                break
+                
+            }
+            self.userDetails.removeAll()
         }
     }
+
+    
+//    func updateData()  {
+//
+//        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+//        let url = Constant.shared.baseUrl + Constant.shared.EditProfile
+//        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+//        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+//        print(deviceID ?? "")
+//        if deviceID == nil  {
+//            deviceID = "777"
+//        }
+//
+//
+//        let params = ["access_token": accessToken,"bio": bioTxtView.text ?? "","first_name":nameTxtFld.text ?? "","country":"","flag_image":flagBase64 , "image" : base64String]  as? [String : AnyObject] ?? [:]
+//        print(params)
+//        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+//            print(response.data)
+//            PKWrapperClass.svprogressHudDismiss(view: self)
+//            let status = response.data["status"] as? String ?? ""
+//            self.messgae = response.data["message"] as? String ?? ""
+//            if status == "1"{
+//                showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
+//                    self.navigationController?.popViewController(animated: true)
+//                }
+//            }else{
+//                PKWrapperClass.svprogressHudDismiss(view: self)
+//                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+//            }
+//        } failure: { (error) in
+//            print(error)
+//            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+//        }
+//    }
 }
 
 
