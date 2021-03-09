@@ -7,9 +7,10 @@
 
 import UIKit
 import LGSideMenuController
+import SDWebImage
 
 class MyOrderVC: UIViewController {
-
+    
     
     var page = 1
     var lastPage = 1
@@ -22,14 +23,14 @@ class MyOrderVC: UIViewController {
         getAllEnquries()
         myOrderTBView.separatorStyle = .none
         // Do any additional setup after loading the view.
-        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
-        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
-        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
-        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
-        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
-
+        //        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
+        //        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
+        //        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
+        //        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
+        //        orderHistoryArray.append(OrderHistoryData(name: "Product-1", id: "ID - 1233445", quantity: "3", deliveryDate: "24 Feb 2021", price: "$440.00", image: "im"))
+        
     }
-
+    
     func getAllEnquries() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
         let url = Constant.shared.baseUrl + Constant.shared.EnquiryListing
@@ -47,10 +48,14 @@ class MyOrderVC: UIViewController {
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
+                self.orderHistoryArray.removeAll()
                 var newArr = [OrderHistoryData]()
-                let allData = response.data["product_list"] as? [String:Any] ?? [:]
-                for obj in allData["all_products"] as? [[String:Any]] ?? [[:]] {
+                let allData = response.data["enquiry_list"] as? [String:Any] ?? [:]
+                for obj in allData["all_enquiries"] as? [[String:Any]] ?? [[:]]{
                     print(obj)
+                    let productDetails = obj["product_detail"] as? [String:Any] ?? [:]
+                    print(productDetails)
+                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: productDetails["prod_qty"] as? String ?? "", deliveryDate: productDetails["24 Feb 2021"] as? String ?? "24 Feb 2021", price: productDetails["prod_price"] as? String ?? "", image: productDetails["prod_image"] as? String ?? ""))
                 }
                 for i in 0..<newArr.count{
                     self.orderHistoryArray.append(newArr[i])
@@ -70,17 +75,19 @@ class MyOrderVC: UIViewController {
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
     }
-
+    
     
     @IBAction func openMenu(_ sender: Any) {
         sideMenuController?.showLeftViewAnimated()
-
+        
     }
 }
 
 class MyOrderTBViewCell: UITableViewCell {
     
     
+    @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var idLbl: UILabel!
     @IBOutlet weak var priceLbl: UILabel!
     @IBOutlet weak var reorderbutton: UIButton!
     @IBOutlet weak var timeLbl: UILabel!
@@ -99,10 +106,12 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyOrderTBViewCell", for: indexPath) as! MyOrderTBViewCell
         cell.priceLbl.text = orderHistoryArray[indexPath.section].price
+        cell.nameLbl.text = orderHistoryArray[indexPath.section].name
         cell.timeLbl.text = orderHistoryArray[indexPath.section].deliveryDate
         cell.quantityLbl.text = orderHistoryArray[indexPath.section].quantity
-//        cell.priceLbl.text = orderHistoryArray[indexPath.section].price
-        cell.showImage.image = UIImage(named: orderHistoryArray[indexPath.section].image)
+        cell.priceLbl.text = orderHistoryArray[indexPath.section].price
+        cell.idLbl.text = "ID:\(orderHistoryArray[indexPath.section].id)"
+        cell.showImage.sd_setImage(with: URL(string:orderHistoryArray[indexPath.row].image), placeholderImage: UIImage(named: "im"))
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -7,86 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "978F4C81-8E2F-4E5F-B469-23827492FB6F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Auth/PopUpVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "dismissPopUp(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "041AA474-F15B-4C04-9FB9-103A9F97D079"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Auth/PopUpVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "dismissPopUp(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "22B64EBC-15F8-47B4-9DE6-BE9D1AC4604A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Auth/PopUpVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "dismissPopUp(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "22B64EBC-15F8-47B4-9DE6-BE9D1AC4604A - 29a89e5208ed9224"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #2 (Swift.Bool) -&gt; () in Gahir_Agro.PopUpVC.dismissPopUp(() -&gt; ()) -&gt; ()"
-                  moduleName = "Gahir Agro"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Desktop/Happy%20Guleria/Gahir%20Agro/Gahir%20Agro/Controllers/Auth/PopUpVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "43">
-               </Location>
-               <Location
-                  uuid = "22B64EBC-15F8-47B4-9DE6-BE9D1AC4604A - 434d68f2069cfef5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 ((Swift.String, Swift.Bool)) -&gt; Swift.Bool in closure #1 () -&gt; () in closure #2 (Swift.Bool) -&gt; () in Gahir_Agro.PopUpVC.dismissPopUp(() -&gt; ()) -&gt; ()"
-                  moduleName = "Gahir Agro"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Desktop/Happy%20Guleria/Gahir%20Agro/Gahir%20Agro/Controllers/Auth/PopUpVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "34">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "202D9EB5-A9E2-48E1-B9D6-7E87F8277ED0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -119,64 +39,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "01981A83-1CBA-469B-AC53-12332CCDA11F"
+            uuid = "BF534F35-99B9-4A57-933F-9FEDE62735AD"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Gahir Agro/Controllers/Customer/EnquiryVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
-            landmarkName = "addLbl(_:)"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "submitEnquiry()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7C0A2E90-845F-4CD4-B45D-8D38089BC81B"
+            uuid = "77EA206C-CC6D-4828-BE17-E8CEFACA3568"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Gahir Agro/Controllers/Customer/EnquiryVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
-            landmarkName = "minusButton(_:)"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "submitEnquiry()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1A9CA630-3770-46B9-AD31-4361C2C5748F"
+            uuid = "427F77E4-71C9-47E0-8762-1229A36B3B55"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Gahir Agro/Controllers/Customer/EnquiryVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
-            landmarkName = "pickerView(_:didSelectRow:inComponent:)"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "submitEnquiry()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5C04D3A2-B86E-4A63-89A8-DCD10B85D31A"
+            uuid = "36C8E797-BD3D-4114-BBCA-5FF57AD280C0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Customer/EnquiryVC.swift"
+            filePath = "Gahir Agro/Controllers/SideMenu/MyOrderVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
-            landmarkName = "pickerView(_:didSelectRow:inComponent:)"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "getAllEnquries()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

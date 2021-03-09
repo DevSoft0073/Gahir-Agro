@@ -57,10 +57,6 @@ class PopUpVC: UIViewController{
         }, completion: nil)
     }
     
-    func data() {
-        
-    }
-    
     func dismissPopUp(_ dismissed:@escaping ()->())  {
         
         UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.90, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {

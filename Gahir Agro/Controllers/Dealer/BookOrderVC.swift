@@ -18,9 +18,15 @@ class BookOrderVC: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
-    @IBAction func bookOrderButton(_ sender: Any) {
+    @IBAction func backButton(_ sender: Any) {
+        DispatchQueue.main.async {
+            let story = UIStoryboard(name: "Main", bundle: nil)
+            let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
+            self.navigationController?.pushViewController(rootViewController, animated: true)
+        }
     }
     
-
+    @IBAction func bookOrderButton(_ sender: Any) {
+        
+    }
 }

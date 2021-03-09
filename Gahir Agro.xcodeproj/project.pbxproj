@@ -70,6 +70,8 @@
 		18AD8F0325EADA9C00072166 /* OpenPIcker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD8F0225EADA9C00072166 /* OpenPIcker.swift */; };
 		18B87C7625E684C200837E6C /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B87C7525E684C200837E6C /* SearchVC.swift */; };
 		18C4097725F37902004786D9 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C4097625F37902004786D9 /* Splash.storyboard */; };
+		18DEBB1925F73F9200475060 /* ThankYouVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEBB1825F73F9200475060 /* ThankYouVC.swift */; };
+		18DEBB2425F7559000475060 /* SubmitDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEBB2325F7559000475060 /* SubmitDetailsVC.swift */; };
 		18E84AD425E7AACE004A2148 /* EnquiryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AD325E7AACE004A2148 /* EnquiryVC.swift */; };
 		18E84AD925E7AAE4004A2148 /* DelaerProductDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AD825E7AAE4004A2148 /* DelaerProductDetailsVC.swift */; };
 		18E84ADE25E7AC08004A2148 /* BookOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84ADD25E7AC08004A2148 /* BookOrderVC.swift */; };
@@ -171,6 +173,8 @@
 		18AD8F0225EADA9C00072166 /* OpenPIcker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPIcker.swift; sourceTree = "<group>"; };
 		18B87C7525E684C200837E6C /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		18C4097625F37902004786D9 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
+		18DEBB1825F73F9200475060 /* ThankYouVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouVC.swift; sourceTree = "<group>"; };
+		18DEBB2325F7559000475060 /* SubmitDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitDetailsVC.swift; sourceTree = "<group>"; };
 		18E84AD325E7AACE004A2148 /* EnquiryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnquiryVC.swift; sourceTree = "<group>"; };
 		18E84AD825E7AAE4004A2148 /* DelaerProductDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelaerProductDetailsVC.swift; sourceTree = "<group>"; };
 		18E84ADD25E7AC08004A2148 /* BookOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookOrderVC.swift; sourceTree = "<group>"; };
@@ -321,7 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				184B117325E36E23003007A2 /* Auth */,
-				18E84AD225E7AA9D004A2148 /* Customer */,
+				18E84AD225E7AA9D004A2148 /* Dealer */,
 				180847C925E4DB5800D04E69 /* SideMenu */,
 				180847C825E4DB5000D04E69 /* Home */,
 			);
@@ -459,17 +463,19 @@
 			path = GoogleInfoList;
 			sourceTree = "<group>";
 		};
-		18E84AD225E7AA9D004A2148 /* Customer */ = {
+		18E84AD225E7AA9D004A2148 /* Dealer */ = {
 			isa = PBXGroup;
 			children = (
 				18E84AD325E7AACE004A2148 /* EnquiryVC.swift */,
 				18E84AD825E7AAE4004A2148 /* DelaerProductDetailsVC.swift */,
 				18E84ADD25E7AC08004A2148 /* BookOrderVC.swift */,
+				18DEBB1825F73F9200475060 /* ThankYouVC.swift */,
 				18E84AE725E7AC57004A2148 /* RequestSubmitPopUpVC.swift */,
 				18E84AEC25E7AC9E004A2148 /* SuccesfullyBookedVC.swift */,
 				18E84AF125E7B0DE004A2148 /* DealerHomeVC.swift */,
+				18DEBB2325F7559000475060 /* SubmitDetailsVC.swift */,
 			);
-			path = Customer;
+			path = Dealer;
 			sourceTree = "<group>";
 		};
 		6D0D7AC69A71FCFD5CE47B72 /* Pods */ = {
@@ -767,6 +773,7 @@
 				18F9B6CD25E8CB020034D978 /* SplashVC.swift in Sources */,
 				18E84AE825E7AC57004A2148 /* RequestSubmitPopUpVC.swift in Sources */,
 				187A8C2525ECF9B600DCA747 /* SignInWithPhone.swift in Sources */,
+				18DEBB1925F73F9200475060 /* ThankYouVC.swift in Sources */,
 				184B113925E36C74003007A2 /* AppDelegate.swift in Sources */,
 				184B11C125E37259003007A2 /* Activityloader.swift in Sources */,
 				184B11CB25E3726E003007A2 /* Reachability.swift in Sources */,
@@ -790,6 +797,7 @@
 				184B11C225E37259003007A2 /* HelperMethods.swift in Sources */,
 				184B113B25E36C74003007A2 /* SceneDelegate.swift in Sources */,
 				181704C625E63E02003825D7 /* EditProfileVC.swift in Sources */,
+				18DEBB2425F7559000475060 /* SubmitDetailsVC.swift in Sources */,
 				184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */,
 				18E84ADE25E7AC08004A2148 /* BookOrderVC.swift in Sources */,
 				180847B725E4BE2A00D04E69 /* SignInWithVC.swift in Sources */,

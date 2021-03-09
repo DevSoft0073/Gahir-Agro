@@ -22,6 +22,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     var currentIndex = Int()
     var count = 1
     var id = String()
+    var isAvailabele = Bool()
     var productId = String()
     var indexesNeedPicker: [NSIndexPath]?
     var messgae = String()
@@ -83,9 +84,22 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                 let status = response.data["status"] as? String ?? ""
                 self.messgae = response.data["message"] as? String ?? ""
                 if status == "1"{
-                    showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
-                        self.navigationController?.popViewController(animated: true)
-                    }
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
+                        vc.modalPresentationStyle = .overCurrentContext
+                        vc.modalTransitionStyle = .crossDissolve
+                        vc.enquiryRedirection = { 
+                            DispatchQueue.main.async {
+                                if self.isAvailabele == true {
+                                    
+                                }else{
+                                        
+                                    }
+                                let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            }
+                        }
+                        self.present(vc, animated: true, completion: nil)
+                        
                 }else{
                     PKWrapperClass.svprogressHudDismiss(view: self)
                     alert(Constant.shared.appTitle, message: self.messgae, view: self)
@@ -134,6 +148,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
             }
         } failure: { (error) in
             print(error)
+            PKWrapperClass.svprogressHudDismiss(view: self)
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
     }
@@ -333,3 +348,4 @@ struct SystemData {
         self.id = id
     }
 }
+
