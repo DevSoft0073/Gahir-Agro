@@ -23,7 +23,7 @@ class SideMenuVC: UIViewController {
         super.viewDidLoad()
         getData()
         sideMenuItemsArray.append(SideMenuItems(name: "Home", selectedImage: "home", selected: true, unselected: "home-1"))
-        sideMenuItemsArray.append(SideMenuItems(name: "Orders", selectedImage: "order", selected: false, unselected: "order-1"))
+        sideMenuItemsArray.append(SideMenuItems(name: "Enquiry List", selectedImage: "order", selected: false, unselected: "order-1"))
         sideMenuItemsArray.append(SideMenuItems(name: "Notifications", selectedImage: "noti", selected: false, unselected: "noti-1"))
         sideMenuItemsArray.append(SideMenuItems(name: "Contact", selectedImage: "contact", selected: false, unselected: "contact-1"))
         sideMenuItemsArray.append(SideMenuItems(name: "Privacy Policy", selectedImage: "privacy", selected: false, unselected: "privacy-1"))

@@ -56,9 +56,8 @@ class SubmitDetailsVC: UIViewController {
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
                 showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
-                    let story = UIStoryboard(name: "Main", bundle: nil)
-                    let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
-                    self.navigationController?.pushViewController(rootViewController, animated: true)
+                    let vc = SuccesfullyBookedVC.instantiate(fromAppStoryboard: .Main)
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)

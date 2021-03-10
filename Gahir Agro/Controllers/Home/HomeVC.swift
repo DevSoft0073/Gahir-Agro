@@ -13,7 +13,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
     var collectionViewDataArray = [CollectionViewData]()
     var tableViewDataArray = [TableViewData]()
     var page = 1
-    var lastPage = 1
+    var lastPage = Bool()
     var productType = String()
     var messgae = String()
     var currentIndex = String()
@@ -67,6 +67,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
                 
                 var newArr = [TableViewData]()
                 let allData = response.data["product_list"] as? [String:Any] ?? [:]
+                self.lastPage = response.data["product_list"] as? Bool ?? false
                 for obj in allData["all_products"] as? [[String:Any]] ?? [[:]] {
                     print(obj)
                     newArr.append(TableViewData(image: obj["prod_image"] as? String ?? "", name: obj["prod_name"] as? String ?? "", modelName: obj["prod_desc"] as? String ?? "", details: obj["prod_desc"] as? String ?? "", price: obj["prod_price"] as? String ?? "", prod_sno: obj["GAIC2K213000"] as? String ?? "", prod_type: obj["prod_type"] as? String ?? "", id: obj["id"] as? String ?? "", prod_video: obj["prod_video"] as? String ?? "", prod_qty: obj["prod_qty"] as? String ?? "", prod_pdf: obj["prod_pdf"] as? String ?? ""))
@@ -99,12 +100,14 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
             print(response.data)
+            self.tableViewDataArray.removeAll()
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
                 var newArr = [TableViewData]()
                 let allData = response.data["product_list"] as? [String:Any] ?? [:]
+                self.lastPage = response.data["product_list"] as? Bool ?? false
                 for obj in allData["all_products"] as? [[String:Any]] ?? [[:]] {
                     print(obj)
                     newArr.append(TableViewData(image: obj["prod_image"] as? String ?? "", name: obj["prod_name"] as? String ?? "", modelName: obj["prod_desc"] as? String ?? "", details: obj["prod_desc"] as? String ?? "", price: obj["prod_price"] as? String ?? "", prod_sno: obj["GAIC2K213000"] as? String ?? "", prod_type: obj["prod_type"] as? String ?? "", id: obj["id"] as? String ?? "", prod_video: obj["prod_video"] as? String ?? "", prod_qty: obj["prod_qty"] as? String ?? "", prod_pdf: obj["prod_pdf"] as? String ?? ""))
@@ -163,18 +166,14 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
         cell.modelLbl.text = tableViewDataArray[indexPath.row].modelName
         cell.detailsLbl.text = tableViewDataArray[indexPath.row].details
         currentIndex = tableViewDataArray[indexPath.row].id
+        cell.checkAvailabiltyButton.tag = indexPath.row
         cell.checkAvailabiltyButton.addTarget(self, action: #selector(goto), for: .touchUpInside)
         return cell
     }
     
-    @objc func goto() {
+    @objc func goto(sender : UIButton) {
         let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
-        vc.productID = {
-            DispatchQueue.main.async {
-                vc.id = self.currentIndex
-                print(vc.id)
-            }
-        }
+        vc.id = tableViewDataArray[sender.tag].id
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -182,17 +181,20 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
         return 360
     }
     
-        func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-            if page <= lastPage{
-                let bottamEdge = Float(self.allItemsTBView.contentOffset.y + self.allItemsTBView.frame.size.height)
-                if bottamEdge >= Float(self.allItemsTBView.contentSize.height) && tableViewDataArray.count > 0 {
-                    page = page + 1
-                    getAllProducts()
-                }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if lastPage == true{
+            let bottamEdge = Float(self.allItemsTBView.contentOffset.y + self.allItemsTBView.frame.size.height)
+            if bottamEdge >= Float(self.allItemsTBView.contentSize.height) && tableViewDataArray.count > 0 {
+                page = page + 1
+                getAllProducts()
+            }
+        }else{
+            let bottamEdge = Float(self.allItemsTBView.contentOffset.y + self.allItemsTBView.frame.size.height)
+            if bottamEdge >= Float(self.allItemsTBView.contentSize.height) && tableViewDataArray.count > 0 {
+                getAllProducts()
             }
         }
-
-    
+    }
 }
 
 extension HomeVC : UICollectionViewDelegate , UICollectionViewDataSource {

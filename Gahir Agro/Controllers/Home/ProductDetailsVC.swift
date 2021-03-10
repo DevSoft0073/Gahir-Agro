@@ -24,13 +24,12 @@ class ProductDetailsVC: UIViewController {
     @IBOutlet weak var modelLbl: UILabel!
     @IBOutlet weak var namelbl: UILabel!
     @IBOutlet weak var showImage: UIImageView!
-    var productID:(()->Void)?
     var detailsDataArray = [DetailsData]()
     var messgae = String()
     var id = String()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.productID?()
+        
         print(id)
         // Do any additional setup after loading the view.
     }

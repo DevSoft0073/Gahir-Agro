@@ -3084,7 +3084,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DEC 5,2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOh-4h-fci">
-                                                            <rect key="frame" x="269" y="66" width="71.5" height="18.5"/>
+                                                            <rect key="frame" x="269" y="66.5" width="71.5" height="18.5"/>
                                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -3111,10 +3111,11 @@
                                                         <constraint firstItem="x8e-D0-PZq" firstAttribute="centerY" secondItem="PCN-Y4-MPC" secondAttribute="centerY" id="YKk-BJ-tiq"/>
                                                         <constraint firstItem="Jny-7u-S95" firstAttribute="width" secondItem="PCN-Y4-MPC" secondAttribute="width" multiplier="0.4" id="d6l-c5-2I1"/>
                                                         <constraint firstItem="x8e-D0-PZq" firstAttribute="leading" secondItem="PCN-Y4-MPC" secondAttribute="leading" constant="10" id="gdU-ah-aKv"/>
+                                                        <constraint firstItem="gOh-4h-fci" firstAttribute="centerY" secondItem="Z7D-7M-NzJ" secondAttribute="centerY" id="iiC-bg-xHv"/>
                                                         <constraint firstItem="x8e-D0-PZq" firstAttribute="width" secondItem="PCN-Y4-MPC" secondAttribute="width" multiplier="0.25" id="jdi-i6-P0G"/>
                                                         <constraint firstItem="Qwg-LN-zzH" firstAttribute="leading" secondItem="Jny-7u-S95" secondAttribute="trailing" constant="5" id="kjc-wx-bdR"/>
+                                                        <constraint firstItem="Qwg-LN-zzH" firstAttribute="centerY" secondItem="fbW-S7-XMP" secondAttribute="centerY" id="lYQ-sY-ai1"/>
                                                         <constraint firstItem="x8e-D0-PZq" firstAttribute="height" secondItem="PCN-Y4-MPC" secondAttribute="height" multiplier="0.859375" id="m7a-qL-yyD"/>
-                                                        <constraint firstItem="gOh-4h-fci" firstAttribute="top" secondItem="Qwg-LN-zzH" secondAttribute="bottom" id="uBV-P1-Lcg"/>
                                                         <constraint firstItem="Jny-7u-S95" firstAttribute="top" secondItem="x8e-D0-PZq" secondAttribute="top" id="xJ8-D9-5s5"/>
                                                         <constraint firstItem="7Nh-aa-gat" firstAttribute="leading" secondItem="x8e-D0-PZq" secondAttribute="leading" id="yNB-v1-r8E"/>
                                                     </constraints>

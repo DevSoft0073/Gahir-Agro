@@ -19,5 +19,8 @@ class SuccesfullyBookedVC: UIViewController {
     }
     
     @IBAction func backButton(_ sender: Any) {
+        let story = UIStoryboard(name: "Main", bundle: nil)
+        let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
+        self.navigationController?.pushViewController(rootViewController, animated: true)
     }
 }
