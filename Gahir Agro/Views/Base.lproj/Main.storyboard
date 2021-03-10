@@ -4036,6 +4036,9 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="v5K-SU-MZh" secondAttribute="height" multiplier="1:1" id="ERZ-uf-CUH"/>
                                         </constraints>
+                                        <connections>
+                                            <action selector="backButton:" destination="Nzr-my-O3H" eventType="touchUpInside" id="whN-G6-lSv"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYb-xc-P0G">
                                         <rect key="frame" x="0.0" y="46" width="375" height="1"/>
@@ -4088,7 +4091,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="asdasd" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="74y-sP-qeT">
+                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Dealer Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="74y-sP-qeT">
                                                                 <rect key="frame" x="0.0" y="23.5" width="328" height="22.5"/>
                                                                 <color key="textColor" red="0.38036191460000002" green="0.38040977720000002" blue="0.38033998009999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="15"/>
@@ -4129,7 +4132,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="asdasd" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ih4-g1-hFG">
+                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Product Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ih4-g1-hFG">
                                                                 <rect key="frame" x="0.0" y="24" width="328" height="23"/>
                                                                 <color key="textColor" red="0.38036191460000002" green="0.38040977720000002" blue="0.38033998009999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="15"/>
@@ -4171,7 +4174,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="asdasd" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UQa-5W-FvI">
+                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Model Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UQa-5W-FvI">
                                                                 <rect key="frame" x="0.0" y="24" width="328" height="23"/>
                                                                 <color key="textColor" red="0.38036191460000002" green="0.38040977720000002" blue="0.38033998009999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="15"/>
@@ -4213,7 +4216,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="asdasd" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E8X-c3-o6V">
+                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Accessories" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E8X-c3-o6V">
                                                                 <rect key="frame" x="0.0" y="23.5" width="328" height="22.5"/>
                                                                 <color key="textColor" red="0.38036191460000002" green="0.38040977720000002" blue="0.38033998009999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="15"/>
@@ -4254,7 +4257,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="asdasd" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="65Q-lr-Ctv">
+                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Quantity" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="65Q-lr-Ctv">
                                                                 <rect key="frame" x="0.0" y="24" width="328" height="23"/>
                                                                 <color key="textColor" red="0.38036191460000002" green="0.38040977720000002" blue="0.38033998009999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="15"/>
@@ -4296,7 +4299,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="asdasd" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8dK-O8-67r">
+                                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8dK-O8-67r">
                                                                 <rect key="frame" x="0.0" y="24" width="328" height="23"/>
                                                                 <color key="textColor" red="0.38036191460000002" green="0.38040977720000002" blue="0.38033998009999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="15"/>
@@ -4338,7 +4341,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="asdasd" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="joy-15-HUl">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add UTR number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="joy-15-HUl">
                                                                 <rect key="frame" x="0.0" y="24" width="328" height="23"/>
                                                                 <color key="textColor" red="0.38036191460000002" green="0.38040977720000002" blue="0.38033998009999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="15"/>
@@ -4428,6 +4431,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="accesoriesTxtFld" destination="E8X-c3-o6V" id="h2b-1i-VD1"/>
+                        <outlet property="amountTxtFld" destination="8dK-O8-67r" id="u8R-UW-1le"/>
+                        <outlet property="dealerCodeTxtFld" destination="74y-sP-qeT" id="hma-bX-q8z"/>
+                        <outlet property="modelNameTxtFld" destination="UQa-5W-FvI" id="VXm-XA-ca4"/>
+                        <outlet property="nameTxtFld" destination="Ih4-g1-hFG" id="h9m-sy-zpt"/>
+                        <outlet property="quantityTxtFld" destination="65Q-lr-Ctv" id="6By-kX-MDR"/>
                         <outlet property="utrNumberTxtFld" destination="joy-15-HUl" id="cdW-dx-1yt"/>
                     </connections>
                 </viewController>

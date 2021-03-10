@@ -29,6 +29,7 @@ class Constant: NSObject {
     let RecentSearches = "GetRecentSearch.php"
     let AddEnquiry = "AddEnquiry.php"
     let EnquiryListing = "GetAllEnquiries.php"
+    let BookOrder = "AddOrder.php"
     
 }
 

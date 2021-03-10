@@ -15,6 +15,7 @@ class MyOrderVC: UIViewController {
     var page = 1
     var lastPage = 1
     var messgae = String()
+    var enquiryID = [String]()
     @IBOutlet weak var myOrderTBView: UITableView!
     var orderHistoryArray = [OrderHistoryData]()
     
@@ -53,6 +54,7 @@ class MyOrderVC: UIViewController {
                 let allData = response.data["enquiry_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_enquiries"] as? [[String:Any]] ?? [[:]]{
                     print(obj)
+                    self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
                     let productDetails = obj["product_detail"] as? [String:Any] ?? [:]
                     print(productDetails)
                     newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: productDetails["prod_qty"] as? String ?? "", deliveryDate: productDetails["24 Feb 2021"] as? String ?? "24 Feb 2021", price: productDetails["prod_price"] as? String ?? "", image: productDetails["prod_image"] as? String ?? ""))
@@ -116,6 +118,15 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 125
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = SubmitDetailsVC.instantiate(fromAppStoryboard: .Main)
+        vc.enquiryID = enquiryID[indexPath.row]
+        vc.name = orderHistoryArray[indexPath.row].name
+        vc.quantity = orderHistoryArray[indexPath.row].quantity
+        vc.amount = orderHistoryArray[indexPath.row].price
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

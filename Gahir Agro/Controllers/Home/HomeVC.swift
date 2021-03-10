@@ -27,6 +27,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         collectionViewDataArray.append(CollectionViewData(name: "Laser", selected: false, type: "1"))
         collectionViewDataArray.append(CollectionViewData(name: "Pump", selected: false, type: "2"))
         
+        
         getAllProducts()
         itemsCollectionView.reloadData()
         
@@ -168,7 +169,12 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
     
     @objc func goto() {
         let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
-        vc.id = currentIndex
+        vc.productID = {
+            DispatchQueue.main.async {
+                vc.id = self.currentIndex
+                print(vc.id)
+            }
+        }
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

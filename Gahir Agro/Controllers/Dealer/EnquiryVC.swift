@@ -29,6 +29,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     var categoryArray = [EnquieyData]()
     var accessory = [AccessoriesData]()
     var systemArray = [SystemData]()
+    var productDetailsAaay = [ProductData]()
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var enquiryDataTBView: UITableView!
     @IBOutlet weak var quantitylbl: UILabel!
@@ -94,8 +95,9 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                                 }else{
                                         
                                     }
-                                let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
-                                self.navigationController?.pushViewController(vc, animated: true)
+                                self.popBack(2)
+//                                let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
+//                                self.navigationController?.pushViewController(vc, animated: true)
                             }
                         }
                         self.present(vc, animated: true, completion: nil)
@@ -107,6 +109,15 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
             } failure: { (error) in
                 print(error)
                 showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+            }
+        }
+    }
+    
+    func popBack(_ nb: Int) {
+        if let viewControllers: [UIViewController] = self.navigationController?.viewControllers {
+            guard viewControllers.count < nb else {
+                self.navigationController?.popToViewController(viewControllers[viewControllers.count - nb], animated: true)
+                return
             }
         }
     }
@@ -130,6 +141,23 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
             if status == "1"{
                 let allData = response.data["product_detail"] as? [String:Any] ?? [:]
                 print(allData)
+                self.nameLbl.text = "Model"
+                self.detailsLbl.text = allData["prod_name"] as? String ?? ""
+                self.showImage.sd_setImage(with: URL(string:allData["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "im"))
+                let url = URL(string:allData["prod_image"] as? String ?? "")
+                if url != nil{
+                    if let data = try? Data(contentsOf: url!)
+                    {
+                        if let image: UIImage = (UIImage(data: data)){
+                            self.showImage.image = image
+                            self.showImage.contentMode = .scaleToFill
+                            IJProgressView.shared.hideProgressView()
+                        }
+                    }
+                }
+                else{
+                    self.showImage.image = UIImage(named: "im")
+                }
                 self.productId = allData["id"] as? String ?? ""
                 let accessories = allData["accessories"] as? [[String:Any]] ?? [[:]]
                 for obj in accessories {
@@ -349,3 +377,14 @@ struct SystemData {
     }
 }
 
+struct ProductData {
+    var name : String
+    var image : String
+    var model : String
+    
+    init(name : String,image : String,model : String) {
+        self.name = name
+        self.image = image
+        self.model = model
+    }
+}

@@ -24,13 +24,19 @@ class ProductDetailsVC: UIViewController {
     @IBOutlet weak var modelLbl: UILabel!
     @IBOutlet weak var namelbl: UILabel!
     @IBOutlet weak var showImage: UIImageView!
+    var productID:(()->Void)?
     var detailsDataArray = [DetailsData]()
     var messgae = String()
     var id = String()
     override func viewDidLoad() {
         super.viewDidLoad()
-        productDetails()
+        self.productID?()
+        print(id)
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.productDetails()
     }
     
 
@@ -109,6 +115,8 @@ class ProductDetailsTBViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 }
+
+
 
 
 extension ProductDetailsVC : UITableViewDelegate , UITableViewDataSource {
