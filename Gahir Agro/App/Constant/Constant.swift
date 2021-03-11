@@ -30,6 +30,7 @@ class Constant: NSObject {
     let AddEnquiry = "AddEnquiry.php"
     let EnquiryListing = "GetAllEnquiries.php"
     let BookOrder = "AddOrder.php"
+    let Notification = "GetAllNotifications.php"
     
 }
 

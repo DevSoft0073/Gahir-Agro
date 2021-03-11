@@ -82,16 +82,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(deviceTokenString)
         UserDefaults.standard.setValue(deviceTokenString, forKey: "deviceToken")
     }
-
-//    func navigateVC() {
-//        let storyBoard = UIStoryboard.init(name: "Auth", bundle: nil)
-//        let rootVc = storyBoard.instantiateViewController(withIdentifier: "SplashVC") as! SplashVC
-//        let nav = UINavigationController(rootViewController: rootVc)
-//        nav.isNavigationBarHidden = true
-//        self.window?.rootViewController = nav
-//        self.window?.makeKeyAndVisible()
-//    }
-
 }
 
 
