@@ -14,6 +14,7 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
     @IBOutlet weak var emailTxtFld: UITextField!
     @IBOutlet weak var emailView: UIView!
     var messgae = String()
+    var role = PKWrapperClass.getRole()
     override func viewDidLoad() {
         super.viewDidLoad()
         

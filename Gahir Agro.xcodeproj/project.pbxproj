@@ -40,6 +40,13 @@
 		181704D025E64824003825D7 /* ContactUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704CF25E64824003825D7 /* ContactUsVC.swift */; };
 		181704D525E654EC003825D7 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704D425E654EC003825D7 /* NotificationVC.swift */; };
 		184A8ABA25FB4C98000583C5 /* ChooseRoleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A8AB925FB4C98000583C5 /* ChooseRoleVC.swift */; };
+		184A8AE025FB8949000583C5 /* SignInWithScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A8ADF25FB8949000583C5 /* SignInWithScreenVC.swift */; };
+		184A8AE525FB896A000583C5 /* SignINVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A8AE425FB896A000583C5 /* SignINVC.swift */; };
+		184A8AEA25FB897D000583C5 /* SignUPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A8AE925FB897D000583C5 /* SignUPVC.swift */; };
+		184A8AEF25FB8A1C000583C5 /* OTPVerificationForCustomerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A8AEE25FB8A1C000583C5 /* OTPVerificationForCustomerVC.swift */; };
+		184A8AFA25FB8C4F000583C5 /* SideMenuForCustomerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A8AF925FB8C4F000583C5 /* SideMenuForCustomerVC.swift */; };
+		184A8AFF25FB8F6B000583C5 /* SideMenuControllerForCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A8AFE25FB8F6B000583C5 /* SideMenuControllerForCustomer.swift */; };
+		184A8B0C25FB90E7000583C5 /* AuthForCustomer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 184A8B0B25FB90E7000583C5 /* AuthForCustomer.storyboard */; };
 		184B113925E36C74003007A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B113825E36C74003007A2 /* AppDelegate.swift */; };
 		184B113B25E36C74003007A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B113A25E36C74003007A2 /* SceneDelegate.swift */; };
 		184B113D25E36C74003007A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B113C25E36C74003007A2 /* ViewController.swift */; };
@@ -74,11 +81,11 @@
 		18DEBB1925F73F9200475060 /* ThankYouVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEBB1825F73F9200475060 /* ThankYouVC.swift */; };
 		18DEBB2425F7559000475060 /* SubmitDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEBB2325F7559000475060 /* SubmitDetailsVC.swift */; };
 		18E84AD425E7AACE004A2148 /* EnquiryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AD325E7AACE004A2148 /* EnquiryVC.swift */; };
-		18E84AD925E7AAE4004A2148 /* DelaerProductDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AD825E7AAE4004A2148 /* DelaerProductDetailsVC.swift */; };
+		18E84AD925E7AAE4004A2148 /* CustomerProductDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AD825E7AAE4004A2148 /* CustomerProductDetailsVC.swift */; };
 		18E84ADE25E7AC08004A2148 /* BookOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84ADD25E7AC08004A2148 /* BookOrderVC.swift */; };
 		18E84AE825E7AC57004A2148 /* RequestSubmitPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AE725E7AC57004A2148 /* RequestSubmitPopUpVC.swift */; };
 		18E84AED25E7AC9E004A2148 /* SuccesfullyBookedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AEC25E7AC9E004A2148 /* SuccesfullyBookedVC.swift */; };
-		18E84AF225E7B0DE004A2148 /* DealerHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AF125E7B0DE004A2148 /* DealerHomeVC.swift */; };
+		18E84AF225E7B0DE004A2148 /* CustomerHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AF125E7B0DE004A2148 /* CustomerHomeVC.swift */; };
 		18F9B6CD25E8CB020034D978 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9B6CC25E8CB020034D978 /* SplashVC.swift */; };
 		18F9B70E25E8E8240034D978 /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9B70D25E8E8240034D978 /* PopUpVC.swift */; };
 		3CB4907F28A61967136EDF38 /* Pods_Gahir_Agro_Gahir_AgroUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B9B12110EF8CE43EAF794BD /* Pods_Gahir_Agro_Gahir_AgroUITests.framework */; };
@@ -137,6 +144,13 @@
 		181704CF25E64824003825D7 /* ContactUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsVC.swift; sourceTree = "<group>"; };
 		181704D425E654EC003825D7 /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
 		184A8AB925FB4C98000583C5 /* ChooseRoleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRoleVC.swift; sourceTree = "<group>"; };
+		184A8ADF25FB8949000583C5 /* SignInWithScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithScreenVC.swift; sourceTree = "<group>"; };
+		184A8AE425FB896A000583C5 /* SignINVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignINVC.swift; sourceTree = "<group>"; };
+		184A8AE925FB897D000583C5 /* SignUPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUPVC.swift; sourceTree = "<group>"; };
+		184A8AEE25FB8A1C000583C5 /* OTPVerificationForCustomerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVerificationForCustomerVC.swift; sourceTree = "<group>"; };
+		184A8AF925FB8C4F000583C5 /* SideMenuForCustomerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuForCustomerVC.swift; sourceTree = "<group>"; };
+		184A8AFE25FB8F6B000583C5 /* SideMenuControllerForCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuControllerForCustomer.swift; sourceTree = "<group>"; };
+		184A8B0B25FB90E7000583C5 /* AuthForCustomer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthForCustomer.storyboard; sourceTree = "<group>"; };
 		184B113525E36C74003007A2 /* Gahir Agro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gahir Agro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		184B113825E36C74003007A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		184B113A25E36C74003007A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -178,11 +192,11 @@
 		18DEBB1825F73F9200475060 /* ThankYouVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouVC.swift; sourceTree = "<group>"; };
 		18DEBB2325F7559000475060 /* SubmitDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitDetailsVC.swift; sourceTree = "<group>"; };
 		18E84AD325E7AACE004A2148 /* EnquiryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnquiryVC.swift; sourceTree = "<group>"; };
-		18E84AD825E7AAE4004A2148 /* DelaerProductDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelaerProductDetailsVC.swift; sourceTree = "<group>"; };
+		18E84AD825E7AAE4004A2148 /* CustomerProductDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerProductDetailsVC.swift; sourceTree = "<group>"; };
 		18E84ADD25E7AC08004A2148 /* BookOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookOrderVC.swift; sourceTree = "<group>"; };
 		18E84AE725E7AC57004A2148 /* RequestSubmitPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSubmitPopUpVC.swift; sourceTree = "<group>"; };
 		18E84AEC25E7AC9E004A2148 /* SuccesfullyBookedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccesfullyBookedVC.swift; sourceTree = "<group>"; };
-		18E84AF125E7B0DE004A2148 /* DealerHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerHomeVC.swift; sourceTree = "<group>"; };
+		18E84AF125E7B0DE004A2148 /* CustomerHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerHomeVC.swift; sourceTree = "<group>"; };
 		18F9B6CC25E8CB020034D978 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		18F9B70D25E8E8240034D978 /* PopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
 		1B9B12110EF8CE43EAF794BD /* Pods_Gahir_Agro_Gahir_AgroUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gahir_Agro_Gahir_AgroUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,9 +241,15 @@
 		180847C825E4DB5000D04E69 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				18DEBB1825F73F9200475060 /* ThankYouVC.swift */,
+				18E84ADD25E7AC08004A2148 /* BookOrderVC.swift */,
+				18E84AD325E7AACE004A2148 /* EnquiryVC.swift */,
 				180847CD25E4DBA200D04E69 /* HomeVC.swift */,
 				18157E1125E5095300E4451C /* ProductDetailsVC.swift */,
 				18B87C7525E684C200837E6C /* SearchVC.swift */,
+				18E84AE725E7AC57004A2148 /* RequestSubmitPopUpVC.swift */,
+				18E84AEC25E7AC9E004A2148 /* SuccesfullyBookedVC.swift */,
+				18DEBB2325F7559000475060 /* SubmitDetailsVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -283,6 +303,10 @@
 		184A8AAD25FB488F000583C5 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				184A8ADF25FB8949000583C5 /* SignInWithScreenVC.swift */,
+				184A8AE425FB896A000583C5 /* SignINVC.swift */,
+				184A8AE925FB897D000583C5 /* SignUPVC.swift */,
+				184A8AEE25FB8A1C000583C5 /* OTPVerificationForCustomerVC.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -290,6 +314,8 @@
 		184A8AAE25FB4895000583C5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				18E84AD825E7AAE4004A2148 /* CustomerProductDetailsVC.swift */,
+				18E84AF125E7B0DE004A2148 /* CustomerHomeVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -297,8 +323,51 @@
 		184A8AAF25FB48A1000583C5 /* Side Menu */ = {
 			isa = PBXGroup;
 			children = (
+				184A8AF925FB8C4F000583C5 /* SideMenuForCustomerVC.swift */,
+				184A8AFE25FB8F6B000583C5 /* SideMenuControllerForCustomer.swift */,
 			);
 			path = "Side Menu";
+			sourceTree = "<group>";
+		};
+		184A8B0325FB904D000583C5 /* ForDealer */ = {
+			isa = PBXGroup;
+			children = (
+				184B117625E36E76003007A2 /* Auth.storyboard */,
+				184B113E25E36C74003007A2 /* Main.storyboard */,
+			);
+			path = ForDealer;
+			sourceTree = "<group>";
+		};
+		184A8B0425FB905A000583C5 /* ForCustomer */ = {
+			isa = PBXGroup;
+			children = (
+				1807058325E7690C00DBE739 /* Customer.storyboard */,
+				184A8B0B25FB90E7000583C5 /* AuthForCustomer.storyboard */,
+			);
+			path = ForCustomer;
+			sourceTree = "<group>";
+		};
+		184A8B0525FB906A000583C5 /* ForAdmin */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ForAdmin;
+			sourceTree = "<group>";
+		};
+		184A8B0625FB9072000583C5 /* ForSalesExecutive */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ForSalesExecutive;
+			sourceTree = "<group>";
+		};
+		184A8B0725FB90B5000583C5 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				184B114325E36C74003007A2 /* LaunchScreen.storyboard */,
+				18C4097625F37902004786D9 /* Splash.storyboard */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 		184B112C25E36C74003007A2 = {
@@ -382,11 +451,11 @@
 		184B116D25E36DA0003007A2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				184B114325E36C74003007A2 /* LaunchScreen.storyboard */,
-				184B117625E36E76003007A2 /* Auth.storyboard */,
-				184B113E25E36C74003007A2 /* Main.storyboard */,
-				1807058325E7690C00DBE739 /* Customer.storyboard */,
-				18C4097625F37902004786D9 /* Splash.storyboard */,
+				184A8B0725FB90B5000583C5 /* Splash */,
+				184A8B0325FB904D000583C5 /* ForDealer */,
+				184A8B0425FB905A000583C5 /* ForCustomer */,
+				184A8B0625FB9072000583C5 /* ForSalesExecutive */,
+				184A8B0525FB906A000583C5 /* ForAdmin */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -517,14 +586,6 @@
 				184B117325E36E23003007A2 /* Auth */,
 				180847C825E4DB5000D04E69 /* Home */,
 				180847C925E4DB5800D04E69 /* SideMenu */,
-				18E84AD325E7AACE004A2148 /* EnquiryVC.swift */,
-				18E84AD825E7AAE4004A2148 /* DelaerProductDetailsVC.swift */,
-				18E84ADD25E7AC08004A2148 /* BookOrderVC.swift */,
-				18DEBB1825F73F9200475060 /* ThankYouVC.swift */,
-				18E84AE725E7AC57004A2148 /* RequestSubmitPopUpVC.swift */,
-				18E84AEC25E7AC9E004A2148 /* SuccesfullyBookedVC.swift */,
-				18E84AF125E7B0DE004A2148 /* DealerHomeVC.swift */,
-				18DEBB2325F7559000475060 /* SubmitDetailsVC.swift */,
 			);
 			path = Dealer;
 			sourceTree = "<group>";
@@ -667,6 +728,7 @@
 				180EEAE125E3B73100D6327A /* SIL Open Font License.txt in Resources */,
 				180EEAE025E3B73100D6327A /* Poppins-ExtraBold.otf in Resources */,
 				1807058425E7690C00DBE739 /* Customer.storyboard in Resources */,
+				184A8B0C25FB90E7000583C5 /* AuthForCustomer.storyboard in Resources */,
 				180EEAED25E3B73100D6327A /* Poppins-BoldItalic.otf in Resources */,
 				180EEAE225E3B73100D6327A /* Poppins-ExtraBoldItalic.otf in Resources */,
 				184B117725E36E76003007A2 /* Auth.storyboard in Resources */,
@@ -818,10 +880,12 @@
 				184B11BA25E37244003007A2 /* DisplayAlertManager.swift in Sources */,
 				18AD8F0325EADA9C00072166 /* OpenPIcker.swift in Sources */,
 				184B113D25E36C74003007A2 /* ViewController.swift in Sources */,
+				184A8AEF25FB8A1C000583C5 /* OTPVerificationForCustomerVC.swift in Sources */,
 				180847D325E4DBB000D04E69 /* SideMenuVC.swift in Sources */,
 				184B11CA25E3726E003007A2 /* Constant.swift in Sources */,
-				18E84AF225E7B0DE004A2148 /* DealerHomeVC.swift in Sources */,
+				18E84AF225E7B0DE004A2148 /* CustomerHomeVC.swift in Sources */,
 				18F9B6CD25E8CB020034D978 /* SplashVC.swift in Sources */,
+				184A8AFA25FB8C4F000583C5 /* SideMenuForCustomerVC.swift in Sources */,
 				18E84AE825E7AC57004A2148 /* RequestSubmitPopUpVC.swift in Sources */,
 				187A8C2525ECF9B600DCA747 /* SignInWithPhone.swift in Sources */,
 				18DEBB1925F73F9200475060 /* ThankYouVC.swift in Sources */,
@@ -830,6 +894,7 @@
 				184B11CB25E3726E003007A2 /* Reachability.swift in Sources */,
 				181704C125E63DF3003825D7 /* ProfileVC.swift in Sources */,
 				184B11A225E37149003007A2 /* AppFunctions.swift in Sources */,
+				184A8AE025FB8949000583C5 /* SignInWithScreenVC.swift in Sources */,
 				184B118625E36EC9003007A2 /* ForgotPasswordVC.swift in Sources */,
 				18157E1725E50FBD00E4451C /* SideMenuController.swift in Sources */,
 				180847CE25E4DBA200D04E69 /* HomeVC.swift in Sources */,
@@ -838,13 +903,15 @@
 				18B87C7625E684C200837E6C /* SearchVC.swift in Sources */,
 				18E84AED25E7AC9E004A2148 /* SuccesfullyBookedVC.swift in Sources */,
 				18E84AD425E7AACE004A2148 /* EnquiryVC.swift in Sources */,
+				184A8AE525FB896A000583C5 /* SignINVC.swift in Sources */,
 				180847C125E4BE5F00D04E69 /* OTPVerificationVC.swift in Sources */,
 				180847BC25E4BE4700D04E69 /* AddPhoneNumberVC.swift in Sources */,
 				184B11A425E37149003007A2 /* ImagePicker.swift in Sources */,
 				184B118125E36EB7003007A2 /* SignUpVC.swift in Sources */,
-				18E84AD925E7AAE4004A2148 /* DelaerProductDetailsVC.swift in Sources */,
+				18E84AD925E7AAE4004A2148 /* CustomerProductDetailsVC.swift in Sources */,
 				184B11C325E37259003007A2 /* ChangeBottamColor.swift in Sources */,
 				18F9B70E25E8E8240034D978 /* PopUpVC.swift in Sources */,
+				184A8AEA25FB897D000583C5 /* SignUPVC.swift in Sources */,
 				18157E1225E5095300E4451C /* ProductDetailsVC.swift in Sources */,
 				184B11C225E37259003007A2 /* HelperMethods.swift in Sources */,
 				184B113B25E36C74003007A2 /* SceneDelegate.swift in Sources */,
@@ -857,6 +924,7 @@
 				181704CB25E63E11003825D7 /* MyOrderVC.swift in Sources */,
 				1876B2FF25EF5E9200E5A245 /* ResponseModal.swift in Sources */,
 				184B11A025E37149003007A2 /* AppExtensions.swift in Sources */,
+				184A8AFF25FB8F6B000583C5 /* SideMenuControllerForCustomer.swift in Sources */,
 				184B11B825E37244003007A2 /* AppConstants.swift in Sources */,
 				181704D025E64824003825D7 /* ContactUsVC.swift in Sources */,
 			);

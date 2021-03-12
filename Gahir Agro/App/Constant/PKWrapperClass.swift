@@ -167,7 +167,7 @@ class PKWrapperClass{
     }
     
     class func getRole()->Role{
-        return Role(rawValue: UserDefaults.standard.value(forKey: "role") as? String ?? "") ?? .admin
+        return Role(rawValue: UserDefaults.standard.value(forKey: "role") as? String ?? "") ?? .dealer
     }
 }
 func randomString(length: Int) -> String {

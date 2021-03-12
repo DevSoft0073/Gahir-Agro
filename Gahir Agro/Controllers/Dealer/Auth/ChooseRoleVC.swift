@@ -11,21 +11,45 @@ class ChooseRoleVC: UIViewController {
 
     var selectRoleArray = [SelectRole]()
     var matchIndex = 0
+    var selectedRole = String()
     @IBOutlet weak var selectRoleCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.selectRoleArray.append(SelectRole(name: "Dealer", image: "icon0", selected: false))
-        self.selectRoleArray.append(SelectRole(name: "Customer", image: "icon1", selected: false))
-        self.selectRoleArray.append(SelectRole(name: "Sales Executive", image: "icon2", selected: false))
-        self.selectRoleArray.append(SelectRole(name: "Admin", image: "icon3", selected: false))
+        self.selectRoleArray.append(SelectRole(name: "Dealer", image: "icon0", selected: false, id: "0"))
+        self.selectRoleArray.append(SelectRole(name: "Customer", image: "icon1", selected: false, id: "1"))
+        self.selectRoleArray.append(SelectRole(name: "Sales Executive", image: "icon2", selected: false, id: "2"))
+        self.selectRoleArray.append(SelectRole(name: "Admin", image: "icon3", selected: false, id: "3"))
         // Do any additional setup after loading the view.
     }
+    
+    func setRole(val: SelectRole){
+        switch val.id {
+        case "0":
+            UserDefaults.standard.set(Role.dealer.rawValue, forKey: "role")
+        case "1":
+            UserDefaults.standard.set(Role.customer.rawValue, forKey: "role")
+        case "2":
+            UserDefaults.standard.set(Role.salesExecutive.rawValue, forKey: "role")
+        case "3":
+            UserDefaults.standard.set(Role.admin.rawValue, forKey: "role")
+        default:
+            print("none")
+        }
+    }
+    
     @IBAction func nextButtonAction(_ sender: Any) {
         let filterArray = self.selectRoleArray.filter({$0.selected == true})
+        self.selectedRole = filterArray[0].id
         if filterArray.count > 0 {
-            let vc = SignInWithVC.instantiate(fromAppStoryboard: .Auth)
-            
-            self.navigationController?.pushViewController(vc, animated: true)
+            setRole(val: filterArray.first!)
+            if selectedRole == "0"{
+                let vc = SignInWithVC.instantiate(fromAppStoryboard: .Auth)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if selectedRole == "1"{
+                let vc = SignInWithScreenVC.instantiate(fromAppStoryboard: .AuthForCustomer)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+         
         }else{
             alert(Constant.shared.appTitle, message: "Please select role for user", view: self)
         }
@@ -111,11 +135,13 @@ struct SelectRole {
     var name : String
     var image : String
     var selected : Bool
+    var id : String
     
-    init(name : String,image : String,selected : Bool) {
+    init(name : String,image : String,selected : Bool,id : String) {
         self.name = name
         self.image = image
         self.selected = selected
+        self.id = id
     }
 }
 

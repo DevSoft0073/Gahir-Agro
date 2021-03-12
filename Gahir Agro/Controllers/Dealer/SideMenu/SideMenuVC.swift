@@ -45,10 +45,6 @@ class SideMenuVC: UIViewController {
         sideMenuController?.hideLeftViewAnimated()
         let vc = ProfileVC.instantiate(fromAppStoryboard: .Main)
         (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
-        
-        
-//        let vc = ProfileVC.instantiate(fromAppStoryboard: .Main)
-//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func logout()  {

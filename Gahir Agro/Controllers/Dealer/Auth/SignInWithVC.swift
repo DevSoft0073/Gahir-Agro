@@ -9,12 +9,18 @@ import UIKit
 
 class SignInWithVC: UIViewController{
 
+    var role = PKWrapperClass.getRole()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(role)
 
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func backButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     @IBAction func logInWithPhoneButtonAction(_ sender: Any) {
         let vc = SignInWithPhone.instantiate(fromAppStoryboard: .Auth)

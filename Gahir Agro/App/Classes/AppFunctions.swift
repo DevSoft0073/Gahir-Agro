@@ -14,6 +14,7 @@ enum AppStoryboard : String {
     case Auth
     case Main
     case Customer
+    case AuthForCustomer
     
 }
 

@@ -322,12 +322,24 @@
                                     <constraint firstItem="rFj-26-mzv" firstAttribute="top" secondItem="VuZ-ae-qUW" secondAttribute="top" id="kqh-4D-H7X"/>
                                 </constraints>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="fmj-BU-jTh">
+                                <rect key="frame" x="27.5" y="39.5" width="19" height="18.5"/>
+                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="oVA-xQ-N8D">
                                 <rect key="frame" x="56.5" y="150" width="262.5" height="210"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="oVA-xQ-N8D" secondAttribute="height" multiplier="10:8" id="BPb-cl-Fp6"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jd6-EO-0mO">
+                                <rect key="frame" x="27.5" y="30" width="37.5" height="37.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Jd6-EO-0mO" secondAttribute="height" multiplier="1:1" id="ri9-ky-IVT"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="backButton:" destination="NbH-0n-Y0U" eventType="touchUpInside" id="K0t-RY-GkL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="M0N-s7-GRT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -337,12 +349,19 @@
                             <constraint firstItem="3eJ-xG-FL0" firstAttribute="width" secondItem="P2s-TL-6rF" secondAttribute="width" multiplier="0.853333" id="MDg-Ff-vH0"/>
                             <constraint firstItem="eWO-xe-jJE" firstAttribute="centerX" secondItem="M0N-s7-GRT" secondAttribute="centerX" id="OHr-77-zuZ"/>
                             <constraint firstItem="oVA-xQ-N8D" firstAttribute="centerX" secondItem="P2s-TL-6rF" secondAttribute="centerX" id="Q8d-AJ-VCS"/>
+                            <constraint firstItem="fmj-BU-jTh" firstAttribute="height" secondItem="Jd6-EO-0mO" secondAttribute="height" multiplier="0.5" id="R0V-qV-gAA"/>
                             <constraint firstItem="oVA-xQ-N8D" firstAttribute="width" secondItem="P2s-TL-6rF" secondAttribute="width" multiplier="0.7" id="WmW-Kf-fBP"/>
+                            <constraint firstItem="fmj-BU-jTh" firstAttribute="leading" secondItem="Jd6-EO-0mO" secondAttribute="leading" id="aOb-NM-XsR"/>
                             <constraint firstItem="oVA-xQ-N8D" firstAttribute="top" secondItem="M0N-s7-GRT" secondAttribute="top" constant="150" id="aci-qW-TZ5"/>
+                            <constraint firstItem="Jd6-EO-0mO" firstAttribute="top" secondItem="M0N-s7-GRT" secondAttribute="top" constant="30" id="bVZ-mH-fAp"/>
                             <constraint firstItem="eWO-xe-jJE" firstAttribute="top" secondItem="3eJ-xG-FL0" secondAttribute="bottom" constant="30" id="bur-SD-RWt"/>
+                            <constraint firstItem="fmj-BU-jTh" firstAttribute="width" secondItem="Jd6-EO-0mO" secondAttribute="width" multiplier="0.5" id="d6y-eg-l0R"/>
                             <constraint firstItem="3eJ-xG-FL0" firstAttribute="centerX" secondItem="M0N-s7-GRT" secondAttribute="centerX" id="gxq-4b-XBJ"/>
                             <constraint firstAttribute="bottom" secondItem="IJS-Y4-meh" secondAttribute="bottom" id="hhh-PC-M6c"/>
+                            <constraint firstItem="Jd6-EO-0mO" firstAttribute="leading" secondItem="3eJ-xG-FL0" secondAttribute="leading" id="pcI-ig-3Rj"/>
+                            <constraint firstItem="fmj-BU-jTh" firstAttribute="centerY" secondItem="Jd6-EO-0mO" secondAttribute="centerY" id="psO-BO-neh"/>
                             <constraint firstItem="3eJ-xG-FL0" firstAttribute="height" secondItem="P2s-TL-6rF" secondAttribute="height" multiplier="0.135" id="rbc-O0-w8b"/>
+                            <constraint firstItem="Jd6-EO-0mO" firstAttribute="width" secondItem="P2s-TL-6rF" secondAttribute="width" multiplier="0.1" id="xZn-Sa-d5O"/>
                             <constraint firstItem="M0N-s7-GRT" firstAttribute="bottom" secondItem="eWO-xe-jJE" secondAttribute="bottom" constant="15" id="yi2-lh-sg7"/>
                             <constraint firstItem="IJS-Y4-meh" firstAttribute="leading" secondItem="M0N-s7-GRT" secondAttribute="leading" id="znZ-vR-kLE"/>
                         </constraints>
@@ -1346,7 +1365,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oYa-4p-MVU">
-                                                        <rect key="frame" x="49.5" y="9.5" width="255" height="21"/>
+                                                        <rect key="frame" x="49.5" y="8.5" width="255" height="22.5"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
@@ -1836,13 +1855,13 @@
                                                                 <rect key="frame" x="0.0" y="27.5" width="319" height="37"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="CDI-HY-Zos">
-                                                                        <rect key="frame" x="10" y="9" width="19" height="19"/>
+                                                                        <rect key="frame" x="10" y="9" width="19.5" height="19"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="CDI-HY-Zos" secondAttribute="height" multiplier="1:1" id="2EQ-Yf-33f"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eB4-UG-QK8">
-                                                                        <rect key="frame" x="49" y="9" width="255" height="19"/>
+                                                                        <rect key="frame" x="49.5" y="9" width="255" height="19"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
@@ -1910,13 +1929,13 @@
                                                                 <rect key="frame" x="0.0" y="27.5" width="319" height="37.5"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail" translatesAutoresizingMaskIntoConstraints="NO" id="70p-aK-Ulz">
-                                                                        <rect key="frame" x="10" y="9.5" width="19" height="19"/>
+                                                                        <rect key="frame" x="10" y="9.5" width="19.5" height="19"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="70p-aK-Ulz" secondAttribute="height" multiplier="1:1" id="WKZ-Ri-hfY"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hyk-fz-yFG">
-                                                                        <rect key="frame" x="49" y="9.5" width="255" height="19"/>
+                                                                        <rect key="frame" x="49.5" y="9.5" width="255" height="19"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
@@ -1984,13 +2003,13 @@
                                                                 <rect key="frame" x="0.0" y="27.5" width="319" height="37.5"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="bhJ-VD-2OX">
-                                                                        <rect key="frame" x="10" y="9" width="19" height="19"/>
+                                                                        <rect key="frame" x="10" y="9" width="19.5" height="19"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="bhJ-VD-2OX" secondAttribute="height" multiplier="1:1" id="5b0-cQ-3rA"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xbz-mZ-aE7">
-                                                                        <rect key="frame" x="49" y="9.5" width="255" height="18"/>
+                                                                        <rect key="frame" x="49.5" y="9.5" width="255" height="18"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>

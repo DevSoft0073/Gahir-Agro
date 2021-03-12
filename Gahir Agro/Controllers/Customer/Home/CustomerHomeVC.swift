@@ -1,13 +1,14 @@
 //
-//  DealerHomeVC.swift
+//  CustomerHomeVC.swift
 //  Gahir Agro
 //
 //  Created by Apple on 25/02/21.
 //
 
 import UIKit
+import LGSideMenuController
 
-class DealerHomeVC: UIViewController {
+class CustomerHomeVC: UIViewController {
 
     var collectionViewDataArray = [CollectionViewDataForDealer]()
     var tableViewDataArray = [TableViewDataForDealer]()
@@ -38,14 +39,15 @@ class DealerHomeVC: UIViewController {
         tableViewData.reloadData()
         collectionViewData.reloadData()
         
-        
         // Do any additional setup after loading the view.
     }
     
     @IBAction func menuButton(_ sender: Any) {
+        sideMenuController?.showLeftViewAnimated()
     }
     
     @IBAction func searchButton(_ sender: Any) {
+        
     }
 }
 
@@ -99,7 +101,7 @@ struct TableViewDataForDealer {
 }
 
 
-extension DealerHomeVC : UITableViewDelegate , UITableViewDataSource{
+extension CustomerHomeVC : UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableViewDataArray[section].image.count
     }
@@ -125,7 +127,7 @@ extension DealerHomeVC : UITableViewDelegate , UITableViewDataSource{
     
 }
 
-extension DealerHomeVC : UICollectionViewDelegate , UICollectionViewDataSource {
+extension CustomerHomeVC : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return collectionViewDataArray.count
     }
