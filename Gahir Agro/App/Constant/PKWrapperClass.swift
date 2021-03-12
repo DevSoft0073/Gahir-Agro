@@ -165,6 +165,10 @@ class PKWrapperClass{
             view.view.isUserInteractionEnabled = true;
         }
     }
+    
+    class func getRole()->Role{
+        return Role(rawValue: UserDefaults.standard.value(forKey: "role") as? String ?? "") ?? .admin
+    }
 }
 func randomString(length: Int) -> String {
     let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"

@@ -25,7 +25,7 @@ class SplashVC: UIViewController {
             let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
             self.navigationController?.pushViewController(rootViewController, animated: true)
         }else if credentials == 0{
-            let vc = SignInWithVC.instantiate(fromAppStoryboard: .Auth)
+            let vc = ChooseRoleVC.instantiate(fromAppStoryboard: .Auth)
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

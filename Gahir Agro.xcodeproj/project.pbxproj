@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1807058425E7690C00DBE739 /* DealerUI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1807058325E7690C00DBE739 /* DealerUI.storyboard */; };
+		1807058425E7690C00DBE739 /* Customer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1807058325E7690C00DBE739 /* Customer.storyboard */; };
 		180847B725E4BE2A00D04E69 /* SignInWithVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180847B625E4BE2A00D04E69 /* SignInWithVC.swift */; };
 		180847BC25E4BE4700D04E69 /* AddPhoneNumberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180847BB25E4BE4700D04E69 /* AddPhoneNumberVC.swift */; };
 		180847C125E4BE5F00D04E69 /* OTPVerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180847C025E4BE5F00D04E69 /* OTPVerificationVC.swift */; };
@@ -39,6 +39,7 @@
 		181704CB25E63E11003825D7 /* MyOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704CA25E63E11003825D7 /* MyOrderVC.swift */; };
 		181704D025E64824003825D7 /* ContactUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704CF25E64824003825D7 /* ContactUsVC.swift */; };
 		181704D525E654EC003825D7 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704D425E654EC003825D7 /* NotificationVC.swift */; };
+		184A8ABA25FB4C98000583C5 /* ChooseRoleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A8AB925FB4C98000583C5 /* ChooseRoleVC.swift */; };
 		184B113925E36C74003007A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B113825E36C74003007A2 /* AppDelegate.swift */; };
 		184B113B25E36C74003007A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B113A25E36C74003007A2 /* SceneDelegate.swift */; };
 		184B113D25E36C74003007A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B113C25E36C74003007A2 /* ViewController.swift */; };
@@ -103,7 +104,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1807058325E7690C00DBE739 /* DealerUI.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DealerUI.storyboard; sourceTree = "<group>"; };
+		1807058325E7690C00DBE739 /* Customer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Customer.storyboard; sourceTree = "<group>"; };
 		180847B625E4BE2A00D04E69 /* SignInWithVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithVC.swift; sourceTree = "<group>"; };
 		180847BB25E4BE4700D04E69 /* AddPhoneNumberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhoneNumberVC.swift; sourceTree = "<group>"; };
 		180847C025E4BE5F00D04E69 /* OTPVerificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVerificationVC.swift; sourceTree = "<group>"; };
@@ -135,6 +136,7 @@
 		181704CA25E63E11003825D7 /* MyOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderVC.swift; sourceTree = "<group>"; };
 		181704CF25E64824003825D7 /* ContactUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsVC.swift; sourceTree = "<group>"; };
 		181704D425E654EC003825D7 /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
+		184A8AB925FB4C98000583C5 /* ChooseRoleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRoleVC.swift; sourceTree = "<group>"; };
 		184B113525E36C74003007A2 /* Gahir Agro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gahir Agro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		184B113825E36C74003007A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		184B113A25E36C74003007A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -254,6 +256,51 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		184A8AAA25FB484C000583C5 /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				184A8AAD25FB488F000583C5 /* Auth */,
+				184A8AAF25FB48A1000583C5 /* Side Menu */,
+				184A8AAE25FB4895000583C5 /* Home */,
+			);
+			path = Customer;
+			sourceTree = "<group>";
+		};
+		184A8AAB25FB4853000583C5 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		184A8AAC25FB4858000583C5 /* Sales Executive */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Sales Executive";
+			sourceTree = "<group>";
+		};
+		184A8AAD25FB488F000583C5 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		184A8AAE25FB4895000583C5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		184A8AAF25FB48A1000583C5 /* Side Menu */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Side Menu";
+			sourceTree = "<group>";
+		};
 		184B112C25E36C74003007A2 = {
 			isa = PBXGroup;
 			children = (
@@ -324,10 +371,10 @@
 		184B116C25E36D95003007A2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				184B117325E36E23003007A2 /* Auth */,
 				18E84AD225E7AA9D004A2148 /* Dealer */,
-				180847C925E4DB5800D04E69 /* SideMenu */,
-				180847C825E4DB5000D04E69 /* Home */,
+				184A8AAA25FB484C000583C5 /* Customer */,
+				184A8AAB25FB4853000583C5 /* Admin */,
+				184A8AAC25FB4858000583C5 /* Sales Executive */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -338,7 +385,7 @@
 				184B114325E36C74003007A2 /* LaunchScreen.storyboard */,
 				184B117625E36E76003007A2 /* Auth.storyboard */,
 				184B113E25E36C74003007A2 /* Main.storyboard */,
-				1807058325E7690C00DBE739 /* DealerUI.storyboard */,
+				1807058325E7690C00DBE739 /* Customer.storyboard */,
 				18C4097625F37902004786D9 /* Splash.storyboard */,
 			);
 			path = Views;
@@ -409,6 +456,7 @@
 				180847C025E4BE5F00D04E69 /* OTPVerificationVC.swift */,
 				184B118025E36EB7003007A2 /* SignUpVC.swift */,
 				184B118525E36EC9003007A2 /* ForgotPasswordVC.swift */,
+				184A8AB925FB4C98000583C5 /* ChooseRoleVC.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -466,6 +514,9 @@
 		18E84AD225E7AA9D004A2148 /* Dealer */ = {
 			isa = PBXGroup;
 			children = (
+				184B117325E36E23003007A2 /* Auth */,
+				180847C825E4DB5000D04E69 /* Home */,
+				180847C925E4DB5800D04E69 /* SideMenu */,
 				18E84AD325E7AACE004A2148 /* EnquiryVC.swift */,
 				18E84AD825E7AAE4004A2148 /* DelaerProductDetailsVC.swift */,
 				18E84ADD25E7AC08004A2148 /* BookOrderVC.swift */,
@@ -615,7 +666,7 @@
 				180EEAEA25E3B73100D6327A /* Poppins-Bold.otf in Resources */,
 				180EEAE125E3B73100D6327A /* SIL Open Font License.txt in Resources */,
 				180EEAE025E3B73100D6327A /* Poppins-ExtraBold.otf in Resources */,
-				1807058425E7690C00DBE739 /* DealerUI.storyboard in Resources */,
+				1807058425E7690C00DBE739 /* Customer.storyboard in Resources */,
 				180EEAED25E3B73100D6327A /* Poppins-BoldItalic.otf in Resources */,
 				180EEAE225E3B73100D6327A /* Poppins-ExtraBoldItalic.otf in Resources */,
 				184B117725E36E76003007A2 /* Auth.storyboard in Resources */,
@@ -783,6 +834,7 @@
 				18157E1725E50FBD00E4451C /* SideMenuController.swift in Sources */,
 				180847CE25E4DBA200D04E69 /* HomeVC.swift in Sources */,
 				184B117C25E36E91003007A2 /* SignInVC.swift in Sources */,
+				184A8ABA25FB4C98000583C5 /* ChooseRoleVC.swift in Sources */,
 				18B87C7625E684C200837E6C /* SearchVC.swift in Sources */,
 				18E84AED25E7AC9E004A2148 /* SuccesfullyBookedVC.swift in Sources */,
 				18E84AD425E7AACE004A2148 /* EnquiryVC.swift in Sources */,
