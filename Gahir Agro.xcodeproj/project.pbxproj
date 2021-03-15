@@ -71,6 +71,15 @@
 		184B11CA25E3726E003007A2 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C725E3726D003007A2 /* Constant.swift */; };
 		184B11CB25E3726E003007A2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C825E3726D003007A2 /* Reachability.swift */; };
 		184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C925E3726D003007A2 /* AFWrapperClass.swift */; };
+		1872905025FF388900A83349 /* CustomerProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1872904F25FF388900A83349 /* CustomerProfileVC.swift */; };
+		1872905525FF389F00A83349 /* CustomerEditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1872905425FF389F00A83349 /* CustomerEditProfileVC.swift */; };
+		1872905A25FF38C100A83349 /* CustomerNotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1872905925FF38C100A83349 /* CustomerNotificationVC.swift */; };
+		1872905F25FF38F400A83349 /* CustomerContactUSVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1872905E25FF38F400A83349 /* CustomerContactUSVC.swift */; };
+		1872906425FF390500A83349 /* CustomerSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1872906325FF390500A83349 /* CustomerSearchVC.swift */; };
+		1872907125FF397D00A83349 /* AdminAuth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1872907025FF397D00A83349 /* AdminAuth.storyboard */; };
+		1872907625FF399300A83349 /* AdminMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1872907525FF399300A83349 /* AdminMain.storyboard */; };
+		1872907B25FF39A900A83349 /* SalesAuth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1872907A25FF39A900A83349 /* SalesAuth.storyboard */; };
+		1872908025FF39B400A83349 /* SalesMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1872907F25FF39B400A83349 /* SalesMain.storyboard */; };
 		1876B2FF25EF5E9200E5A245 /* ResponseModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876B2FE25EF5E9200E5A245 /* ResponseModal.swift */; };
 		187A8BEF25ECC4FD00DCA747 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 187A8BEE25ECC4FD00DCA747 /* GoogleService-Info.plist */; };
 		187A8C0825ECF2DA00DCA747 /* PKWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A8C0725ECF2DA00DCA747 /* PKWrapperClass.swift */; };
@@ -181,6 +190,15 @@
 		184B11C725E3726D003007A2 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		184B11C825E3726D003007A2 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		184B11C925E3726D003007A2 /* AFWrapperClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWrapperClass.swift; sourceTree = "<group>"; };
+		1872904F25FF388900A83349 /* CustomerProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerProfileVC.swift; sourceTree = "<group>"; };
+		1872905425FF389F00A83349 /* CustomerEditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerEditProfileVC.swift; sourceTree = "<group>"; };
+		1872905925FF38C100A83349 /* CustomerNotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerNotificationVC.swift; sourceTree = "<group>"; };
+		1872905E25FF38F400A83349 /* CustomerContactUSVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerContactUSVC.swift; sourceTree = "<group>"; };
+		1872906325FF390500A83349 /* CustomerSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerSearchVC.swift; sourceTree = "<group>"; };
+		1872907025FF397D00A83349 /* AdminAuth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AdminAuth.storyboard; sourceTree = "<group>"; };
+		1872907525FF399300A83349 /* AdminMain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AdminMain.storyboard; sourceTree = "<group>"; };
+		1872907A25FF39A900A83349 /* SalesAuth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SalesAuth.storyboard; sourceTree = "<group>"; };
+		1872907F25FF39B400A83349 /* SalesMain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SalesMain.storyboard; sourceTree = "<group>"; };
 		1876B2FE25EF5E9200E5A245 /* ResponseModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseModal.swift; sourceTree = "<group>"; };
 		187A8BE925ECC13200DCA747 /* Gahir Agro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Gahir Agro.entitlements"; sourceTree = "<group>"; };
 		187A8BEE25ECC4FD00DCA747 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Certifacate and gooleinfolist/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -316,6 +334,7 @@
 			children = (
 				18E84AD825E7AAE4004A2148 /* CustomerProductDetailsVC.swift */,
 				18E84AF125E7B0DE004A2148 /* CustomerHomeVC.swift */,
+				1872906325FF390500A83349 /* CustomerSearchVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -323,8 +342,11 @@
 		184A8AAF25FB48A1000583C5 /* Side Menu */ = {
 			isa = PBXGroup;
 			children = (
+				1872904E25FF386F00A83349 /* Profile */,
 				184A8AF925FB8C4F000583C5 /* SideMenuForCustomerVC.swift */,
 				184A8AFE25FB8F6B000583C5 /* SideMenuControllerForCustomer.swift */,
+				1872905925FF38C100A83349 /* CustomerNotificationVC.swift */,
+				1872905E25FF38F400A83349 /* CustomerContactUSVC.swift */,
 			);
 			path = "Side Menu";
 			sourceTree = "<group>";
@@ -341,8 +363,8 @@
 		184A8B0425FB905A000583C5 /* ForCustomer */ = {
 			isa = PBXGroup;
 			children = (
-				1807058325E7690C00DBE739 /* Customer.storyboard */,
 				184A8B0B25FB90E7000583C5 /* AuthForCustomer.storyboard */,
+				1807058325E7690C00DBE739 /* Customer.storyboard */,
 			);
 			path = ForCustomer;
 			sourceTree = "<group>";
@@ -350,6 +372,8 @@
 		184A8B0525FB906A000583C5 /* ForAdmin */ = {
 			isa = PBXGroup;
 			children = (
+				1872907025FF397D00A83349 /* AdminAuth.storyboard */,
+				1872907525FF399300A83349 /* AdminMain.storyboard */,
 			);
 			path = ForAdmin;
 			sourceTree = "<group>";
@@ -357,6 +381,8 @@
 		184A8B0625FB9072000583C5 /* ForSalesExecutive */ = {
 			isa = PBXGroup;
 			children = (
+				1872907A25FF39A900A83349 /* SalesAuth.storyboard */,
+				1872907F25FF39B400A83349 /* SalesMain.storyboard */,
 			);
 			path = ForSalesExecutive;
 			sourceTree = "<group>";
@@ -564,6 +590,15 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		1872904E25FF386F00A83349 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				1872904F25FF388900A83349 /* CustomerProfileVC.swift */,
+				1872905425FF389F00A83349 /* CustomerEditProfileVC.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		1876B2FD25EF5E7A00E5A245 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -721,6 +756,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1872907625FF399300A83349 /* AdminMain.storyboard in Resources */,
+				1872908025FF39B400A83349 /* SalesMain.storyboard in Resources */,
 				180EEAE625E3B73100D6327A /* Poppins-Medium.otf in Resources */,
 				180EEADB25E3B73100D6327A /* Poppins-SemiBold.otf in Resources */,
 				187A8BEF25ECC4FD00DCA747 /* GoogleService-Info.plist in Resources */,
@@ -739,9 +776,11 @@
 				180EEAEB25E3B73100D6327A /* Poppins-ExtraLightItalic.otf in Resources */,
 				180EEADF25E3B73100D6327A /* Poppins-LightItalic.otf in Resources */,
 				180EEAE425E3B73100D6327A /* Poppins-SemiBoldItalic.otf in Resources */,
+				1872907125FF397D00A83349 /* AdminAuth.storyboard in Resources */,
 				180EEAE325E3B73100D6327A /* Poppins-Regular.otf in Resources */,
 				180EEADE25E3B73100D6327A /* Poppins-MediumItalic.otf in Resources */,
 				180EEADD25E3B73100D6327A /* Poppins-Italic.otf in Resources */,
+				1872907B25FF39A900A83349 /* SalesAuth.storyboard in Resources */,
 				180EEAEC25E3B73100D6327A /* Poppins-Black.otf in Resources */,
 				184B114225E36C74003007A2 /* Assets.xcassets in Resources */,
 				184B114025E36C74003007A2 /* Main.storyboard in Resources */,
@@ -883,15 +922,19 @@
 				184A8AEF25FB8A1C000583C5 /* OTPVerificationForCustomerVC.swift in Sources */,
 				180847D325E4DBB000D04E69 /* SideMenuVC.swift in Sources */,
 				184B11CA25E3726E003007A2 /* Constant.swift in Sources */,
+				1872905A25FF38C100A83349 /* CustomerNotificationVC.swift in Sources */,
 				18E84AF225E7B0DE004A2148 /* CustomerHomeVC.swift in Sources */,
 				18F9B6CD25E8CB020034D978 /* SplashVC.swift in Sources */,
 				184A8AFA25FB8C4F000583C5 /* SideMenuForCustomerVC.swift in Sources */,
 				18E84AE825E7AC57004A2148 /* RequestSubmitPopUpVC.swift in Sources */,
 				187A8C2525ECF9B600DCA747 /* SignInWithPhone.swift in Sources */,
 				18DEBB1925F73F9200475060 /* ThankYouVC.swift in Sources */,
+				1872905525FF389F00A83349 /* CustomerEditProfileVC.swift in Sources */,
 				184B113925E36C74003007A2 /* AppDelegate.swift in Sources */,
 				184B11C125E37259003007A2 /* Activityloader.swift in Sources */,
 				184B11CB25E3726E003007A2 /* Reachability.swift in Sources */,
+				1872905F25FF38F400A83349 /* CustomerContactUSVC.swift in Sources */,
+				1872905025FF388900A83349 /* CustomerProfileVC.swift in Sources */,
 				181704C125E63DF3003825D7 /* ProfileVC.swift in Sources */,
 				184B11A225E37149003007A2 /* AppFunctions.swift in Sources */,
 				184A8AE025FB8949000583C5 /* SignInWithScreenVC.swift in Sources */,
@@ -907,6 +950,7 @@
 				180847C125E4BE5F00D04E69 /* OTPVerificationVC.swift in Sources */,
 				180847BC25E4BE4700D04E69 /* AddPhoneNumberVC.swift in Sources */,
 				184B11A425E37149003007A2 /* ImagePicker.swift in Sources */,
+				1872906425FF390500A83349 /* CustomerSearchVC.swift in Sources */,
 				184B118125E36EB7003007A2 /* SignUpVC.swift in Sources */,
 				18E84AD925E7AAE4004A2148 /* CustomerProductDetailsVC.swift in Sources */,
 				184B11C325E37259003007A2 /* ChangeBottamColor.swift in Sources */,
