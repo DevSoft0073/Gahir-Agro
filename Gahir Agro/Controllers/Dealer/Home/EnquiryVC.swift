@@ -68,23 +68,31 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
             showAlertMessage(title: Constant.shared.appTitle, message: "Quantity should not be set to 0", okButton: "Ok", controller: self) {
             }
         }else{
-            PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
-            let url = Constant.shared.baseUrl + Constant.shared.AddEnquiry
-            var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
-            let accessToken = UserDefaults.standard.value(forKey: "accessToken")
-            print(deviceID ?? "")
-            if deviceID == nil  {
-                deviceID = "777"
-            }
             
-            let params = ["product_id" : id , "quantity" : count, "accessory" : selectedValue1 ,"access_token": accessToken,"system" : selectedValue1 , "type" : self.productId]  as? [String : AnyObject] ?? [:]
-            print(params)
-            PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
-                print(response.data)
-                PKWrapperClass.svprogressHudDismiss(view: self)
-                let status = response.data["status"] as? String ?? ""
-                self.messgae = response.data["message"] as? String ?? ""
-                if status == "1"{
+            if selectedValue.isEmpty == true {
+                ValidateData(strMessage: "Please select value for system")
+            }else if selectedValue1.isEmpty == true{
+                ValidateData(strMessage: "Please select value for accessories")
+                
+            }else{
+                
+                PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+                let url = Constant.shared.baseUrl + Constant.shared.AddEnquiry
+                var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+                let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+                print(deviceID ?? "")
+                if deviceID == nil  {
+                    deviceID = "777"
+                }
+                
+                let params = ["product_id" : id , "quantity" : count, "accessory" : selectedValue1 ,"access_token": accessToken,"system" : selectedValue , "type" : self.productId]  as? [String : AnyObject] ?? [:]
+                print(params)
+                PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+                    print(response.data)
+                    PKWrapperClass.svprogressHudDismiss(view: self)
+                    let status = response.data["status"] as? String ?? ""
+                    self.messgae = response.data["message"] as? String ?? ""
+                    if status == "1"{
                         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
                         vc.modalPresentationStyle = .overCurrentContext
                         vc.modalTransitionStyle = .crossDissolve
@@ -93,22 +101,23 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                                 if self.isAvailabele == true {
                                     
                                 }else{
-                                        
-                                    }
+                                    
+                                }
                                 self.popBack(2)
-//                                let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
-//                                self.navigationController?.pushViewController(vc, animated: true)
+                                //                                let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
+                                //                                self.navigationController?.pushViewController(vc, animated: true)
                             }
                         }
                         self.present(vc, animated: true, completion: nil)
                         
-                }else{
-                    PKWrapperClass.svprogressHudDismiss(view: self)
-                    alert(Constant.shared.appTitle, message: self.messgae, view: self)
+                    }else{
+                        PKWrapperClass.svprogressHudDismiss(view: self)
+                        alert(Constant.shared.appTitle, message: self.messgae, view: self)
+                    }
+                } failure: { (error) in
+                    print(error)
+                    showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
                 }
-            } failure: { (error) in
-                print(error)
-                showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
             }
         }
     }
@@ -158,7 +167,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                 else{
                     self.showImage.image = UIImage(named: "im")
                 }
-                self.productId = allData["id"] as? String ?? ""
+                self.productId = allData["prod_type"] as? String ?? ""
                 let accessories = allData["accessories"] as? [[String:Any]] ?? [[:]]
                 for obj in accessories {
                     print(obj)
@@ -345,7 +354,12 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
         return 80
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        currentIndex = textField.tag
+    }
+    
 }
+
 
 
 struct EnquieyData {

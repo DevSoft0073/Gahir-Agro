@@ -39,8 +39,8 @@ class ChooseRoleVC: UIViewController {
     
     @IBAction func nextButtonAction(_ sender: Any) {
         let filterArray = self.selectRoleArray.filter({$0.selected == true})
-        self.selectedRole = filterArray[0].id
         if filterArray.count > 0 {
+            self.selectedRole = filterArray[0].id
             setRole(val: filterArray.first!)
             if selectedRole == "0"{
                 let vc = SignInWithVC.instantiate(fromAppStoryboard: .Auth)

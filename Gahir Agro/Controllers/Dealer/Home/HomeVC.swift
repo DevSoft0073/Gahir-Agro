@@ -148,7 +148,7 @@ class AlItemsTBViewCell: UITableViewCell {
     
     @IBOutlet weak var checkAvailabiltyButton: UIButton!
     @IBOutlet weak var detailsLbl: UILabel!
-    @IBOutlet weak var modelLbl: UILabel!
+    @IBOutlet weak var priceLbl: UILabel!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var showImage: UIImageView!
     @IBOutlet weak var dataView: UIView!
@@ -172,6 +172,7 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
         cell.detailsLbl.text = tableViewDataArray[indexPath.row].prod_desc
         currentIndex = tableViewDataArray[indexPath.row].id
         cell.checkAvailabiltyButton.tag = indexPath.row
+        cell.priceLbl.text = tableViewDataArray[indexPath.row].price
         cell.checkAvailabiltyButton.addTarget(self, action: #selector(goto), for: .touchUpInside)
         return cell
     }

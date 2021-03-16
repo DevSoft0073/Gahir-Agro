@@ -39,6 +39,8 @@
 		181704CB25E63E11003825D7 /* MyOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704CA25E63E11003825D7 /* MyOrderVC.swift */; };
 		181704D025E64824003825D7 /* ContactUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704CF25E64824003825D7 /* ContactUsVC.swift */; };
 		181704D525E654EC003825D7 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704D425E654EC003825D7 /* NotificationVC.swift */; };
+		18424EFE2600CE6E0039CCBF /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18424EFD2600CE6E0039CCBF /* LogInVC.swift */; };
+		18424F052600D19E0039CCBF /* DealerEnquriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18424F042600D19E0039CCBF /* DealerEnquriesVC.swift */; };
 		184A8ABA25FB4C98000583C5 /* ChooseRoleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A8AB925FB4C98000583C5 /* ChooseRoleVC.swift */; };
 		184A8AE025FB8949000583C5 /* SignInWithScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A8ADF25FB8949000583C5 /* SignInWithScreenVC.swift */; };
 		184A8AE525FB896A000583C5 /* SignINVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A8AE425FB896A000583C5 /* SignINVC.swift */; };
@@ -84,6 +86,7 @@
 		187A8BEF25ECC4FD00DCA747 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 187A8BEE25ECC4FD00DCA747 /* GoogleService-Info.plist */; };
 		187A8C0825ECF2DA00DCA747 /* PKWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A8C0725ECF2DA00DCA747 /* PKWrapperClass.swift */; };
 		187A8C2525ECF9B600DCA747 /* SignInWithPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A8C2425ECF9B600DCA747 /* SignInWithPhone.swift */; };
+		18A877362600E66200566339 /* EnquriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A877352600E66200566339 /* EnquriesVC.swift */; };
 		18AD8F0325EADA9C00072166 /* OpenPIcker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD8F0225EADA9C00072166 /* OpenPIcker.swift */; };
 		18B87C7625E684C200837E6C /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B87C7525E684C200837E6C /* SearchVC.swift */; };
 		18C4097725F37902004786D9 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C4097625F37902004786D9 /* Splash.storyboard */; };
@@ -152,6 +155,8 @@
 		181704CA25E63E11003825D7 /* MyOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderVC.swift; sourceTree = "<group>"; };
 		181704CF25E64824003825D7 /* ContactUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsVC.swift; sourceTree = "<group>"; };
 		181704D425E654EC003825D7 /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
+		18424EFD2600CE6E0039CCBF /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
+		18424F042600D19E0039CCBF /* DealerEnquriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerEnquriesVC.swift; sourceTree = "<group>"; };
 		184A8AB925FB4C98000583C5 /* ChooseRoleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRoleVC.swift; sourceTree = "<group>"; };
 		184A8ADF25FB8949000583C5 /* SignInWithScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithScreenVC.swift; sourceTree = "<group>"; };
 		184A8AE425FB896A000583C5 /* SignINVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignINVC.swift; sourceTree = "<group>"; };
@@ -204,6 +209,7 @@
 		187A8BEE25ECC4FD00DCA747 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Certifacate and gooleinfolist/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		187A8C0725ECF2DA00DCA747 /* PKWrapperClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWrapperClass.swift; sourceTree = "<group>"; };
 		187A8C2425ECF9B600DCA747 /* SignInWithPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithPhone.swift; sourceTree = "<group>"; };
+		18A877352600E66200566339 /* EnquriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnquriesVC.swift; sourceTree = "<group>"; };
 		18AD8F0225EADA9C00072166 /* OpenPIcker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPIcker.swift; sourceTree = "<group>"; };
 		18B87C7525E684C200837E6C /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		18C4097625F37902004786D9 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
@@ -281,6 +287,7 @@
 				181704CA25E63E11003825D7 /* MyOrderVC.swift */,
 				181704CF25E64824003825D7 /* ContactUsVC.swift */,
 				181704D425E654EC003825D7 /* NotificationVC.swift */,
+				18A877352600E66200566339 /* EnquriesVC.swift */,
 			);
 			path = SideMenu;
 			sourceTree = "<group>";
@@ -292,6 +299,30 @@
 				181704C525E63E02003825D7 /* EditProfileVC.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		18424EFC2600CE590039CCBF /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				18424EFD2600CE6E0039CCBF /* LogInVC.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		18424F022600D1530039CCBF /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		18424F032600D1610039CCBF /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				18424F022600D1530039CCBF /* SideMenu */,
+				18424F042600D19E0039CCBF /* DealerEnquriesVC.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		184A8AAA25FB484C000583C5 /* Customer */ = {
@@ -307,6 +338,8 @@
 		184A8AAB25FB4853000583C5 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
+				18424F032600D1610039CCBF /* Home */,
+				18424EFC2600CE590039CCBF /* Auth */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -914,10 +947,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A877362600E66200566339 /* EnquriesVC.swift in Sources */,
 				184B11B925E37244003007A2 /* ValidationManager.swift in Sources */,
 				181704D525E654EC003825D7 /* NotificationVC.swift in Sources */,
 				184B11BA25E37244003007A2 /* DisplayAlertManager.swift in Sources */,
 				18AD8F0325EADA9C00072166 /* OpenPIcker.swift in Sources */,
+				18424EFE2600CE6E0039CCBF /* LogInVC.swift in Sources */,
 				184B113D25E36C74003007A2 /* ViewController.swift in Sources */,
 				184A8AEF25FB8A1C000583C5 /* OTPVerificationForCustomerVC.swift in Sources */,
 				180847D325E4DBB000D04E69 /* SideMenuVC.swift in Sources */,
@@ -945,6 +980,7 @@
 				184A8ABA25FB4C98000583C5 /* ChooseRoleVC.swift in Sources */,
 				18B87C7625E684C200837E6C /* SearchVC.swift in Sources */,
 				18E84AED25E7AC9E004A2148 /* SuccesfullyBookedVC.swift in Sources */,
+				18424F052600D19E0039CCBF /* DealerEnquriesVC.swift in Sources */,
 				18E84AD425E7AACE004A2148 /* EnquiryVC.swift in Sources */,
 				184A8AE525FB896A000583C5 /* SignINVC.swift in Sources */,
 				180847C125E4BE5F00D04E69 /* OTPVerificationVC.swift in Sources */,

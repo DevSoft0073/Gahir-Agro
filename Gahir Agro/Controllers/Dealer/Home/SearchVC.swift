@@ -257,9 +257,14 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource{
 
     
     @objc func goto() {
-        let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
-        vc.id = currentIndex
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProductDetailsVC") as! ProductDetailsVC
+//        let navigationController = UINavigationController(rootViewController: vc)
+//        vc.id = currentIndex
+//        self.present(navigationController, animated: true, completion: nil)
+//        let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
+//        vc.id = currentIndex
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
