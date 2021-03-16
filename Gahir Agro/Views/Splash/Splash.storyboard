@@ -20,14 +20,23 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-1" translatesAutoresizingMaskIntoConstraints="NO" id="czP-3E-4Or">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="319-e7-wfL">
+                                <rect key="frame" x="62" y="375.5" width="290" height="155"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="319-e7-wfL" secondAttribute="height" multiplier="15:8" id="bpb-AG-gOa"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UyG-sM-4dU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="czP-3E-4Or" firstAttribute="top" secondItem="Nug-SJ-Y8g" secondAttribute="top" id="2Uo-Jy-jXD"/>
+                            <constraint firstItem="319-e7-wfL" firstAttribute="width" secondItem="Nug-SJ-Y8g" secondAttribute="width" multiplier="0.7" id="SO6-Wj-20L"/>
+                            <constraint firstItem="319-e7-wfL" firstAttribute="centerX" secondItem="Nug-SJ-Y8g" secondAttribute="centerX" id="VPm-hK-kSG"/>
                             <constraint firstItem="czP-3E-4Or" firstAttribute="leading" secondItem="UyG-sM-4dU" secondAttribute="leading" id="YON-Ta-VkL"/>
                             <constraint firstItem="UyG-sM-4dU" firstAttribute="trailing" secondItem="czP-3E-4Or" secondAttribute="trailing" id="Yr6-IW-kDb"/>
                             <constraint firstAttribute="bottom" secondItem="czP-3E-4Or" secondAttribute="bottom" id="dAc-HT-Ls6"/>
+                            <constraint firstItem="319-e7-wfL" firstAttribute="centerY" secondItem="UyG-sM-4dU" secondAttribute="centerY" id="uB8-ZI-3ST"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IC1-dI-DPN"/>
@@ -56,6 +65,7 @@
     </scenes>
     <resources>
         <image name="bg-1" width="750" height="1843"/>
+        <image name="logo" width="511" height="435"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

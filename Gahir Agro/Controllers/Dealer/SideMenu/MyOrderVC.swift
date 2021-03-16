@@ -17,6 +17,7 @@ class MyOrderVC: UIViewController {
     var messgae = String()
     var enquiryID = [String]()
     var quantityArray = [String]()
+    var accName = String()
     @IBOutlet weak var myOrderTBView: UITableView!
     var orderHistoryArray = [OrderHistoryData]()
     
@@ -48,11 +49,13 @@ class MyOrderVC: UIViewController {
                 let allData = response.data["enquiry_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_enquiries"] as? [[String:Any]] ?? [[:]]{
                     print(obj)
+                    var accessoriesData = obj["accessories"] as? [String:Any] ?? [:]
+                    self.accName = accessoriesData["acc_name"] as? String ?? ""
                     self.quantityArray.append(obj["qty"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
                     let productDetails = obj["product_detail"] as? [String:Any] ?? [:]
                     print(productDetails)
-                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: productDetails["24 Feb 2021"] as? String ?? "24 Feb 2021", price: productDetails["prod_price"] as? String ?? "", image: productDetails["prod_image"] as? String ?? ""))
+                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: productDetails["24 Feb 2021"] as? String ?? "24 Feb 2021", price: "$\(productDetails["prod_price"] as? String ?? "").00" as? String ?? "", image: productDetails["prod_image"] as? String ?? ""))
                 }
                 for i in 0..<newArr.count{
                     self.orderHistoryArray.append(newArr[i])
@@ -82,6 +85,7 @@ class MyOrderVC: UIViewController {
 
 class MyOrderTBViewCell: UITableViewCell {
     
+    @IBOutlet weak var productID: UILabel!
     
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var idLbl: UILabel!
@@ -102,12 +106,12 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyOrderTBViewCell", for: indexPath) as! MyOrderTBViewCell
-        cell.priceLbl.text = orderHistoryArray[indexPath.section].price
+        cell.priceLbl.text = (orderHistoryArray[indexPath.section].price)
         cell.nameLbl.text = orderHistoryArray[indexPath.section].name
         cell.timeLbl.text = orderHistoryArray[indexPath.section].deliveryDate
         cell.quantityLbl?.text = quantityArray[indexPath.row]
         cell.priceLbl.text = orderHistoryArray[indexPath.section].price
-        cell.idLbl.text = "ID:\(orderHistoryArray[indexPath.section].id)"
+        cell.productID.text = orderHistoryArray[indexPath.section].id
         cell.showImage.sd_setImage(with: URL(string:orderHistoryArray[indexPath.row].image), placeholderImage: UIImage(named: "im"))
         return cell
     }
@@ -121,6 +125,7 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
         vc.name = orderHistoryArray[indexPath.row].name
         vc.quantity = quantityArray[indexPath.row]
         vc.amount = orderHistoryArray[indexPath.row].price
+        vc.accessoriesName = self.accName
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

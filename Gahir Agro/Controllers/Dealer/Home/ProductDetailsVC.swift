@@ -11,16 +11,6 @@ class ProductDetailsVC: UIViewController {
 
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var productDetailsTBView: UITableView!
-    @IBOutlet weak var grainTankLbl: UILabel!
-    @IBOutlet weak var thresherLbl: UILabel!
-    @IBOutlet weak var cuttingCapacityLbl: UILabel!
-    @IBOutlet weak var drumDiaLbl: UILabel!
-    @IBOutlet weak var numberOfStrawlbl: UILabel!
-    @IBOutlet weak var hpRequiredLbl: UILabel!
-    @IBOutlet weak var heightOfCutMin: UILabel!
-    @IBOutlet weak var heightOfCutMaxLbl: UILabel!
-    @IBOutlet weak var widthOfCutLbl: UILabel!
-    @IBOutlet weak var chassisNoLbl: UILabel!
     @IBOutlet weak var modelLbl: UILabel!
     @IBOutlet weak var namelbl: UILabel!
     @IBOutlet weak var showImage: UIImageView!
@@ -125,7 +115,7 @@ extension ProductDetailsVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsTBViewCell", for: indexPath) as! ProductDetailsTBViewCell
-        cell.nameLbl.text = "\(detailsDataArray[indexPath.row].fieldData)"
+        cell.nameLbl.text = "\(detailsDataArray[indexPath.row].fieldData):"
         cell.dataLbl.text = "\(detailsDataArray[indexPath.row].fieldName)"
         DispatchQueue.main.async {
             self.heightConstraint.constant = self.productDetailsTBView.contentSize.height

@@ -25,6 +25,7 @@ class CustomerEditProfileVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     @IBAction func backButtonAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func imageUploadButtonAction(_ sender: Any) {

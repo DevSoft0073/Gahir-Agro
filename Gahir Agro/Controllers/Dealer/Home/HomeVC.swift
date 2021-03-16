@@ -23,12 +23,12 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         allItemsTBView.separatorStyle = .none
 
-        collectionViewDataArray.append(CollectionViewData(name: "Tractor", selected: false, type: "0"))
+        collectionViewDataArray.append(CollectionViewData(name: "Tractor", selected: true, type: "0"))
         collectionViewDataArray.append(CollectionViewData(name: "Laser", selected: false, type: "1"))
         collectionViewDataArray.append(CollectionViewData(name: "Pump", selected: false, type: "2"))
         
-        
-        getAllProducts()
+        filterdData()
+//        getAllProducts()
         itemsCollectionView.reloadData()
         
         // Do any additional setup after loading the view.
@@ -61,24 +61,29 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
+            self.tableViewDataArray.removeAll()
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
+            self.lastPage = response.data["last_page"] as? Bool ?? false
             if status == "1"{
-                
                 var newArr = [TableViewData]()
                 let allData = response.data["product_list"] as? [String:Any] ?? [:]
                 self.lastPage = response.data["product_list"] as? Bool ?? false
                 for obj in allData["all_products"] as? [[String:Any]] ?? [[:]] {
                     print(obj)
-                    newArr.append(TableViewData(image: obj["prod_image"] as? String ?? "", name: obj["prod_name"] as? String ?? "", modelName: obj["prod_desc"] as? String ?? "", details: obj["prod_desc"] as? String ?? "", price: obj["prod_price"] as? String ?? "", prod_sno: obj["GAIC2K213000"] as? String ?? "", prod_type: obj["prod_type"] as? String ?? "", id: obj["id"] as? String ?? "", prod_video: obj["prod_video"] as? String ?? "", prod_qty: obj["prod_qty"] as? String ?? "", prod_pdf: obj["prod_pdf"] as? String ?? ""))
+                    newArr.append(TableViewData(image: obj["prod_image"] as? String ?? "", name: obj["prod_name"] as? String ?? "", modelName: obj["prod_desc"] as? String ?? "", details: obj["prod_desc"] as? String ?? "", price: obj["prod_price"] as? String ?? "", prod_sno: obj["GAIC2K213000"] as? String ?? "", prod_type: obj["prod_type"] as? String ?? "", id: obj["id"] as? String ?? "", prod_video: obj["prod_video"] as? String ?? "", prod_qty: obj["prod_qty"] as? String ?? "", prod_pdf: obj["prod_pdf"] as? String ?? "", prod_desc:  obj["prod_desc"] as? String ?? ""))
                 }
                 for i in 0..<newArr.count{
                     self.tableViewDataArray.append(newArr[i])
                 }
                 self.allItemsTBView.reloadData()
-            }else{
+            }else if status == "0"{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            }else{
+                UserDefaults.standard.removeObject(forKey: "tokenFString")
+                let appDel = UIApplication.shared.delegate as! AppDelegate
+                appDel.Logout1()
             }
         } failure: { (error) in
             print(error)
@@ -110,7 +115,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
                 self.lastPage = response.data["product_list"] as? Bool ?? false
                 for obj in allData["all_products"] as? [[String:Any]] ?? [[:]] {
                     print(obj)
-                    newArr.append(TableViewData(image: obj["prod_image"] as? String ?? "", name: obj["prod_name"] as? String ?? "", modelName: obj["prod_desc"] as? String ?? "", details: obj["prod_desc"] as? String ?? "", price: obj["prod_price"] as? String ?? "", prod_sno: obj["GAIC2K213000"] as? String ?? "", prod_type: obj["prod_type"] as? String ?? "", id: obj["id"] as? String ?? "", prod_video: obj["prod_video"] as? String ?? "", prod_qty: obj["prod_qty"] as? String ?? "", prod_pdf: obj["prod_pdf"] as? String ?? ""))
+                    newArr.append(TableViewData(image: obj["prod_image"] as? String ?? "", name: obj["prod_name"] as? String ?? "", modelName: obj["prod_desc"] as? String ?? "", details: obj["prod_desc"] as? String ?? "", price: obj["prod_price"] as? String ?? "", prod_sno: obj["GAIC2K213000"] as? String ?? "", prod_type: obj["prod_type"] as? String ?? "", id: obj["id"] as? String ?? "", prod_video: obj["prod_video"] as? String ?? "", prod_qty: obj["prod_qty"] as? String ?? "", prod_pdf: obj["prod_pdf"] as? String ?? "", prod_desc: obj["prod_desc"] as? String ?? ""))
                 }
                 for i in 0..<newArr.count{
                     self.tableViewDataArray.append(newArr[i])
@@ -163,8 +168,8 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
         cell.showImage.sd_setImage(with: URL(string:tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "im"))
         cell.nameLbl.text = tableViewDataArray[indexPath.row].name
         cell.showImage.roundTop()
-        cell.modelLbl.text = tableViewDataArray[indexPath.row].modelName
-        cell.detailsLbl.text = tableViewDataArray[indexPath.row].details
+     //   cell.modelLbl.text = tableViewDataArray[indexPath.row].modelName
+        cell.detailsLbl.text = tableViewDataArray[indexPath.row].prod_desc
         currentIndex = tableViewDataArray[indexPath.row].id
         cell.checkAvailabiltyButton.tag = indexPath.row
         cell.checkAvailabiltyButton.addTarget(self, action: #selector(goto), for: .touchUpInside)
@@ -178,7 +183,7 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 360
+        return UITableView.automaticDimension
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -186,12 +191,12 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
             let bottamEdge = Float(self.allItemsTBView.contentOffset.y + self.allItemsTBView.frame.size.height)
             if bottamEdge >= Float(self.allItemsTBView.contentSize.height) && tableViewDataArray.count > 0 {
                 page = page + 1
-                getAllProducts()
+                filterdData()
             }
         }else{
             let bottamEdge = Float(self.allItemsTBView.contentOffset.y + self.allItemsTBView.frame.size.height)
             if bottamEdge >= Float(self.allItemsTBView.contentSize.height) && tableViewDataArray.count > 0 {
-                getAllProducts()
+//                filterdData()
             }
         }
     }
@@ -240,7 +245,7 @@ extension HomeVC : UICollectionViewDelegate , UICollectionViewDataSource {
             let filterArray = collectionViewDataArray.filter({$0.selected == true})
             print(filterArray)
             for obj in filterArray{
-                productType = obj.type
+                productType = obj.type ?? "0"
                 self.tableViewDataArray.removeAll()
                 filterdData()
             }
@@ -274,8 +279,9 @@ struct TableViewData {
     var prod_video : String
     var prod_qty : String
     var prod_pdf : String
+    var prod_desc : String
     
-    init(image : String,name : String,modelName : String,details : String,price : String,prod_sno : String,prod_type : String,id : String,prod_video : String,prod_qty : String,prod_pdf : String) {
+    init(image : String,name : String,modelName : String,details : String,price : String,prod_sno : String,prod_type : String,id : String,prod_video : String,prod_qty : String,prod_pdf : String,prod_desc : String) {
         self.image = image
         self.name = name
         self.modelName = modelName
@@ -287,6 +293,7 @@ struct TableViewData {
         self.prod_video = prod_video
         self.prod_qty = prod_qty
         self.prod_pdf = prod_pdf
+        self.prod_desc = prod_desc
     }
 }
 

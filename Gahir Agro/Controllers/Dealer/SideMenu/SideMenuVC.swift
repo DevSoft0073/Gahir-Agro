@@ -23,9 +23,10 @@ class SideMenuVC: UIViewController {
         super.viewDidLoad()
         getData()
         sideMenuItemsArray.append(SideMenuItems(name: "Home", selectedImage: "home", selected: true, unselected: "home-1"))
-        sideMenuItemsArray.append(SideMenuItems(name: "Enquiry List", selectedImage: "order", selected: false, unselected: "order-1"))
+        sideMenuItemsArray.append(SideMenuItems(name: "My Enquiries", selectedImage: "order", selected: false, unselected: "order-1"))
+        sideMenuItemsArray.append(SideMenuItems(name: "My Orders", selectedImage: "order", selected: false, unselected: "order-1"))
         sideMenuItemsArray.append(SideMenuItems(name: "Notifications", selectedImage: "noti", selected: false, unselected: "noti-1"))
-        sideMenuItemsArray.append(SideMenuItems(name: "Contact", selectedImage: "contact", selected: false, unselected: "contact-1"))
+        sideMenuItemsArray.append(SideMenuItems(name: "Contact Us", selectedImage: "contact", selected: false, unselected: "contact-1"))
         sideMenuItemsArray.append(SideMenuItems(name: "Privacy Policy", selectedImage: "privacy", selected: false, unselected: "privacy-1"))
         sideMenuItemsArray.append(SideMenuItems(name: "Logout", selectedImage: "logout", selected: false, unselected: "logout-1"))
         
@@ -146,31 +147,33 @@ extension SideMenuVC : UITableViewDelegate , UITableViewDataSource{
         
         else if(indexPath.row == 1) {
             let vc = MyOrderVC.instantiate(fromAppStoryboard: .Main)
-            (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
-            //            guard let url = URL(string: "https://stackoverflow.com") else { return }
-            //            UIApplication.shared.open(url)
-            //
+            (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true) 
         }
         
         else if(indexPath.row == 2) {
+            let vc = MyOrderVC.instantiate(fromAppStoryboard: .Main)
+            (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
+        }
+        
+        else if(indexPath.row == 3) {
             let vc = NotificationVC.instantiate(fromAppStoryboard: .Main)
             (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
             
         }
         
-        else if(indexPath.row == 3) {
+        else if(indexPath.row == 4) {
             let vc = ContactUsVC.instantiate(fromAppStoryboard: .Main)
             (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
         }
         
-        else if(indexPath.row == 4) {
+        else if(indexPath.row == 5) {
             
             guard let url = URL(string: "https://stackoverflow.com") else { return }
             UIApplication.shared.open(url)
             
         }
         
-        else if(indexPath.row == 5) {
+        else if(indexPath.row == 6) {
             let dialogMessage = UIAlertController(title: Constant.shared.appTitle, message: "Are you sure you want to Logout?", preferredStyle: .alert)
             
             // Create OK button with action handler

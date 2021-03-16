@@ -15,12 +15,11 @@ class SubmitDetailsVC: UIViewController {
     var modelName = String()
     var amount = String()
     var quantity = String()
-    
+    var accessoriesName = String()
     
     @IBOutlet weak var amountTxtFld: UITextField!
     @IBOutlet weak var quantityTxtFld: UITextField!
     @IBOutlet weak var accesoriesTxtFld: UITextField!
-    @IBOutlet weak var modelNameTxtFld: UITextField!
     @IBOutlet weak var nameTxtFld: UITextField!
     @IBOutlet weak var dealerCodeTxtFld: UITextField!
     @IBOutlet weak var utrNumberTxtFld: UITextField!
@@ -30,7 +29,7 @@ class SubmitDetailsVC: UIViewController {
         amountTxtFld.text = amount
         quantityTxtFld.text = quantity
         dealerCodeTxtFld.text = "ASHJK8767"
-        modelNameTxtFld.text = "Model"
+        accesoriesTxtFld.text = accessoriesName
         // Do any additional setup after loading the view.
     }
     

@@ -23,9 +23,12 @@ class CustomerProfileVC: UIViewController {
     }
     
     @IBAction func menuButtonAction(_ sender: Any) {
+        sideMenuController?.showLeftViewAnimated()
     }
     
     @IBAction func editButtonAction(_ sender: Any) {
+        let vc = CustomerEditProfileVC.instantiate(fromAppStoryboard: .Customer)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     /*
     // MARK: - Navigation

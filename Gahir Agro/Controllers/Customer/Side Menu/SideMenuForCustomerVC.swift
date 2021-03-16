@@ -50,7 +50,9 @@ class SideMenuForCustomerVC: UIViewController {
     }
     
     @IBAction func gotoSettingVC(_ sender: Any) {
-        
+        sideMenuController?.hideLeftViewAnimated()
+        let vc = CustomerProfileVC.instantiate(fromAppStoryboard: .Customer)
+        (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
     }
     
 }

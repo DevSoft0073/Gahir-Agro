@@ -43,22 +43,25 @@ class NotificationVC: UIViewController {
         if deviceID == nil  {
             deviceID = "777"
         }
-        let params = ["page_no" : "" ,"access_token": accessToken]  as? [String : AnyObject] ?? [:]
+        let params = ["page_no" : self.page ,"access_token": accessToken]  as? [String : AnyObject] ?? [:]
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
             print(response.data)
-//            self.notificationArray.removeAll()
+            self.notificationArray.removeAll()
             PKWrapperClass.svprogressHudDismiss(view: self)
             self.lastPage = response.data["product_list"] as? Bool ?? false
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
+            self.lastPage = response.data[""] as? Bool ?? false
             if status == "1"{
-                for obj in response.data["notification_list"] as? [[String:Any]] ?? [[:]] {
+                var newArr = [NotificationData]()
+                let allData = response.data["notification_list"] as? [String:Any] ?? [:]
+                for obj in allData["all_notifications"] as? [[String:Any]] ?? [[:]] {
                     print(obj)
-//                    self.
+                    newArr.append(NotificationData(name: obj["notify_title"] as? String ?? "", image: "img-1", details: obj["notify_message"] as? String ?? "", date: "12/09/20 9:02 AM"))
                 }
-                showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
-                    self.navigationController?.popViewController(animated: true)
+                for i in 0..<newArr.count{
+                    self.notificationArray.append(newArr[i])
                 }
                 self.notificationTBView.reloadData()
             }else{
@@ -108,7 +111,7 @@ extension NotificationVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 125
+        return 100
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
