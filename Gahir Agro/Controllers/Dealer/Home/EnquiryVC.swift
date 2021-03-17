@@ -30,6 +30,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     var accessory = [AccessoriesData]()
     var systemArray = [SystemData]()
     var productDetailsAaay = [ProductData]()
+    var comesFirstTime = Bool()
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var enquiryDataTBView: UITableView!
     @IBOutlet weak var quantitylbl: UILabel!
@@ -178,6 +179,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                     self.systemArray.append(SystemData(name: obj["trac_name"] as? String ?? "", id: obj["id"] as? String ?? ""))
                 }
                 self.categoryArray.append(EnquieyData(accessory: self.accessory, system: self.systemArray))
+                self.enquiryDataTBView.reloadData()
 //                self.picker.reloadAllComponents()
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
@@ -341,6 +343,7 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
         if let cell = sender.superview?.superview as? EnquiryDataTBViewCell, let indexPath = enquiryDataTBView.indexPath(for: cell){
             cell.openPicker.becomeFirstResponder()
             currentIndex = sender.tag
+            
             print("asdssad\(cell.openPicker.tag)")
             if indexPath.row == 0{
                 cell.titleLbl.text = selectedname

@@ -40,7 +40,6 @@
 		181704D025E64824003825D7 /* ContactUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704CF25E64824003825D7 /* ContactUsVC.swift */; };
 		181704D525E654EC003825D7 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704D425E654EC003825D7 /* NotificationVC.swift */; };
 		18424EFE2600CE6E0039CCBF /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18424EFD2600CE6E0039CCBF /* LogInVC.swift */; };
-		18424F052600D19E0039CCBF /* DealerEnquriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18424F042600D19E0039CCBF /* DealerEnquriesVC.swift */; };
 		184A8ABA25FB4C98000583C5 /* ChooseRoleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A8AB925FB4C98000583C5 /* ChooseRoleVC.swift */; };
 		184A8AE025FB8949000583C5 /* SignInWithScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A8ADF25FB8949000583C5 /* SignInWithScreenVC.swift */; };
 		184A8AE525FB896A000583C5 /* SignINVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A8AE425FB896A000583C5 /* SignINVC.swift */; };
@@ -73,6 +72,13 @@
 		184B11CA25E3726E003007A2 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C725E3726D003007A2 /* Constant.swift */; };
 		184B11CB25E3726E003007A2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C825E3726D003007A2 /* Reachability.swift */; };
 		184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C925E3726D003007A2 /* AFWrapperClass.swift */; };
+		185B48DC2601C30A0021089C /* AdminSideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B48DB2601C30A0021089C /* AdminSideMenuVC.swift */; };
+		185B48E12601C3260021089C /* AdminSideMenuControllerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B48E02601C3260021089C /* AdminSideMenuControllerVC.swift */; };
+		185B48E62601C3410021089C /* AdminNotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B48E52601C3410021089C /* AdminNotificationVC.swift */; };
+		185B48EC2601C3610021089C /* AdminProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B48EB2601C3610021089C /* AdminProfileVC.swift */; };
+		185B48F42601C36E0021089C /* AdminEditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B48F32601C36E0021089C /* AdminEditProfileVC.swift */; };
+		185B49072601C8F40021089C /* AdminHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B49062601C8F40021089C /* AdminHomeVC.swift */; };
+		185B490F2601C9270021089C /* AdminEnquriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B490E2601C9270021089C /* AdminEnquriesVC.swift */; };
 		1872905025FF388900A83349 /* CustomerProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1872904F25FF388900A83349 /* CustomerProfileVC.swift */; };
 		1872905525FF389F00A83349 /* CustomerEditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1872905425FF389F00A83349 /* CustomerEditProfileVC.swift */; };
 		1872905A25FF38C100A83349 /* CustomerNotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1872905925FF38C100A83349 /* CustomerNotificationVC.swift */; };
@@ -156,7 +162,6 @@
 		181704CF25E64824003825D7 /* ContactUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsVC.swift; sourceTree = "<group>"; };
 		181704D425E654EC003825D7 /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
 		18424EFD2600CE6E0039CCBF /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
-		18424F042600D19E0039CCBF /* DealerEnquriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerEnquriesVC.swift; sourceTree = "<group>"; };
 		184A8AB925FB4C98000583C5 /* ChooseRoleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRoleVC.swift; sourceTree = "<group>"; };
 		184A8ADF25FB8949000583C5 /* SignInWithScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithScreenVC.swift; sourceTree = "<group>"; };
 		184A8AE425FB896A000583C5 /* SignINVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignINVC.swift; sourceTree = "<group>"; };
@@ -195,6 +200,13 @@
 		184B11C725E3726D003007A2 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		184B11C825E3726D003007A2 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		184B11C925E3726D003007A2 /* AFWrapperClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWrapperClass.swift; sourceTree = "<group>"; };
+		185B48DB2601C30A0021089C /* AdminSideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminSideMenuVC.swift; sourceTree = "<group>"; };
+		185B48E02601C3260021089C /* AdminSideMenuControllerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminSideMenuControllerVC.swift; sourceTree = "<group>"; };
+		185B48E52601C3410021089C /* AdminNotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminNotificationVC.swift; sourceTree = "<group>"; };
+		185B48EB2601C3610021089C /* AdminProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminProfileVC.swift; sourceTree = "<group>"; };
+		185B48F32601C36E0021089C /* AdminEditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminEditProfileVC.swift; sourceTree = "<group>"; };
+		185B49062601C8F40021089C /* AdminHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeVC.swift; sourceTree = "<group>"; };
+		185B490E2601C9270021089C /* AdminEnquriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminEnquriesVC.swift; sourceTree = "<group>"; };
 		1872904F25FF388900A83349 /* CustomerProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerProfileVC.swift; sourceTree = "<group>"; };
 		1872905425FF389F00A83349 /* CustomerEditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerEditProfileVC.swift; sourceTree = "<group>"; };
 		1872905925FF38C100A83349 /* CustomerNotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerNotificationVC.swift; sourceTree = "<group>"; };
@@ -312,6 +324,10 @@
 		18424F022600D1530039CCBF /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
+				185B48EA2601C34E0021089C /* Profile */,
+				185B48DB2601C30A0021089C /* AdminSideMenuVC.swift */,
+				185B48E02601C3260021089C /* AdminSideMenuControllerVC.swift */,
+				185B48E52601C3410021089C /* AdminNotificationVC.swift */,
 			);
 			path = SideMenu;
 			sourceTree = "<group>";
@@ -320,7 +336,8 @@
 			isa = PBXGroup;
 			children = (
 				18424F022600D1530039CCBF /* SideMenu */,
-				18424F042600D19E0039CCBF /* DealerEnquriesVC.swift */,
+				185B49062601C8F40021089C /* AdminHomeVC.swift */,
+				185B490E2601C9270021089C /* AdminEnquriesVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -338,8 +355,8 @@
 		184A8AAB25FB4853000583C5 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
-				18424F032600D1610039CCBF /* Home */,
 				18424EFC2600CE590039CCBF /* Auth */,
+				18424F032600D1610039CCBF /* Home */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -621,6 +638,15 @@
 				184B114125E36C74003007A2 /* Assets.xcassets */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		185B48EA2601C34E0021089C /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				185B48EB2601C3610021089C /* AdminProfileVC.swift */,
+				185B48F32601C36E0021089C /* AdminEditProfileVC.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		1872904E25FF386F00A83349 /* Profile */ = {
@@ -949,10 +975,12 @@
 			files = (
 				18A877362600E66200566339 /* EnquriesVC.swift in Sources */,
 				184B11B925E37244003007A2 /* ValidationManager.swift in Sources */,
+				185B48EC2601C3610021089C /* AdminProfileVC.swift in Sources */,
 				181704D525E654EC003825D7 /* NotificationVC.swift in Sources */,
 				184B11BA25E37244003007A2 /* DisplayAlertManager.swift in Sources */,
 				18AD8F0325EADA9C00072166 /* OpenPIcker.swift in Sources */,
 				18424EFE2600CE6E0039CCBF /* LogInVC.swift in Sources */,
+				185B49072601C8F40021089C /* AdminHomeVC.swift in Sources */,
 				184B113D25E36C74003007A2 /* ViewController.swift in Sources */,
 				184A8AEF25FB8A1C000583C5 /* OTPVerificationForCustomerVC.swift in Sources */,
 				180847D325E4DBB000D04E69 /* SideMenuVC.swift in Sources */,
@@ -960,6 +988,7 @@
 				1872905A25FF38C100A83349 /* CustomerNotificationVC.swift in Sources */,
 				18E84AF225E7B0DE004A2148 /* CustomerHomeVC.swift in Sources */,
 				18F9B6CD25E8CB020034D978 /* SplashVC.swift in Sources */,
+				185B48E62601C3410021089C /* AdminNotificationVC.swift in Sources */,
 				184A8AFA25FB8C4F000583C5 /* SideMenuForCustomerVC.swift in Sources */,
 				18E84AE825E7AC57004A2148 /* RequestSubmitPopUpVC.swift in Sources */,
 				187A8C2525ECF9B600DCA747 /* SignInWithPhone.swift in Sources */,
@@ -968,6 +997,7 @@
 				184B113925E36C74003007A2 /* AppDelegate.swift in Sources */,
 				184B11C125E37259003007A2 /* Activityloader.swift in Sources */,
 				184B11CB25E3726E003007A2 /* Reachability.swift in Sources */,
+				185B48F42601C36E0021089C /* AdminEditProfileVC.swift in Sources */,
 				1872905F25FF38F400A83349 /* CustomerContactUSVC.swift in Sources */,
 				1872905025FF388900A83349 /* CustomerProfileVC.swift in Sources */,
 				181704C125E63DF3003825D7 /* ProfileVC.swift in Sources */,
@@ -980,10 +1010,10 @@
 				184A8ABA25FB4C98000583C5 /* ChooseRoleVC.swift in Sources */,
 				18B87C7625E684C200837E6C /* SearchVC.swift in Sources */,
 				18E84AED25E7AC9E004A2148 /* SuccesfullyBookedVC.swift in Sources */,
-				18424F052600D19E0039CCBF /* DealerEnquriesVC.swift in Sources */,
 				18E84AD425E7AACE004A2148 /* EnquiryVC.swift in Sources */,
 				184A8AE525FB896A000583C5 /* SignINVC.swift in Sources */,
 				180847C125E4BE5F00D04E69 /* OTPVerificationVC.swift in Sources */,
+				185B490F2601C9270021089C /* AdminEnquriesVC.swift in Sources */,
 				180847BC25E4BE4700D04E69 /* AddPhoneNumberVC.swift in Sources */,
 				184B11A425E37149003007A2 /* ImagePicker.swift in Sources */,
 				1872906425FF390500A83349 /* CustomerSearchVC.swift in Sources */,
@@ -992,6 +1022,7 @@
 				184B11C325E37259003007A2 /* ChangeBottamColor.swift in Sources */,
 				18F9B70E25E8E8240034D978 /* PopUpVC.swift in Sources */,
 				184A8AEA25FB897D000583C5 /* SignUPVC.swift in Sources */,
+				185B48DC2601C30A0021089C /* AdminSideMenuVC.swift in Sources */,
 				18157E1225E5095300E4451C /* ProductDetailsVC.swift in Sources */,
 				184B11C225E37259003007A2 /* HelperMethods.swift in Sources */,
 				184B113B25E36C74003007A2 /* SceneDelegate.swift in Sources */,
@@ -1000,6 +1031,7 @@
 				184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */,
 				18E84ADE25E7AC08004A2148 /* BookOrderVC.swift in Sources */,
 				180847B725E4BE2A00D04E69 /* SignInWithVC.swift in Sources */,
+				185B48E12601C3260021089C /* AdminSideMenuControllerVC.swift in Sources */,
 				187A8C0825ECF2DA00DCA747 /* PKWrapperClass.swift in Sources */,
 				181704CB25E63E11003825D7 /* MyOrderVC.swift in Sources */,
 				1876B2FF25EF5E9200E5A245 /* ResponseModal.swift in Sources */,

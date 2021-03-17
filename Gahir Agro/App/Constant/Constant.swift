@@ -32,6 +32,12 @@ class Constant: NSObject {
     let BookOrder = "AddOrder.php"
     let Notification = "GetAllNotifications.php"
     
+    //MARK:-> Admin Flow Api's
+    
+    let AdminSignIn = "AdminLogin.php"
+    let AllDealerEnquries = "GetDealerEnquiries.php"
+    let AllDealerOrder = "GetDealerOrders.php"
+    
 }
 
 class Singleton  {

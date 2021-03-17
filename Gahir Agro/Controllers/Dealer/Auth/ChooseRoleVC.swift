@@ -42,11 +42,17 @@ class ChooseRoleVC: UIViewController {
         if filterArray.count > 0 {
             self.selectedRole = filterArray[0].id
             setRole(val: filterArray.first!)
+            UserDefaults.standard.setValue(selectedRole, forKey: "role")
             if selectedRole == "0"{
                 let vc = SignInWithVC.instantiate(fromAppStoryboard: .Auth)
                 self.navigationController?.pushViewController(vc, animated: true)
             }else if selectedRole == "1"{
                 let vc = SignInWithScreenVC.instantiate(fromAppStoryboard: .AuthForCustomer)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if selectedRole == "2"{
+                
+            }else if selectedRole == "3"{
+                let vc = LogInVC.instantiate(fromAppStoryboard: .AdminAuth)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
          

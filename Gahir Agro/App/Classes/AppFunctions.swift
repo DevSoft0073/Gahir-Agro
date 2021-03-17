@@ -15,6 +15,10 @@ enum AppStoryboard : String {
     case Main
     case Customer
     case AuthForCustomer
+    case SalesAuth
+    case SalesMain
+    case AdminAuth
+    case AdminMain
     
 }
 

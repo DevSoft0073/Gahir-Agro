@@ -79,7 +79,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
                 self.allItemsTBView.reloadData()
             }else if status == "0"{
                 PKWrapperClass.svprogressHudDismiss(view: self)
-                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+//                alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }else{
                 UserDefaults.standard.removeObject(forKey: "tokenFString")
                 let appDel = UIApplication.shared.delegate as! AppDelegate
@@ -123,7 +123,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
                 self.allItemsTBView.reloadData()
             }else if status == "0"{
                 PKWrapperClass.svprogressHudDismiss(view: self)
-                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+//                alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }else{
                 UserDefaults.standard.removeObject(forKey: "tokenFString")
                 let appDel = UIApplication.shared.delegate as! AppDelegate

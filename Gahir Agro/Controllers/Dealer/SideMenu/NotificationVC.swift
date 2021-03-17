@@ -66,7 +66,7 @@ class NotificationVC: UIViewController {
                 self.notificationTBView.reloadData()
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
-                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+//                alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }
         } failure: { (error) in
             print(error)

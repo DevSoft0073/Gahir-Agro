@@ -1,41 +1,37 @@
 //
-//  SideMenuForCustomerVC.swift
+//  AdminSideMenuVC.swift
 //  Gahir Agro
 //
-//  Created by Apple on 12/03/21.
+//  Created by Apple on 17/03/21.
 //
 
 import UIKit
-import LGSideMenuController
 
-class SideMenuForCustomerVC: UIViewController {
-
+class AdminSideMenuVC: UIViewController {
     
     var sideMenuItemsArrayForCustomer : [SideMenuItemsForCustomer] = []{
         didSet{
-            settingTBViewForCustomer.reloadData()
+            settingTBView.reloadData()
         }
     }
     
-    @IBOutlet weak var settingTBViewForCustomer: UITableView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var settingTBView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Home", selectedImage: "home", selected: true, unselected: "home-1"))
         
-        sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Enquiry List", selectedImage: "order", selected: false, unselected: "order-1"))
+        sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Order List", selectedImage: "order", selected: false, unselected: "order-1"))
         sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Notifications", selectedImage: "noti", selected: false, unselected: "noti-1"))
-        sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Contact", selectedImage: "contact", selected: false, unselected: "contact-1"))
         sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Privacy Policy", selectedImage: "privacy", selected: false, unselected: "privacy-1"))
         sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Logout", selectedImage: "logout", selected: false, unselected: "logout-1"))
         
-        self.settingTBViewForCustomer.separatorStyle = .none
-
-
+        self.settingTBView.separatorStyle = .none
         // Do any additional setup after loading the view.
     }
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -49,7 +45,7 @@ class SideMenuForCustomerVC: UIViewController {
         appDel.Logout1()
     }
     
-    @IBAction func gotoSettingVC(_ sender: Any) {
+    @IBAction func gotoProfileVC(_ sender: Any) {
         sideMenuController?.hideLeftViewAnimated()
         let vc = AdminProfileVC.instantiate(fromAppStoryboard: .AdminMain)
         (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
@@ -57,28 +53,30 @@ class SideMenuForCustomerVC: UIViewController {
     
 }
 
-class SettingTBViewCellForCustomer: UITableViewCell {
+class AdminSettingTBViewCell: UITableViewCell {
     
-    @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var namelbl: UILabel!
     @IBOutlet weak var iconImage: UIImageView!
     override class func awakeFromNib() {
         super.awakeFromNib()
     }
 }
 
-extension SideMenuForCustomerVC : UITableViewDataSource, UITableViewDelegate {
+
+extension AdminSideMenuVC : UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sideMenuItemsArrayForCustomer.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTBViewCellForCustomer", for: indexPath) as! SettingTBViewCellForCustomer
-        cell.nameLbl.text = sideMenuItemsArrayForCustomer[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AdminSettingTBViewCell", for: indexPath) as! AdminSettingTBViewCell
+        cell.namelbl.text = sideMenuItemsArrayForCustomer[indexPath.row].name
         if sideMenuItemsArrayForCustomer[indexPath.row].selected == true{
-            cell.nameLbl.textColor = #colorLiteral(red: 0.8846299052, green: 0.04529493302, blue: 0, alpha: 1)
+            cell.namelbl.textColor = #colorLiteral(red: 0.8846299052, green: 0.04529493302, blue: 0, alpha: 1)
             cell.iconImage.image = UIImage(named: sideMenuItemsArrayForCustomer[indexPath.row].unselected)
         }else{
-            cell.nameLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            cell.namelbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             cell.iconImage.image = UIImage(named: sideMenuItemsArrayForCustomer[indexPath.row].selectedImage)
         }
         return cell
@@ -97,12 +95,12 @@ extension SideMenuForCustomerVC : UITableViewDataSource, UITableViewDelegate {
         sideMenuController?.hideLeftViewAnimated()
         
         if(indexPath.row == 0) {
-            let vc = HomeVC.instantiate(fromAppStoryboard: .Main)
+            let vc = AdminHomeVC.instantiate(fromAppStoryboard: .AdminMain)
             (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
         }
         
         else if(indexPath.row == 1) {
-            let vc = MyOrderVC.instantiate(fromAppStoryboard: .Main)
+            let vc = AdminEnquriesVC.instantiate(fromAppStoryboard: .AdminMain)
             (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
             //            guard let url = URL(string: "https://stackoverflow.com") else { return }
             //            UIApplication.shared.open(url)
@@ -110,24 +108,19 @@ extension SideMenuForCustomerVC : UITableViewDataSource, UITableViewDelegate {
         }
         
         else if(indexPath.row == 2) {
-            let vc = NotificationVC.instantiate(fromAppStoryboard: .Main)
+            let vc = AdminNotificationVC.instantiate(fromAppStoryboard: .AdminMain)
             (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
             
         }
-        
+       
         else if(indexPath.row == 3) {
-            let vc = ContactUsVC.instantiate(fromAppStoryboard: .Main)
-            (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
-        }
-        
-        else if(indexPath.row == 4) {
             
             guard let url = URL(string: "https://stackoverflow.com") else { return }
             UIApplication.shared.open(url)
             
         }
         
-        else if(indexPath.row == 5) {
+        else if(indexPath.row == 4) {
             let dialogMessage = UIAlertController(title: Constant.shared.appTitle, message: "Are you sure you want to Logout?", preferredStyle: .alert)
             
             // Create OK button with action handler
@@ -153,20 +146,5 @@ extension SideMenuForCustomerVC : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
-    }
-}
-
-
-struct SideMenuItemsForCustomer {
-    var name : String
-    var selectedImage : String
-    var unselected : String
-    var selected : Bool
-    
-    init(name : String , selectedImage : String,selected : Bool,unselected : String) {
-        self.name = name
-        self.selectedImage = selectedImage
-        self.selected = selected
-        self.unselected = unselected
     }
 }
