@@ -19,13 +19,12 @@ class ProductDetailsVC: UIViewController {
     var id = String()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.productDetails()
         print(id)
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.productDetails()
     }
     
 
@@ -60,7 +59,7 @@ class ProductDetailsVC: UIViewController {
                 print(allData)
                 self.modelLbl.text = allData["prod_name"] as? String ?? ""
                 self.namelbl.text = "Model"
-                self.showImage.sd_setImage(with: URL(string:allData["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "im"))
+                self.showImage.sd_setImage(with: URL(string:allData["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "placeholder-img-logo (1)"))
                 let url = URL(string:allData["prod_image"] as? String ?? "")
                 if url != nil{
                     if let data = try? Data(contentsOf: url!)
@@ -73,7 +72,7 @@ class ProductDetailsVC: UIViewController {
                     }
                 }
                 else{
-                    self.showImage.image = UIImage(named: "im")
+                    self.showImage.image = UIImage(named: "placeholder-img-logo (1)")
                 }
                 let productDetails = allData["prod_desc"] as? [String] ?? [""]
                 for product in productDetails{

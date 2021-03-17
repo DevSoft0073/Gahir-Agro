@@ -100,6 +100,8 @@ class ContactUsVC: UIViewController ,UITextFieldDelegate , UITextViewDelegate{
             ValidateData(strMessage: "Please enter name")
         }else if emailTxtFld.text?.isEmpty == true{
             ValidateData(strMessage: "Please enter email")
+        }else if messageTxtView.text.isEmpty == true{
+            ValidateData(strMessage: "Message field should not be empty")
         }else{
             contactUs()
         }

@@ -18,6 +18,7 @@ class MyOrderVC: UIViewController {
     var enquiryID = [String]()
     var quantityArray = [String]()
     var accName = String()
+    var amountArray = [String]()
     @IBOutlet weak var myOrderTBView: UITableView!
     var orderHistoryArray = [OrderHistoryData]()
     
@@ -45,6 +46,7 @@ class MyOrderVC: UIViewController {
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
                 self.orderHistoryArray.removeAll()
+                self.amountArray.removeAll()
                 var newArr = [OrderHistoryData]()
                 let allData = response.data["enquiry_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_enquiries"] as? [[String:Any]] ?? [[:]]{
@@ -55,15 +57,17 @@ class MyOrderVC: UIViewController {
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
                     let productDetails = obj["product_detail"] as? [String:Any] ?? [:]
                     print(productDetails)
-                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: productDetails["24 Feb 2021"] as? String ?? "24 Feb 2021", price: "$\(productDetails["prod_price"] as? String ?? "").00" as? String ?? "", image: productDetails["prod_image"] as? String ?? ""))
+                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: productDetails["24 Feb 2021"] as? String ?? "24 Feb 2021", price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? ""))
+                    self.amountArray.append("$\(productDetails["prod_price"] as? String ?? "")")
                 }
+                print(self.amountArray)
                 for i in 0..<newArr.count{
                     self.orderHistoryArray.append(newArr[i])
                 }
                 self.myOrderTBView.reloadData()
             }else if status == "0"{
                 PKWrapperClass.svprogressHudDismiss(view: self)
-                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+//                alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }else{
                 UserDefaults.standard.removeObject(forKey: "tokenFString")
                 let appDel = UIApplication.shared.delegate as! AppDelegate
@@ -106,13 +110,12 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyOrderTBViewCell", for: indexPath) as! MyOrderTBViewCell
-        cell.priceLbl.text = (orderHistoryArray[indexPath.section].price)
+        cell.priceLbl.text = amountArray[indexPath.row]
         cell.nameLbl.text = orderHistoryArray[indexPath.section].name
         cell.timeLbl.text = orderHistoryArray[indexPath.section].deliveryDate
         cell.quantityLbl?.text = quantityArray[indexPath.row]
-        cell.priceLbl.text = orderHistoryArray[indexPath.section].price
         cell.productID.text = orderHistoryArray[indexPath.section].id
-        cell.showImage.sd_setImage(with: URL(string:orderHistoryArray[indexPath.row].image), placeholderImage: UIImage(named: "im"))
+        cell.showImage.sd_setImage(with: URL(string:orderHistoryArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"))
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -128,7 +131,7 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
         vc.accessoriesName = self.accName
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if page <= lastPage{
             let bottamEdge = Float(self.myOrderTBView.contentOffset.y + self.myOrderTBView.frame.size.height)

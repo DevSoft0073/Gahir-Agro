@@ -296,7 +296,11 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
     }
     
     @IBAction func submitButton(_ sender: Any) {
-        updateData()
+        if nameTxtFld.text?.isEmpty == true {
+            ValidateData(strMessage: "Name field shoud not be empty")
+        }else{
+            updateData()
+        }
     }
     
     
@@ -311,19 +315,6 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
         
         let params = ["access_token": accessToken,"bio": bioTxtView.text ?? "","first_name":nameTxtFld.text ?? "","country":nameCountry] as? [String : AnyObject] ?? [:]
         print(params)
-        
-        if base64String != "" {
-            flagBase64 = UserDefaults.standard.value(forKey: "flagImage") as! String
-            let decodedData = NSData(base64Encoded: flagBase64, options: [])
-            if let data = decodedData {
-                let decodedimage = UIImage(data: data as Data)
-                flagImage.image = decodedimage
-            } else {
-                print("error with decodedData")
-            }
-        } else {
-            print("error with base64String")
-        }
         print(self.userDetails)
         AF.upload(multipartFormData: { (multipartFormData) in
             for (key, value) in params {
@@ -332,9 +323,6 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
             print(multipartFormData)
             let imageData1 = self.profileImage.image!.jpegData(compressionQuality: 0.3)
             multipartFormData.append(imageData1!, withName: "image" , fileName: "\(String.random(length: 8))", mimeType: "image/jpeg")
-            
-            let imageData2 = self.flagImage.image!.jpegData(compressionQuality: 0.3)
-            multipartFormData.append(imageData2!, withName: "flag_image" , fileName: "\(String.random(length: 8))", mimeType: "image/jpeg")
             
         }, to: url, usingThreshold: UInt64.init(), method: .post, headers: nil, interceptor: nil, fileManager: .default)
         
@@ -351,6 +339,7 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
                         let status = JSON["status"] as? String ?? ""
                         if status == "1"{
                             showAlertMessage(title: Constant.shared.appTitle, message: message, okButton: "Ok", controller: self) {
+                                NotificationCenter.default.post(name: .sendUserData, object: nil)
                                 self.navigationController?.popViewController(animated: true)
                             }
                         }else{
@@ -371,40 +360,6 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
             self.userDetails.removeAll()
         }
     }
-
-    
-//    func updateData()  {
-//
-//        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
-//        let url = Constant.shared.baseUrl + Constant.shared.EditProfile
-//        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
-//        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
-//        print(deviceID ?? "")
-//        if deviceID == nil  {
-//            deviceID = "777"
-//        }
-//
-//
-//        let params = ["access_token": accessToken,"bio": bioTxtView.text ?? "","first_name":nameTxtFld.text ?? "","country":"","flag_image":flagBase64 , "image" : base64String]  as? [String : AnyObject] ?? [:]
-//        print(params)
-//        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
-//            print(response.data)
-//            PKWrapperClass.svprogressHudDismiss(view: self)
-//            let status = response.data["status"] as? String ?? ""
-//            self.messgae = response.data["message"] as? String ?? ""
-//            if status == "1"{
-//                showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
-//                    self.navigationController?.popViewController(animated: true)
-//                }
-//            }else{
-//                PKWrapperClass.svprogressHudDismiss(view: self)
-//                alert(Constant.shared.appTitle, message: self.messgae, view: self)
-//            }
-//        } failure: { (error) in
-//            print(error)
-//            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
-//        }
-//    }
 }
 
 

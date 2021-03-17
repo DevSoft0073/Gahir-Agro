@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class SideMenuVC: UIViewController {
     
@@ -29,8 +30,9 @@ class SideMenuVC: UIViewController {
         sideMenuItemsArray.append(SideMenuItems(name: "Contact Us", selectedImage: "contact", selected: false, unselected: "contact-1"))
         sideMenuItemsArray.append(SideMenuItems(name: "Privacy Policy", selectedImage: "privacy", selected: false, unselected: "privacy-1"))
         sideMenuItemsArray.append(SideMenuItems(name: "Logout", selectedImage: "logout", selected: false, unselected: "logout-1"))
-        
         self.settingTBView.separatorStyle = .none
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.notificationReceived(_:)), name: .sendUserData, object: nil)
         
         // Do any additional setup after loading the view.
     }
@@ -41,6 +43,9 @@ class SideMenuVC: UIViewController {
         profileImage.layer.cornerRadius = profileImage.frame.height/2
     }
     
+    @objc func notificationReceived(_ notification: Notification) {
+        self.getData()
+    }
     
     @IBAction func gotoProfile(_ sender: Any) {
         sideMenuController?.hideLeftViewAnimated()
@@ -215,4 +220,8 @@ struct SideMenuItems {
         self.selected = selected
         self.unselected = unselected
     }
+}
+
+extension Notification.Name {
+    public static let updateData = Notification.Name(rawValue: "updateData")
 }

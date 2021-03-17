@@ -23,9 +23,9 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         allItemsTBView.separatorStyle = .none
 
-        collectionViewDataArray.append(CollectionViewData(name: "Tractor", selected: true, type: "0"))
-        collectionViewDataArray.append(CollectionViewData(name: "Laser", selected: false, type: "1"))
-        collectionViewDataArray.append(CollectionViewData(name: "Pump", selected: false, type: "2"))
+        collectionViewDataArray.append(CollectionViewData(name: "TRACTOR", selected: true, type: "0"))
+        collectionViewDataArray.append(CollectionViewData(name: "LASER", selected: false, type: "1"))
+        collectionViewDataArray.append(CollectionViewData(name: "PUMP", selected: false, type: "2"))
         
         filterdData()
 //        getAllProducts()
@@ -165,7 +165,7 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlItemsTBViewCell", for: indexPath) as! AlItemsTBViewCell
-        cell.showImage.sd_setImage(with: URL(string:tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "im"))
+        cell.showImage.sd_setImage(with: URL(string:tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"))
         cell.nameLbl.text = tableViewDataArray[indexPath.row].name
         cell.showImage.roundTop()
      //   cell.modelLbl.text = tableViewDataArray[indexPath.row].modelName
@@ -243,13 +243,13 @@ extension HomeVC : UICollectionViewDelegate , UICollectionViewDataSource {
             })
             self.collectionViewDataArray[indexPath.row].selected = !self.collectionViewDataArray[indexPath.row].selected
             print(collectionViewDataArray)
-            let filterArray = collectionViewDataArray.filter({$0.selected == true})
-            print(filterArray)
-            for obj in filterArray{
+            self.tableViewDataArray.removeAll()
+
+            if let obj = collectionViewDataArray.filter({$0.selected == true}).first{
                 productType = obj.type ?? "0"
-                self.tableViewDataArray.removeAll()
                 filterdData()
             }
+            self.allItemsTBView.reloadData()
         }
         itemsCollectionView.reloadData()
     }

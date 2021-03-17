@@ -25,6 +25,11 @@ class AdminProfileVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        profileImage.layer.masksToBounds = true
+        profileImage.layer.cornerRadius = profileImage.frame.height/2
+    }
     
     func getData() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)

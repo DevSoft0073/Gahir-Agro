@@ -12,7 +12,6 @@ import SDWebImage
 class ProfileVC: UIViewController, CAAnimationDelegate {
 
     @IBOutlet weak var nameLbl: UILabel!
-    @IBOutlet weak var flagImage: UIImageView!
     var messgae = String()
     @IBOutlet weak var bioTxtView: UITextView!
     @IBOutlet weak var passwordTxtFld: UITextField!
@@ -35,6 +34,7 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         getData()
     }
     
@@ -62,11 +62,14 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
             if status == "1"{
                 let allData = response.data["user_detail"] as? [String:Any] ?? [:]
                 self.nameLbl.text = allData["first_name"] as? String ?? ""
+                let fullName = "\(allData["first_name"] as? String ?? "")" + "\(allData["last_name"] as? String ?? "")"
                 self.bioTxtView.text = allData["bio"] as? String
                 self.emailtxtFld.text = allData["username"] as? String
                 self.passwordTxtFld.text = "**********"
                 self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"))
-                self.flagImage.sd_setImage(with: URL(string:allData["flag_image"] as? String ?? ""), placeholderImage: UIImage(named: "flag"))
+                let userInfo = [ "name" : fullName, "profileImage" : allData["image"] as? String ?? "" ]
+                NotificationCenter.default.post(name: .sendUserData, object: nil, userInfo: userInfo as [AnyHashable : Any])
+                
 
                 let url = URL(string:allData["image"] as? String ?? "")
                 if url != nil{
@@ -81,20 +84,6 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
                 }
                 else{
                     self.profileImage.image = UIImage(named: "placehlder")
-                }
-                let urls = URL(string:allData["flag_image"] as? String ?? "")
-                if urls != nil{
-                    if let data = try? Data(contentsOf: urls!)
-                    {
-                        if let image: UIImage = (UIImage(data: data)){
-                            self.flagImage.image = image
-                            self.flagImage.contentMode = .scaleToFill
-                            IJProgressView.shared.hideProgressView()
-                        }
-                    }
-                }
-                else{
-                    self.flagImage.image = UIImage(named: "flag")
                 }
                 
             }else{
@@ -130,4 +119,8 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
         
     }
     
+}
+
+extension Notification.Name {
+    public static let sendUserData = Notification.Name(rawValue: "sendUserData")
 }

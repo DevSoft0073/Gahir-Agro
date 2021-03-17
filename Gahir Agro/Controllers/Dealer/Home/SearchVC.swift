@@ -120,7 +120,7 @@ class SearchVC: UIViewController,UITextFieldDelegate {
                 let allData = response.data["product_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_products"] as? [[String:Any]] ?? [[:]] {
                     print(obj)
-                    newArr.append(SearchTableViewData(image: obj["prod_image"] as? String ?? "", name: obj["prod_name"] as? String ?? "", modelName: obj["prod_desc"] as? String ?? "", details: obj["prod_desc"] as? String ?? "", price: obj["prod_price"] as? String ?? "", prod_sno: obj["GAIC2K213000"] as? String ?? "", prod_type: obj["prod_type"] as? String ?? "", id: obj["id"] as? String ?? "", prod_video: obj["prod_video"] as? String ?? "", prod_qty: obj["prod_qty"] as? String ?? "", prod_pdf: obj["prod_pdf"] as? String ?? ""))
+                    newArr.append(SearchTableViewData(image: obj["prod_image"] as? String ?? "", name: obj["prod_name"] as? String ?? "", modelName: obj["prod_desc"] as? String ?? "", details: obj["prod_desc"] as? String ?? "", price: obj["prod_price"] as? String ?? "", prod_sno: obj["GAIC2K213000"] as? String ?? "", prod_type: obj["prod_type"] as? String ?? "", id: obj["id"] as? String ?? "", prod_video: obj["prod_video"] as? String ?? "", prod_qty: obj["prod_qty"] as? String ?? "", prod_pdf: obj["prod_pdf"] as? String ?? "", prod_desc: obj["prod_desc"] as? String ?? ""))
                 }
                 for i in 0..<newArr.count{
                     self.tableViewDataArray.append(newArr[i])
@@ -166,7 +166,7 @@ class SearchVC: UIViewController,UITextFieldDelegate {
                 let allData = response.data["product_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_products"] as? [[String:Any]] ?? [[:]] {
                     print(obj)
-                    newArr.append(SearchTableViewData(image: obj["prod_image"] as? String ?? "", name: obj["prod_name"] as? String ?? "", modelName: obj["prod_desc"] as? String ?? "", details: obj["prod_desc"] as? String ?? "", price: obj["prod_price"] as? String ?? "", prod_sno: obj["GAIC2K213000"] as? String ?? "", prod_type: obj["prod_type"] as? String ?? "", id: obj["id"] as? String ?? "", prod_video: obj["prod_video"] as? String ?? "", prod_qty: obj["prod_qty"] as? String ?? "", prod_pdf: obj["prod_pdf"] as? String ?? ""))
+                    newArr.append(SearchTableViewData(image: obj["prod_image"] as? String ?? "", name: obj["prod_name"] as? String ?? "", modelName: obj["prod_desc"] as? String ?? "", details: obj["prod_desc"] as? String ?? "", price: obj["prod_price"] as? String ?? "", prod_sno: obj["GAIC2K213000"] as? String ?? "", prod_type: obj["prod_type"] as? String ?? "", id: obj["id"] as? String ?? "", prod_video: obj["prod_video"] as? String ?? "", prod_qty: obj["prod_qty"] as? String ?? "", prod_pdf: obj["prod_pdf"] as? String ?? "", prod_desc: obj["prod_desc"] as? String ?? ""))
                 }
                 for i in 0..<newArr.count{
                     self.tableViewDataArray.append(newArr[i])
@@ -246,9 +246,9 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: "ShowSearchedDataTBViewCell", for: indexPath) as! ShowSearchedDataTBViewCell
             cell.nameLbl.text = tableViewDataArray[indexPath.row].name
             currentIndex = tableViewDataArray[indexPath.row].id
-            cell.detailsLbl.text = tableViewDataArray[indexPath.row].details
-            cell.typeLbl.text = tableViewDataArray[indexPath.row].modelName
-            cell.showImage.sd_setImage(with: URL(string:tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "im"))
+            cell.detailsLbl.text = tableViewDataArray[indexPath.row].prod_desc
+            cell.typeLbl.text = tableViewDataArray[indexPath.row].price
+            cell.showImage.sd_setImage(with: URL(string:tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"))
             cell.checkAvailabiltyButton.addTarget(self, action: #selector(goto), for: .touchUpInside)
             return cell
         }
@@ -272,7 +272,15 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource{
         if tableView == searchDataTBView{
             return 45
         }else{
-            return 330
+            return UITableView.automaticDimension
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView == searchDataTBView{
+            return 45
+        }else{
+            return UITableView.automaticDimension
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -300,8 +308,10 @@ struct SearchTableViewData {
     var prod_video : String
     var prod_qty : String
     var prod_pdf : String
+    var prod_desc : String
+
     
-    init(image : String,name : String,modelName : String,details : String,price : String,prod_sno : String,prod_type : String,id : String,prod_video : String,prod_qty : String,prod_pdf : String) {
+    init(image : String,name : String,modelName : String,details : String,price : String,prod_sno : String,prod_type : String,id : String,prod_video : String,prod_qty : String,prod_pdf : String,prod_desc : String) {
         self.image = image
         self.name = name
         self.modelName = modelName
@@ -313,6 +323,7 @@ struct SearchTableViewData {
         self.prod_video = prod_video
         self.prod_qty = prod_qty
         self.prod_pdf = prod_pdf
+        self.prod_desc = prod_desc
     }
 }
 

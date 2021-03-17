@@ -59,7 +59,7 @@ class AdminEnquriesVC: UIViewController {
                     let allEnquiryData = obj["enquiry_detail"] as? [String:Any] ?? [:]
                     for newObj in allEnquiryData["product_detail"] as? [[String:Any]] ?? [[:]] {
                         print(newObj)
-                        newArr.append(OrderHistoryData(name: allEnquiryData["prod_name"] as? String ?? "", id: allEnquiryData["id"] as? String ?? "", quantity: "\(allEnquiryData["qty"] as? String ?? "")", deliveryDate: allEnquiryData["24 Feb 2021"] as? String ?? "24 Feb 2021", price: "$\(allEnquiryData["prod_price"] as? String ?? "").00" as? String ?? "", image: allEnquiryData["prod_image"] as? String ?? ""))
+                        newArr.append(OrderHistoryData(name: allEnquiryData["prod_name"] as? String ?? "", id: allEnquiryData["id"] as? String ?? "", quantity: "\(allEnquiryData["qty"] as? String ?? "")", deliveryDate: allEnquiryData["24 Feb 2021"] as? String ?? "24 Feb 2021", price: "$\(allEnquiryData["total"] as? String ?? "")" as? String ?? "", image: allEnquiryData["prod_image"] as? String ?? ""))
                     }
                 }
                 for i in 0..<newArr.count{
