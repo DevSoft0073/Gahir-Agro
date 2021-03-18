@@ -71,7 +71,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         }
         let params = ["page_no": page,"access_token": accessToken,"type" : self.productType]  as? [String : AnyObject] ?? [:]
         print(params)
-        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
             self.tableViewDataArray.removeAll()
@@ -116,7 +116,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         }
         let params = ["page_no": page,"access_token": accessToken]  as? [String : AnyObject] ?? [:]
         print(params)
-        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
             self.tableViewDataArray.removeAll()
             PKWrapperClass.svprogressHudDismiss(view: self)

@@ -40,7 +40,7 @@ class AdminHomeVC: UIViewController {
         }
         let params = ["page_no": page,"access_token": accessToken]  as? [String : AnyObject] ?? [:]
         print(params)
-        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""

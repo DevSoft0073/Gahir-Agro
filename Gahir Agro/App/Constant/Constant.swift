@@ -32,6 +32,7 @@ class Constant: NSObject {
     let AllOrders = "GetAllOrders.php"
     let BookOrder = "AddOrder.php"
     let Notification = "GetAllNotifications.php"
+    let ChangePassword = "ChangePassword.php"
     
     //MARK:-> Admin Flow Api's
     

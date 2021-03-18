@@ -50,7 +50,7 @@ class ProductDetailsVC: UIViewController {
         }
         let params = ["id": id,"access_token": accessToken]  as? [String : AnyObject] ?? [:]
         print(params)
-        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""

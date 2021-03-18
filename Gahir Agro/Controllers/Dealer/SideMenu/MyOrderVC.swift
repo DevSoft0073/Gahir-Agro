@@ -13,12 +13,14 @@ class MyOrderVC: UIViewController {
     
     
     var page = 1
-    var lastPage = 1
+    var lastPage = Bool()
     var messgae = String()
     var enquiryID = [String]()
     var quantityArray = [String]()
     var accName = String()
     var amountArray = [String]()
+    var dateArray = [Any]()
+    var totalArray = [String]()
     @IBOutlet weak var myOrderTBView: UITableView!
     var orderHistoryArray = [OrderHistoryData]()
     
@@ -39,7 +41,7 @@ class MyOrderVC: UIViewController {
         }
         let params = ["page_no": page,"access_token": accessToken]  as? [String : AnyObject] ?? [:]
         print(params)
-        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
@@ -51,13 +53,19 @@ class MyOrderVC: UIViewController {
                 let allData = response.data["enquiry_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_enquiries"] as? [[String:Any]] ?? [[:]]{
                     print(obj)
-                    var accessoriesData = obj["accessories"] as? [String:Any] ?? [:]
+                    let dateData = obj["system_detail"] as? [String:Any] ?? [:]
+                    let dateValue = dateData["creation_date"] as? Double ?? 0.0
+                                        
+                    self.convertTimeStampToDate(dateVal: dateValue)
+                    self.dateArray.append(dateData["creation_date"]) as? Any
+                    let accessoriesData = obj["accessories"] as? [String:Any] ?? [:]
                     self.accName = accessoriesData["acc_name"] as? String ?? ""
                     self.quantityArray.append(obj["qty"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
+                    self.totalArray.append(obj["total"] as! String) as? Any ?? ""
                     let productDetails = obj["product_detail"] as? [String:Any] ?? [:]
                     print(productDetails)
-                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: productDetails["24 Feb 2021"] as? String ?? "24 Feb 2021", price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? ""))
+                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateValue), price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? ""))
                     self.amountArray.append("$\(productDetails["prod_price"] as? String ?? "")")
                 }
                 for i in 0..<newArr.count{
@@ -77,6 +85,14 @@ class MyOrderVC: UIViewController {
             PKWrapperClass.svprogressHudDismiss(view: self)
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
+    }
+    
+    func convertTimeStampToDate(dateVal : Double) -> String{
+        let timeinterval = TimeInterval(dateVal)
+        let dateFromServer = Date(timeIntervalSince1970:timeinterval)
+        let dateFormater = DateFormatter()
+        dateArray.append(dateFormater)
+        return dateFormater.string(from: dateFromServer)
     }
     
     
@@ -109,10 +125,11 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyOrderTBViewCell", for: indexPath) as! MyOrderTBViewCell
         cell.idLbl.text = orderHistoryArray[indexPath.row].id
-        cell.timeLbl.text = orderHistoryArray[indexPath.row].deliveryDate
+        cell.timeLbl.text = "\(dateArray[indexPath.row])"
         cell.quantityLbl.text = quantityArray[indexPath.row]
         cell.nameLbl.text = orderHistoryArray[indexPath.row].name
-        cell.priceLbl.text = amountArray[indexPath.row]
+       
+        cell.priceLbl.text = "\(totalArray[indexPath.row])"
         cell.showImage.sd_setImage(with: URL(string:orderHistoryArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"))
         return cell
     }
@@ -131,11 +148,16 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if page <= lastPage{
+        
+        if lastPage == true{
             let bottamEdge = Float(self.myOrderTBView.contentOffset.y + self.myOrderTBView.frame.size.height)
             if bottamEdge >= Float(self.myOrderTBView.contentSize.height) && orderHistoryArray.count > 0 {
                 page = page + 1
                 getAllEnquries()
+            }
+        }else{
+            let bottamEdge = Float(self.myOrderTBView.contentOffset.y + self.myOrderTBView.frame.size.height)
+            if bottamEdge >= Float(self.myOrderTBView.contentSize.height) && orderHistoryArray.count > 0 {
             }
         }
     }
@@ -158,3 +180,4 @@ struct OrderHistoryData {
         self.image = image
     }
 }
+

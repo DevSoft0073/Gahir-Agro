@@ -54,7 +54,7 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
         }
         let params = ["access_token": accessToken]  as? [String : AnyObject] ?? [:]
         print(params)
-        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
@@ -104,19 +104,7 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
     }
     
     @IBAction func menuButton(_ sender: Any) {
-        sideMenuController?.showLeftViewAnimated()
-//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//        let controller = storyBoard.instantiateViewController(withIdentifier: "SideMenuControllerID") as UIViewController
-//        let transition = CATransition.init()
-//        transition.duration = 0.45
-//        transition.timingFunction = CAMediaTimingFunction.init(name: CAMediaTimingFunctionName.default)
-//        transition.type = CATransitionType.push //Transition you want like Push, Reveal
-//        transition.subtype = CATransitionSubtype.fromLeft // Direction like Left to Right, Right to Left
-//        
-//        transition.delegate = self
-//        view.window!.layer.add(transition, forKey: kCATransition)
-//        self.navigationController?.pushViewController(controller, animated: true)
-        
+        sideMenuController?.showLeftViewAnimated()        
     }
     
 }

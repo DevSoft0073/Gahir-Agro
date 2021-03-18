@@ -75,7 +75,7 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
         }
         let params = ["access_token": accessToken]  as? [String : AnyObject] ?? [:]
         print(params)
-        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
@@ -291,6 +291,12 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
          // can customize the countryPicker here e.g font and color
          countryController.detailColor = UIColor.red
     }
+    
+    @IBAction func openChangePasswordVC(_ sender: Any) {
+        let vc = ChangePasswordVC.instantiate(fromAppStoryboard: .Main)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     @IBAction func submitButton(_ sender: Any) {
         if nameTxtFld.text?.isEmpty == true {

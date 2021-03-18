@@ -48,18 +48,22 @@ class SearchVC: UIViewController,UITextFieldDelegate {
         }else{
             if searchTxtFld.text?.isEmpty == true{
                 ValidateData(strMessage: "Search should not be empty")
+                self.searchData()
             } else {
-                filterdData()
                 showSearchedDataTBView.reloadData()
                 textField.resignFirstResponder()
             }
             return true
         }
     }
+    
+    
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if comesFrom == true{
             if searchTxtFld.text?.isEmpty == true{
                 ValidateData(strMessage: "Search should not be empty")
+                
             } else {
                 self.searchData()
                 self.showSearchedDataTBView.reloadData()
@@ -68,14 +72,32 @@ class SearchVC: UIViewController,UITextFieldDelegate {
         }else{
             if searchTxtFld.text?.isEmpty == true{
                 ValidateData(strMessage: "Search should not be empty")
+                
             } else {
                 self.searchData()
                 self.showSearchedDataTBView.reloadData()
                 textField.resignFirstResponder()
             }
         }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == searchTxtFld {
+            tableViewDataArray.removeAll()
+            showSearchedDataTBView.reloadData()
+        }
+    }
+    
+    
+    func textFieldDidChange(textField: UITextField){
+        
+        tableViewDataArray.removeAll()
+        searchDataTBView.reloadData()
+
+        print("Text changed: " + textField.text!)
 
     }
+    
     
     func recentSearch() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
@@ -88,7 +110,7 @@ class SearchVC: UIViewController,UITextFieldDelegate {
         }
         let params = ["access_token": accessToken]  as? [String : AnyObject] ?? [:]
         print(params)
-        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
@@ -102,7 +124,7 @@ class SearchVC: UIViewController,UITextFieldDelegate {
                     self.searchArray.append(n)
                     print(n)
                 })
-                self.searchArray.append(searchArrayData?[3] ?? "")
+//                self.searchArray.append(searchArrayData?[3] ?? "")
                 self.searchDataTBView.reloadData()
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
@@ -125,11 +147,12 @@ class SearchVC: UIViewController,UITextFieldDelegate {
         }
         let params = ["page_no": page,"access_token": accessToken,"search" : searchTxtFld.text ?? ""]  as? [String : AnyObject] ?? [:]
         print(params)
-        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
+            self.tableViewDataArray.removeAll()
             if status == "1"{
                 var newArr = [SearchTableViewData]()
                 let allData = response.data["product_list"] as? [String:Any] ?? [:]
@@ -169,12 +192,13 @@ class SearchVC: UIViewController,UITextFieldDelegate {
         if deviceID == nil  {
             deviceID = "777"
         }
-        let params = ["page_no": page,"access_token": accessToken,"search" : ""]  as? [String : AnyObject] ?? [:]
+        let params = ["page_no": page,"access_token": accessToken,"search" : searchTxtFld.text ?? ""]  as? [String : AnyObject] ?? [:]
         print(params)
-        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
+            self.tableViewDataArray.removeAll()
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
                 var newArr = [SearchTableViewData]()
@@ -267,17 +291,10 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource{
             cell.checkAvailabiltyButton.addTarget(self, action: #selector(goto), for: .touchUpInside)
             return cell
         }
-        
     }
 
     
     @objc func goto() {
-        
-//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProductDetailsVC") as! ProductDetailsVC
-//        let navigationController = UINavigationController(rootViewController: vc)
-//        vc.id = currentIndex
-//        self.present(navigationController, animated: true, completion: nil)
-        
         let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
         vc.id = currentIndex
         self.navigationController?.pushViewController(vc, animated: true)
@@ -304,6 +321,7 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource{
         if tableView == searchDataTBView{
             self.comesFrom = true
             self.searchTxtFld.text = searchArray[indexPath.row]
+//            self.tableViewDataArray.removeAll()
             searchData()            
         }else{
             

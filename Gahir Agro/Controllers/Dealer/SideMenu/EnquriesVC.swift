@@ -18,6 +18,7 @@ class EnquriesVC: UIViewController {
     var quantityArray = [String]()
     var accName = String()
     var amountArray = [String]()
+    var totalArray = [String]()
 
     var enquriesDataFroDealerArray = [EnquriesDataFroDealer]()
     @IBOutlet weak var enquiryTBView: UITableView!
@@ -46,7 +47,7 @@ class EnquriesVC: UIViewController {
         }
         let params = ["page_no": page,"access_token": accessToken]  as? [String : AnyObject] ?? [:]
         print(params)
-        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
@@ -58,6 +59,7 @@ class EnquriesVC: UIViewController {
                 let allData = response.data["order_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_orders"] as? [[String:Any]] ?? [[:]]{
                     print(obj)
+                    self.totalArray.append(obj["total"] as! String) as? Any ?? ""
                     let allDetails = obj["enquiry_detail"] as? [String:Any] ?? [:]
                     let productDetails = allDetails["product_detail"] as? [String:Any] ?? [:]
                     let accessoriesData = productDetails["accessories"] as? [[String:Any]] ?? [[:]]
@@ -116,7 +118,7 @@ extension EnquriesVC : UITableViewDelegate , UITableViewDataSource {
         cell.dateLbl.text = enquriesDataFroDealerArray[indexPath.row].deliveryDate
         cell.quantityLbl.text = quantityArray[indexPath.row]
         cell.nameLbl.text = enquriesDataFroDealerArray[indexPath.row].name
-        cell.priceLbl.text = amountArray[indexPath.row]
+        cell.priceLbl.text = "\(totalArray[indexPath.row])"
         cell.showImage.sd_setImage(with: URL(string:enquriesDataFroDealerArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"))
         return cell
     }

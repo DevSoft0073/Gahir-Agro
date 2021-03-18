@@ -88,7 +88,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                 
                 let params = ["product_id" : id , "quantity" : count, "accessory" : selectedValue1 ,"access_token": accessToken,"system" : selectedValue , "type" : self.productId]  as? [String : AnyObject] ?? [:]
                 print(params)
-                PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+                PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
                     print(response.data)
                     PKWrapperClass.svprogressHudDismiss(view: self)
                     let status = response.data["status"] as? String ?? ""
@@ -143,7 +143,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         }
         let params = ["id": id,"access_token": accessToken]  as? [String : AnyObject] ?? [:]
         print(params)
-        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: [[:]]) { (response) in
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
