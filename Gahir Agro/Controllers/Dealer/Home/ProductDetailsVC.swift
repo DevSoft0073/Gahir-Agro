@@ -21,6 +21,7 @@ class ProductDetailsVC: UIViewController {
         super.viewDidLoad()
         self.productDetails()
         print(id)
+        self.productDetailsTBView.separatorStyle = .none
         // Do any additional setup after loading the view.
     }
     

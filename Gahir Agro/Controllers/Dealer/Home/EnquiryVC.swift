@@ -11,7 +11,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     
     var jassIndex = Int()
     
-    var tbaleViewArray = ["SYSTEM","ACCESSORY"]
+    var tbaleViewArray = ["TYPE","SYSTEM"]
     var picker  = UIPickerView()
 
     var pickerToolBar = UIToolbar()
@@ -204,9 +204,9 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         let numberOfRows = 0
         print(currentIndex)
         if currentIndex == 0{
-            return systemArray.count
-        }else if currentIndex == 1{
             return accessory.count
+        }else if currentIndex == 1{
+            return systemArray.count
         }else{
             return numberOfRows
         }
@@ -217,15 +217,15 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         
         if currentIndex == 0{
             
-            selectedValue = systemArray[row].id
-            selectedname = systemArray[row].name
+            selectedValue =  accessory[row].id
+            selectedname =  accessory[row].name
             self.enquiryDataTBView.reloadData()
             print(selectedValue)
             
         }else if currentIndex == 1{
             
-            selectedValue1 = accessory[row].id
-            selectType = accessory[row].name
+            selectedValue1 = systemArray[row].id
+            selectType = systemArray[row].name
             print(selectedValue1)
             self.enquiryDataTBView.reloadData()
 
@@ -241,14 +241,14 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
             label.textColor = .black
             label.textAlignment = .center
             label.font = UIFont(name: "Poppins-Medium", size: 20)
-            label.text = systemArray[row].name
+            label.text = accessory[row].name
             return label
         }else if currentIndex == 1{
             
             label.textColor = .black
             label.textAlignment = .center
             label.font = UIFont(name: "Poppins-Medium", size: 20)
-            label.text = accessory[row].name
+            label.text = systemArray[row].name
             return label
             
         }else{
@@ -262,9 +262,9 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if currentIndex == 0{
-            return systemArray[row].name
-        }else if currentIndex == 1{
             return accessory[row].name
+        }else if currentIndex == 1{
+            return systemArray[row].name 
         }
         return accessory[row].name
     }
@@ -332,6 +332,7 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
         cell.openPicker.tag = indexPath.row
         cell.openPicker.delegate = self
         cell.openPicker.inputView = picker
+//        cell.openPicker.isUserInteractionEnabled = false
         cell.dropDownbutton.addTarget(self, action: #selector(openPickerView(sender:)), for: .touchUpInside)
         DispatchQueue.main.async {
             self.heightConstraint.constant = CGFloat(self.enquiryDataTBView.contentSize.height)

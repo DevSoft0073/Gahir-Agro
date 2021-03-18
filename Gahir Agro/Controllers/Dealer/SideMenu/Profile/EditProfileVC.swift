@@ -22,8 +22,6 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
     @IBOutlet weak var bioView: UIView!
     @IBOutlet weak var passwordVIew: UIView!
     @IBOutlet weak var passwordTxtFld: UITextField!
-    @IBOutlet weak var addressTxtFld: UITextField!
-    @IBOutlet weak var addressView: UIView!
     @IBOutlet weak var emailTxtFld: UITextField!
     var messgae = String()
     var name = String()
@@ -245,20 +243,19 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
     
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == addressTxtFld {
-            addressView.borderColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-            bioView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            
-            
-        } else if textField == emailTxtFld{
-           
-        }
+//        if textField == addressTxtFld {
+//            addressView.borderColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+//            bioView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+//
+//
+//        } else if textField == emailTxtFld{
+//
+//        }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView == bioTxtView{
             bioView.borderColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-            addressView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         }
     }
     

@@ -37,7 +37,7 @@ class EnquriesVC: UIViewController {
     
     func getAllEnquries() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
-        let url = Constant.shared.baseUrl + Constant.shared.EnquiryListing
+        let url = Constant.shared.baseUrl + Constant.shared.AllOrders
         var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
         let accessToken = UserDefaults.standard.value(forKey: "accessToken")
         print(deviceID ?? "")
@@ -55,15 +55,17 @@ class EnquriesVC: UIViewController {
                 self.enquriesDataFroDealerArray.removeAll()
                 self.amountArray.removeAll()
                 var newArr = [EnquriesDataFroDealer]()
-                let allData = response.data["enquiry_list"] as? [String:Any] ?? [:]
-                for obj in allData["all_enquiries"] as? [[String:Any]] ?? [[:]]{
+                let allData = response.data["order_list"] as? [String:Any] ?? [:]
+                for obj in allData["all_orders"] as? [[String:Any]] ?? [[:]]{
                     print(obj)
-                    var accessoriesData = obj["accessories"] as? [String:Any] ?? [:]
-                    self.accName = accessoriesData["acc_name"] as? String ?? ""
-                    self.quantityArray.append(obj["qty"] as? String ?? "")
+                    let allDetails = obj["enquiry_detail"] as? [String:Any] ?? [:]
+                    let productDetails = allDetails["product_detail"] as? [String:Any] ?? [:]
+                    let accessoriesData = productDetails["accessories"] as? [[String:Any]] ?? [[:]]
+                    for obj in accessoriesData{
+                        self.accName = obj["acc_name"] as? String ?? ""
+                    }
+                    self.quantityArray.append(allDetails["qty"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
-                    let productDetails = obj["product_detail"] as? [String:Any] ?? [:]
-                    print(productDetails)
                     newArr.append(EnquriesDataFroDealer(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: productDetails["24 Feb 2021"] as? String ?? "24 Feb 2021", price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? ""))
                     self.amountArray.append("$\(productDetails["prod_price"] as? String ?? "")")
 
@@ -112,7 +114,7 @@ extension EnquriesVC : UITableViewDelegate , UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EnquiryTBViewCell", for: indexPath) as! EnquiryTBViewCell
         cell.idLbl.text = enquriesDataFroDealerArray[indexPath.row].id
         cell.dateLbl.text = enquriesDataFroDealerArray[indexPath.row].deliveryDate
-        cell.quantityLbl.text = enquriesDataFroDealerArray[indexPath.row].quantity
+        cell.quantityLbl.text = quantityArray[indexPath.row]
         cell.nameLbl.text = enquriesDataFroDealerArray[indexPath.row].name
         cell.priceLbl.text = amountArray[indexPath.row]
         cell.showImage.sd_setImage(with: URL(string:enquriesDataFroDealerArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"))

@@ -25,13 +25,14 @@ class SubmitDetailsVC: UIViewController {
     @IBOutlet weak var utrNumberTxtFld: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        var ammmount = Double()
-        var quantityyy = Double()
-        quantityyy = Double(quantity) ?? 0.0
-        ammmount = Double(amount) ?? 0.0
-        let totalAmount = ammmount * quantityyy
+        amount = amount.replacingOccurrences(of: ",", with: "")
+
+        let amountVal = NumberFormatter().number(from: amount)?.floatValue ?? 0.0
+        let quantityVal = NumberFormatter().number(from: quantity)?.floatValue ?? 0.0
+
+        let totalAmount = amountVal * quantityVal
         nameTxtFld.text = name
-        amountTxtFld.text = "\(totalAmount)"
+        amountTxtFld.text = "\(totalAmount)0"
         quantityTxtFld.text = quantity
         dealerCodeTxtFld.text = "ASHJK8767"
         accesoriesTxtFld.text = accessoriesName

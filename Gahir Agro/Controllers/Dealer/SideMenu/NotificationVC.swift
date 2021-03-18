@@ -18,17 +18,6 @@ class NotificationVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         notificationTBView.separatorStyle = .none
-        
-//        notificationArray.append(NotificationData(name: "New Notification", image: "img-1", details: "Loreum ipsumor Iipusm as it is sometimes known, is dummy text used in lying out print, graphics or web , designs.", date: "12/09/20 9:02 AM"))
-//        notificationArray.append(NotificationData(name: "New Notification", image: "img-1", details: "Loreum ipsumor Iipusm as it is sometimes known, is dummy text used in lying out print, graphics or web , designs.", date: "12/09/20 9:02 AM"))
-//        notificationArray.append(NotificationData(name: "New Notification", image: "img-1", details: "Loreum ipsumor Iipusm as it is sometimes known, is dummy text used in lying out print, graphics or web , designs.", date: "12/09/20 9:02 AM"))
-//        notificationArray.append(NotificationData(name: "New Notification", image: "img-1", details: "Loreum ipsumor Iipusm as it is sometimes known, is dummy text used in lying out print, graphics or web , designs.", date: "12/09/20 9:02 AM"))
-//        notificationArray.append(NotificationData(name: "New Notification", image: "img-1", details: "Loreum ipsumor Iipusm as it is sometimes known, is dummy text used in lying out print, graphics or web , designs.", date: "12/09/20 9:02 AM"))
-//        notificationArray.append(NotificationData(name: "New Notification", image: "img-1", details: "Loreum ipsumor Iipusm as it is sometimes known, is dummy text used in lying out print, graphics or web , designs.", date: "12/09/20 9:02 AM"))
-//        notificationArray.append(NotificationData(name: "New Notification", image: "img-1", details: "Loreum ipsumor Iipusm as it is sometimes known, is dummy text used in lying out print, graphics or web , designs.", date: "12/09/20 9:02 AM"))
-//        notificationArray.append(NotificationData(name: "New Notification", image: "img-1", details: "Loreum ipsumor Iipusm as it is sometimes known, is dummy text used in lying out print, graphics or web , designs.", date: "12/09/20 9:02 AM"))
-//        notificationArray.append(NotificationData(name: "New Notification", image: "img-1", details: "Loreum ipsumor Iipusm as it is sometimes known, is dummy text used in lying out print, graphics or web , designs.", date: "12/09/20 9:02 AM"))
-
         notifationData()
 
         // Do any additional setup after loading the view.
@@ -103,7 +92,6 @@ extension NotificationVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationTBViewCell", for: indexPath) as! NotificationTBViewCell
         cell.showImage.image = UIImage(named: notificationArray[indexPath.row].image)
-        cell.showImage.setRounded()
         cell.nameLbl.text = notificationArray[indexPath.row].name
         cell.detailsLbl.text = notificationArray[indexPath.row].details
         cell.dateLbl.text = notificationArray[indexPath.row].date

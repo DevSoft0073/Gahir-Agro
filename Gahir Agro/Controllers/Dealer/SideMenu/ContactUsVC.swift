@@ -64,6 +64,9 @@ class ContactUsVC: UIViewController ,UITextFieldDelegate , UITextViewDelegate{
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
                 showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
+                    self.nameTxtFld.text = ""
+                    self.emailTxtFld.text = ""
+                    self.messageTxtView.text = ""
                 }
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)

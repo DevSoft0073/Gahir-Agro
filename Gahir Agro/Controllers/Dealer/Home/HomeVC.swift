@@ -42,8 +42,21 @@ class HomeVC: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func searchButton(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as! SearchVC
-        self.present(vc, animated: true, completion: nil)
+        
+        
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.fade
+        transition.subtype = CATransitionSubtype.fromTop
+        self.navigationController!.view.layer.add(transition, forKey: nil)
+        let writeView = self.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as! SearchVC
+        self.navigationController?.pushViewController(writeView, animated: false)
+        
+        
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as! SearchVC
+//        vc.modalPresentationStyle = .overFullScreen
+//        self.present(vc, animated: true, completion: nil)
     }
     
     

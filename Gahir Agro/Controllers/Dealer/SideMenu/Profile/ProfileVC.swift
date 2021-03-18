@@ -15,14 +15,12 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
     var messgae = String()
     @IBOutlet weak var bioTxtView: UITextView!
     @IBOutlet weak var passwordTxtFld: UITextField!
-    @IBOutlet weak var addressTxtFld: UITextField!
     @IBOutlet weak var emailtxtFld: UITextField!
     @IBOutlet weak var profileImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         emailtxtFld.isUserInteractionEnabled = false
         passwordTxtFld.isUserInteractionEnabled = false
-        addressTxtFld.isUserInteractionEnabled = false
 
         // Do any additional setup after loading the view.
     }
@@ -33,9 +31,11 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
         profileImage.layer.cornerRadius = profileImage.frame.height/2
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
+    override func viewWillAppear(_ animated: Bool) {
         getData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

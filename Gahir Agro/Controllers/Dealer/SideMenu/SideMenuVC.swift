@@ -173,9 +173,8 @@ extension SideMenuVC : UITableViewDelegate , UITableViewDataSource{
         
         else if(indexPath.row == 5) {
             
-            guard let url = URL(string: "https://stackoverflow.com") else { return }
-            UIApplication.shared.open(url)
-            
+            let vc = PrivacyPolicyVC.instantiate(fromAppStoryboard: .Main)
+            (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
         }
         
         else if(indexPath.row == 6) {

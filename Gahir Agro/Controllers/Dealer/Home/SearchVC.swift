@@ -25,39 +25,54 @@ class SearchVC: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         recentSearch()
-        searchDataTBView.separatorStyle = .none
-        showSearchedDataTBView.separatorStyle = .none
         showSearchedDataTBView.delegate = self
         showSearchedDataTBView.dataSource = self
         showSearchedDataTBView.isHidden = true
     }
     
     @IBAction func cancelButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: false)
+//        self.dismiss(animated: true, completion: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if comesFrom == true{
-            searchData()
-            showSearchedDataTBView.reloadData()
-            textField.resignFirstResponder()
+            if searchTxtFld.text?.isEmpty == true{
+                ValidateData(strMessage: "Search should not be empty")
+            } else {
+                self.searchData()
+                self.showSearchedDataTBView.reloadData()
+                textField.resignFirstResponder()
+            }
             return true
         }else{
-            filterdData()
-            showSearchedDataTBView.reloadData()
-            textField.resignFirstResponder()
+            if searchTxtFld.text?.isEmpty == true{
+                ValidateData(strMessage: "Search should not be empty")
+            } else {
+                filterdData()
+                showSearchedDataTBView.reloadData()
+                textField.resignFirstResponder()
+            }
             return true
         }
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         if comesFrom == true{
-            searchData()
-            showSearchedDataTBView.reloadData()
-            textField.resignFirstResponder()
+            if searchTxtFld.text?.isEmpty == true{
+                ValidateData(strMessage: "Search should not be empty")
+            } else {
+                self.searchData()
+                self.showSearchedDataTBView.reloadData()
+                textField.resignFirstResponder()
+            }
         }else{
-            filterdData()
-            showSearchedDataTBView.reloadData()
-            textField.resignFirstResponder()
+            if searchTxtFld.text?.isEmpty == true{
+                ValidateData(strMessage: "Search should not be empty")
+            } else {
+                self.searchData()
+                self.showSearchedDataTBView.reloadData()
+                textField.resignFirstResponder()
+            }
         }
 
     }
@@ -246,8 +261,8 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: "ShowSearchedDataTBViewCell", for: indexPath) as! ShowSearchedDataTBViewCell
             cell.nameLbl.text = tableViewDataArray[indexPath.row].name
             currentIndex = tableViewDataArray[indexPath.row].id
-            cell.detailsLbl.text = tableViewDataArray[indexPath.row].prod_desc
-            cell.typeLbl.text = tableViewDataArray[indexPath.row].price
+            cell.detailsLbl.text = tableViewDataArray[indexPath.row].price
+            cell.typeLbl.text = tableViewDataArray[indexPath.row].prod_desc
             cell.showImage.sd_setImage(with: URL(string:tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"))
             cell.checkAvailabiltyButton.addTarget(self, action: #selector(goto), for: .touchUpInside)
             return cell
@@ -262,9 +277,10 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource{
 //        let navigationController = UINavigationController(rootViewController: vc)
 //        vc.id = currentIndex
 //        self.present(navigationController, animated: true, completion: nil)
-//        let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
-//        vc.id = currentIndex
-//        self.navigationController?.pushViewController(vc, animated: true)
+        
+        let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
+        vc.id = currentIndex
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -288,7 +304,7 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource{
         if tableView == searchDataTBView{
             self.comesFrom = true
             self.searchTxtFld.text = searchArray[indexPath.row]
-            searchData()
+            searchData()            
         }else{
             
         }

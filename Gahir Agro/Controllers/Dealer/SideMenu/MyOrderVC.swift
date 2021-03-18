@@ -60,7 +60,6 @@ class MyOrderVC: UIViewController {
                     newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: productDetails["24 Feb 2021"] as? String ?? "24 Feb 2021", price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? ""))
                     self.amountArray.append("$\(productDetails["prod_price"] as? String ?? "")")
                 }
-                print(self.amountArray)
                 for i in 0..<newArr.count{
                     self.orderHistoryArray.append(newArr[i])
                 }
@@ -94,7 +93,6 @@ class MyOrderTBViewCell: UITableViewCell {
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var idLbl: UILabel!
     @IBOutlet weak var priceLbl: UILabel!
-    @IBOutlet weak var reorderbutton: UIButton!
     @IBOutlet weak var timeLbl: UILabel!
     @IBOutlet weak var quantityLbl: UILabel!
     @IBOutlet weak var showImage: UIImageView!
@@ -110,11 +108,11 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyOrderTBViewCell", for: indexPath) as! MyOrderTBViewCell
+        cell.idLbl.text = orderHistoryArray[indexPath.row].id
+        cell.timeLbl.text = orderHistoryArray[indexPath.row].deliveryDate
+        cell.quantityLbl.text = quantityArray[indexPath.row]
+        cell.nameLbl.text = orderHistoryArray[indexPath.row].name
         cell.priceLbl.text = amountArray[indexPath.row]
-        cell.nameLbl.text = orderHistoryArray[indexPath.section].name
-        cell.timeLbl.text = orderHistoryArray[indexPath.section].deliveryDate
-        cell.quantityLbl?.text = quantityArray[indexPath.row]
-        cell.productID.text = orderHistoryArray[indexPath.section].id
         cell.showImage.sd_setImage(with: URL(string:orderHistoryArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"))
         return cell
     }

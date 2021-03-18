@@ -104,6 +104,7 @@
 		18E84AE825E7AC57004A2148 /* RequestSubmitPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AE725E7AC57004A2148 /* RequestSubmitPopUpVC.swift */; };
 		18E84AED25E7AC9E004A2148 /* SuccesfullyBookedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AEC25E7AC9E004A2148 /* SuccesfullyBookedVC.swift */; };
 		18E84AF225E7B0DE004A2148 /* CustomerHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E84AF125E7B0DE004A2148 /* CustomerHomeVC.swift */; };
+		18EFE9F8260342A5006C3D94 /* PrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFE9F7260342A5006C3D94 /* PrivacyPolicyVC.swift */; };
 		18F9B6CD25E8CB020034D978 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9B6CC25E8CB020034D978 /* SplashVC.swift */; };
 		18F9B70E25E8E8240034D978 /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9B70D25E8E8240034D978 /* PopUpVC.swift */; };
 		3CB4907F28A61967136EDF38 /* Pods_Gahir_Agro_Gahir_AgroUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B9B12110EF8CE43EAF794BD /* Pods_Gahir_Agro_Gahir_AgroUITests.framework */; };
@@ -233,6 +234,7 @@
 		18E84AE725E7AC57004A2148 /* RequestSubmitPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSubmitPopUpVC.swift; sourceTree = "<group>"; };
 		18E84AEC25E7AC9E004A2148 /* SuccesfullyBookedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccesfullyBookedVC.swift; sourceTree = "<group>"; };
 		18E84AF125E7B0DE004A2148 /* CustomerHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerHomeVC.swift; sourceTree = "<group>"; };
+		18EFE9F7260342A5006C3D94 /* PrivacyPolicyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyVC.swift; sourceTree = "<group>"; };
 		18F9B6CC25E8CB020034D978 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		18F9B70D25E8E8240034D978 /* PopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
 		1B9B12110EF8CE43EAF794BD /* Pods_Gahir_Agro_Gahir_AgroUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gahir_Agro_Gahir_AgroUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -300,6 +302,7 @@
 				181704CF25E64824003825D7 /* ContactUsVC.swift */,
 				181704D425E654EC003825D7 /* NotificationVC.swift */,
 				18A877352600E66200566339 /* EnquriesVC.swift */,
+				18EFE9F7260342A5006C3D94 /* PrivacyPolicyVC.swift */,
 			);
 			path = SideMenu;
 			sourceTree = "<group>";
@@ -1017,6 +1020,7 @@
 				180847BC25E4BE4700D04E69 /* AddPhoneNumberVC.swift in Sources */,
 				184B11A425E37149003007A2 /* ImagePicker.swift in Sources */,
 				1872906425FF390500A83349 /* CustomerSearchVC.swift in Sources */,
+				18EFE9F8260342A5006C3D94 /* PrivacyPolicyVC.swift in Sources */,
 				184B118125E36EB7003007A2 /* SignUpVC.swift in Sources */,
 				18E84AD925E7AAE4004A2148 /* CustomerProductDetailsVC.swift in Sources */,
 				184B11C325E37259003007A2 /* ChangeBottamColor.swift in Sources */,

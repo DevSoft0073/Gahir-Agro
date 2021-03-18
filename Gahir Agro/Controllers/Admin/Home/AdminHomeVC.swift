@@ -57,7 +57,7 @@ class AdminHomeVC: UIViewController {
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
                     let productDetails = obj["product_detail"] as? [String:Any] ?? [:]
                     print(productDetails)
-                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: productDetails["24 Feb 2021"] as? String ?? "24 Feb 2021", price: "$\(productDetails["prod_price"] as? String ?? "").00" as? String ?? "", image: productDetails["prod_image"] as? String ?? ""))
+                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: productDetails["24 Feb 2021"] as? String ?? "24 Feb 2021", price: "$\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? ""))
                 }
                 for i in 0..<newArr.count{
                     self.adminEnquriesArray.append(newArr[i])
