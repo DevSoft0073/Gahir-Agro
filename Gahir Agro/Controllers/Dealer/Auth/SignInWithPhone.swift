@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import SKCountryPicker
+import FirebaseAuth
 
 class SignInWithPhone: UIViewController {
 
@@ -16,17 +17,18 @@ class SignInWithPhone: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.countryCode.contentHorizontalAlignment = .right
+        self.countryCode.contentHorizontalAlignment = .center
         guard let country = CountryManager.shared.currentCountry else {
-//            self.countryPicker.isHidden = true
             return
         }
 
         countryCode.setTitle(country.countryCode, for: .highlighted)
         countryCode.clipsToBounds = true
         
-        // Do any additional setup after loading the view.
     }
+    
+    
+    
     @IBAction func countryPickerButtonAction(_ sender: Any) {
         let countryController = CountryPickerWithSectionViewController.presentController(on: self) { [weak self] (country: Country) in
 
@@ -37,7 +39,6 @@ class SignInWithPhone: UIViewController {
             UserDefaults.standard.setValue(country.flag?.toString() ?? "", forKey: "flagImage")
          }
 
-         // can customize the countryPicker here e.g font and color
          countryController.detailColor = UIColor.red
         
     }
@@ -45,12 +46,9 @@ class SignInWithPhone: UIViewController {
     func getOtp() {
         PhoneAuthProvider.provider().verifyPhoneNumber(numberTxtFld.text ?? "", uiDelegate: nil) { (verificationID, error) in
           if let error = error {
-//            self.showMessagePrompt(error.localizedDescription)
             alert(Constant.shared.appTitle, message: error.localizedDescription, view: self)
             return
           }
-          // Sign in using the verificationID and the code sent to the user
-          // ...
             print(verificationID)
             UserDefaults.standard.setValue(verificationID, forKey: "authVerificationID")
             let vc = OTPVerificationVC.instantiate(fromAppStoryboard: .Auth)

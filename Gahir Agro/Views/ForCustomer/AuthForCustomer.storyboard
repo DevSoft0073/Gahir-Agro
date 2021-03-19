@@ -35,25 +35,25 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Sy3-BJ-9pK">
-                                <rect key="frame" x="27.5" y="499" width="320" height="90"/>
+                                <rect key="frame" x="27.5" y="544" width="320" height="45"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wPV-ib-Fvu">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in with Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9X-VP-BTR">
-                                                <rect key="frame" x="62.5" y="8" width="148.5" height="24"/>
+                                                <rect key="frame" x="62.5" y="10.5" width="148.5" height="24"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="y5s-no-PXW">
-                                                <rect key="frame" x="15" y="9" width="22.5" height="22"/>
+                                                <rect key="frame" x="15" y="11.5" width="22.5" height="22"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="y5s-no-PXW" secondAttribute="height" multiplier="1:1" id="lc8-b4-kN7"/>
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZBW-aM-bjb">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
                                                     <action selector="loginWithPhone:" destination="Tcf-Wc-3Ht" eventType="touchUpInside" id="uwr-6A-eDY"/>
@@ -66,51 +66,12 @@
                                             <constraint firstAttribute="trailing" secondItem="ZBW-aM-bjb" secondAttribute="trailing" id="36A-K9-jIn"/>
                                             <constraint firstItem="y5s-no-PXW" firstAttribute="leading" secondItem="wPV-ib-Fvu" secondAttribute="leading" constant="15" id="GTD-eb-Hau"/>
                                             <constraint firstItem="U9X-VP-BTR" firstAttribute="centerY" secondItem="y5s-no-PXW" secondAttribute="centerY" id="Mx8-m7-wkT"/>
+                                            <constraint firstAttribute="height" constant="45" id="SNd-ii-3p6"/>
                                             <constraint firstItem="y5s-no-PXW" firstAttribute="width" secondItem="wPV-ib-Fvu" secondAttribute="width" multiplier="0.07" id="ZHS-vJ-Mb4"/>
                                             <constraint firstAttribute="bottom" secondItem="ZBW-aM-bjb" secondAttribute="bottom" id="epy-FW-YO4"/>
                                             <constraint firstItem="y5s-no-PXW" firstAttribute="centerY" secondItem="wPV-ib-Fvu" secondAttribute="centerY" id="fQV-4h-QT9"/>
                                             <constraint firstItem="ZBW-aM-bjb" firstAttribute="leading" secondItem="wPV-ib-Fvu" secondAttribute="leading" id="pYb-F7-hjj"/>
                                             <constraint firstItem="ZBW-aM-bjb" firstAttribute="top" secondItem="wPV-ib-Fvu" secondAttribute="top" id="rsx-y1-JU7"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T2c-T5-LC9">
-                                        <rect key="frame" x="0.0" y="50" width="320" height="40"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail-1" translatesAutoresizingMaskIntoConstraints="NO" id="5x4-2Z-7he">
-                                                <rect key="frame" x="15" y="9" width="22.5" height="22"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="5x4-2Z-7he" secondAttribute="height" multiplier="1:1" id="Drc-5k-wnO"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in with Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olk-Aw-a7g">
-                                                <rect key="frame" x="62.5" y="8" width="142" height="24"/>
-                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPi-xB-QmL">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
-                                                <connections>
-                                                    <action selector="loginWithEmail:" destination="Tcf-Wc-3Ht" eventType="touchUpInside" id="JaH-Kh-IR9"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.77885460849999999" green="0.032650377600000002" blue="0.1003007665" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="5x4-2Z-7he" firstAttribute="leading" secondItem="T2c-T5-LC9" secondAttribute="leading" constant="15" id="5bo-43-0Ui"/>
-                                            <constraint firstItem="olk-Aw-a7g" firstAttribute="leading" secondItem="5x4-2Z-7he" secondAttribute="trailing" constant="25" id="8Dk-3p-k3r"/>
-                                            <constraint firstAttribute="bottom" secondItem="tPi-xB-QmL" secondAttribute="bottom" id="GgE-QR-8Y5"/>
-                                            <constraint firstItem="5x4-2Z-7he" firstAttribute="centerY" secondItem="T2c-T5-LC9" secondAttribute="centerY" id="fsY-5p-qNf"/>
-                                            <constraint firstItem="olk-Aw-a7g" firstAttribute="centerY" secondItem="5x4-2Z-7he" secondAttribute="centerY" id="mHE-jr-KP7"/>
-                                            <constraint firstItem="5x4-2Z-7he" firstAttribute="width" secondItem="T2c-T5-LC9" secondAttribute="width" multiplier="0.07" id="oXd-YH-Hrf"/>
-                                            <constraint firstItem="tPi-xB-QmL" firstAttribute="leading" secondItem="T2c-T5-LC9" secondAttribute="leading" id="x6h-lT-7An"/>
-                                            <constraint firstItem="tPi-xB-QmL" firstAttribute="top" secondItem="T2c-T5-LC9" secondAttribute="top" id="xE4-8g-oOl"/>
-                                            <constraint firstAttribute="trailing" secondItem="tPi-xB-QmL" secondAttribute="trailing" id="zld-k3-gg7"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -187,7 +148,6 @@
                             <constraint firstItem="ghH-SL-McJ" firstAttribute="width" secondItem="IUK-eX-fXm" secondAttribute="width" multiplier="0.7" id="moe-j4-e1w"/>
                             <constraint firstItem="Qih-uv-L0m" firstAttribute="width" secondItem="oCx-bh-tm7" secondAttribute="width" multiplier="0.5" id="shh-dp-LLM"/>
                             <constraint firstItem="Qih-uv-L0m" firstAttribute="leading" secondItem="Sy3-BJ-9pK" secondAttribute="leading" id="uQ1-Ir-Itu"/>
-                            <constraint firstItem="Sy3-BJ-9pK" firstAttribute="height" secondItem="IUK-eX-fXm" secondAttribute="height" multiplier="0.135" id="xKP-eP-th1"/>
                             <constraint firstItem="Sy3-BJ-9pK" firstAttribute="centerX" secondItem="2aw-1k-zg2" secondAttribute="centerX" id="zZ3-Wh-cmC"/>
                             <constraint firstItem="Qih-uv-L0m" firstAttribute="height" secondItem="oCx-bh-tm7" secondAttribute="height" multiplier="0.5" id="zgL-nt-qp4"/>
                         </constraints>
@@ -754,7 +714,7 @@
                                     <constraint firstAttribute="width" secondItem="KKS-xk-9hf" secondAttribute="height" multiplier="48:6" id="Tl2-hy-sxG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
-                                <state key="normal" title="Generate OTP">
+                                <state key="normal" title="Log In">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -882,10 +842,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIE-c5-WNG">
                                 <rect key="frame" x="0.0" y="73.5" width="375" height="66.5"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="act1" translatesAutoresizingMaskIntoConstraints="NO" id="8td-dP-PIN">
-                                        <rect key="frame" x="75" y="18" width="225" height="30"/>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="act1" translatesAutoresizingMaskIntoConstraints="NO" id="8td-dP-PIN">
+                                        <rect key="frame" x="75" y="30.5" width="225" height="5"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="8td-dP-PIN" secondAttribute="height" multiplier="45:6" id="cbn-py-CYS"/>
+                                            <constraint firstAttribute="width" secondItem="8td-dP-PIN" secondAttribute="height" multiplier="45:1" id="cbn-py-CYS"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -1081,7 +1041,6 @@
         <image name="bg-1" width="750" height="1843"/>
         <image name="icon" width="393" height="404"/>
         <image name="logo" width="511" height="435"/>
-        <image name="mail-1" width="43" height="32"/>
         <image name="ph" width="437" height="404"/>
         <image name="phone" width="40" height="40"/>
         <systemColor name="systemBackgroundColor">

@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import SKCountryPicker
+import FirebaseAuth
 
 class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
 
@@ -25,7 +26,6 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
         dealerTxtFld.isUserInteractionEnabled = false
         self.countryPicker.contentHorizontalAlignment = .right
         guard let country = CountryManager.shared.currentCountry else {
-//            self.countryPicker.isHidden = true
             return
         }
 
@@ -54,7 +54,6 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
             UserDefaults.standard.setValue(country.flag?.toString() ?? "", forKey: "flagImage")
          }
 
-         // can customize the countryPicker here e.g font and color
          countryController.detailColor = UIColor.red
     }
     
@@ -76,13 +75,9 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
     func getOtp() {
         PhoneAuthProvider.provider().verifyPhoneNumber(mobileTxtFld.text ?? "", uiDelegate: nil) { (verificationID, error) in
           if let error = error {
-//            self.showMessagePrompt(error.localizedDescription)
             alert(Constant.shared.appTitle, message: error.localizedDescription, view: self)
             return
           }
-          // Sign in using the verificationID and the code sent to the user
-          // ...
-            
         }
     }
     

@@ -29,7 +29,6 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         collectionViewDataArray.append(CollectionViewData(name: "PUMP", selected: false, type: "2"))
         
         filterdData()
-//        getAllProducts()
         itemsCollectionView.reloadData()
         
         // Do any additional setup after loading the view.

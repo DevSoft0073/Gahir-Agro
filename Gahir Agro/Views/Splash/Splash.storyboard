@@ -36,7 +36,7 @@
                             <constraint firstItem="czP-3E-4Or" firstAttribute="leading" secondItem="UyG-sM-4dU" secondAttribute="leading" id="YON-Ta-VkL"/>
                             <constraint firstItem="UyG-sM-4dU" firstAttribute="trailing" secondItem="czP-3E-4Or" secondAttribute="trailing" id="Yr6-IW-kDb"/>
                             <constraint firstAttribute="bottom" secondItem="czP-3E-4Or" secondAttribute="bottom" id="dAc-HT-Ls6"/>
-                            <constraint firstItem="319-e7-wfL" firstAttribute="centerY" secondItem="UyG-sM-4dU" secondAttribute="centerY" id="uB8-ZI-3ST"/>
+                            <constraint firstItem="319-e7-wfL" firstAttribute="centerY" secondItem="Nug-SJ-Y8g" secondAttribute="centerY" constant="5" id="uB8-ZI-3ST"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IC1-dI-DPN"/>

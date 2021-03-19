@@ -17,15 +17,16 @@ class SignInWithScreenVC: UIViewController {
 
     
     @IBAction func loginWithPhone(_ sender: Any) {
-    }
-    
-    @IBAction func loginWithEmail(_ sender: Any) {
         let vc = SignINVC.instantiate(fromAppStoryboard: .AuthForCustomer)
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
     @IBAction func signUpButtonAction(_ sender: Any) {
+        let vc = SignUPVC.instantiate(fromAppStoryboard: .AuthForCustomer)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func backbuttonAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
