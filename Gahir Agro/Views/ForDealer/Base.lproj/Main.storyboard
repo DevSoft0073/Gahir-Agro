@@ -249,7 +249,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHT-Bt-fId">
-                                                                    <rect key="frame" x="210.5" y="60.5" width="135.5" height="17"/>
+                                                                    <rect key="frame" x="210.5" y="68.5" width="135.5" height="17"/>
                                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                                     <color key="textColor" red="0.32938510180000002" green="0.32942733169999999" blue="0.3293656707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -275,7 +275,7 @@
                                                         <constraints>
                                                             <constraint firstItem="5o0-mu-7AF" firstAttribute="width" secondItem="7LW-Uj-Yrq" secondAttribute="width" multiplier="0.6" id="BMD-1s-WGc"/>
                                                             <constraint firstItem="IHT-Bt-fId" firstAttribute="width" secondItem="7LW-Uj-Yrq" secondAttribute="width" multiplier="0.38" id="Rbw-NH-N5T"/>
-                                                            <constraint firstItem="IHT-Bt-fId" firstAttribute="centerY" secondItem="7LW-Uj-Yrq" secondAttribute="centerY" id="hEt-Nb-8bB"/>
+                                                            <constraint firstItem="IHT-Bt-fId" firstAttribute="centerY" secondItem="7LW-Uj-Yrq" secondAttribute="centerY" constant="8" id="hEt-Nb-8bB"/>
                                                             <constraint firstAttribute="trailing" secondItem="IHT-Bt-fId" secondAttribute="trailing" constant="10" id="ozu-za-zcf"/>
                                                             <constraint firstItem="5o0-mu-7AF" firstAttribute="leading" secondItem="7LW-Uj-Yrq" secondAttribute="leading" constant="10" id="uee-9G-CHa"/>
                                                         </constraints>
@@ -470,7 +470,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="twh-fF-2ak">
-                                                        <rect key="frame" x="55" y="10" width="270" height="21"/>
+                                                        <rect key="frame" x="55" y="9.5" width="270" height="22.5"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
@@ -544,7 +544,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BBG-bN-R8I">
-                                                        <rect key="frame" x="55" y="10.5" width="270" height="21"/>
+                                                        <rect key="frame" x="55" y="9.5" width="270" height="22.5"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="password"/>
@@ -1715,7 +1715,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eMR-Cr-KRN">
-                                                        <rect key="frame" x="54.5" y="11" width="255" height="21"/>
+                                                        <rect key="frame" x="54.5" y="10.5" width="255" height="22.5"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
@@ -3648,7 +3648,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7eO-1c-4uS">
                                 <rect key="frame" x="28" y="240" width="319" height="187"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="popup" translatesAutoresizingMaskIntoConstraints="NO" id="00m-LR-wre">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card" translatesAutoresizingMaskIntoConstraints="NO" id="00m-LR-wre">
                                         <rect key="frame" x="0.0" y="0.0" width="319" height="187"/>
                                     </imageView>
                                 </subviews>
@@ -3845,7 +3845,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="9Zl-X6-G97">
                                                         <rect key="frame" x="9" y="10" width="328" height="46"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accessories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phV-cn-4f6">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phV-cn-4f6">
                                                                 <rect key="frame" x="0.0" y="0.0" width="328" height="22.5"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                                 <nil key="textColor"/>
@@ -4351,6 +4351,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="e4h-Uw-qNU" firstAttribute="width" secondItem="K4Q-ly-qfR" secondAttribute="width" multiplier="0.4" id="0AJ-dL-JrN"/>
                                             <constraint firstAttribute="bottom" secondItem="34e-aH-uSv" secondAttribute="bottom" id="OoR-KZ-n9V"/>
                                             <constraint firstItem="34e-aH-uSv" firstAttribute="width" secondItem="K4Q-ly-qfR" secondAttribute="width" multiplier="0.94" id="omA-6t-gLP"/>
                                         </constraints>
@@ -4406,6 +4407,7 @@
         <image name="back" width="16" height="28"/>
         <image name="bg" width="750" height="1830"/>
         <image name="camer" width="64" height="64"/>
+        <image name="card" width="513" height="332"/>
         <image name="dropdown" width="34" height="22"/>
         <image name="edit" width="27" height="27"/>
         <image name="edit-1" width="27" height="27"/>
@@ -4418,7 +4420,6 @@
         <image name="password" width="40" height="40"/>
         <image name="placehlder" width="116" height="116"/>
         <image name="placeholder-img-logo (1)" width="983" height="518"/>
-        <image name="popup" width="513" height="332"/>
         <image name="sh" width="24" height="24"/>
         <image name="sh-1" width="24" height="24"/>
         <image name="user" width="41" height="41"/>

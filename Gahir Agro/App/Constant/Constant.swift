@@ -13,6 +13,8 @@ class Constant: NSObject {
     static let shared = Constant()
     let appTitle  = "Gahir Agro"
     
+    //MARK:-> Dealer Flow Api's
+    
     let baseUrl = "https://www.dharmani.com/gahir/api/"
     
     let SignUp = "DealerSignup.php"
@@ -33,6 +35,13 @@ class Constant: NSObject {
     let BookOrder = "AddOrder.php"
     let Notification = "GetAllNotifications.php"
     let ChangePassword = "ChangePassword.php"
+    
+    
+    //MARK:-> Customer Flow Api's
+    
+    let CustomerLogin = "CustomerPhoneLogin.php"
+    let CustomerSignUp = ""
+    
     
     //MARK:-> Admin Flow Api's
     

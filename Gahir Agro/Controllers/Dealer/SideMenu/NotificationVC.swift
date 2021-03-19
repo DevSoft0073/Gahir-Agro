@@ -47,7 +47,10 @@ class NotificationVC: UIViewController {
                 let allData = response.data["notification_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_notifications"] as? [[String:Any]] ?? [[:]] {
                     print(obj)
-                    newArr.append(NotificationData(name: obj["notify_title"] as? String ?? "", image: "img-1", details: obj["notify_message"] as? String ?? "", date: "12/09/20 9:02 AM"))
+                    let dateValue = obj["creation_date"] as? String ?? ""
+                    let dateVal = NumberFormatter().number(from: dateValue)?.doubleValue ?? 0.0
+                    self.convertTimeStampToDate(dateVal: dateVal)
+                    newArr.append(NotificationData(name: obj["notify_title"] as? String ?? "", image: "img-1", details: obj["notify_message"] as? String ?? "", date: self.convertTimeStampToDate(dateVal: dateVal)))
                 }
                 for i in 0..<newArr.count{
                     self.notificationArray.append(newArr[i])
@@ -61,6 +64,16 @@ class NotificationVC: UIViewController {
             print(error)
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
+    }
+    
+    func convertTimeStampToDate(dateVal : Double) -> String{
+        let timeinterval = TimeInterval(dateVal)
+        let dateFromServer = Date(timeIntervalSince1970:timeinterval)
+        print(dateFromServer)
+        let dateFormater = DateFormatter()
+        dateFormater.timeZone = .current
+        dateFormater.dateFormat = "dd-MM-YYYY"
+        return dateFormater.string(from: dateFromServer)
     }
     
     

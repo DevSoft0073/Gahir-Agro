@@ -32,7 +32,7 @@ class SubmitDetailsVC: UIViewController {
 
         let totalAmount = amountVal * quantityVal
         nameTxtFld.text = name
-        amountTxtFld.text = "\(totalAmount)0"
+        amountTxtFld.text = "$\(totalAmount)0"
         quantityTxtFld.text = quantity
         dealerCodeTxtFld.text = "ASHJK8767"
         accesoriesTxtFld.text = accessoriesName

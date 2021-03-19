@@ -104,9 +104,14 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
     }
     
     @IBAction func menuButton(_ sender: Any) {
-        sideMenuController?.showLeftViewAnimated()        
+        sideMenuController?.showLeftViewAnimated()
+        
     }
     
+}
+
+extension Notification.Name {
+    public static let showHomeSelected = Notification.Name(rawValue: "showHomeSelected")
 }
 
 extension Notification.Name {

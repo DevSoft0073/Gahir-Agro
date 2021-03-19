@@ -59,8 +59,11 @@ class EnquriesVC: UIViewController {
                 let allData = response.data["order_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_orders"] as? [[String:Any]] ?? [[:]]{
                     print(obj)
-                    self.totalArray.append(obj["total"] as! String) as? Any ?? ""
+                    
                     let allDetails = obj["enquiry_detail"] as? [String:Any] ?? [:]
+                    self.totalArray.append(allDetails["total"] as! String) as? Any ?? ""
+                    let dateValue = allDetails["creation_date"] as? String ?? ""
+                    let dateVal = NumberFormatter().number(from: dateValue)?.doubleValue ?? 0.0
                     let productDetails = allDetails["product_detail"] as? [String:Any] ?? [:]
                     let accessoriesData = productDetails["accessories"] as? [[String:Any]] ?? [[:]]
                     for obj in accessoriesData{
@@ -68,7 +71,7 @@ class EnquriesVC: UIViewController {
                     }
                     self.quantityArray.append(allDetails["qty"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
-                    newArr.append(EnquriesDataFroDealer(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: productDetails["24 Feb 2021"] as? String ?? "24 Feb 2021", price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? ""))
+                    newArr.append(EnquriesDataFroDealer(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateVal), price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? ""))
                     self.amountArray.append("$\(productDetails["prod_price"] as? String ?? "")")
 
                 }
@@ -90,7 +93,15 @@ class EnquriesVC: UIViewController {
         }
     }
 
-    
+    func convertTimeStampToDate(dateVal : Double) -> String{
+        let timeinterval = TimeInterval(dateVal)
+        let dateFromServer = Date(timeIntervalSince1970:timeinterval)
+        print(dateFromServer)
+        let dateFormater = DateFormatter()
+        dateFormater.timeZone = .current
+        dateFormater.dateFormat = "dd-MM-YYYY"
+        return dateFormater.string(from: dateFromServer)
+    }
     
     
 }
@@ -118,7 +129,7 @@ extension EnquriesVC : UITableViewDelegate , UITableViewDataSource {
         cell.dateLbl.text = enquriesDataFroDealerArray[indexPath.row].deliveryDate
         cell.quantityLbl.text = quantityArray[indexPath.row]
         cell.nameLbl.text = enquriesDataFroDealerArray[indexPath.row].name
-        cell.priceLbl.text = "\(totalArray[indexPath.row])"
+        cell.priceLbl.text = "$\(totalArray[indexPath.row])"
         cell.showImage.sd_setImage(with: URL(string:enquriesDataFroDealerArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"))
         return cell
     }
@@ -127,15 +138,15 @@ extension EnquriesVC : UITableViewDelegate , UITableViewDataSource {
         return 125
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = SubmitDetailsVC.instantiate(fromAppStoryboard: .Main)
-        vc.enquiryID = enquiryID[indexPath.row]
-        vc.name = enquriesDataFroDealerArray[indexPath.row].name
-        vc.quantity = quantityArray[indexPath.row]
-        vc.amount = enquriesDataFroDealerArray[indexPath.row].price
-        vc.accessoriesName = self.accName
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let vc = SubmitDetailsVC.instantiate(fromAppStoryboard: .Main)
+//        vc.enquiryID = enquiryID[indexPath.row]
+//        vc.name = enquriesDataFroDealerArray[indexPath.row].name
+//        vc.quantity = quantityArray[indexPath.row]
+//        vc.amount = enquriesDataFroDealerArray[indexPath.row].price
+//        vc.accessoriesName = enquriesDataFroDealerArray[indexPath.row]
+//        self.navigationController?.pushViewController(vc, animated: true)
+//    }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if page <= lastPage{

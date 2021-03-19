@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class SearchVC: UIViewController,UITextFieldDelegate {
     
@@ -32,13 +33,13 @@ class SearchVC: UIViewController,UITextFieldDelegate {
     
     @IBAction func cancelButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: false)
-//        self.dismiss(animated: true, completion: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if comesFrom == true{
             if searchTxtFld.text?.isEmpty == true{
-                ValidateData(strMessage: "Search should not be empty")
+                self.showSearchedDataTBView.isHidden = true
+                self.searchDataTBView.isHidden = false
             } else {
                 self.searchData()
                 self.showSearchedDataTBView.reloadData()
@@ -47,7 +48,7 @@ class SearchVC: UIViewController,UITextFieldDelegate {
             return true
         }else{
             if searchTxtFld.text?.isEmpty == true{
-                ValidateData(strMessage: "Search should not be empty")
+                searchDataTBView.reloadData()
                 self.searchData()
             } else {
                 showSearchedDataTBView.reloadData()
@@ -62,8 +63,9 @@ class SearchVC: UIViewController,UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if comesFrom == true{
             if searchTxtFld.text?.isEmpty == true{
-                ValidateData(strMessage: "Search should not be empty")
-                
+                self.showSearchedDataTBView.isHidden = true
+                self.searchDataTBView.isHidden = false
+                searchDataTBView.reloadData()
             } else {
                 self.searchData()
                 self.showSearchedDataTBView.reloadData()
@@ -71,7 +73,7 @@ class SearchVC: UIViewController,UITextFieldDelegate {
             }
         }else{
             if searchTxtFld.text?.isEmpty == true{
-                ValidateData(strMessage: "Search should not be empty")
+                searchDataTBView.reloadData()
                 
             } else {
                 self.searchData()
@@ -90,10 +92,8 @@ class SearchVC: UIViewController,UITextFieldDelegate {
     
     
     func textFieldDidChange(textField: UITextField){
-        
         tableViewDataArray.removeAll()
         searchDataTBView.reloadData()
-
         print("Text changed: " + textField.text!)
 
     }
@@ -124,7 +124,6 @@ class SearchVC: UIViewController,UITextFieldDelegate {
                     self.searchArray.append(n)
                     print(n)
                 })
-//                self.searchArray.append(searchArrayData?[3] ?? "")
                 self.searchDataTBView.reloadData()
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
@@ -287,7 +286,8 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource{
             currentIndex = tableViewDataArray[indexPath.row].id
             cell.detailsLbl.text = tableViewDataArray[indexPath.row].price
             cell.typeLbl.text = tableViewDataArray[indexPath.row].prod_desc
-            cell.showImage.sd_setImage(with: URL(string:tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"))
+            cell.showImage.sd_setImage(with: URL(string:tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
+            cell.showImage.roundTop()
             cell.checkAvailabiltyButton.addTarget(self, action: #selector(goto), for: .touchUpInside)
             return cell
         }

@@ -167,32 +167,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "90B3A71C-4707-47A3-B4D9-E264E20D316A"
+            uuid = "6F06532F-F4CC-49BC-9585-F602DEE061A8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Dealer/SideMenu/EnquriesVC.swift"
+            filePath = "Gahir Agro/Controllers/Admin/Home/AdminEnquriesVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "getAllEnquries()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5A22558C-281B-4DCB-BAB0-8710D663A7C1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Dealer/Home/ProductDetailsVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "productDetails()"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "getAllOrder()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

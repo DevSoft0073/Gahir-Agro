@@ -14,9 +14,10 @@ class AdminEnquriesVC: UIViewController {
     var messgae = String()
     var enquiryID = [String]()
     var quantityArray = [String]()
-    var accName = String()
     var dealerCode = String()
     var dealerName = String()
+    var accName = [String]()
+
     var adminOrderArray = [OrderHistoryData]()
     @IBOutlet weak var orderTBView: UITableView!
     override func viewDidLoad() {
@@ -50,7 +51,7 @@ class AdminEnquriesVC: UIViewController {
                 let allData = response.data["order_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_orders"] as? [[String:Any]] ?? [[:]]{
                     var accessoriesData = obj["accessories"] as? [String:Any] ?? [:]
-                    self.accName = accessoriesData["acc_name"] as? String ?? ""
+                    self.accName.append(accessoriesData["acc_name"] as? String ?? "")
                     self.quantityArray.append(obj["qty"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
                     self.dealerCode = obj["dealer_code"] as? String ?? ""
@@ -59,7 +60,7 @@ class AdminEnquriesVC: UIViewController {
                     let allEnquiryData = obj["enquiry_detail"] as? [String:Any] ?? [:]
                     for newObj in allEnquiryData["product_detail"] as? [[String:Any]] ?? [[:]] {
                         print(newObj)
-                        newArr.append(OrderHistoryData(name: allEnquiryData["prod_name"] as? String ?? "", id: allEnquiryData["id"] as? String ?? "", quantity: "\(allEnquiryData["qty"] as? String ?? "")", deliveryDate: allEnquiryData["24 Feb 2021"] as? String ?? "24 Feb 2021", price: "$\(allEnquiryData["total"] as? String ?? "")" as? String ?? "", image: allEnquiryData["prod_image"] as? String ?? ""))
+                        newArr.append(OrderHistoryData(name: allEnquiryData["prod_name"] as? String ?? "", id: allEnquiryData["id"] as? String ?? "", quantity: "\(allEnquiryData["qty"] as? String ?? "")", deliveryDate: allEnquiryData["24 Feb 2021"] as? String ?? "24 Feb 2021", price: "$\(allEnquiryData["total"] as? String ?? "")" as? String ?? "", image: allEnquiryData["prod_image"] as? String ?? "", accName: self.accName))
                     }
                 }
                 for i in 0..<newArr.count{

@@ -17,7 +17,7 @@ class MyOrderVC: UIViewController {
     var messgae = String()
     var enquiryID = [String]()
     var quantityArray = [String]()
-    var accName = String()
+    var accName = [String]()
     var amountArray = [String]()
     var dateArray = [Any]()
     var totalArray = [String]()
@@ -52,20 +52,18 @@ class MyOrderVC: UIViewController {
                 var newArr = [OrderHistoryData]()
                 let allData = response.data["enquiry_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_enquiries"] as? [[String:Any]] ?? [[:]]{
-                    print(obj)
-                    let dateData = obj["system_detail"] as? [String:Any] ?? [:]
-                    let dateValue = dateData["creation_date"] as? Double ?? 0.0
-                                        
-                    self.convertTimeStampToDate(dateVal: dateValue)
-                    self.dateArray.append(dateData["creation_date"]) as? Any
+                    let dateValue = obj["creation_date"] as? String ?? ""
+                    let dateVal = NumberFormatter().number(from: dateValue)?.doubleValue ?? 0.0
+                    self.convertTimeStampToDate(dateVal: dateVal)
+//                    self.dateArray.append(dateData["creation_date"]) as? Any
                     let accessoriesData = obj["accessories"] as? [String:Any] ?? [:]
-                    self.accName = accessoriesData["acc_name"] as? String ?? ""
+                    self.accName.append(accessoriesData["acc_name"] as? String ?? "")
                     self.quantityArray.append(obj["qty"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
                     self.totalArray.append(obj["total"] as! String) as? Any ?? ""
                     let productDetails = obj["product_detail"] as? [String:Any] ?? [:]
                     print(productDetails)
-                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateValue), price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? ""))
+                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateVal), price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? "", accName: self.accName))
                     self.amountArray.append("$\(productDetails["prod_price"] as? String ?? "")")
                 }
                 for i in 0..<newArr.count{
@@ -90,11 +88,12 @@ class MyOrderVC: UIViewController {
     func convertTimeStampToDate(dateVal : Double) -> String{
         let timeinterval = TimeInterval(dateVal)
         let dateFromServer = Date(timeIntervalSince1970:timeinterval)
+        print(dateFromServer)
         let dateFormater = DateFormatter()
-        dateArray.append(dateFormater)
+        dateFormater.timeZone = .current
+        dateFormater.dateFormat = "dd-MM-YYYY"
         return dateFormater.string(from: dateFromServer)
     }
-    
     
     @IBAction func openMenu(_ sender: Any) {
         sideMenuController?.showLeftViewAnimated()
@@ -125,11 +124,10 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyOrderTBViewCell", for: indexPath) as! MyOrderTBViewCell
         cell.idLbl.text = orderHistoryArray[indexPath.row].id
-        cell.timeLbl.text = "\(dateArray[indexPath.row])"
+        cell.timeLbl.text = orderHistoryArray[indexPath.row].deliveryDate
         cell.quantityLbl.text = quantityArray[indexPath.row]
         cell.nameLbl.text = orderHistoryArray[indexPath.row].name
-       
-        cell.priceLbl.text = "\(totalArray[indexPath.row])"
+        cell.priceLbl.text = "$\(totalArray[indexPath.row])"
         cell.showImage.sd_setImage(with: URL(string:orderHistoryArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"))
         return cell
     }
@@ -143,7 +141,7 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
         vc.name = orderHistoryArray[indexPath.row].name
         vc.quantity = quantityArray[indexPath.row]
         vc.amount = orderHistoryArray[indexPath.row].price
-        vc.accessoriesName = self.accName
+        vc.accessoriesName = orderHistoryArray[indexPath.row].accName[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
@@ -170,14 +168,23 @@ struct OrderHistoryData {
     var deliveryDate : String
     var price : String
     var image : String
+    var accName : [String]
     
-    init(name : String , id : String , quantity : String , deliveryDate : String , price : String , image : String) {
+    init(name : String , id : String , quantity : String , deliveryDate : String , price : String , image : String,accName : [String]) {
         self.name = name
         self.id = id
         self.quantity = quantity
         self.deliveryDate = deliveryDate
         self.price = price
         self.image = image
+        self.accName = accName
     }
 }
 
+extension String {
+    var numberValue:NSNumber? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .none
+        return formatter.number(from: self)
+    }
+}

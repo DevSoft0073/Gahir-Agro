@@ -7,6 +7,7 @@
 
 import UIKit
 import LGSideMenuController
+import SDWebImage
 
 class HomeVC: UIViewController,UITextFieldDelegate {
     
@@ -178,7 +179,7 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlItemsTBViewCell", for: indexPath) as! AlItemsTBViewCell
-        cell.showImage.sd_setImage(with: URL(string:tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"))
+        cell.showImage.sd_setImage(with: URL(string:tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
         cell.nameLbl.text = tableViewDataArray[indexPath.row].name
         cell.showImage.roundTop()
      //   cell.modelLbl.text = tableViewDataArray[indexPath.row].modelName

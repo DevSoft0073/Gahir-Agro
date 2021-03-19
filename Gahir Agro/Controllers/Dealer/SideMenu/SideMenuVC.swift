@@ -25,7 +25,7 @@ class SideMenuVC: UIViewController {
         getData()
         sideMenuItemsArray.append(SideMenuItems(name: "Home", selectedImage: "home", selected: true, unselected: "home-1"))
         sideMenuItemsArray.append(SideMenuItems(name: "My Enquiries", selectedImage: "order", selected: false, unselected: "order-1"))
-        sideMenuItemsArray.append(SideMenuItems(name: "My Orders", selectedImage: "order", selected: false, unselected: "order-1"))
+        sideMenuItemsArray.append(SideMenuItems(name: "My Orders", selectedImage: "enq", selected: false, unselected: "enq1"))
         sideMenuItemsArray.append(SideMenuItems(name: "Notifications", selectedImage: "noti", selected: false, unselected: "noti-1"))
         sideMenuItemsArray.append(SideMenuItems(name: "Contact Us", selectedImage: "contact", selected: false, unselected: "contact-1"))
         sideMenuItemsArray.append(SideMenuItems(name: "Privacy Policy", selectedImage: "privacy", selected: false, unselected: "privacy-1"))
@@ -34,6 +34,8 @@ class SideMenuVC: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.notificationReceived(_:)), name: .sendUserData, object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.showSelected(_:)), name: .sendUserData, object: nil)
+        
         // Do any additional setup after loading the view.
     }
     
@@ -41,6 +43,17 @@ class SideMenuVC: UIViewController {
         super.viewDidLayoutSubviews()
         profileImage.layer.masksToBounds = true
         profileImage.layer.cornerRadius = profileImage.frame.height/2
+    }
+    
+    @objc func showSelected(_ notification: Notification) {
+        sideMenuItemsArray[0].selected = false
+        sideMenuItemsArray[1].selected = false
+        sideMenuItemsArray[2].selected = false
+        sideMenuItemsArray[3].selected = false
+        sideMenuItemsArray[4].selected = false
+        sideMenuItemsArray[5].selected = false
+        sideMenuItemsArray[6].selected = false
+        settingTBView.reloadData()
     }
     
     @objc func notificationReceived(_ notification: Notification) {

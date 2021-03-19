@@ -15,7 +15,7 @@ class AdminHomeVC: UIViewController {
     var messgae = String()
     var enquiryID = [String]()
     var quantityArray = [String]()
-    var accName = String()
+    var accName = [String]()
     var adminEnquriesArray = [OrderHistoryData]()
     @IBOutlet weak var enquriesTBView: UITableView!
     override func viewDidLoad() {
@@ -52,12 +52,12 @@ class AdminHomeVC: UIViewController {
                 for obj in allData["all_enquiries"] as? [[String:Any]] ?? [[:]]{
                     print(obj)
                     var accessoriesData = obj["accessories"] as? [String:Any] ?? [:]
-                    self.accName = accessoriesData["acc_name"] as? String ?? ""
+                    self.accName.append(accessoriesData["acc_name"] as? String ?? "")
                     self.quantityArray.append(obj["qty"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
                     let productDetails = obj["product_detail"] as? [String:Any] ?? [:]
                     print(productDetails)
-                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: productDetails["24 Feb 2021"] as? String ?? "24 Feb 2021", price: "$\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? ""))
+                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: productDetails["24 Feb 2021"] as? String ?? "24 Feb 2021", price: "$\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? "", accName: self.accName))
                 }
                 for i in 0..<newArr.count{
                     self.adminEnquriesArray.append(newArr[i])
