@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ProductDetailsVC: UIViewController {
 
@@ -60,7 +61,7 @@ class ProductDetailsVC: UIViewController {
                 print(allData)
                 self.modelLbl.text = allData["prod_name"] as? String ?? ""
                 self.namelbl.text = "Model"
-                self.showImage.sd_setImage(with: URL(string:allData["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "placeholder-img-logo (1)"))
+                self.showImage.sd_setImage(with: URL(string:allData["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
                 let url = URL(string:allData["prod_image"] as? String ?? "")
                 if url != nil{
                     if let data = try? Data(contentsOf: url!)

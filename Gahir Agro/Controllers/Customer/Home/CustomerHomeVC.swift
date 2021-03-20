@@ -28,7 +28,7 @@ class CustomerHomeVC: UIViewController {
         customerCollectionViewDataArray.append(CollectionViewDataForDealer(name: "LASER", selected: false, type: "1"))
         customerCollectionViewDataArray.append(CollectionViewDataForDealer(name: "PUMP", selected: false, type: "2"))
         tableViewData.separatorStyle = .none
-        getAllProducts()
+        filterdData()
     }
     
     
@@ -127,11 +127,18 @@ class CustomerHomeVC: UIViewController {
     }
     
     @IBAction func searchButton(_ sender: Any) {
-        
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.fade
+        transition.subtype = CATransitionSubtype.fromTop
+        self.navigationController!.view.layer.add(transition, forKey: nil)
+        let writeView = self.storyboard?.instantiateViewController(withIdentifier: "CustomerSearchVC") as! CustomerSearchVC
+        self.navigationController?.pushViewController(writeView, animated: false)
     }
 }
 
-class TableViewDataCell: UITableViewCell {
+class CustomerTableViewDataCell: UITableViewCell {
     
     @IBOutlet weak var showImage: UIImageView!
     @IBOutlet weak var moreDetailsButton: UIButton!
@@ -206,22 +213,30 @@ extension CustomerHomeVC : UITableViewDelegate , UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewDataCell", for: indexPath) as! TableViewDataCell
-        cell.showImage.image = UIImage(named: customerTableViewDataArray[indexPath.row].image)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomerTableViewDataCell", for: indexPath) as! CustomerTableViewDataCell
+        cell.showImage.sd_setImage(with: URL(string:customerTableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
         cell.showImage.roundTop()
-        cell.nameLbl.text = customerTableViewDataArray[indexPath.row].name
-        cell.detailslbl.text = customerTableViewDataArray[indexPath.row].modelName
-        cell.subDetailsLbl.text = customerTableViewDataArray[indexPath.row].details
+        cell.nameLbl.text = "Model"
+        cell.detailslbl.text = customerTableViewDataArray[indexPath.row].name
+        cell.subDetailsLbl.text = customerTableViewDataArray[indexPath.row].price
+        cell.moreDetailsButton.addTarget(self, action: #selector(goto), for: .touchUpInside)
+
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
+    @objc func goto(sender : UIButton) {
+        let vc = CustomerProductDetailsVC.instantiate(fromAppStoryboard: .Customer)
+        vc.id = customerTableViewDataArray[sender.tag].id
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let vc = CustomerProductDetailsVC.instantiate(fromAppStoryboard: .Customer)
+//        self.navigationController?.pushViewController(vc, animated: true)
+//    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 330
+        return UITableView.automaticDimension
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

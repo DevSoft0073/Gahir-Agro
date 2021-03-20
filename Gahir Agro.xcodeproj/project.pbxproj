@@ -73,6 +73,8 @@
 		184B11CA25E3726E003007A2 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C725E3726D003007A2 /* Constant.swift */; };
 		184B11CB25E3726E003007A2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C825E3726D003007A2 /* Reachability.swift */; };
 		184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C925E3726D003007A2 /* AFWrapperClass.swift */; };
+		185854992605DF5F00F78097 /* PdfViewerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185854982605DF5F00F78097 /* PdfViewerVC.swift */; };
+		185854A12605DF6E00F78097 /* VideoPlayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185854A02605DF6E00F78097 /* VideoPlayVC.swift */; };
 		185B48DC2601C30A0021089C /* AdminSideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B48DB2601C30A0021089C /* AdminSideMenuVC.swift */; };
 		185B48E12601C3260021089C /* AdminSideMenuControllerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B48E02601C3260021089C /* AdminSideMenuControllerVC.swift */; };
 		185B48E62601C3410021089C /* AdminNotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B48E52601C3410021089C /* AdminNotificationVC.swift */; };
@@ -203,6 +205,8 @@
 		184B11C725E3726D003007A2 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		184B11C825E3726D003007A2 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		184B11C925E3726D003007A2 /* AFWrapperClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWrapperClass.swift; sourceTree = "<group>"; };
+		185854982605DF5F00F78097 /* PdfViewerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfViewerVC.swift; sourceTree = "<group>"; };
+		185854A02605DF6E00F78097 /* VideoPlayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayVC.swift; sourceTree = "<group>"; };
 		185B48DB2601C30A0021089C /* AdminSideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminSideMenuVC.swift; sourceTree = "<group>"; };
 		185B48E02601C3260021089C /* AdminSideMenuControllerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminSideMenuControllerVC.swift; sourceTree = "<group>"; };
 		185B48E52601C3410021089C /* AdminNotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminNotificationVC.swift; sourceTree = "<group>"; };
@@ -388,6 +392,7 @@
 		184A8AAE25FB4895000583C5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				185854972605DF2800F78097 /* Product Details */,
 				18E84AD825E7AAE4004A2148 /* CustomerProductDetailsVC.swift */,
 				18E84AF125E7B0DE004A2148 /* CustomerHomeVC.swift */,
 				1872906325FF390500A83349 /* CustomerSearchVC.swift */,
@@ -644,6 +649,15 @@
 				184B114125E36C74003007A2 /* Assets.xcassets */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		185854972605DF2800F78097 /* Product Details */ = {
+			isa = PBXGroup;
+			children = (
+				185854982605DF5F00F78097 /* PdfViewerVC.swift */,
+				185854A02605DF6E00F78097 /* VideoPlayVC.swift */,
+			);
+			path = "Product Details";
 			sourceTree = "<group>";
 		};
 		185B48EA2601C34E0021089C /* Profile */ = {
@@ -1004,6 +1018,7 @@
 				184B11C125E37259003007A2 /* Activityloader.swift in Sources */,
 				184B11CB25E3726E003007A2 /* Reachability.swift in Sources */,
 				185B48F42601C36E0021089C /* AdminEditProfileVC.swift in Sources */,
+				185854992605DF5F00F78097 /* PdfViewerVC.swift in Sources */,
 				1872905F25FF38F400A83349 /* CustomerContactUSVC.swift in Sources */,
 				1872905025FF388900A83349 /* CustomerProfileVC.swift in Sources */,
 				181704C125E63DF3003825D7 /* ProfileVC.swift in Sources */,
@@ -1022,6 +1037,7 @@
 				185B490F2601C9270021089C /* AdminEnquriesVC.swift in Sources */,
 				180847BC25E4BE4700D04E69 /* AddPhoneNumberVC.swift in Sources */,
 				184B11A425E37149003007A2 /* ImagePicker.swift in Sources */,
+				185854A12605DF6E00F78097 /* VideoPlayVC.swift in Sources */,
 				1872906425FF390500A83349 /* CustomerSearchVC.swift in Sources */,
 				18EFE9F8260342A5006C3D94 /* PrivacyPolicyVC.swift in Sources */,
 				184B118125E36EB7003007A2 /* SignUpVC.swift in Sources */,
