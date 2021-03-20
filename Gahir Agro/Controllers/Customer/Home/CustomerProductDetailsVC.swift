@@ -14,7 +14,7 @@ class CustomerProductDetailsVC: UIViewController {
     var id = String()
     var messgae = String()
     var detailsDataArray = [DetailsData]()
-
+    var videoDataArray = [VideoDataArray]()
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var quantitylbl: UILabel!
     @IBOutlet weak var modelDetails: UILabel!
@@ -121,4 +121,15 @@ extension CustomerProductDetailsVC : UITableViewDelegate , UITableViewDataSource
         55
     }
     
+}
+
+struct VideoDataArray {
+     
+    var videoURL : String
+    var pdfURL : String
+    
+    init(videoURL: String, pdfURL: String) {
+       self.videoURL = videoURL
+       self.pdfURL = pdfURL
+   }
 }
