@@ -37,7 +37,7 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
     }
     
     @IBAction func signUpButton(_ sender: Any) {
-        let vc = AddPhoneNumberVC.instantiate(fromAppStoryboard: .Auth)
+        let vc = ChooseRoleForCustomerAndDealerVC.instantiate(fromAppStoryboard: .Auth)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

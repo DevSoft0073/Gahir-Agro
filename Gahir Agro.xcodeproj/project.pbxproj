@@ -95,6 +95,7 @@
 		187A8BEF25ECC4FD00DCA747 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 187A8BEE25ECC4FD00DCA747 /* GoogleService-Info.plist */; };
 		187A8C0825ECF2DA00DCA747 /* PKWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A8C0725ECF2DA00DCA747 /* PKWrapperClass.swift */; };
 		187A8C2525ECF9B600DCA747 /* SignInWithPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A8C2425ECF9B600DCA747 /* SignInWithPhone.swift */; };
+		188BE124260877F5005E8081 /* ChooseRoleForCustomerAndDealerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BE123260877F5005E8081 /* ChooseRoleForCustomerAndDealerVC.swift */; };
 		18A877362600E66200566339 /* EnquriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A877352600E66200566339 /* EnquriesVC.swift */; };
 		18AD8F0325EADA9C00072166 /* OpenPIcker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD8F0225EADA9C00072166 /* OpenPIcker.swift */; };
 		18B87C7625E684C200837E6C /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B87C7525E684C200837E6C /* SearchVC.swift */; };
@@ -229,6 +230,7 @@
 		187A8BEE25ECC4FD00DCA747 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Certifacate and gooleinfolist/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		187A8C0725ECF2DA00DCA747 /* PKWrapperClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWrapperClass.swift; sourceTree = "<group>"; };
 		187A8C2425ECF9B600DCA747 /* SignInWithPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithPhone.swift; sourceTree = "<group>"; };
+		188BE123260877F5005E8081 /* ChooseRoleForCustomerAndDealerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRoleForCustomerAndDealerVC.swift; sourceTree = "<group>"; };
 		18A877352600E66200566339 /* EnquriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnquriesVC.swift; sourceTree = "<group>"; };
 		18AD8F0225EADA9C00072166 /* OpenPIcker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPIcker.swift; sourceTree = "<group>"; };
 		18B87C7525E684C200837E6C /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
@@ -606,16 +608,10 @@
 		184B117325E36E23003007A2 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				18F9B6CC25E8CB020034D978 /* SplashVC.swift */,
-				180847B625E4BE2A00D04E69 /* SignInWithVC.swift */,
-				184B117B25E36E91003007A2 /* SignInVC.swift */,
-				187A8C2425ECF9B600DCA747 /* SignInWithPhone.swift */,
-				180847BB25E4BE4700D04E69 /* AddPhoneNumberVC.swift */,
-				18F9B70D25E8E8240034D978 /* PopUpVC.swift */,
-				180847C025E4BE5F00D04E69 /* OTPVerificationVC.swift */,
-				184B118025E36EB7003007A2 /* SignUpVC.swift */,
-				184B118525E36EC9003007A2 /* ForgotPasswordVC.swift */,
-				184A8AB925FB4C98000583C5 /* ChooseRoleVC.swift */,
+				188BE12A26088988005E8081 /* ChooseRole */,
+				188BE1292608897C005E8081 /* LoginWithEmail */,
+				188BE12826088972005E8081 /* LoginWithPhone */,
+				188BE12B260889B9005E8081 /* ForgotPassword */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -695,6 +691,45 @@
 				187A8BEE25ECC4FD00DCA747 /* GoogleService-Info.plist */,
 			);
 			path = GoogleInfoList;
+			sourceTree = "<group>";
+		};
+		188BE12826088972005E8081 /* LoginWithPhone */ = {
+			isa = PBXGroup;
+			children = (
+				187A8C2425ECF9B600DCA747 /* SignInWithPhone.swift */,
+				180847BB25E4BE4700D04E69 /* AddPhoneNumberVC.swift */,
+				18F9B70D25E8E8240034D978 /* PopUpVC.swift */,
+				180847C025E4BE5F00D04E69 /* OTPVerificationVC.swift */,
+				184B118025E36EB7003007A2 /* SignUpVC.swift */,
+			);
+			path = LoginWithPhone;
+			sourceTree = "<group>";
+		};
+		188BE1292608897C005E8081 /* LoginWithEmail */ = {
+			isa = PBXGroup;
+			children = (
+				180847B625E4BE2A00D04E69 /* SignInWithVC.swift */,
+				18F9B6CC25E8CB020034D978 /* SplashVC.swift */,
+				184B117B25E36E91003007A2 /* SignInVC.swift */,
+			);
+			path = LoginWithEmail;
+			sourceTree = "<group>";
+		};
+		188BE12A26088988005E8081 /* ChooseRole */ = {
+			isa = PBXGroup;
+			children = (
+				184A8AB925FB4C98000583C5 /* ChooseRoleVC.swift */,
+				188BE123260877F5005E8081 /* ChooseRoleForCustomerAndDealerVC.swift */,
+			);
+			path = ChooseRole;
+			sourceTree = "<group>";
+		};
+		188BE12B260889B9005E8081 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				184B118525E36EC9003007A2 /* ForgotPasswordVC.swift */,
+			);
+			path = ForgotPassword;
 			sourceTree = "<group>";
 		};
 		18E84AD225E7AA9D004A2148 /* Dealer */ = {
@@ -1042,6 +1077,7 @@
 				184B11A425E37149003007A2 /* ImagePicker.swift in Sources */,
 				185854A12605DF6E00F78097 /* VideoPlayVC.swift in Sources */,
 				1872906425FF390500A83349 /* CustomerSearchVC.swift in Sources */,
+				188BE124260877F5005E8081 /* ChooseRoleForCustomerAndDealerVC.swift in Sources */,
 				18EFE9F8260342A5006C3D94 /* PrivacyPolicyVC.swift in Sources */,
 				184B118125E36EB7003007A2 /* SignUpVC.swift in Sources */,
 				18E84AD925E7AAE4004A2148 /* CustomerProductDetailsVC.swift in Sources */,

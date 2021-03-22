@@ -32,7 +32,7 @@ class SignInWithVC: UIViewController{
     }
     
     @IBAction func signInButtonAction(_ sender: Any) {
-        let vc = AddPhoneNumberVC.instantiate(fromAppStoryboard: .Auth)
+        let vc = ChooseRoleForCustomerAndDealerVC.instantiate(fromAppStoryboard: .Auth)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

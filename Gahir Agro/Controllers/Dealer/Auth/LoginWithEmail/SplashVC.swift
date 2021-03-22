@@ -39,7 +39,7 @@ class SplashVC: UIViewController {
             }
             
         }else if credentials == 0{
-            let vc = ChooseRoleVC.instantiate(fromAppStoryboard: .Auth)
+            let vc = SignInWithVC.instantiate(fromAppStoryboard: .Auth)
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
