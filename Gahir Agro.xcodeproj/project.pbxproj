@@ -36,6 +36,8 @@
 		18157E1225E5095300E4451C /* ProductDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18157E1125E5095300E4451C /* ProductDetailsVC.swift */; };
 		18157E1725E50FBD00E4451C /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18157E1625E50FBD00E4451C /* SideMenuController.swift */; };
 		1815DEC2260B15160072771E /* AllVideosAndPDFListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815DEC1260B15160072771E /* AllVideosAndPDFListingVC.swift */; };
+		1815DECA260B43F10072771E /* PlayVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815DEC9260B43F10072771E /* PlayVideoVC.swift */; };
+		1815DED0260B45E90072771E /* AVPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815DECF260B45E90072771E /* AVPlayerView.swift */; };
 		181704C125E63DF3003825D7 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704C025E63DF3003825D7 /* ProfileVC.swift */; };
 		181704C625E63E02003825D7 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704C525E63E02003825D7 /* EditProfileVC.swift */; };
 		181704CB25E63E11003825D7 /* MyOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704CA25E63E11003825D7 /* MyOrderVC.swift */; };
@@ -164,6 +166,8 @@
 		18157E1125E5095300E4451C /* ProductDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsVC.swift; sourceTree = "<group>"; };
 		18157E1625E50FBD00E4451C /* SideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
 		1815DEC1260B15160072771E /* AllVideosAndPDFListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllVideosAndPDFListingVC.swift; sourceTree = "<group>"; };
+		1815DEC9260B43F10072771E /* PlayVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVideoVC.swift; sourceTree = "<group>"; };
+		1815DECF260B45E90072771E /* AVPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerView.swift; sourceTree = "<group>"; };
 		181704C025E63DF3003825D7 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		181704C525E63E02003825D7 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		181704CA25E63E11003825D7 /* MyOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderVC.swift; sourceTree = "<group>"; };
@@ -316,6 +320,15 @@
 				18EFE9F7260342A5006C3D94 /* PrivacyPolicyVC.swift */,
 			);
 			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		1815DECE260B45C40072771E /* PlayVideo */ = {
+			isa = PBXGroup;
+			children = (
+				1815DEC9260B43F10072771E /* PlayVideoVC.swift */,
+				1815DECF260B45E90072771E /* AVPlayerView.swift */,
+			);
+			path = PlayVideo;
 			sourceTree = "<group>";
 		};
 		181704BF25E63DDF003825D7 /* Profile */ = {
@@ -653,6 +666,7 @@
 		185854972605DF2800F78097 /* Product Details */ = {
 			isa = PBXGroup;
 			children = (
+				1815DECE260B45C40072771E /* PlayVideo */,
 				185854982605DF5F00F78097 /* PdfViewerVC.swift */,
 				1815DEC1260B15160072771E /* AllVideosAndPDFListingVC.swift */,
 			);
@@ -1055,6 +1069,7 @@
 				1872905525FF389F00A83349 /* CustomerEditProfileVC.swift in Sources */,
 				184B113925E36C74003007A2 /* AppDelegate.swift in Sources */,
 				184B11C125E37259003007A2 /* Activityloader.swift in Sources */,
+				1815DED0260B45E90072771E /* AVPlayerView.swift in Sources */,
 				184B11CB25E3726E003007A2 /* Reachability.swift in Sources */,
 				185B48F42601C36E0021089C /* AdminEditProfileVC.swift in Sources */,
 				185854992605DF5F00F78097 /* PdfViewerVC.swift in Sources */,
@@ -1094,6 +1109,7 @@
 				184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */,
 				18E84ADE25E7AC08004A2148 /* BookOrderVC.swift in Sources */,
 				180847B725E4BE2A00D04E69 /* SignInWithVC.swift in Sources */,
+				1815DECA260B43F10072771E /* PlayVideoVC.swift in Sources */,
 				185B48E12601C3260021089C /* AdminSideMenuControllerVC.swift in Sources */,
 				187A8C0825ECF2DA00DCA747 /* PKWrapperClass.swift in Sources */,
 				181704CB25E63E11003825D7 /* MyOrderVC.swift in Sources */,

@@ -46,10 +46,18 @@ extension AllVideosAndPDFListingVC : UITableViewDelegate , UITableViewDataSource
         cell.nameLbl.text = allDataArray[indexPath.row].url
         return cell
     }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        <#code#>
-//    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if allDataArray[indexPath.row].type == .pdf{
+            let vc = PdfViewerVC.instantiate(fromAppStoryboard: .Main)
+            vc.pdfUrl = allDataArray[indexPath.row].url ?? ""
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            let vc = PlayVideoVC.instantiate(fromAppStoryboard: .Main)
+            vc.videoUrl = allDataArray[indexPath.row].url ?? ""
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80

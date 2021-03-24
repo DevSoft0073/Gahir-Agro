@@ -11,9 +11,10 @@ import WebKit
 class PdfViewerVC: UIViewController , WKNavigationDelegate {
 
     @IBOutlet weak var openPdfUrl: WKWebView!
+    var pdfUrl = String()
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url = URL(string: "http://restoredglory.org/contact-us/")!
+        let url: URL! = URL(string: pdfUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
         let urlRequest = URLRequest(url: url)
         openPdfUrl.load(urlRequest)
         openPdfUrl.autoresizingMask = [.flexibleWidth,.flexibleHeight]

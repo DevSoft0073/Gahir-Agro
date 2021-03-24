@@ -127,23 +127,23 @@
                                                         <rect key="frame" x="271" y="198.5" width="75" height="27"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minus" translatesAutoresizingMaskIntoConstraints="NO" id="vKu-iu-KLP">
-                                                                <rect key="frame" x="9" y="9.5" width="7" height="8"/>
+                                                                <rect key="frame" x="8.5" y="9.5" width="7.5" height="8"/>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kul-1U-unI">
-                                                                <rect key="frame" x="0.0" y="0.0" width="25" height="27"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="24.5" height="27"/>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQR-NF-8AC">
-                                                                <rect key="frame" x="25" y="0.0" width="25.5" height="27"/>
+                                                                <rect key="frame" x="24.5" y="0.0" width="25.5" height="27"/>
                                                                 <color key="backgroundColor" red="0.96430844069999999" green="0.87889522310000001" blue="0.87723678350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="12"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="X98-C6-jk7">
-                                                                <rect key="frame" x="59" y="9.5" width="7.5" height="8"/>
+                                                                <rect key="frame" x="58.5" y="9.5" width="7.5" height="8"/>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZEP-LT-fwC">
-                                                                <rect key="frame" x="50.5" y="0.0" width="24.5" height="27"/>
+                                                                <rect key="frame" x="50" y="0.0" width="25" height="27"/>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -4519,7 +4519,7 @@
                                                                 <constraint firstItem="sTU-3u-CKJ" firstAttribute="leading" secondItem="BJa-tO-P1v" secondAttribute="leading" id="vJr-cC-gGP"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="E1J-2e-JtQ">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next-1" translatesAutoresizingMaskIntoConstraints="NO" id="E1J-2e-JtQ">
                                                             <rect key="frame" x="349" y="35" width="11" height="11"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="E1J-2e-JtQ" secondAttribute="height" multiplier="1:1" id="sFW-An-GpS"/>
@@ -4685,14 +4685,17 @@
             </objects>
             <point key="canvasLocation" x="1881" y="1590"/>
         </scene>
-        <!--View Controller-->
+        <!--Play VideoVC-->
         <scene sceneID="y2T-eL-Jfk">
             <objects>
-                <viewController id="HxR-Pd-Fjl" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlayVideoVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HxR-Pd-Fjl" customClass="PlayVideoVC" customModule="Gahir_Agro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bsb-hq-FFn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-2" translatesAutoresizingMaskIntoConstraints="NO" id="py4-nj-uUM">
+                                <rect key="frame" x="0.0" y="73.5" width="375" height="593.5"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vwl-a6-f2P">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="26.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -4710,8 +4713,11 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="2aF-4J-8Ja" secondAttribute="height" multiplier="1:1" id="kxE-cx-Se4"/>
                                         </constraints>
+                                        <connections>
+                                            <action selector="backButton:" destination="HxR-Pd-Fjl" eventType="touchUpInside" id="ggu-Zs-tUp"/>
+                                        </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PDf Viewer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbF-x2-f24">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PDf Viewer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbF-x2-f24">
                                         <rect key="frame" x="150.5" y="17" width="74.5" height="20"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                         <nil key="textColor"/>
@@ -4744,27 +4750,49 @@
                                     <constraint firstItem="WzH-KA-d5r" firstAttribute="centerX" secondItem="Ncy-DD-Dle" secondAttribute="centerX" id="mgD-aN-xdI"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="py4-nj-uUM">
-                                <rect key="frame" x="0.0" y="73.5" width="375" height="593.5"/>
-                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zkr-bN-rd8" customClass="PlayerView" customModule="Gahir_Agro" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="217" width="375" height="233"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XqQ-k8-d3m">
+                                <rect key="frame" x="163" y="309" width="49" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XqQ-k8-d3m" secondAttribute="height" multiplier="1:1" id="f8A-qU-ExF"/>
+                                </constraints>
+                                <state key="normal" image="pause"/>
+                                <connections>
+                                    <action selector="playPauseButtonAction:" destination="HxR-Pd-Fjl" eventType="touchUpInside" id="rP6-Of-DQk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="moz-NS-tZP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Ncy-DD-Dle" firstAttribute="height" secondItem="Bsb-hq-FFn" secondAttribute="height" multiplier="0.07" id="0lj-0V-fdt"/>
+                            <constraint firstItem="zkr-bN-rd8" firstAttribute="height" secondItem="Bsb-hq-FFn" secondAttribute="height" multiplier="0.35" id="2FS-gj-J5C"/>
                             <constraint firstItem="Vwl-a6-f2P" firstAttribute="leading" secondItem="moz-NS-tZP" secondAttribute="leading" id="45M-2E-ppD"/>
                             <constraint firstItem="Vwl-a6-f2P" firstAttribute="height" secondItem="Bsb-hq-FFn" secondAttribute="height" multiplier="0.04" id="69u-7s-1Th"/>
                             <constraint firstItem="moz-NS-tZP" firstAttribute="trailing" secondItem="py4-nj-uUM" secondAttribute="trailing" id="8TC-7w-ovX"/>
-                            <constraint firstItem="Vwl-a6-f2P" firstAttribute="top" secondItem="moz-NS-tZP" secondAttribute="top" id="AFi-11-n4f"/>
+                            <constraint firstItem="Vwl-a6-f2P" firstAttribute="top" secondItem="Bsb-hq-FFn" secondAttribute="top" id="AFi-11-n4f"/>
                             <constraint firstItem="Ncy-DD-Dle" firstAttribute="top" secondItem="Vwl-a6-f2P" secondAttribute="bottom" id="G2X-aM-UaV"/>
+                            <constraint firstItem="XqQ-k8-d3m" firstAttribute="centerX" secondItem="moz-NS-tZP" secondAttribute="centerX" id="H3r-kF-DIv"/>
                             <constraint firstItem="moz-NS-tZP" firstAttribute="trailing" secondItem="Ncy-DD-Dle" secondAttribute="trailing" id="HuJ-4o-icI"/>
                             <constraint firstAttribute="bottom" secondItem="py4-nj-uUM" secondAttribute="bottom" id="Jg4-v4-ZZh"/>
                             <constraint firstItem="py4-nj-uUM" firstAttribute="leading" secondItem="moz-NS-tZP" secondAttribute="leading" id="RmI-IW-4Ca"/>
+                            <constraint firstItem="XqQ-k8-d3m" firstAttribute="centerY" secondItem="moz-NS-tZP" secondAttribute="centerY" id="Ua7-Bd-2m7"/>
+                            <constraint firstItem="zkr-bN-rd8" firstAttribute="centerY" secondItem="Bsb-hq-FFn" secondAttribute="centerY" id="WYZ-Qc-JYW"/>
                             <constraint firstItem="py4-nj-uUM" firstAttribute="top" secondItem="Ncy-DD-Dle" secondAttribute="bottom" id="WcF-Ux-2d9"/>
+                            <constraint firstItem="XqQ-k8-d3m" firstAttribute="width" secondItem="Bsb-hq-FFn" secondAttribute="width" multiplier="0.13" id="eV4-Il-zWj"/>
+                            <constraint firstItem="zkr-bN-rd8" firstAttribute="width" secondItem="Bsb-hq-FFn" secondAttribute="width" id="gn6-e0-CYh"/>
                             <constraint firstItem="moz-NS-tZP" firstAttribute="trailing" secondItem="Vwl-a6-f2P" secondAttribute="trailing" id="ls6-fH-ZNH"/>
+                            <constraint firstItem="zkr-bN-rd8" firstAttribute="centerX" secondItem="Bsb-hq-FFn" secondAttribute="centerX" id="poB-Qh-dHR"/>
                             <constraint firstItem="Ncy-DD-Dle" firstAttribute="leading" secondItem="Bsb-hq-FFn" secondAttribute="leading" id="yEt-rw-0F1"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="playPauseButton" destination="XqQ-k8-d3m" id="zSO-Fz-NWN"/>
+                        <outlet property="playVideo" destination="zkr-bN-rd8" id="Yvs-Cd-FN6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qFf-dX-gnB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -4775,6 +4803,7 @@
         <image name="add" width="19" height="19"/>
         <image name="back" width="16" height="28"/>
         <image name="bg" width="750" height="1830"/>
+        <image name="bg-2" width="640" height="1320"/>
         <image name="camer" width="64" height="64"/>
         <image name="card" width="513" height="332"/>
         <image name="dropdown" width="34" height="22"/>
@@ -4786,7 +4815,9 @@
         <image name="mail" width="40" height="30"/>
         <image name="menu-1" width="43" height="37"/>
         <image name="minus" width="19" height="4"/>
+        <image name="next-1" width="11" height="19"/>
         <image name="password" width="40" height="40"/>
+        <image name="pause" width="113" height="113"/>
         <image name="placehlder" width="116" height="116"/>
         <image name="placeholder-img-logo (1)" width="983" height="518"/>
         <image name="sh" width="24" height="24"/>
