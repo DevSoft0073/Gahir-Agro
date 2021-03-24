@@ -125,7 +125,6 @@ extension NotificationVC : UITableViewDelegate , UITableViewDataSource {
         }else{
             let bottamEdge = Float(self.notificationTBView.contentOffset.y + self.notificationTBView.frame.size.height)
             if bottamEdge >= Float(self.notificationTBView.contentSize.height) && notificationArray.count > 0 {
-                notifationData()
             }
         }
     }

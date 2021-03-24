@@ -26,6 +26,7 @@ class PrivacyPolicyVC: UIViewController , WKNavigationDelegate {
     @IBAction func backButton(_ sender: Any) {
         sideMenuController?.showLeftViewAnimated()
     }
+    
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
             if navigationAction.navigationType == .linkActivated  {
                 if let url = navigationAction.request.url,

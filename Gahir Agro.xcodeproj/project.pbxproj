@@ -35,6 +35,7 @@
 		180EEAED25E3B73100D6327A /* Poppins-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 180EEADA25E3B73100D6327A /* Poppins-BoldItalic.otf */; };
 		18157E1225E5095300E4451C /* ProductDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18157E1125E5095300E4451C /* ProductDetailsVC.swift */; };
 		18157E1725E50FBD00E4451C /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18157E1625E50FBD00E4451C /* SideMenuController.swift */; };
+		1815DEC2260B15160072771E /* AllVideosAndPDFListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815DEC1260B15160072771E /* AllVideosAndPDFListingVC.swift */; };
 		181704C125E63DF3003825D7 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704C025E63DF3003825D7 /* ProfileVC.swift */; };
 		181704C625E63E02003825D7 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704C525E63E02003825D7 /* EditProfileVC.swift */; };
 		181704CB25E63E11003825D7 /* MyOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704CA25E63E11003825D7 /* MyOrderVC.swift */; };
@@ -74,7 +75,6 @@
 		184B11CB25E3726E003007A2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C825E3726D003007A2 /* Reachability.swift */; };
 		184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C925E3726D003007A2 /* AFWrapperClass.swift */; };
 		185854992605DF5F00F78097 /* PdfViewerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185854982605DF5F00F78097 /* PdfViewerVC.swift */; };
-		185854A12605DF6E00F78097 /* VideoPlayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185854A02605DF6E00F78097 /* VideoPlayVC.swift */; };
 		185B48DC2601C30A0021089C /* AdminSideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B48DB2601C30A0021089C /* AdminSideMenuVC.swift */; };
 		185B48E12601C3260021089C /* AdminSideMenuControllerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B48E02601C3260021089C /* AdminSideMenuControllerVC.swift */; };
 		185B48E62601C3410021089C /* AdminNotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B48E52601C3410021089C /* AdminNotificationVC.swift */; };
@@ -163,6 +163,7 @@
 		180EEADA25E3B73100D6327A /* Poppins-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.otf"; sourceTree = "<group>"; };
 		18157E1125E5095300E4451C /* ProductDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsVC.swift; sourceTree = "<group>"; };
 		18157E1625E50FBD00E4451C /* SideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
+		1815DEC1260B15160072771E /* AllVideosAndPDFListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllVideosAndPDFListingVC.swift; sourceTree = "<group>"; };
 		181704C025E63DF3003825D7 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		181704C525E63E02003825D7 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		181704CA25E63E11003825D7 /* MyOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderVC.swift; sourceTree = "<group>"; };
@@ -208,7 +209,6 @@
 		184B11C825E3726D003007A2 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		184B11C925E3726D003007A2 /* AFWrapperClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWrapperClass.swift; sourceTree = "<group>"; };
 		185854982605DF5F00F78097 /* PdfViewerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfViewerVC.swift; sourceTree = "<group>"; };
-		185854A02605DF6E00F78097 /* VideoPlayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayVC.swift; sourceTree = "<group>"; };
 		185B48DB2601C30A0021089C /* AdminSideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminSideMenuVC.swift; sourceTree = "<group>"; };
 		185B48E02601C3260021089C /* AdminSideMenuControllerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminSideMenuControllerVC.swift; sourceTree = "<group>"; };
 		185B48E52601C3410021089C /* AdminNotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminNotificationVC.swift; sourceTree = "<group>"; };
@@ -289,6 +289,7 @@
 		180847C825E4DB5000D04E69 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				185854972605DF2800F78097 /* Product Details */,
 				18DEBB1825F73F9200475060 /* ThankYouVC.swift */,
 				18E84ADD25E7AC08004A2148 /* BookOrderVC.swift */,
 				18E84AD325E7AACE004A2148 /* EnquiryVC.swift */,
@@ -397,7 +398,6 @@
 		184A8AAE25FB4895000583C5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				185854972605DF2800F78097 /* Product Details */,
 				18E84AD825E7AAE4004A2148 /* CustomerProductDetailsVC.swift */,
 				18E84AF125E7B0DE004A2148 /* CustomerHomeVC.swift */,
 				1872906325FF390500A83349 /* CustomerSearchVC.swift */,
@@ -654,7 +654,7 @@
 			isa = PBXGroup;
 			children = (
 				185854982605DF5F00F78097 /* PdfViewerVC.swift */,
-				185854A02605DF6E00F78097 /* VideoPlayVC.swift */,
+				1815DEC1260B15160072771E /* AllVideosAndPDFListingVC.swift */,
 			);
 			path = "Product Details";
 			sourceTree = "<group>";
@@ -1042,6 +1042,7 @@
 				184B113D25E36C74003007A2 /* ViewController.swift in Sources */,
 				184A8AEF25FB8A1C000583C5 /* OTPVerificationForCustomerVC.swift in Sources */,
 				180847D325E4DBB000D04E69 /* SideMenuVC.swift in Sources */,
+				1815DEC2260B15160072771E /* AllVideosAndPDFListingVC.swift in Sources */,
 				184B11CA25E3726E003007A2 /* Constant.swift in Sources */,
 				1872905A25FF38C100A83349 /* CustomerNotificationVC.swift in Sources */,
 				18E84AF225E7B0DE004A2148 /* CustomerHomeVC.swift in Sources */,
@@ -1075,7 +1076,6 @@
 				185B490F2601C9270021089C /* AdminEnquriesVC.swift in Sources */,
 				180847BC25E4BE4700D04E69 /* AddPhoneNumberVC.swift in Sources */,
 				184B11A425E37149003007A2 /* ImagePicker.swift in Sources */,
-				185854A12605DF6E00F78097 /* VideoPlayVC.swift in Sources */,
 				1872906425FF390500A83349 /* CustomerSearchVC.swift in Sources */,
 				188BE124260877F5005E8081 /* ChooseRoleForCustomerAndDealerVC.swift in Sources */,
 				18EFE9F8260342A5006C3D94 /* PrivacyPolicyVC.swift in Sources */,

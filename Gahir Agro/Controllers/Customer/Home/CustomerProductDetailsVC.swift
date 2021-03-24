@@ -14,7 +14,6 @@ class CustomerProductDetailsVC: UIViewController {
     var id = String()
     var messgae = String()
     var detailsDataArray = [DetailsData]()
-    var videoDataArray = [VideoDataArray]()
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var quantitylbl: UILabel!
     @IBOutlet weak var modelDetails: UILabel!
@@ -75,8 +74,8 @@ class CustomerProductDetailsVC: UIViewController {
                 for product in productDetails{
                     let splittedProducts = product.split(separator: ":")
                     if splittedProducts.indices.contains(0) && splittedProducts.indices.contains(1){
-                        self.detailsDataArray.append(DetailsData(fieldData: splittedProducts[0], fieldName: String(splittedProducts[1])))
-                        print(self.detailsDataArray)
+//                        self.detailsDataArray.append(DetailsData(fieldData: splittedProducts[0], fieldName: String(splittedProducts[1])))
+//                        print(self.detailsDataArray)
                     }
                     print("showing data\(splittedProducts)")
                 }
@@ -121,15 +120,4 @@ extension CustomerProductDetailsVC : UITableViewDelegate , UITableViewDataSource
         55
     }
     
-}
-
-struct VideoDataArray {
-     
-    var videoURL : String
-    var pdfURL : String
-    
-    init(videoURL: String, pdfURL: String) {
-       self.videoURL = videoURL
-       self.pdfURL = pdfURL
-   }
 }

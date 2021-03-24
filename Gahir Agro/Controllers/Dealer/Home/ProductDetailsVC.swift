@@ -10,12 +10,17 @@ import SDWebImage
 
 class ProductDetailsVC: UIViewController {
 
+    @IBOutlet weak var enquiryButtonn: UIButton!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var productDetailsTBView: UITableView!
     @IBOutlet weak var modelLbl: UILabel!
     @IBOutlet weak var namelbl: UILabel!
     @IBOutlet weak var showImage: UIImageView!
+    var buttonTitle = String()
+    var pdfArray = [String]()
+    var videoArray = [String]()
     var detailsDataArray = [DetailsData]()
+    var mediaArray = [Media]()
     var messgae = String()
     var id = String()
     override func viewDidLoad() {
@@ -23,7 +28,12 @@ class ProductDetailsVC: UIViewController {
         self.productDetails()
         print(id)
         self.productDetailsTBView.separatorStyle = .none
-        // Do any additional setup after loading the view.
+        buttonTitle = UserDefaults.standard.value(forKey: "checkRole") as? String ?? ""
+        if buttonTitle == "Customer"{
+            enquiryButtonn.setTitle("See All Video's & PDF", for: .normal)
+        }else{
+            enquiryButtonn.setTitle("Enquiry", for: .normal)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -35,9 +45,21 @@ class ProductDetailsVC: UIViewController {
     }
     
     @IBAction func enquiryButtonVc(_ sender: Any) {
-        let vc = EnquiryVC.instantiate(fromAppStoryboard: .Main)
-        vc.id = self.id
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+        buttonTitle = UserDefaults.standard.value(forKey: "checkRole") as? String ?? ""
+        if buttonTitle == "Customer"{
+            
+            let vc = AllVideosAndPDFListingVC.instantiate(fromAppStoryboard: .Main)
+            vc.allDataArray = mediaArray
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }else{
+            
+            let vc = EnquiryVC.instantiate(fromAppStoryboard: .Main)
+            vc.id = self.id
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
     }
     
     func productDetails() {
@@ -59,6 +81,15 @@ class ProductDetailsVC: UIViewController {
             if status == "1"{
                 let allData = response.data["product_detail"] as? [String:Any] ?? [:]
                 print(allData)
+                
+                let pdfData = allData["prod_pdf"] as? [String] ?? [""]
+                for i in pdfData {
+                    self.mediaArray.append(Media(type: .pdf, url: i))
+                }
+                let videoData = allData["prod_video"] as? [String] ?? [""]
+                for i in videoData {
+                    self.mediaArray.append(Media(type: .video, url: i))
+                }
                 self.modelLbl.text = allData["prod_name"] as? String ?? ""
                 self.namelbl.text = "Model"
                 self.showImage.sd_setImage(with: URL(string:allData["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
@@ -80,8 +111,7 @@ class ProductDetailsVC: UIViewController {
                 for product in productDetails{
                     let splittedProducts = product.split(separator: ":")
                     if splittedProducts.indices.contains(0) && splittedProducts.indices.contains(1){
-                        self.detailsDataArray.append(DetailsData(fieldData: splittedProducts[0], fieldName: String(splittedProducts[1])))
-                        print(self.detailsDataArray)
+                        self.detailsDataArray.append(DetailsData( fieldName: String(splittedProducts[1]), fieldData: splittedProducts[0]))
                     }
                     print("showing data\(splittedProducts)")
                 }
@@ -131,11 +161,20 @@ extension ProductDetailsVC : UITableViewDelegate , UITableViewDataSource {
 }
 
 struct DetailsData {
+    init(fieldName: String, fieldData: Any) {
+        self.fieldName = fieldName
+        self.fieldData = fieldData
+    }
     var fieldName : String
     var fieldData : Any
     
-    init(fieldData : Any,fieldName : String) {
-        self.fieldData = fieldData
-        self.fieldName = fieldName
+}
+
+struct Media {
+    var type:MediaType
+    var url: String
+    enum MediaType {
+        case video
+        case pdf
     }
 }
