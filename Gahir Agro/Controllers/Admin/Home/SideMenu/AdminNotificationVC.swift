@@ -19,7 +19,6 @@ class AdminNotificationVC: UIViewController {
         super.viewDidLoad()
         notificationTBView.separatorStyle = .none
         notifationData()
-        // Do any additional setup after loading the view.
     }
     
     
@@ -47,7 +46,9 @@ class AdminNotificationVC: UIViewController {
                 let allData = response.data["notification_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_notifications"] as? [[String:Any]] ?? [[:]] {
                     print(obj)
-                    newArr.append(NotificationData(name: obj["notify_title"] as? String ?? "", image: "img-1", details: obj["notify_message"] as? String ?? "", date: "12/09/20 9:02 AM"))
+                    let dateValue = obj["creation_date"] as? String ?? ""
+                    let dateVal = NumberFormatter().number(from: dateValue)?.doubleValue ?? 0.0
+                    newArr.append(NotificationData(name: obj["notify_title"] as? String ?? "", image: "img-1", details: obj["notify_message"] as? String ?? "", date: self.convertTimeStampToDate(dateVal: dateVal)))
                 }
                 for i in 0..<newArr.count{
                     self.notificationArray.append(newArr[i])
@@ -55,7 +56,6 @@ class AdminNotificationVC: UIViewController {
                 self.notificationTBView.reloadData()
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
-//                alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }
         } failure: { (error) in
             print(error)
@@ -110,11 +110,9 @@ extension AdminNotificationVC : UITableViewDelegate , UITableViewDataSource {
         }else{
             let bottamEdge = Float(self.notificationTBView.contentOffset.y + self.notificationTBView.frame.size.height)
             if bottamEdge >= Float(self.notificationTBView.contentSize.height) && notificationArray.count > 0 {
-                notifationData()
             }
         }
     }
-    
 }
 
 

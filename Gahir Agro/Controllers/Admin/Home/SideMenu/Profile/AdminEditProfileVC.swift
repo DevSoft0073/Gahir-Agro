@@ -19,8 +19,6 @@ class AdminEditProfileVC: UIViewController ,UITextFieldDelegate , UITextViewDele
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var passwordTxtFld: UITextField!
-    @IBOutlet weak var addressView: UIView!
-    @IBOutlet weak var addressTxtFld: UITextField!
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var emailTxtFld: UITextField!
     var imagePickers = UIImagePickerController()
@@ -31,7 +29,6 @@ class AdminEditProfileVC: UIViewController ,UITextFieldDelegate , UITextViewDele
         getData()
         emailTxtFld.isUserInteractionEnabled = false
         passwordTxtFld.isUserInteractionEnabled = false
-        // Do any additional setup after loading the view.
     }
     
     
@@ -47,22 +44,9 @@ class AdminEditProfileVC: UIViewController ,UITextFieldDelegate , UITextViewDele
         return true
     }
     
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == addressTxtFld {
-            addressView.borderColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-            bioView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            
-            
-        } else if textField == emailTxtFld{
-           
-        }
-    }
-    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView == bioTxtView{
             bioView.borderColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-            addressView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         }
     }
     
@@ -133,6 +117,62 @@ class AdminEditProfileVC: UIViewController ,UITextFieldDelegate , UITextViewDele
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
     }
+    
+    
+    
+    func updateData()  {
+        
+        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+        let url = Constant.shared.baseUrl + Constant.shared.EditProfile
+        _ = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+        let nameCountry = UserDefaults.standard.value(forKey: "name")
+        let params = ["access_token": accessToken,"bio": bioTxtView.text ?? "","first_name":nameTxtFld.text ?? "","country":nameCountry] as? [String : AnyObject] ?? [:]
+        print(params)
+        AF.upload(multipartFormData: { (multipartFormData) in
+            for (key, value) in params {
+                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
+            }
+            print(multipartFormData)
+            let imageData1 = self.profileImage.image!.jpegData(compressionQuality: 0.3)
+            multipartFormData.append(imageData1!, withName: "image" , fileName: "\(String.random(length: 8))", mimeType: "image/jpeg")
+            
+        }, to: url, usingThreshold: UInt64.init(), method: .post, headers: nil, interceptor: nil, fileManager: .default)
+        
+        .uploadProgress(closure: { (progress) in
+            print("Upload Progress: \(progress.fractionCompleted)")
+        })
+        .responseJSON { (response) in
+            PKWrapperClass.svprogressHudDismiss(view: self)
+            switch response.result {
+            case .success(let value):
+                if let JSON = value as? [String: Any] {
+                    if let dataDict = JSON as? NSDictionary{
+                        let message = dataDict["message"] as? String ?? ""
+                        let status = JSON["status"] as? String ?? ""
+                        if status == "1"{
+                            showAlertMessage(title: Constant.shared.appTitle, message: message, okButton: "Ok", controller: self) {
+                                NotificationCenter.default.post(name: .sendUserDataToSideMenu, object: nil)
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                        }else{
+                            alert(Constant.shared.appTitle, message: message, view: self)
+                        }
+                    }
+                }
+                
+            case .failure(let error):
+                if let JSON2 = error as? AFError {
+                    PKWrapperClass.svprogressHudDismiss(view: self)
+                    print(JSON2)
+                    alert(Constant.shared.appTitle, message: "\(JSON2)", view: self)
+                }
+                break
+                
+            }
+        }
+    }
+
     
     //MARK:-->    Upload Images
     

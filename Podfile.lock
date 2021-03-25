@@ -52,6 +52,7 @@ PODS:
   - SKCountryPicker (1.2.9)
   - SVProgressHUD (2.2.5)
   - SVProgressHUD-0.8.1 (0.8)
+  - VersaPlayer (3.0.2)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
@@ -63,6 +64,7 @@ DEPENDENCIES:
   - SKCountryPicker
   - SVProgressHUD
   - SVProgressHUD-0.8.1
+  - VersaPlayer
 
 SPEC REPOS:
   trunk:
@@ -83,6 +85,7 @@ SPEC REPOS:
     - SKCountryPicker
     - SVProgressHUD
     - SVProgressHUD-0.8.1
+    - VersaPlayer
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
@@ -102,7 +105,8 @@ SPEC CHECKSUMS:
   SKCountryPicker: 7ad1e7dfb482cfb26855e33c2d70dbf1eaf218fe
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SVProgressHUD-0.8.1: ee9e6e58b5b5ffaf3f1a62c2dc409763470df143
+  VersaPlayer: 0e9a0ea7da786729ffb377dbd17b34641a8265e4
 
-PODFILE CHECKSUM: 6760c885554ab854ac6d7f2387405a53f88e3c24
+PODFILE CHECKSUM: f35568d147ebc6286bebd4d116bf950f4353e970
 
 COCOAPODS: 1.9.3

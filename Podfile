@@ -16,6 +16,7 @@ target 'Gahir Agro' do
     pod 'LGSideMenuController'
     pod 'Firebase/Auth'
     pod 'SVProgressHUD'
+    pod 'VersaPlayer'
    
 
   target 'Gahir AgroTests' do

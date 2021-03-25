@@ -14,14 +14,12 @@ class AdminProfileVC: UIViewController {
     @IBOutlet weak var profileImage: UIImageView!
     var messgae = String()
     @IBOutlet weak var passwordTxtFld: UITextField!
-    @IBOutlet weak var addressTxtFld: UITextField!
     @IBOutlet weak var emailtxtFld: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
         emailtxtFld.isUserInteractionEnabled = false
         passwordTxtFld.isUserInteractionEnabled = false
-        addressTxtFld.isUserInteractionEnabled = false
         // Do any additional setup after loading the view.
     }
     
@@ -54,7 +52,6 @@ class AdminProfileVC: UIViewController {
                 self.emailtxtFld.text = allData["username"] as? String
                 self.passwordTxtFld.text = "**********"
                 self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"))
-
                 let url = URL(string:allData["image"] as? String ?? "")
                 if url != nil{
                     if let data = try? Data(contentsOf: url!)
@@ -91,8 +88,12 @@ class AdminProfileVC: UIViewController {
         let vc = AdminEditProfileVC.instantiate(fromAppStoryboard: .AdminMain)
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
-    
+}
 
+extension Notification.Name {
+    public static let sendUserDataToSideMenu = Notification.Name(rawValue: "sendUserData")
+}
+
+extension Notification.Name {
+    public static let showHomeSelectedAdminSideMenu = Notification.Name(rawValue: "showHomeSelected")
 }

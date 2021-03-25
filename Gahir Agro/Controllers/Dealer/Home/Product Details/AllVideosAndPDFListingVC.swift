@@ -33,6 +33,11 @@ class ListingTBViewCell: UITableViewCell {
 
 extension AllVideosAndPDFListingVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if allDataArray.count == 0 {
+            self.listingTBView.setEmptyMessage("No data")
+        } else {
+            self.listingTBView.restore()
+        }
         return allDataArray.count
     }
     
@@ -53,6 +58,7 @@ extension AllVideosAndPDFListingVC : UITableViewDelegate , UITableViewDataSource
             vc.pdfUrl = allDataArray[indexPath.row].url ?? ""
             self.navigationController?.pushViewController(vc, animated: true)
         }else{
+            
             let vc = PlayVideoVC.instantiate(fromAppStoryboard: .Main)
             vc.videoUrl = allDataArray[indexPath.row].url ?? ""
             self.navigationController?.pushViewController(vc, animated: true)

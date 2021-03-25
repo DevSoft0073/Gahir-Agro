@@ -10,4 +10,5 @@ ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
 ${BUILT_PRODUCTS_DIR}/SKCountryPicker/SKCountryPicker.framework
 ${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework
 ${BUILT_PRODUCTS_DIR}/SVProgressHUD-0.8.1/SVProgressHUD_0_8_1.framework
+${BUILT_PRODUCTS_DIR}/VersaPlayer/VersaPlayer.framework
 ${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework

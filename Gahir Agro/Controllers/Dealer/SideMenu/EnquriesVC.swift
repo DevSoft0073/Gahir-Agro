@@ -12,7 +12,7 @@ import SDWebImage
 class EnquriesVC: UIViewController {
 
     var page = 1
-    var lastPage = 1
+    var lastPage = Bool()
     var messgae = String()
     var enquiryID = [String]()
     var quantityArray = [String]()
@@ -92,19 +92,8 @@ class EnquriesVC: UIViewController {
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
     }
-
-    func convertTimeStampToDate(dateVal : Double) -> String{
-        let timeinterval = TimeInterval(dateVal)
-        let dateFromServer = Date(timeIntervalSince1970:timeinterval)
-        print(dateFromServer)
-        let dateFormater = DateFormatter()
-        dateFormater.timeZone = .current
-        dateFormater.dateFormat = "dd-MM-YYYY"
-        return dateFormater.string(from: dateFromServer)
-    }
-    
-    
 }
+
 class EnquiryTBViewCell: UITableViewCell {
     
     @IBOutlet weak var idLbl: UILabel!
@@ -138,24 +127,22 @@ extension EnquriesVC : UITableViewDelegate , UITableViewDataSource {
         return 125
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let vc = SubmitDetailsVC.instantiate(fromAppStoryboard: .Main)
-//        vc.enquiryID = enquiryID[indexPath.row]
-//        vc.name = enquriesDataFroDealerArray[indexPath.row].name
-//        vc.quantity = quantityArray[indexPath.row]
-//        vc.amount = enquriesDataFroDealerArray[indexPath.row].price
-//        vc.accessoriesName = enquriesDataFroDealerArray[indexPath.row]
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
-    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if page <= lastPage{
+       
+        if lastPage == true{
             let bottamEdge = Float(self.enquiryTBView.contentOffset.y + self.enquiryTBView.frame.size.height)
             if bottamEdge >= Float(self.enquiryTBView.contentSize.height) && enquriesDataFroDealerArray.count > 0 {
                 page = page + 1
                 getAllEnquries()
             }
+        }else{
+            let bottamEdge = Float(self.enquiryTBView.contentOffset.y + self.enquiryTBView.frame.size.height)
+            if bottamEdge >= Float(self.enquiryTBView.contentSize.height) && enquriesDataFroDealerArray.count > 0 {
+            }
         }
+        
+        
+        
     }
     
 }

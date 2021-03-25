@@ -80,8 +80,6 @@ class ProductDetailsVC: UIViewController {
             self.detailsDataArray.removeAll()
             if status == "1"{
                 let allData = response.data["product_detail"] as? [String:Any] ?? [:]
-                print(allData)
-                
                 let pdfData = allData["prod_pdf"] as? [String] ?? [""]
                 for i in pdfData {
                     self.mediaArray.append(Media(type: .pdf, url: i))
@@ -113,7 +111,6 @@ class ProductDetailsVC: UIViewController {
                     if splittedProducts.indices.contains(0) && splittedProducts.indices.contains(1){
                         self.detailsDataArray.append(DetailsData( fieldName: String(splittedProducts[1]), fieldData: splittedProducts[0]))
                     }
-                    print("showing data\(splittedProducts)")
                 }
                 self.productDetailsTBView.reloadData()
             }else{

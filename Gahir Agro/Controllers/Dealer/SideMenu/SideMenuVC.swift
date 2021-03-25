@@ -23,13 +23,24 @@ class SideMenuVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
-        sideMenuItemsArray.append(SideMenuItems(name: "Home", selectedImage: "home", selected: true, unselected: "home-1"))
-        sideMenuItemsArray.append(SideMenuItems(name: "My Enquiries", selectedImage: "order", selected: false, unselected: "order-1"))
-        sideMenuItemsArray.append(SideMenuItems(name: "My Orders", selectedImage: "enq", selected: false, unselected: "enq1"))
-        sideMenuItemsArray.append(SideMenuItems(name: "Notifications", selectedImage: "noti", selected: false, unselected: "noti-1"))
-        sideMenuItemsArray.append(SideMenuItems(name: "Contact Us", selectedImage: "contact", selected: false, unselected: "contact-1"))
-        sideMenuItemsArray.append(SideMenuItems(name: "Privacy Policy", selectedImage: "privacy", selected: false, unselected: "privacy-1"))
-        sideMenuItemsArray.append(SideMenuItems(name: "Logout", selectedImage: "logout", selected: false, unselected: "logout-1"))
+        
+        if UserDefaults.standard.value(forKey: "checkRole") as? String ?? "" == "Dealer"{
+            sideMenuItemsArray.append(SideMenuItems(name: "Home", selectedImage: "home", selected: true, unselected: "home-1"))
+            sideMenuItemsArray.append(SideMenuItems(name: "My Enquiries", selectedImage: "order", selected: false, unselected: "order-1"))
+            sideMenuItemsArray.append(SideMenuItems(name: "My Orders", selectedImage: "enq", selected: false, unselected: "enq1"))
+            sideMenuItemsArray.append(SideMenuItems(name: "Notifications", selectedImage: "noti", selected: false, unselected: "noti-1"))
+            sideMenuItemsArray.append(SideMenuItems(name: "Contact Us", selectedImage: "contact", selected: false, unselected: "contact-1"))
+            sideMenuItemsArray.append(SideMenuItems(name: "Privacy Policy", selectedImage: "privacy", selected: false, unselected: "privacy-1"))
+            sideMenuItemsArray.append(SideMenuItems(name: "Logout", selectedImage: "logout", selected: false, unselected: "logout-1"))
+        }else{
+            sideMenuItemsArray.append(SideMenuItems(name: "Home", selectedImage: "home", selected: true, unselected: "home-1"))
+            sideMenuItemsArray.append(SideMenuItems(name: "Notifications", selectedImage: "noti", selected: false, unselected: "noti-1"))
+            sideMenuItemsArray.append(SideMenuItems(name: "Contact Us", selectedImage: "contact", selected: false, unselected: "contact-1"))
+            sideMenuItemsArray.append(SideMenuItems(name: "Privacy Policy", selectedImage: "privacy", selected: false, unselected: "privacy-1"))
+            sideMenuItemsArray.append(SideMenuItems(name: "Logout", selectedImage: "logout", selected: false, unselected: "logout-1"))
+        }
+        
+        
         self.settingTBView.separatorStyle = .none
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.notificationReceived(_:)), name: .sendUserData, object: nil)
@@ -46,14 +57,26 @@ class SideMenuVC: UIViewController {
     }
     
     @objc func showSelected(_ notification: Notification) {
-        sideMenuItemsArray[0].selected = false
-        sideMenuItemsArray[1].selected = false
-        sideMenuItemsArray[2].selected = false
-        sideMenuItemsArray[3].selected = false
-        sideMenuItemsArray[4].selected = false
-        sideMenuItemsArray[5].selected = false
-        sideMenuItemsArray[6].selected = false
-        settingTBView.reloadData()
+        
+        if UserDefaults.standard.value(forKey: "checkRole") as? String ?? "" == "Dealer"{
+            sideMenuItemsArray[0].selected = false
+            sideMenuItemsArray[1].selected = false
+            sideMenuItemsArray[2].selected = false
+            sideMenuItemsArray[3].selected = false
+            sideMenuItemsArray[4].selected = false
+            sideMenuItemsArray[5].selected = false
+            sideMenuItemsArray[6].selected = false
+            settingTBView.reloadData()
+        }else{
+            sideMenuItemsArray[0].selected = false
+            sideMenuItemsArray[1].selected = false
+            sideMenuItemsArray[2].selected = false
+            sideMenuItemsArray[3].selected = false
+            sideMenuItemsArray[4].selected = false
+            settingTBView.reloadData()
+        }
+        
+        
     }
     
     @objc func notificationReceived(_ notification: Notification) {
@@ -73,7 +96,6 @@ class SideMenuVC: UIViewController {
     }
     
     func getData() {
-//        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
         let url = Constant.shared.baseUrl + Constant.shared.ProfileApi
         var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
         let accessToken = UserDefaults.standard.value(forKey: "accessToken")
@@ -85,12 +107,11 @@ class SideMenuVC: UIViewController {
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
-//            PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
                 let allData = response.data["user_detail"] as? [String:Any] ?? [:]
-               
+                
                 self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"))
                 self.nameLbl.text = allData["first_name"] as? String ?? ""
                 let url = URL(string:allData["image"] as? String ?? "")
@@ -158,60 +179,113 @@ extension SideMenuVC : UITableViewDelegate , UITableViewDataSource{
         sideMenuItemsArray[indexPath.row].selected = true
         sideMenuController?.hideLeftViewAnimated()
         
-        if(indexPath.row == 0) {
-            let vc = HomeVC.instantiate(fromAppStoryboard: .Main)
-            (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
-        }
-        
-        else if(indexPath.row == 1) {
-            let vc = MyOrderVC.instantiate(fromAppStoryboard: .Main)
-            (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true) 
-        }
-        
-        else if(indexPath.row == 2) {
-            let vc = EnquriesVC.instantiate(fromAppStoryboard: .Main)
-            (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
-        }
-        
-        else if(indexPath.row == 3) {
-            let vc = NotificationVC.instantiate(fromAppStoryboard: .Main)
-            (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
-            
-        }
-        
-        else if(indexPath.row == 4) {
-            let vc = ContactUsVC.instantiate(fromAppStoryboard: .Main)
-            (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
-        }
-        
-        else if(indexPath.row == 5) {
-            
-            let vc = PrivacyPolicyVC.instantiate(fromAppStoryboard: .Main)
-            (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
-        }
-        
-        else if(indexPath.row == 6) {
-            let dialogMessage = UIAlertController(title: Constant.shared.appTitle, message: "Are you sure you want to Logout?", preferredStyle: .alert)
-            
-            // Create OK button with action handler
-            let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-                print("Ok button click...")
-                UserDefaults.standard.set(false, forKey: "tokenFString")
-                                self.logout()
-            })
-            
-            // Create Cancel button with action handlder
-            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-                print("Cancel button click...")
+        if UserDefaults.standard.value(forKey: "checkRole") as? String ?? "" == "Dealer"{
+            if(indexPath.row == 0) {
+                let vc = HomeVC.instantiate(fromAppStoryboard: .Main)
+                (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
             }
             
-            //Add OK and Cancel button to dialog message
-            dialogMessage.addAction(ok)
-            dialogMessage.addAction(cancel)
+            else if(indexPath.row == 1) {
+                let vc = MyOrderVC.instantiate(fromAppStoryboard: .Main)
+                (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
+            }
             
-            // Present dialog message to user
-            self.present(dialogMessage, animated: true, completion: nil)
+            else if(indexPath.row == 2) {
+                let vc = EnquriesVC.instantiate(fromAppStoryboard: .Main)
+                (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
+            }
+            
+            else if(indexPath.row == 3) {
+                let vc = NotificationVC.instantiate(fromAppStoryboard: .Main)
+                (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
+                
+            }
+            
+            else if(indexPath.row == 4) {
+                let vc = ContactUsVC.instantiate(fromAppStoryboard: .Main)
+                (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
+            }
+            
+            else if(indexPath.row == 5) {
+                
+                let vc = PrivacyPolicyVC.instantiate(fromAppStoryboard: .Main)
+                (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
+            }
+            
+            else if(indexPath.row == 6) {
+                let dialogMessage = UIAlertController(title: Constant.shared.appTitle, message: "Are you sure you want to Logout?", preferredStyle: .alert)
+                
+                // Create OK button with action handler
+                let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                    print("Ok button click...")
+                    UserDefaults.standard.set(false, forKey: "tokenFString")
+                    self.logout()
+                })
+                
+                // Create Cancel button with action handlder
+                let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                    print("Cancel button click...")
+                }
+                
+                //Add OK and Cancel button to dialog message
+                dialogMessage.addAction(ok)
+                dialogMessage.addAction(cancel)
+                
+                // Present dialog message to user
+                self.present(dialogMessage, animated: true, completion: nil)
+            }
+            
+        }else{
+            
+            if(indexPath.row == 0) {
+                let vc = HomeVC.instantiate(fromAppStoryboard: .Main)
+                (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
+            }
+            
+            else if(indexPath.row == 1) {
+                let vc = NotificationVC.instantiate(fromAppStoryboard: .Main)
+                (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
+                
+            }
+            
+            else if(indexPath.row == 2) {
+                let vc = ContactUsVC.instantiate(fromAppStoryboard: .Main)
+                (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
+            }
+            
+            else if(indexPath.row == 3) {
+                
+                let vc = PrivacyPolicyVC.instantiate(fromAppStoryboard: .Main)
+                (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
+            }
+            
+            else if(indexPath.row == 4) {
+                let dialogMessage = UIAlertController(title: Constant.shared.appTitle, message: "Are you sure you want to Logout?", preferredStyle: .alert)
+                
+                // Create OK button with action handler
+                let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                    print("Ok button click...")
+                    UserDefaults.standard.set(false, forKey: "tokenFString")
+                    self.logout()
+                })
+                
+                // Create Cancel button with action handlder
+                let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                    print("Cancel button click...")
+                }
+                
+                //Add OK and Cancel button to dialog message
+                dialogMessage.addAction(ok)
+                dialogMessage.addAction(cancel)
+                
+                // Present dialog message to user
+                self.present(dialogMessage, animated: true, completion: nil)
+            }
+            
+            
         }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

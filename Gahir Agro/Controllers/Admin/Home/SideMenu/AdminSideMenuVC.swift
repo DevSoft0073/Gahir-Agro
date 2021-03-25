@@ -9,6 +9,7 @@ import UIKit
 
 class AdminSideMenuVC: UIViewController {
     
+    var messgae = String()
     var sideMenuItemsArrayForCustomer : [SideMenuItemsForCustomer] = []{
         didSet{
             settingTBView.reloadData()
@@ -20,7 +21,7 @@ class AdminSideMenuVC: UIViewController {
     @IBOutlet weak var settingTBView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getData()
         sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Home", selectedImage: "home", selected: true, unselected: "home-1"))
         
         sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Order List", selectedImage: "order", selected: false, unselected: "order-1"))
@@ -28,10 +29,24 @@ class AdminSideMenuVC: UIViewController {
         sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Privacy Policy", selectedImage: "privacy", selected: false, unselected: "privacy-1"))
         sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Logout", selectedImage: "logout", selected: false, unselected: "logout-1"))
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.notificationReceived(_:)), name: .sendUserDataToSideMenu, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.showSelected(_:)), name: .sendUserData, object: nil)
         self.settingTBView.separatorStyle = .none
         // Do any additional setup after loading the view.
     }
     
+    @objc func showSelected(_ notification: Notification) {
+        sideMenuItemsArrayForCustomer[0].selected = false
+        sideMenuItemsArrayForCustomer[1].selected = false
+        sideMenuItemsArrayForCustomer[2].selected = false
+        sideMenuItemsArrayForCustomer[3].selected = false
+        sideMenuItemsArrayForCustomer[4].selected = false
+        settingTBView.reloadData()
+    }
+    
+    @objc func notificationReceived(_ notification: Notification) {
+        self.getData()
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -49,6 +64,50 @@ class AdminSideMenuVC: UIViewController {
         sideMenuController?.hideLeftViewAnimated()
         let vc = AdminProfileVC.instantiate(fromAppStoryboard: .AdminMain)
         (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
+    }
+    
+    
+    func getData() {
+        let url = Constant.shared.baseUrl + Constant.shared.ProfileApi
+        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+        print(deviceID ?? "")
+        if deviceID == nil  {
+            deviceID = "777"
+        }
+        let params = ["access_token": accessToken]  as? [String : AnyObject] ?? [:]
+        print(params)
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
+            print(response.data)
+            let status = response.data["status"] as? String ?? ""
+            self.messgae = response.data["message"] as? String ?? ""
+            if status == "1"{
+                let allData = response.data["user_detail"] as? [String:Any] ?? [:]
+               
+                self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"))
+                self.nameLbl.text = allData["first_name"] as? String ?? ""
+                let url = URL(string:allData["image"] as? String ?? "")
+                if url != nil{
+                    if let data = try? Data(contentsOf: url!)
+                    {
+                        if let image: UIImage = (UIImage(data: data)){
+                            self.profileImage.image = image
+                            self.profileImage.contentMode = .scaleToFill
+                            IJProgressView.shared.hideProgressView()
+                        }
+                    }
+                }
+                else{
+                    self.profileImage.image = UIImage(named: "placehlder")
+                }
+            }else{
+                PKWrapperClass.svprogressHudDismiss(view: self)
+                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            }
+        } failure: { (error) in
+            print(error)
+            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+        }
     }
     
 }

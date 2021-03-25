@@ -85,16 +85,6 @@ class MyOrderVC: UIViewController {
         }
     }
     
-    func convertTimeStampToDate(dateVal : Double) -> String{
-        let timeinterval = TimeInterval(dateVal)
-        let dateFromServer = Date(timeIntervalSince1970:timeinterval)
-        print(dateFromServer)
-        let dateFormater = DateFormatter()
-        dateFormater.timeZone = .current
-        dateFormater.dateFormat = "dd-MM-YYYY"
-        return dateFormater.string(from: dateFromServer)
-    }
-    
     @IBAction func openMenu(_ sender: Any) {
         sideMenuController?.showLeftViewAnimated()
         

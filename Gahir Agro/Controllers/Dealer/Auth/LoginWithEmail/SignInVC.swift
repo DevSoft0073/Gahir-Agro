@@ -63,16 +63,40 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
                     let vc = SignUpVC.instantiate(fromAppStoryboard: .Auth)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }else{
+                    
                     let allData = response.data as? [String:Any] ?? [:]
                     let data = allData["user_detail"] as? [String:Any] ?? [:]
                     UserDefaults.standard.set(1, forKey: "tokenFString")
                     UserDefaults.standard.set(data["id"], forKey: "id")
                     UserDefaults.standard.setValue(data["role"], forKey: "checkRole")
                     UserDefaults.standard.setValue(data["serial_no"], forKey: "serialNumber")
-                    DispatchQueue.main.async {
-                        let story = UIStoryboard(name: "Main", bundle: nil)
-                        let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
-                        self.navigationController?.pushViewController(rootViewController, animated: true)
+                    if data["role"] as? String ?? "" == "admin"{
+                        DispatchQueue.main.async {
+                            let story = UIStoryboard(name: "AdminMain", bundle: nil)
+                            let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "AdminSideMenuControllerID")
+                            self.navigationController?.pushViewController(rootViewController, animated: true)
+                        }
+                    }else if data["role"] as? String ?? "" == "sales"{
+                        
+                        DispatchQueue.main.async {
+                            let story = UIStoryboard(name: "AdminMain", bundle: nil)
+                            let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "AdminSideMenuControllerID")
+                            self.navigationController?.pushViewController(rootViewController, animated: true)
+                        }
+                        
+                    }else if data["role"] as? String ?? "" == "Customer"{
+                        DispatchQueue.main.async {
+                            let story = UIStoryboard(name: "Main", bundle: nil)
+                            let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
+                            self.navigationController?.pushViewController(rootViewController, animated: true)
+                        }
+                        
+                    }else if data["role"] as? String ?? "" == "Dealer"{
+                        DispatchQueue.main.async {
+                            let story = UIStoryboard(name: "Main", bundle: nil)
+                            let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
+                            self.navigationController?.pushViewController(rootViewController, animated: true)
+                        }
                     }
                 }
             }else{

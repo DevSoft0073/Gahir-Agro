@@ -8,30 +8,31 @@
 import UIKit
 import AVFoundation
 import CoreMedia
+import AVKit
+import VersaPlayer
 
 class PlayVideoVC: UIViewController {
 
+    @IBOutlet var controls: VersaPlayerControls!
     @IBOutlet weak var playPauseButton: UIButton!
     var videoUrl = String()
-    @IBOutlet weak var playVideo: PlayerView!
+    @IBOutlet weak var playVideo: VersaPlayerView!
     var player = AVPlayer()
     var fiestTimeSelect = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url: URL! = URL(string: videoUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
-        let urlRequest = URLRequest(url: url)
-        playPauseButton.isHidden = true
-        addVideoPlayer(videoUrl: url, to: playVideo)
+        
+        playVideos()
     }
     
-    
-    func addVideoPlayer(videoUrl: URL, to view: UIView) {
-        
-        player = AVPlayer(url: videoUrl)
-        player.automaticallyWaitsToMinimizeStalling = false
-        playVideo.player = player
-        playVideo.playerLayer.videoGravity = .resize
-        playVideo.player?.play()
+    func playVideos()  {
+        self.playVideo.layer.backgroundColor = UIColor.black.cgColor
+        self.playVideo.use(controls: self.controls)
+        self.playVideo.controls?.behaviour.shouldShowControls
+        if let url = URL.init(string: videoUrl as? String ?? "") {
+            let item = VersaPlayerItem(url: url)
+            self.playVideo.set(item: item)
+        }
     }
 
     @IBAction func playPauseButtonAction(_ sender: Any) {
