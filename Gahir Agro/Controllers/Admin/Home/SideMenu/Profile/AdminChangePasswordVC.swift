@@ -1,13 +1,13 @@
 //
-//  ChangePasswordVC.swift
+//  AdminChangePasswordVC.swift
 //  Gahir Agro
 //
-//  Created by Apple on 18/03/21.
+//  Created by Apple on 25/03/21.
 //
 
 import UIKit
 
-class ChangePasswordVC: UIViewController {
+class AdminChangePasswordVC: UIViewController {
 
     var messgae = String()
     @IBOutlet weak var confirmPasswordTxtFld: UITextField!
@@ -16,30 +16,6 @@ class ChangePasswordVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-    @IBAction func doneButton(_ sender: Any) {
-        
-        if (newPasswordTxtFld.text!.isEmpty){
-            
-            ValidateData(strMessage: "Please enter new password")
-            
-        }else if (newPasswordTxtFld!.text!.count) < 4 || (newPasswordTxtFld!.text!.count) > 15{
-            
-            ValidateData(strMessage: "Please enter minimum 4 digit password")
-        }
-        else if(confirmPasswordTxtFld.text!.isEmpty){
-            
-            ValidateData(strMessage: "Please enter confirm password")
-            
-        }
-        else if newPasswordTxtFld.text != confirmPasswordTxtFld.text{
-            
-            ValidateData(strMessage: "New password and Confirm password should be same")
-            
-        }else{
-            changePassword()
-        }
-        
     }
     
     @IBAction func backButton(_ sender: Any) {
@@ -73,6 +49,29 @@ class ChangePasswordVC: UIViewController {
         } failure: { (error) in
             print(error)
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+        }
+    }
+    
+    @IBAction func doneNButton(_ sender: Any) {
+        if (newPasswordTxtFld.text!.isEmpty){
+            
+            ValidateData(strMessage: "Please enter new password")
+            
+        }else if (newPasswordTxtFld!.text!.count) < 4 || (newPasswordTxtFld!.text!.count) > 15{
+            
+            ValidateData(strMessage: "Please enter minimum 4 digit password")
+        }
+        else if(confirmPasswordTxtFld.text!.isEmpty){
+            
+            ValidateData(strMessage: "Please enter confirm password")
+            
+        }
+        else if newPasswordTxtFld.text != confirmPasswordTxtFld.text{
+            
+            ValidateData(strMessage: "New password and Confirm password should be same")
+            
+        }else{
+            changePassword()
         }
     }
 }

@@ -30,7 +30,7 @@ class AdminSideMenuVC: UIViewController {
         sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Logout", selectedImage: "logout", selected: false, unselected: "logout-1"))
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.notificationReceived(_:)), name: .sendUserDataToSideMenu, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.showSelected(_:)), name: .sendUserData, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.showSelected(_:)), name: .showHomeSelectedAdminSideMenu, object: nil)
         self.settingTBView.separatorStyle = .none
         // Do any additional setup after loading the view.
     }

@@ -44,7 +44,7 @@ extension AllVideosAndPDFListingVC : UITableViewDelegate , UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListingTBViewCell", for: indexPath) as! ListingTBViewCell
         if allDataArray[indexPath.row].type == .pdf{
-            cell.showImage.image = UIImage(named: "video")
+            cell.showImage.image = UIImage(named: "pdf")
         }else{
             cell.showImage.image = UIImage(named: "video1")
         }

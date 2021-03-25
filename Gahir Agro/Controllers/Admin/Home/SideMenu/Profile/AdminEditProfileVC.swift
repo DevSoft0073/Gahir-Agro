@@ -58,11 +58,22 @@ class AdminEditProfileVC: UIViewController ,UITextFieldDelegate , UITextViewDele
         return true
     }
 
+    @IBAction func gotoChangePasswordVC(_ sender: Any) {
+        let vc = AdminChangePasswordVC.instantiate(fromAppStoryboard: .AdminMain)
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
     
     @IBAction func backButtonAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func submitButton(_ sender: Any) {
+        if nameTxtFld.text?.isEmpty == true {
+            ValidateData(strMessage: "Name field shoud not be empty")
+        }else{
+            updateData()
+        }
     }
     
     @IBAction func uploadImageButtonAction(_ sender: Any) {

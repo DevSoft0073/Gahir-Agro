@@ -17,10 +17,13 @@ class AdminProfileVC: UIViewController {
     @IBOutlet weak var emailtxtFld: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        getData()
+        
         emailtxtFld.isUserInteractionEnabled = false
         passwordTxtFld.isUserInteractionEnabled = false
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        getData()
     }
     
     override func viewDidLayoutSubviews() {

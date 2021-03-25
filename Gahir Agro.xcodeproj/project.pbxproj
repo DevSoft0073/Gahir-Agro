@@ -100,6 +100,7 @@
 		188BE124260877F5005E8081 /* ChooseRoleForCustomerAndDealerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188BE123260877F5005E8081 /* ChooseRoleForCustomerAndDealerVC.swift */; };
 		18A877362600E66200566339 /* EnquriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A877352600E66200566339 /* EnquriesVC.swift */; };
 		18AD8F0325EADA9C00072166 /* OpenPIcker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD8F0225EADA9C00072166 /* OpenPIcker.swift */; };
+		18B0D094260C948B00904C92 /* AdminChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B0D093260C948B00904C92 /* AdminChangePasswordVC.swift */; };
 		18B87C7625E684C200837E6C /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B87C7525E684C200837E6C /* SearchVC.swift */; };
 		18C4097725F37902004786D9 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C4097625F37902004786D9 /* Splash.storyboard */; };
 		18DEBB1925F73F9200475060 /* ThankYouVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEBB1825F73F9200475060 /* ThankYouVC.swift */; };
@@ -237,6 +238,7 @@
 		188BE123260877F5005E8081 /* ChooseRoleForCustomerAndDealerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRoleForCustomerAndDealerVC.swift; sourceTree = "<group>"; };
 		18A877352600E66200566339 /* EnquriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnquriesVC.swift; sourceTree = "<group>"; };
 		18AD8F0225EADA9C00072166 /* OpenPIcker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPIcker.swift; sourceTree = "<group>"; };
+		18B0D093260C948B00904C92 /* AdminChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminChangePasswordVC.swift; sourceTree = "<group>"; };
 		18B87C7525E684C200837E6C /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		18C4097625F37902004786D9 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		18DEBB1825F73F9200475060 /* ThankYouVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouVC.swift; sourceTree = "<group>"; };
@@ -678,6 +680,7 @@
 			children = (
 				185B48EB2601C3610021089C /* AdminProfileVC.swift */,
 				185B48F32601C36E0021089C /* AdminEditProfileVC.swift */,
+				18B0D093260C948B00904C92 /* AdminChangePasswordVC.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1102,6 +1105,7 @@
 				185B48DC2601C30A0021089C /* AdminSideMenuVC.swift in Sources */,
 				18157E1225E5095300E4451C /* ProductDetailsVC.swift in Sources */,
 				184B11C225E37259003007A2 /* HelperMethods.swift in Sources */,
+				18B0D094260C948B00904C92 /* AdminChangePasswordVC.swift in Sources */,
 				184B113B25E36C74003007A2 /* SceneDelegate.swift in Sources */,
 				181704C625E63E02003825D7 /* EditProfileVC.swift in Sources */,
 				1808AB9A26035E0E00DEBF10 /* ChangePasswordVC.swift in Sources */,

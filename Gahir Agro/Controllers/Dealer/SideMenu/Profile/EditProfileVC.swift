@@ -43,8 +43,6 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
             self.flagImage.isHidden = true
             return
         }
-
-//        addCountryButton.setTitle(country.dialingCode, for: .normal)
         flagImage.image = country.flag
         addCountryButton.clipsToBounds = true
         
@@ -131,7 +129,6 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
     //MARK:-->    Upload Images
     
     func showActionSheet(){
-        //Create the AlertController and add Its action like button in Actionsheet
         let actionSheetController: UIAlertController = UIAlertController(title: NSLocalizedString("Upload Image", comment: ""), message: nil, preferredStyle: .actionSheet)
         actionSheetController.view.tintColor = UIColor.black
         let cancelActionButton: UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { action -> Void in
@@ -141,7 +138,6 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
         
         let saveActionButton: UIAlertAction = UIAlertAction(title: NSLocalizedString("Take Photo", comment: ""), style: .default)
         { action -> Void in
-//            self.openCamera()
             self.checkCameraAccess()
         }
         actionSheetController.addAction(saveActionButton)
@@ -243,14 +239,6 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
     
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-//        if textField == addressTxtFld {
-//            addressView.borderColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-//            bioView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//
-//
-//        } else if textField == emailTxtFld{
-//
-//        }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

@@ -223,7 +223,6 @@ extension HomeVC : UICollectionViewDelegate , UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemsCollectionViewCell", for: indexPath) as! ItemsCollectionViewCell
-        //        cell.dataView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         cell.nameLbl.text = collectionViewDataArray[indexPath.item].name
         
         let data = self.collectionViewDataArray[indexPath.row]
