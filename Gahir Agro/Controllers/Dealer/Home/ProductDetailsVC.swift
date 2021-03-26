@@ -170,7 +170,9 @@ struct DetailsData {
 struct Media {
     var type:MediaType
     var url: String
+    
     enum MediaType {
+        
         case video
         case pdf
     }

@@ -21,6 +21,7 @@ class MyOrderVC: UIViewController {
     var amountArray = [String]()
     var dateArray = [Any]()
     var totalArray = [String]()
+    var orderStatus = String()
     @IBOutlet weak var myOrderTBView: UITableView!
     var orderHistoryArray = [OrderHistoryData]()
     
@@ -55,12 +56,12 @@ class MyOrderVC: UIViewController {
                     let dateValue = obj["creation_date"] as? String ?? ""
                     let dateVal = NumberFormatter().number(from: dateValue)?.doubleValue ?? 0.0
                     self.convertTimeStampToDate(dateVal: dateVal)
-//                    self.dateArray.append(dateData["creation_date"]) as? Any
                     let accessoriesData = obj["accessories"] as? [String:Any] ?? [:]
                     self.accName.append(accessoriesData["acc_name"] as? String ?? "")
                     self.quantityArray.append(obj["qty"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
                     self.totalArray.append(obj["total"] as! String) as? Any ?? ""
+                    self.orderStatus = obj["status"] as! String as? String ?? ""
                     let productDetails = obj["product_detail"] as? [String:Any] ?? [:]
                     print(productDetails)
                     newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateVal), price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? "", accName: self.accName))
@@ -126,11 +127,12 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = SubmitDetailsVC.instantiate(fromAppStoryboard: .Main)
+        let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
         vc.enquiryID = enquiryID[indexPath.row]
         vc.name = orderHistoryArray[indexPath.row].name
         vc.quantity = quantityArray[indexPath.row]
         vc.amount = orderHistoryArray[indexPath.row].price
+        vc.image = orderHistoryArray[indexPath.row].image
         vc.accessoriesName = orderHistoryArray[indexPath.row].accName[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
