@@ -41,6 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate , LocationServiceDelegate 
             application.registerUserNotificationSettings(settings)
         }
         application.registerForRemoteNotifications()
+        LocationService.sharedInstance.startUpdatingLocation()
+        LocationService.sharedInstance.isLocateSuccess = false
+        LocationService.sharedInstance.delegate = self
         guard #available(iOS 13.0, *) else {
             setUpInitialScreen()
             return true
@@ -57,6 +60,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate , LocationServiceDelegate 
         let nav = UINavigationController(rootViewController: homeViewController)
         nav.setNavigationBarHidden(true, animated: true)
         appdelegate.window?.rootViewController = nav
+    }
+    
+    
+    func getAddressForLocation(locationAddress: String, currentAddress: [String : Any]) {
+        print(locationAddress)
+        print(currentAddress)
+        LocationData.init(long: Double(currentAddress["lat"] as? String ?? "") ?? 0.0, lat: Double(currentAddress["long"] as? String ?? "") ?? 0.0)
+        
+        Singleton.sharedInstance.lat = Double(currentAddress["lat"] as? String ?? "") ?? 0.0
+        Singleton.sharedInstance.long = Double(currentAddress["long"] as? String ?? "") ?? 0.0
+        
     }
 
     // MARK: UISceneSession Lifecycle

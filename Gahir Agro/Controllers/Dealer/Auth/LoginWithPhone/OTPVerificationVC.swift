@@ -22,7 +22,7 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
     var message = String()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getOtp()
         numberButton.setTitle(phoneNumber, for: .normal)
         
         if #available(iOS 12.0, *) {
@@ -43,9 +43,33 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
         //        textOne.becomeFirstResponder()
         
         self.view.resignFirstResponder()
-        // Do any additional setup after loading the view.
     }
     
+//    MARK:- Get Otp
+    
+    func getOtp() {
+        PhoneAuthProvider.provider().verifyPhoneNumber(self.phoneNumber, uiDelegate: nil) { (verificationID, error) in
+            PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+            if let error = error {
+                PKWrapperClass.svprogressHudDismiss(view: self)
+                print(error.localizedDescription)
+                if error.localizedDescription == "Invalid format."{
+                  alert(Constant.shared.appTitle, message: "please enter valid phone number.", view: self)
+                }else{
+                   alert(Constant.shared.appTitle, message: error.localizedDescription, view: self)
+                }
+                
+            }else{
+                PKWrapperClass.svprogressHudDismiss(view: self)
+                UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                print(verificationID)
+            }
+            PKWrapperClass.svprogressHudDismiss(view: self)
+        }
+        PKWrapperClass.svprogressHudDismiss(view: self)
+    }
+
+//    MARK:- Text Field delegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -53,7 +77,6 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
     }
     
     
-    //When changed value in textField
     @objc func textFieldDidChange(textField: UITextField){
         let text = textField.text
         if  text?.count == 1 {
@@ -106,76 +129,80 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
     
     func dismissKeyboard(){
         
-        self.otpText = "\(self.textOne.text ?? "")\(self.textTwo.text ?? "")\(self.textTheww.text ?? "")\(self.textFour.text ?? "")"
+        self.otpText = "\(self.textOne.text ?? "")\(self.textTwo.text ?? "")\(self.textTheww.text ?? "")\(self.textFour.text ?? "")\(self.textFifth.text ?? "")\(self.textSixth.text ?? "")"
         
         print(self.otpText)
         self.view.endEditing(true)
         
     }
     
+//    MARK:- Button Action
+    
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func verifyButton(_ sender: Any) {
-        
-        let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
-        let credential = PhoneAuthProvider.provider().credential(
-            withVerificationID: verificationID!,
-            verificationCode: otpText)
-        
-        Auth.auth().signIn(with: credential) { (success, error) in
-            if error == nil{
-                print(success ?? "")
-                //  print(Auth.auth().currentUser?.uid)
-                self.updateNumberApi()
-            }else{
-                alert(Constant.shared.appTitle, message: error?.localizedDescription ?? "", view: self)
-                //   print(error?.localizedDescription)
+        let comesFrom = UserDefaults.standard.value(forKey: "comesFromPhoneLogin") as? Bool
+        if comesFrom == false{
+            
+            let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
+            let credential = PhoneAuthProvider.provider().credential(
+                withVerificationID: verificationID!,
+                verificationCode: otpText)
+            
+            Auth.auth().signIn(with: credential) { (success, error) in
+                if error == nil{
+                    print(success ?? "")
+                    let vc = SignUpVC.instantiate(fromAppStoryboard: .Auth)
+                    vc.phoneNumber = self.phoneNumber
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }else{
+                    alert(Constant.shared.appTitle, message: error?.localizedDescription ?? "", view: self)
+                }
             }
+        }else{
+            phoneLogin()
         }
-        
     }
     
-    func updateNumberApi() {
-        
-        
-        let signUpWithPhoneUrl = Constant.shared.baseUrl + Constant.shared.PhoneLogin
+//    MARK:- Service Call Function
+    
+    func phoneLogin() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+        let url = Constant.shared.baseUrl + Constant.shared.PhoneLogin
         var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
         print(deviceID ?? "")
         if deviceID == nil  {
             deviceID = "777"
         }
-        let parms : [String:Any] = ["phone": phoneNumber,"device_token": deviceID ?? "","device_type":"1"]
-        print(parms)
-        AFWrapperClass.requestPOSTURL(signUpWithPhoneUrl, params: parms, success: { (response) in
+        let params = ["phone": phoneNumber,"device_token": deviceID ?? "","device_type":"1"] as? [String : AnyObject] ?? [:]
+        print(params)
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
+            print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
-            self.message = response["message"] as? String ?? ""
-            if let status = response["status"] as? Int{
-                if status == 1{
-                    UserDefaults.standard.set(true, forKey: "tokenFString")
-                    
-                    if let dataDict = response as? NSDictionary{
-                        print(dataDict)
-                        let userId = dataDict["user_id"] as? String
-                        print(userId ?? 0)
-                        UserDefaults.standard.set(userId, forKey: "userId")
-                        let storyBoard: UIStoryboard = UIStoryboard(name: "Profile", bundle: nil)
-                        let newViewController = storyBoard.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
-                        self.navigationController?.pushViewController(newViewController, animated: true)
-                    }
-                }else {
-                    let vc = SignUpVC.instantiate(fromAppStoryboard: .Auth)
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
+            let signUpStatus = response.data["app_signup"] as? String ?? ""
+            let status = response.data["status"] as? String ?? ""
+            self.message = response.data["message"] as? String ?? ""
+            UserDefaults.standard.setValue(response.data["access_token"] as? String ?? "", forKey: "accessToken")
+            if status == "1"{
+                UserDefaults.standard.set(true, forKey: "tokenFString")
+                let allData = response.data as? [String:Any] ?? [:]
+                let data = allData["user_detail"] as? [String:Any] ?? [:]
+                print(data)
+                UserDefaults.standard.set(1, forKey: "tokenFString")
+                UserDefaults.standard.set(data["id"], forKey: "id")
+                UserDefaults.standard.setValue(data["role"], forKey: "checkRole")
+                UserDefaults.standard.setValue(data["serial_no"], forKey: "serialNumber")
+                let story = UIStoryboard(name: "Main", bundle: nil)
+                let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
+                self.navigationController?.pushViewController(rootViewController, animated: true)
+            }else {
+                alert(Constant.shared.appTitle, message: self.message, view: self)
             }
-        }) { (error) in
-            IJProgressView.shared.hideProgressView()
-            alert(Constant.shared.appTitle, message: "Data not found", view: self)
+        } failure: { (error) in
             print(error)
+            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
-        
     }
-    
 }

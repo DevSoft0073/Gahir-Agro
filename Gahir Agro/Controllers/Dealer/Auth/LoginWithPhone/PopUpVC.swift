@@ -7,6 +7,7 @@
 
 import UIKit
 
+//MARK:- Protocal Delegte
 
 protocol PopViewControllerDelegate: class {
     func dismissPopUP(sendData :String)
@@ -32,6 +33,8 @@ class PopUpVC: UIViewController{
 
         // Do any additional setup after loading the view.
     }
+    
+//    MARK:- Notification Function
     
     @objc func handleTap(_ sender:UITapGestureRecognizer){
         

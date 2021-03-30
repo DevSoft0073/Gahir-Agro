@@ -107,7 +107,7 @@ class HomeVC: UIViewController,UITextFieldDelegate,CLLocationManagerDelegate {
         if deviceID == nil  {
             deviceID = "777"
         }
-        let params = ["access_token": accessToken , "lat" : lat , "long" : long]  as? [String : AnyObject] ?? [:]
+        let params = ["access_token": accessToken , "lat" : Singleton.sharedInstance.lat , "long" : Singleton.sharedInstance.long]  as? [String : AnyObject] ?? [:]
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)

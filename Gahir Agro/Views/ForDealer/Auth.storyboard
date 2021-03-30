@@ -2055,7 +2055,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MB9-8y-4RT">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="768"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="776"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nvx-CL-ty6">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="26.5"/>
@@ -2301,10 +2301,10 @@
                                                 </subviews>
                                             </stackView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cuq-B5-sMj">
-                                                <rect key="frame" x="31.5" y="555" width="6.5" height="6.5"/>
+                                                <rect key="frame" x="31.5" y="563" width="6.5" height="6.5"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ey5-Hn-0rP">
-                                                <rect key="frame" x="28" y="552" width="13.5" height="13"/>
+                                                <rect key="frame" x="28" y="560" width="13.5" height="13"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="ey5-Hn-0rP" secondAttribute="height" multiplier="1:1" id="Obw-he-KOY"/>
                                                 </constraints>
@@ -2314,13 +2314,13 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I agree with" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hva-m9-8k0">
-                                                <rect key="frame" x="46.5" y="549" width="83" height="19"/>
+                                                <rect key="frame" x="46.5" y="557" width="83" height="19"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQ0-qq-6cV">
-                                                <rect key="frame" x="133.5" y="548.5" width="101" height="20"/>
+                                                <rect key="frame" x="133.5" y="556.5" width="101" height="20"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                 <state key="normal" title="Privacy Policy">
                                                     <color key="titleColor" red="0.94722443820000002" green="0.051087938249999999" blue="0.0123500498" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2330,7 +2330,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7t-qU-3vI">
-                                                <rect key="frame" x="28" y="598.5" width="319" height="39.5"/>
+                                                <rect key="frame" x="28" y="606.5" width="319" height="39.5"/>
                                                 <color key="backgroundColor" red="0.72409492730000002" green="0.02848499082" blue="0.0061959978189999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="p7t-qU-3vI" secondAttribute="height" multiplier="48:6" id="r0H-ae-sz8"/>
@@ -2349,7 +2349,7 @@
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="GqV-Ff-1KI">
-                                                <rect key="frame" x="76" y="718" width="223" height="30"/>
+                                                <rect key="frame" x="76" y="726" width="223" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EO-sX-aAH">
                                                         <rect key="frame" x="0.0" y="0.0" width="174" height="30"/>
@@ -2382,7 +2382,7 @@
                                             <constraint firstItem="p7t-qU-3vI" firstAttribute="top" secondItem="AQ0-qq-6cV" secondAttribute="bottom" constant="30" id="89c-os-ncx"/>
                                             <constraint firstItem="2zK-Mf-htp" firstAttribute="leading" secondItem="MB9-8y-4RT" secondAttribute="leading" id="BD9-dK-uQ1"/>
                                             <constraint firstItem="nvx-CL-ty6" firstAttribute="leading" secondItem="MB9-8y-4RT" secondAttribute="leading" id="BZ5-d2-grA"/>
-                                            <constraint firstItem="ey5-Hn-0rP" firstAttribute="top" secondItem="ldR-km-rFq" secondAttribute="bottom" constant="10" id="EOZ-cV-fiB"/>
+                                            <constraint firstItem="ey5-Hn-0rP" firstAttribute="top" secondItem="ldR-km-rFq" secondAttribute="bottom" constant="18" id="EOZ-cV-fiB"/>
                                             <constraint firstItem="2zK-Mf-htp" firstAttribute="top" secondItem="Fsg-05-jWQ" secondAttribute="bottom" id="IxO-l0-Q9o"/>
                                             <constraint firstItem="ldR-km-rFq" firstAttribute="top" secondItem="Dt0-cp-oxP" secondAttribute="bottom" constant="35" id="Kzh-Xk-9bA"/>
                                             <constraint firstItem="Cuq-B5-sMj" firstAttribute="height" secondItem="ey5-Hn-0rP" secondAttribute="height" multiplier="0.5" id="Oy8-PK-wAu"/>

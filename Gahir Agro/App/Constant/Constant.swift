@@ -17,8 +17,14 @@ class Constant: NSObject {
     
     let baseUrl = "https://www.dharmani.com/gahir/api/"
     
+    
+    let VerifyDealer = "VerifyDealer.php"
+    let VerifyCustomer = "VerifyCustomer.php"
+    let PhoneLogin = "PhoneLogin.php"
+    
+    
     let SignUp = "DealerSignup.php"
-    let PhoneLogin = "DealerPhoneLogin.php"
+//    let PhoneLogin = "DealerPhoneLogin.php"
     let SignIn = "EmailLogin.php"
     let ForgotPassword = "ForgotPassword.php"
     let AllProduct = "GetAllProducts.php"
@@ -37,11 +43,10 @@ class Constant: NSObject {
     let ChangePassword = "ChangePassword.php"
     let UpdateLocation = "UpdateLocation.php"
     
-    
     //MARK:-> Customer Flow Api's
     
     let CustomerLogin = "CustomerPhoneLogin.php"
-    let CustomerSignUp = ""
+    let CustomerSignUp = "VerifyCustomer.php"
     
     
     //MARK:-> Admin Flow Api's
@@ -63,3 +68,12 @@ class Singleton  {
 
 }
 
+struct LocationData {
+    var long : Double
+    var lat : Double
+    
+    init(long : Double,lat : Double ) {
+        self.lat = lat
+        self.long = long
+    }
+}

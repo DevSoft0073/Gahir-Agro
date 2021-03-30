@@ -16,6 +16,8 @@ class AdminHomeVC: UIViewController {
     var enquiryID = [String]()
     var quantityArray = [String]()
     var accName = [String]()
+    var latArray = [String]()
+    var longArray = [String]()
     var dealerCode = [String]()
     var dealerName = [String]()
     var adminEnquriesArray = [OrderHistoryData]()
@@ -60,6 +62,7 @@ class AdminHomeVC: UIViewController {
                     let dateVal = NumberFormatter().number(from: dateValue)?.doubleValue ?? 0.0
                     self.accName.append(accessoriesData["acc_name"] as? String ?? "")
                     let dealerData = obj["dealer_detail"] as? [String:Any] ?? [:]
+                    self.getAddressFromLatLon(pdblLatitude: dealerData["user_lat"] as? String ?? "", withLongitude: dealerData["user_long"] as? String ?? "")
                     self.dealerName.append("\(dealerData["first_name"] as? String ?? "") " + "\(dealerData["last_name"] as? String ?? "")")
                     self.quantityArray.append(obj["qty"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
@@ -85,8 +88,6 @@ class AdminHomeVC: UIViewController {
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
     }
-    
-    
 }
 
 class AdminEnquriesTBViewCell: UITableViewCell {
@@ -136,5 +137,16 @@ extension AdminHomeVC : UITableViewDelegate , UITableViewDataSource {
             }
         }
     }
+}
+
+
+struct GetAddress {
     
+    var city : String
+    var address : String
+    
+    init(city : String , address : String) {
+        self.city = city
+        self.address = address
+    }
 }

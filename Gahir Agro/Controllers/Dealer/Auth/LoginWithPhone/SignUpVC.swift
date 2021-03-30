@@ -19,6 +19,7 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
     @IBOutlet weak var nameView: UIView!
     var unchecked = Bool()
     var messgae = String()
+    var phoneNumber = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,16 +95,17 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
         if deviceID == nil  {
             deviceID = "777"
         }
-        let params = ["username":nameTxtFld.text ?? "", "first_name" : emailTxtFld.text ?? "", "password":passwordTxtFld.text ?? "" , "device_token" : deviceID! ,"device_type" : "iOS"] as? [String : AnyObject] ?? [:]
+        let dealeeCode = UserDefaults.standard.value(forKey: "dealerCode")
+        let params = ["username":nameTxtFld.text ?? "", "first_name" : emailTxtFld.text ?? "", "password":passwordTxtFld.text ?? "" , "device_token" : deviceID! ,"device_type" : "iOS","dealer_code" : dealeeCode , "phone" : self.phoneNumber] as? [String : AnyObject] ?? [:]
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
-            let signUpStatus = response.data["app_signup"] as? String ?? ""
+            let signUpStatus = response.data["app_signup"] as? Int ?? 0
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
-                if signUpStatus == "0"{
+                if signUpStatus == 0{
                     let vc = SignUpVC.instantiate(fromAppStoryboard: .Auth)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }else{

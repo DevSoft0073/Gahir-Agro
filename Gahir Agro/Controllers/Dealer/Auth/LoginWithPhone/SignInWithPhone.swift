@@ -27,7 +27,7 @@ class SignInWithPhone: UIViewController {
         
     }
     
-    
+//    MARK:- Country Picker
     
     @IBAction func countryPickerButtonAction(_ sender: Any) {
         let countryController = CountryPickerWithSectionViewController.presentController(on: self) { [weak self] (country: Country) in
@@ -43,28 +43,19 @@ class SignInWithPhone: UIViewController {
         
     }
     
-    func getOtp() {
-        PhoneAuthProvider.provider().verifyPhoneNumber(numberTxtFld.text ?? "", uiDelegate: nil) { (verificationID, error) in
-          if let error = error {
-            alert(Constant.shared.appTitle, message: error.localizedDescription, view: self)
-            return
-          }
-            print(verificationID)
-            UserDefaults.standard.setValue(verificationID, forKey: "authVerificationID")
-            let vc = OTPVerificationVC.instantiate(fromAppStoryboard: .Auth)
-            let countryCode = UserDefaults.standard.value(forKey: "code")
-            let number = "\(countryCode)" + "\(self.numberTxtFld.text ?? "")"
-            vc.phoneNumber = number
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
+//    MARK:- Button Action
     
     @IBAction func gernerateOtpButton(_ sender: Any) {
         if numberTxtFld.text?.isEmpty == true{
             ValidateData(strMessage: "Please enter phone number")
             
         }else{
-            getOtp()
+            let vc = OTPVerificationVC.instantiate(fromAppStoryboard: .Auth)
+            let countryCode = UserDefaults.standard.value(forKey: "code") ?? "+91"
+            let number = "\(countryCode)" + "\(self.numberTxtFld.text ?? "")"
+            vc.phoneNumber = number
+            UserDefaults.standard.set(true, forKey: "comesFromPhoneLogin")
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
