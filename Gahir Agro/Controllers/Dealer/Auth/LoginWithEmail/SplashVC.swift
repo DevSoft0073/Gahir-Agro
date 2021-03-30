@@ -33,7 +33,7 @@ class SplashVC: UIViewController {
                 let story = UIStoryboard(name: "AdminMain", bundle: nil)
                 let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "AdminSideMenuControllerID")
                 self.navigationController?.pushViewController(rootViewController, animated: true)
-            }else if selectedRole == "sales"{
+            }else if selectedRole == "Sales"{
                 let story = UIStoryboard(name: "AdminMain", bundle: nil)
                 let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "AdminSideMenuControllerID")
                 self.navigationController?.pushViewController(rootViewController, animated: true)

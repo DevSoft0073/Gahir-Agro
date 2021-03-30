@@ -76,7 +76,7 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
                             let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "AdminSideMenuControllerID")
                             self.navigationController?.pushViewController(rootViewController, animated: true)
                         }
-                    }else if data["role"] as? String ?? "" == "sales"{
+                    }else if data["role"] as? String ?? "" == "Sales"{
                         
                         DispatchQueue.main.async {
                             let story = UIStoryboard(name: "AdminMain", bundle: nil)

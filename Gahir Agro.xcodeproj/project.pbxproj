@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1800FCB1261303E900B122C3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1800FCB0261303E900B122C3 /* LocationManager.swift */; };
 		1807058425E7690C00DBE739 /* Customer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1807058325E7690C00DBE739 /* Customer.storyboard */; };
 		180847B725E4BE2A00D04E69 /* SignInWithVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180847B625E4BE2A00D04E69 /* SignInWithVC.swift */; };
 		180847BC25E4BE4700D04E69 /* AddPhoneNumberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180847BB25E4BE4700D04E69 /* AddPhoneNumberVC.swift */; };
@@ -138,6 +139,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1800FCB0261303E900B122C3 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		1807058325E7690C00DBE739 /* Customer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Customer.storyboard; sourceTree = "<group>"; };
 		180847B625E4BE2A00D04E69 /* SignInWithVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithVC.swift; sourceTree = "<group>"; };
 		180847BB25E4BE4700D04E69 /* AddPhoneNumberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhoneNumberVC.swift; sourceTree = "<group>"; };
@@ -616,6 +618,7 @@
 				184B113825E36C74003007A2 /* AppDelegate.swift */,
 				184B113A25E36C74003007A2 /* SceneDelegate.swift */,
 				18AD8F0225EADA9C00072166 /* OpenPIcker.swift */,
+				1800FCB0261303E900B122C3 /* LocationManager.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1084,6 +1087,7 @@
 				184B118625E36EC9003007A2 /* ForgotPasswordVC.swift in Sources */,
 				18157E1725E50FBD00E4451C /* SideMenuController.swift in Sources */,
 				180847CE25E4DBA200D04E69 /* HomeVC.swift in Sources */,
+				1800FCB1261303E900B122C3 /* LocationManager.swift in Sources */,
 				184B117C25E36E91003007A2 /* SignInVC.swift in Sources */,
 				184A8ABA25FB4C98000583C5 /* ChooseRoleVC.swift in Sources */,
 				18B87C7625E684C200837E6C /* SearchVC.swift in Sources */,

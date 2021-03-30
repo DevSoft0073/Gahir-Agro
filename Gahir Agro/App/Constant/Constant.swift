@@ -35,6 +35,7 @@ class Constant: NSObject {
     let BookOrder = "AddOrder.php"
     let Notification = "GetAllNotifications.php"
     let ChangePassword = "ChangePassword.php"
+    let UpdateLocation = "UpdateLocation.php"
     
     
     //MARK:-> Customer Flow Api's
@@ -61,3 +62,4 @@ class Singleton  {
     var lastSelectedIndex = 0
 
 }
+

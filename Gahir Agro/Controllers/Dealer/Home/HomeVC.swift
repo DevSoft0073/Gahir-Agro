@@ -8,8 +8,9 @@
 import UIKit
 import LGSideMenuController
 import SDWebImage
+import CoreLocation
 
-class HomeVC: UIViewController,UITextFieldDelegate {
+class HomeVC: UIViewController,UITextFieldDelegate,CLLocationManagerDelegate {
     
     var collectionViewDataArray = [CollectionViewData]()
     var tableViewDataArray = [TableViewData]()
@@ -17,13 +18,17 @@ class HomeVC: UIViewController,UITextFieldDelegate {
     var lastPage = Bool()
     var productType = String()
     var messgae = String()
+    var timer: Timer?
     var currentIndex = String()
+    var lat = ""
+    var long = ""
+    var locationManager = CLLocationManager()
     @IBOutlet weak var allItemsTBView: UITableView!
     @IBOutlet weak var itemsCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         allItemsTBView.separatorStyle = .none
-
+        
         collectionViewDataArray.append(CollectionViewData(name: "TRACTOR", selected: true, type: "0"))
         collectionViewDataArray.append(CollectionViewData(name: "LASER", selected: false, type: "1"))
         collectionViewDataArray.append(CollectionViewData(name: "PUMP", selected: false, type: "2"))
@@ -31,10 +36,92 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         filterdData()
         itemsCollectionView.reloadData()
         
+        locationManager = CLLocationManager()
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.delegate = self
+        
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(updateLocationApi), userInfo: nil, repeats: true)
+    }
+
+    func isLocationServicesEnabled() -> Bool {
+        if CLLocationManager.locationServicesEnabled() {
+            switch(CLLocationManager.authorizationStatus()) {
+            case .notDetermined, .restricted, .denied:
+                return false
+            case .authorizedAlways, .authorizedWhenInUse:
+                return true
+            @unknown default:
+                return false
+            }
+        }
+        
+        return false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+       super.viewDidAppear(animated)
+       // Check for auth
+       if isLocationServicesEnabled() {
+          locationManager.startUpdatingLocation()
+       } else {
+          locationManager.requestWhenInUseAuthorization()
+       }
+       // Do other stuff
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if (status == .authorizedAlways && status == .authorizedWhenInUse) {return}
+        guard let locValue : CLLocationCoordinate2D = manager.location?.coordinate else {
+            return
+        }
+        
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        self.lat = String(locValue.latitude)
+        self.long = String(locValue.longitude)
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last?.coordinate else { return }
+        let currentLocation = locations.last
+        self.lat = String(currentLocation?.coordinate.latitude ?? 0.0)
+        self.long = String(currentLocation?.coordinate.longitude ?? 0.0)
+        locationManager.stopUpdatingLocation()
+    }
+    
+    @objc func updateLocationApi(){
+        updateUserLocationApi()
+    }
+    
+    
+    func updateUserLocationApi(){
+        let url = Constant.shared.baseUrl + Constant.shared.UpdateLocation
+        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+        print(deviceID ?? "")
+        if deviceID == nil  {
+            deviceID = "777"
+        }
+        let params = ["access_token": accessToken , "lat" : lat , "long" : long]  as? [String : AnyObject] ?? [:]
+        print(params)
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
+            print(response.data)
+            let status = response.data["status"] as? String ?? ""
+            self.messgae = response.data["message"] as? String ?? ""
+            if status == "1"{
+            }else{
+                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            }
+        } failure: { (error) in
+            print(error)
+            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+        }
+
     }
     
     @IBAction func openMenuButton(_ sender: Any) {
@@ -52,13 +139,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         self.navigationController!.view.layer.add(transition, forKey: nil)
         let writeView = self.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as! SearchVC
         self.navigationController?.pushViewController(writeView, animated: false)
-        
-        
-//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as! SearchVC
-//        vc.modalPresentationStyle = .overFullScreen
-//        self.present(vc, animated: true, completion: nil)
     }
-    
     
     func filterdData() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)

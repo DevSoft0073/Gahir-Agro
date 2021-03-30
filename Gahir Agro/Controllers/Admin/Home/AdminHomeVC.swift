@@ -9,13 +9,15 @@ import UIKit
 import LGSideMenuController
 
 class AdminHomeVC: UIViewController {
-
+    
     var page = 1
-    var lastPage = 1
+    var lastPage = Bool()
     var messgae = String()
     var enquiryID = [String]()
     var quantityArray = [String]()
     var accName = [String]()
+    var dealerCode = [String]()
+    var dealerName = [String]()
     var adminEnquriesArray = [OrderHistoryData]()
     @IBOutlet weak var enquriesTBView: UITableView!
     override func viewDidLoad() {
@@ -25,7 +27,7 @@ class AdminHomeVC: UIViewController {
     }
     @IBAction func backButtonAction(_ sender: Any) {
         sideMenuController?.showLeftViewAnimated()
-
+        
     }
     
     
@@ -45,19 +47,25 @@ class AdminHomeVC: UIViewController {
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
+            self.lastPage = response.data[""] as? Bool ?? false
             if status == "1"{
                 self.adminEnquriesArray.removeAll()
                 var newArr = [OrderHistoryData]()
                 let allData = response.data["enquiry_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_enquiries"] as? [[String:Any]] ?? [[:]]{
                     print(obj)
-                    var accessoriesData = obj["accessories"] as? [String:Any] ?? [:]
+                    let accessoriesData = obj["accessories"] as? [String:Any] ?? [:]
+                    self.dealerCode.append(obj["enquiry_id"] as? String ?? "")
+                    let dateValue = obj["creation_date"] as? String ?? ""
+                    let dateVal = NumberFormatter().number(from: dateValue)?.doubleValue ?? 0.0
                     self.accName.append(accessoriesData["acc_name"] as? String ?? "")
+                    let dealerData = obj["dealer_detail"] as? [String:Any] ?? [:]
+                    self.dealerName.append("\(dealerData["first_name"] as? String ?? "") " + "\(dealerData["last_name"] as? String ?? "")")
                     self.quantityArray.append(obj["qty"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
                     let productDetails = obj["product_detail"] as? [String:Any] ?? [:]
                     print(productDetails)
-                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: productDetails["24 Feb 2021"] as? String ?? "24 Feb 2021", price: "$\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? "", accName: self.accName))
+                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateVal), price: "$\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? "", accName: self.accName))
                 }
                 for i in 0..<newArr.count{
                     self.adminEnquriesArray.append(newArr[i])
@@ -65,7 +73,7 @@ class AdminHomeVC: UIViewController {
                 self.enquriesTBView.reloadData()
             }else if status == "0"{
                 PKWrapperClass.svprogressHudDismiss(view: self)
-//                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+                //                alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }else{
                 UserDefaults.standard.removeObject(forKey: "tokenFString")
                 let appDel = UIApplication.shared.delegate as! AppDelegate
@@ -101,13 +109,13 @@ extension AdminHomeVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AdminEnquriesTBViewCell", for: indexPath) as! AdminEnquriesTBViewCell
-        cell.idLbl.text = adminEnquriesArray[indexPath.row].id
-        cell.quantityLbl.text = adminEnquriesArray[indexPath.row].quantity
+        cell.idLbl.text = dealerCode[indexPath.row]
+        cell.quantityLbl.text = dealerName[indexPath.row]
         cell.pricveLbl.text = adminEnquriesArray[indexPath.row].price
         cell.timelbl.text = adminEnquriesArray[indexPath.row].deliveryDate
         cell.nameLbl.text = adminEnquriesArray[indexPath.row].name
         cell.showImage.sd_setImage(with: URL(string:adminEnquriesArray[indexPath.row].image), placeholderImage: UIImage(named: "im"))
-
+        
         return cell
     }
     
@@ -115,22 +123,16 @@ extension AdminHomeVC : UITableViewDelegate , UITableViewDataSource {
         return 125
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let vc = SubmitDetailsVC.instantiate(fromAppStoryboard: .Main)
-//        vc.enquiryID = enquiryID[indexPath.row]
-//        vc.name = adminEnquriesArray[indexPath.row].name
-//        vc.quantity = quantityArray[indexPath.row]
-//        vc.amount = adminEnquriesArray[indexPath.row].price
-//        vc.accessoriesName = self.accName
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
-    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if page <= lastPage{
+        if lastPage == true{
             let bottamEdge = Float(self.enquriesTBView.contentOffset.y + self.enquriesTBView.frame.size.height)
             if bottamEdge >= Float(self.enquriesTBView.contentSize.height) && adminEnquriesArray.count > 0 {
                 page = page + 1
                 getAllEnquries()
+            }
+        }else{
+            let bottamEdge = Float(self.enquriesTBView.contentOffset.y + self.enquriesTBView.frame.size.height)
+            if bottamEdge >= Float(self.enquriesTBView.contentSize.height) && adminEnquriesArray.count > 0 {
             }
         }
     }

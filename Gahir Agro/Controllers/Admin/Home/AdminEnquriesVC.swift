@@ -8,16 +8,16 @@
 import UIKit
 
 class AdminEnquriesVC: UIViewController {
-
+    
     var page = 1
-    var lastPage = 1
+    var lastPage = Bool()
     var messgae = String()
     var enquiryID = [String]()
     var quantityArray = [String]()
-    var dealerCode = String()
-    var dealerName = String()
+    var dealerCode = [String]()
+    var dealerName = [String]()
     var accName = [String]()
-
+    
     var adminOrderArray = [OrderHistoryData]()
     @IBOutlet weak var orderTBView: UITableView!
     override func viewDidLoad() {
@@ -45,23 +45,26 @@ class AdminEnquriesVC: UIViewController {
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
+            self.lastPage = response.data[""] as? Bool ?? false
             if status == "1"{
                 self.adminOrderArray.removeAll()
                 var newArr = [OrderHistoryData]()
                 let allData = response.data["order_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_orders"] as? [[String:Any]] ?? [[:]]{
-                    var accessoriesData = obj["accessories"] as? [String:Any] ?? [:]
+                    let accessoriesData = obj["accessories"] as? [String:Any] ?? [:]
+                    let dateValue = obj["creation_date"] as? String ?? ""
+                    let dateVal = NumberFormatter().number(from: dateValue)?.doubleValue ?? 0.0
                     self.accName.append(accessoriesData["acc_name"] as? String ?? "")
                     self.quantityArray.append(obj["qty"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
-                    self.dealerCode = obj["dealer_code"] as? String ?? ""
+                    self.dealerCode.append(obj["dealer_code"] as? String ?? "")
                     let dealerData = obj["dealer_detail"] as? [String:Any] ?? [:]
-                    self.dealerName = "\(dealerData["first_name"] as? String ?? "") " + "\(dealerData["last_name"] as? String ?? "")"
+                    self.dealerName.append("\(dealerData["first_name"] as? String ?? "") " + "\(dealerData["last_name"] as? String ?? "")")
                     let allEnquiryData = obj["enquiry_detail"] as? [String:Any] ?? [:]
-                    for newObj in allEnquiryData["product_detail"] as? [[String:Any]] ?? [[:]] {
-                        print(newObj)
-                        newArr.append(OrderHistoryData(name: allEnquiryData["prod_name"] as? String ?? "", id: allEnquiryData["id"] as? String ?? "", quantity: "\(allEnquiryData["qty"] as? String ?? "")", deliveryDate: allEnquiryData["24 Feb 2021"] as? String ?? "24 Feb 2021", price: "$\(allEnquiryData["total"] as? String ?? "")" as? String ?? "", image: allEnquiryData["prod_image"] as? String ?? "", accName: self.accName))
-                    }
+                    let newObj = allEnquiryData["product_detail"]  as? [String:Any] ?? [:]
+                    print(newObj)
+                    newArr.append(OrderHistoryData(name: allEnquiryData["prod_name"] as? String ?? "", id: allEnquiryData["id"] as? String ?? "", quantity: "\(allEnquiryData["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateVal), price: "$\(allEnquiryData["total"] as? String ?? "")" as? String ?? "", image: newObj["prod_image"] as? String ?? "", accName: self.accName))
+                    //                    }
                 }
                 for i in 0..<newArr.count{
                     self.adminOrderArray.append(newArr[i])
@@ -104,13 +107,13 @@ extension AdminEnquriesVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AdminOrderTBViewCell", for: indexPath) as! AdminOrderTBViewCell
-        cell.productId.text = dealerCode
-        cell.quantitylbl.text = dealerName
+        cell.productId.text = dealerCode[indexPath.row]
+        cell.quantitylbl.text = dealerName[indexPath.row]
         cell.priceLbl.text = adminOrderArray[indexPath.row].price
         cell.dateLbl.text = adminOrderArray[indexPath.row].deliveryDate
         cell.nameLbl.text = adminOrderArray[indexPath.row].name
         cell.showImage.sd_setImage(with: URL(string:adminOrderArray[indexPath.row].image), placeholderImage: UIImage(named: "im"))
-
+        
         return cell
     }
     
@@ -118,24 +121,27 @@ extension AdminEnquriesVC : UITableViewDelegate , UITableViewDataSource {
         return 125
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let vc = SubmitDetailsVC.instantiate(fromAppStoryboard: .Main)
-//        vc.enquiryID = enquiryID[indexPath.row]
-//        vc.name = adminEnquriesArray[indexPath.row].name
-//        vc.quantity = quantityArray[indexPath.row]
-//        vc.amount = adminEnquriesArray[indexPath.row].price
-//        vc.accessoriesName = self.accName
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
+    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //        let vc = SubmitDetailsVC.instantiate(fromAppStoryboard: .Main)
+    //        vc.enquiryID = enquiryID[indexPath.row]
+    //        vc.name = adminEnquriesArray[indexPath.row].name
+    //        vc.quantity = quantityArray[indexPath.row]
+    //        vc.amount = adminEnquriesArray[indexPath.row].price
+    //        vc.accessoriesName = self.accName
+    //        self.navigationController?.pushViewController(vc, animated: true)
+    //    }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if page <= lastPage{
+        if lastPage == true{
             let bottamEdge = Float(self.orderTBView.contentOffset.y + self.orderTBView.frame.size.height)
             if bottamEdge >= Float(self.orderTBView.contentSize.height) && adminOrderArray.count > 0 {
                 page = page + 1
                 getAllOrder()
             }
+        }else{
+            let bottamEdge = Float(self.orderTBView.contentOffset.y + self.orderTBView.frame.size.height)
+            if bottamEdge >= Float(self.orderTBView.contentSize.height) && adminOrderArray.count > 0 {
+            }
         }
     }
-    
 }

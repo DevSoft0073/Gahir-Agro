@@ -14,6 +14,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     var tbaleViewArray = ["TYPE","SYSTEM"]
     var picker  = UIPickerView()
 
+    @IBOutlet weak var remarkTxtView: UITextView!
     var pickerToolBar = UIToolbar()
     var selectedValue = String()
     var selectedValue1 = String()
@@ -86,7 +87,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                     deviceID = "777"
                 }
                 
-                let params = ["product_id" : id , "quantity" : count, "accessory" : selectedValue1 ,"access_token": accessToken,"system" : selectedValue , "type" : self.productId]  as? [String : AnyObject] ?? [:]
+                let params = ["product_id" : id , "quantity" : count, "accessory" : selectedValue1 ,"access_token": accessToken,"system" : selectedValue , "type" : self.productId, "remark": self.remarkTxtView.text ?? ""]  as? [String : AnyObject] ?? [:]
                 print(params)
                 PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
                     print(response.data)

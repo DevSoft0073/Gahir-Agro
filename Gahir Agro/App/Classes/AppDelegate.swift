@@ -9,7 +9,7 @@ import UIKit
 import IQKeyboardManagerSwift
 import Firebase
 import UserNotifications
-
+import CoreLocation
 
 func appDelegate() -> AppDelegate {
     return UIApplication.shared.delegate as! AppDelegate
@@ -17,7 +17,7 @@ func appDelegate() -> AppDelegate {
 
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate , LocationServiceDelegate {
 
     var window: UIWindow?
 
@@ -41,7 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
         }
         application.registerForRemoteNotifications()
-        
         guard #available(iOS 13.0, *) else {
             setUpInitialScreen()
             return true
@@ -59,7 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         nav.setNavigationBarHidden(true, animated: true)
         appdelegate.window?.rootViewController = nav
     }
-    
 
     // MARK: UISceneSession Lifecycle
 

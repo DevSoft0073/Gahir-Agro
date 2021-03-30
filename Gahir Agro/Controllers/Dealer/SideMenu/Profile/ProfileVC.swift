@@ -45,7 +45,7 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
     
     func getData() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
-        let url = Constant.shared.baseUrl + Constant.shared.ProfileApi
+        let url = Constant.shared.baseUrl + Constant.shared.UpdateLocation
         var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
         let accessToken = UserDefaults.standard.value(forKey: "accessToken")
         print(deviceID ?? "")
