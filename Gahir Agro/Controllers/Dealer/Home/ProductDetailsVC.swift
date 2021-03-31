@@ -30,7 +30,7 @@ class ProductDetailsVC: UIViewController {
         self.productDetailsTBView.separatorStyle = .none
         buttonTitle = UserDefaults.standard.value(forKey: "checkRole") as? String ?? ""
         if buttonTitle == "Customer"{
-            enquiryButtonn.setTitle("See All Video's & PDF", for: .normal)
+            enquiryButtonn.setTitle("All Video's & PDF", for: .normal)
         }else{
             enquiryButtonn.setTitle("Enquiry", for: .normal)
         }

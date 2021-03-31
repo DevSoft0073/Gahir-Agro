@@ -30,6 +30,7 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
         titlelbl.text = selectedValue
         delaerorCustomerCodeLbl.text = delaerOrCustomerCode
         serialNumberTxtFld.placeholder = delaerOrCustomerCode
+        UserDefaults.standard.set(delaerOrCustomerCode, forKey: "getRole")
         guard let country = CountryManager.shared.currentCountry else {
             return
         }
@@ -55,8 +56,10 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
         let countryController = CountryPickerWithSectionViewController.presentController(on: self) { [weak self] (country: Country) in
 
            guard let self = self else { return }
-
-            self.countryPicker.setTitle(country.dialingCode, for: .normal)
+            let selectedCountryCode = country.dialingCode
+            let selectedCountryName = country.countryCode
+            let selectedCountryVal = "(\(selectedCountryName))" + "\(selectedCountryCode ?? "")"
+            self.countryPicker.setTitle(selectedCountryVal, for: .normal)
             UserDefaults.standard.setValue(country.dialingCode, forKey: "code") as? String ?? "+91"
             UserDefaults.standard.setValue(country.flag?.toString() ?? "", forKey: "flagImage")
          }
@@ -83,7 +86,8 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
     
     func verifyUser() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
-        let url = Constant.shared.baseUrl + Constant.shared.VerifyDealer
+        var verifyUrl = String()
+        var params = [String : AnyObject]()
         var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
         let accessToken = UserDefaults.standard.value(forKey: "accessToken")
         let countryCode = UserDefaults.standard.value(forKey: "code") ?? "+91"
@@ -92,9 +96,15 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
         if deviceID == nil  {
             deviceID = "777"
         }
-        let params = ["dealer_code" : serialNumberTxtFld.text ?? "" , "phone" : number]  as? [String : AnyObject] ?? [:]
+        if delaerOrCustomerCode == "Dealer Code"{
+            verifyUrl = Constant.shared.baseUrl + Constant.shared.VerifyDealer
+            params = ["dealer_code" : serialNumberTxtFld.text ?? "" , "phone" : number] as? [String : AnyObject] ?? [:]
+        }else{
+            verifyUrl = Constant.shared.baseUrl + Constant.shared.VerifyCustomer
+            params = ["serial_no" : serialNumberTxtFld.text ?? "" , "phone" : number] as? [String : AnyObject] ?? [:]
+        }
         print(params)
-        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
+        PKWrapperClass.requestPOSTWithFormData(verifyUrl, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""

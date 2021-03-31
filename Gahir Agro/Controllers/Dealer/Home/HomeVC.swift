@@ -8,9 +8,8 @@
 import UIKit
 import LGSideMenuController
 import SDWebImage
-import CoreLocation
 
-class HomeVC: UIViewController,UITextFieldDelegate,CLLocationManagerDelegate {
+class HomeVC: UIViewController,UITextFieldDelegate {
     
     var collectionViewDataArray = [CollectionViewData]()
     var tableViewDataArray = [TableViewData]()
@@ -20,78 +19,23 @@ class HomeVC: UIViewController,UITextFieldDelegate,CLLocationManagerDelegate {
     var messgae = String()
     var timer: Timer?
     var currentIndex = String()
-    var lat = ""
-    var long = ""
-    var locationManager = CLLocationManager()
+    var buttonTitle = String()
     @IBOutlet weak var allItemsTBView: UITableView!
     @IBOutlet weak var itemsCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         allItemsTBView.separatorStyle = .none
-        
         collectionViewDataArray.append(CollectionViewData(name: "TRACTOR", selected: true, type: "0"))
         collectionViewDataArray.append(CollectionViewData(name: "LASER", selected: false, type: "1"))
         collectionViewDataArray.append(CollectionViewData(name: "PUMP", selected: false, type: "2"))
-        
         filterdData()
         itemsCollectionView.reloadData()
-        
-        locationManager = CLLocationManager()
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        locationManager.delegate = self
-        
+        buttonTitle = UserDefaults.standard.value(forKey: "checkRole") as? String ?? ""
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(updateLocationApi), userInfo: nil, repeats: true)
-    }
-
-    func isLocationServicesEnabled() -> Bool {
-        if CLLocationManager.locationServicesEnabled() {
-            switch(CLLocationManager.authorizationStatus()) {
-            case .notDetermined, .restricted, .denied:
-                return false
-            case .authorizedAlways, .authorizedWhenInUse:
-                return true
-            @unknown default:
-                return false
-            }
-        }
-        
-        return false
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-       super.viewDidAppear(animated)
-       // Check for auth
-       if isLocationServicesEnabled() {
-          locationManager.startUpdatingLocation()
-       } else {
-          locationManager.requestWhenInUseAuthorization()
-       }
-       // Do other stuff
-    }
-    
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if (status == .authorizedAlways && status == .authorizedWhenInUse) {return}
-        guard let locValue : CLLocationCoordinate2D = manager.location?.coordinate else {
-            return
-        }
-        
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-        self.lat = String(locValue.latitude)
-        self.long = String(locValue.longitude)
-        
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last?.coordinate else { return }
-        let currentLocation = locations.last
-        self.lat = String(currentLocation?.coordinate.latitude ?? 0.0)
-        self.long = String(currentLocation?.coordinate.longitude ?? 0.0)
-        locationManager.stopUpdatingLocation()
+        timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(updateLocationApi), userInfo: nil, repeats: true)
     }
     
     @objc func updateLocationApi(){
@@ -173,7 +117,6 @@ class HomeVC: UIViewController,UITextFieldDelegate,CLLocationManagerDelegate {
                 self.allItemsTBView.reloadData()
             }else if status == "0"{
                 PKWrapperClass.svprogressHudDismiss(view: self)
-//                alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }else{
                 UserDefaults.standard.removeObject(forKey: "tokenFString")
                 let appDel = UIApplication.shared.delegate as! AppDelegate
@@ -268,6 +211,13 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
         cell.checkAvailabiltyButton.tag = indexPath.row
         cell.priceLbl.text = tableViewDataArray[indexPath.row].price
         cell.checkAvailabiltyButton.addTarget(self, action: #selector(goto), for: .touchUpInside)
+        
+        if buttonTitle == "Customer"{
+            cell.checkAvailabiltyButton.setTitle("More Details", for: .normal)
+        }else{
+            cell.checkAvailabiltyButton.setTitle("Check Availabilty", for: .normal)
+        }
+        
         return cell
     }
     

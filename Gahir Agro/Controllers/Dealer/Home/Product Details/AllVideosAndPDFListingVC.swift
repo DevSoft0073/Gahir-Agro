@@ -14,6 +14,7 @@ class AllVideosAndPDFListingVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(allDataArray)
+//        listingTBView.separatorStyle = .none
         // Do any additional setup after loading the view.
     }
     

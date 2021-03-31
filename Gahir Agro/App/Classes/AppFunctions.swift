@@ -77,9 +77,9 @@ extension UIViewController {
 extension UIViewController {
     func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String) {
         var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
-        let lat: Double = Double("\(pdblLatitude)")!
+        let lat: Double = Double("\(pdblLatitude)") ?? 0.0
         //21.228124
-        let lon: Double = Double("\(pdblLongitude)")!
+        let lon: Double = Double("\(pdblLongitude)") ?? 0.0
         //72.833770
         let ceo: CLGeocoder = CLGeocoder()
         center.latitude = lat

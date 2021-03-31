@@ -24,7 +24,6 @@ class Constant: NSObject {
     
     
     let SignUp = "DealerSignup.php"
-//    let PhoneLogin = "DealerPhoneLogin.php"
     let SignIn = "EmailLogin.php"
     let ForgotPassword = "ForgotPassword.php"
     let AllProduct = "GetAllProducts.php"
@@ -47,7 +46,7 @@ class Constant: NSObject {
     
     let CustomerLogin = "CustomerPhoneLogin.php"
     let CustomerSignUp = "VerifyCustomer.php"
-    
+    let CustomerNewSignUp = "CustomerSignup.php"
     
     //MARK:-> Admin Flow Api's
     

@@ -34,7 +34,10 @@ class SignInWithPhone: UIViewController {
 
            guard let self = self else { return }
 
-            self.countryCode.setTitle(country.dialingCode, for: .normal)
+            let selectedCountryCode = country.dialingCode
+            let selectedCountryName = country.countryCode
+            let selectedCountryVal = "(\(selectedCountryName))" + "\(selectedCountryCode ?? "")"
+            self.countryCode.setTitle(selectedCountryVal, for: .normal)
             UserDefaults.standard.setValue(country.dialingCode, forKey: "code") as? String ?? "+91"
             UserDefaults.standard.setValue(country.flag?.toString() ?? "", forKey: "flagImage")
          }

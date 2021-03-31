@@ -40,12 +40,11 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
         textFour.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
         textFifth.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
         textSixth.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
-        //        textOne.becomeFirstResponder()
         
         self.view.resignFirstResponder()
     }
     
-//    MARK:- Get Otp
+    //    MARK:- Get Otp
     
     func getOtp() {
         PhoneAuthProvider.provider().verifyPhoneNumber(self.phoneNumber, uiDelegate: nil) { (verificationID, error) in
@@ -54,22 +53,21 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 print(error.localizedDescription)
                 if error.localizedDescription == "Invalid format."{
-                  alert(Constant.shared.appTitle, message: "please enter valid phone number.", view: self)
+                    alert(Constant.shared.appTitle, message: "please enter valid phone number.", view: self)
                 }else{
-                   alert(Constant.shared.appTitle, message: error.localizedDescription, view: self)
+                    alert(Constant.shared.appTitle, message: error.localizedDescription, view: self)
                 }
                 
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-                print(verificationID)
             }
             PKWrapperClass.svprogressHudDismiss(view: self)
         }
         PKWrapperClass.svprogressHudDismiss(view: self)
     }
-
-//    MARK:- Text Field delegate
+    
+    //    MARK:- Text Field delegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -136,7 +134,7 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
         
     }
     
-//    MARK:- Button Action
+    //    MARK:- Button Action
     
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -166,7 +164,20 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
         }
     }
     
-//    MARK:- Service Call Function
+    //    MARK:- Resend Otp
+    
+    @IBAction func resendOtpButtonAction(_ sender: Any) {
+        textOne.text = ""
+        textTwo.text = ""
+        textTheww.text = ""
+        textFour.text = ""
+        textFifth.text = ""
+        textSixth.text = ""
+        getOtp()
+    }
+    
+    
+    //    MARK:- Service Call Function
     
     func phoneLogin() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
@@ -181,7 +192,7 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
-            let signUpStatus = response.data["app_signup"] as? String ?? ""
+            //            let signUpStatus = response.data["app_signup"] as? String ?? ""
             let status = response.data["status"] as? String ?? ""
             self.message = response.data["message"] as? String ?? ""
             UserDefaults.standard.setValue(response.data["access_token"] as? String ?? "", forKey: "accessToken")
@@ -194,9 +205,35 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
                 UserDefaults.standard.set(data["id"], forKey: "id")
                 UserDefaults.standard.setValue(data["role"], forKey: "checkRole")
                 UserDefaults.standard.setValue(data["serial_no"], forKey: "serialNumber")
-                let story = UIStoryboard(name: "Main", bundle: nil)
-                let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
-                self.navigationController?.pushViewController(rootViewController, animated: true)
+                
+                if data["role"] as? String ?? "" == "admin"{
+                    DispatchQueue.main.async {
+                        let story = UIStoryboard(name: "AdminMain", bundle: nil)
+                        let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "AdminSideMenuControllerID")
+                        self.navigationController?.pushViewController(rootViewController, animated: true)
+                    }
+                }else if data["role"] as? String ?? "" == "Sales"{
+                    
+                    DispatchQueue.main.async {
+                        let story = UIStoryboard(name: "AdminMain", bundle: nil)
+                        let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "AdminSideMenuControllerID")
+                        self.navigationController?.pushViewController(rootViewController, animated: true)
+                    }
+                    
+                }else if data["role"] as? String ?? "" == "Customer"{
+                    DispatchQueue.main.async {
+                        let story = UIStoryboard(name: "Main", bundle: nil)
+                        let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
+                        self.navigationController?.pushViewController(rootViewController, animated: true)
+                    }
+                    
+                }else if data["role"] as? String ?? "" == "Dealer"{
+                    DispatchQueue.main.async {
+                        let story = UIStoryboard(name: "Main", bundle: nil)
+                        let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
+                        self.navigationController?.pushViewController(rootViewController, animated: true)
+                    }
+                }
             }else {
                 alert(Constant.shared.appTitle, message: self.message, view: self)
             }
