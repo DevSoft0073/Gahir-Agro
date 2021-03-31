@@ -104,6 +104,7 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
             params = ["serial_no" : serialNumberTxtFld.text ?? "" , "phone" : number] as? [String : AnyObject] ?? [:]
         }
         print(params)
+        self.view.resignFirstResponder()
         PKWrapperClass.requestPOSTWithFormData(verifyUrl, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
@@ -112,17 +113,13 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
                 if signupStatus == 0{
-                    showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
-                        let vc = OTPVerificationVC.instantiate(fromAppStoryboard: .Auth)
-                        UserDefaults.standard.set(false, forKey: "comesFromPhoneLogin")
-                        UserDefaults.standard.set(self.serialNumberTxtFld.text, forKey: "dealerCode")
-                        let countryCode = UserDefaults.standard.value(forKey: "code") ?? "+91"
-                        let number = "\(countryCode)" + "\(self.mobileTxtFld.text ?? "")"
-                        vc.phoneNumber = number
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                }else{
-                    
+                    let vc = OTPVerificationVC.instantiate(fromAppStoryboard: .Auth)
+                    UserDefaults.standard.set(false, forKey: "comesFromPhoneLogin")
+                    UserDefaults.standard.set(self.serialNumberTxtFld.text, forKey: "dealerCode")
+                    let countryCode = UserDefaults.standard.value(forKey: "code") ?? "+91"
+                    let number = "\(countryCode)" + "\(self.mobileTxtFld.text ?? "")"
+                    vc.phoneNumber = number
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
                 
             }else{

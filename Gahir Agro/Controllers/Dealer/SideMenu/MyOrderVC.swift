@@ -64,7 +64,7 @@ class MyOrderVC: UIViewController {
                     self.orderStatus = obj["status"] as! String as? String ?? ""
                     let productDetails = obj["product_detail"] as? [String:Any] ?? [:]
                     print(productDetails)
-                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateVal), price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? "", accName: self.accName))
+                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateVal), price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? "", accName: self.accName, modelName: productDetails["prod_model"] as? String ?? ""))
                     self.amountArray.append("$\(productDetails["prod_price"] as? String ?? "")")
                 }
                 for i in 0..<newArr.count{
@@ -129,7 +129,7 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
         vc.enquiryID = enquiryID[indexPath.row]
-        vc.name = orderHistoryArray[indexPath.row].name
+        vc.name = orderHistoryArray[indexPath.row].modelName
         vc.quantity = quantityArray[indexPath.row]
         vc.amount = orderHistoryArray[indexPath.row].price
         vc.image = orderHistoryArray[indexPath.row].image
@@ -160,9 +160,10 @@ struct OrderHistoryData {
     var deliveryDate : String
     var price : String
     var image : String
+    var modelName : String
     var accName : [String]
     
-    init(name : String , id : String , quantity : String , deliveryDate : String , price : String , image : String,accName : [String]) {
+    init(name : String , id : String , quantity : String , deliveryDate : String , price : String , image : String,accName : [String],modelName : String) {
         self.name = name
         self.id = id
         self.quantity = quantity
@@ -170,6 +171,7 @@ struct OrderHistoryData {
         self.price = price
         self.image = image
         self.accName = accName
+        self.modelName = modelName
     }
 }
 

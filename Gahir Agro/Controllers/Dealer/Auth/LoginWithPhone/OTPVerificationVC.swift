@@ -187,7 +187,7 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
         if deviceID == nil  {
             deviceID = "777"
         }
-        let params = ["phone": phoneNumber,"device_token": deviceID ?? "","device_type":"1"] as? [String : AnyObject] ?? [:]
+        let params = ["phone": phoneNumber,"device_token": deviceID ?? "","device_type":"iOS"] as? [String : AnyObject] ?? [:]
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)

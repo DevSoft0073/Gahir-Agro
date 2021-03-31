@@ -59,11 +59,11 @@ class HomeVC: UIViewController,UITextFieldDelegate {
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
             }else{
-                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+//                alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }
         } failure: { (error) in
             print(error)
-            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+//            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
 
     }

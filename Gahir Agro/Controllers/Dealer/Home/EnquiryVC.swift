@@ -72,9 +72,9 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         }else{
             
             if selectedValue.isEmpty == true {
-                ValidateData(strMessage: "Please select value for system")
+                ValidateData(strMessage: "Please select value for type")
             }else if selectedValue1.isEmpty == true{
-                ValidateData(strMessage: "Please select value for accessories")
+                ValidateData(strMessage: "Please select value for ststem")
                 
             }else{
                 

@@ -23,12 +23,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate , LocationServiceDelegate 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
-//        self.navigateVC()
         FirebaseApp.configure()
+        application.registerForRemoteNotifications()
+        LocationService.sharedInstance.startUpdatingLocation()
+        LocationService.sharedInstance.isLocateSuccess = false
+        LocationService.sharedInstance.delegate = self
+        
+        guard #available(iOS 13.0, *) else {
+            setUpInitialScreen()
+            return true
+        }
+        
         if #available(iOS 10.0, *) {
-            // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
             
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
@@ -40,15 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate , LocationServiceDelegate 
                 UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
             application.registerUserNotificationSettings(settings)
         }
-        application.registerForRemoteNotifications()
-        LocationService.sharedInstance.startUpdatingLocation()
-        LocationService.sharedInstance.isLocateSuccess = false
-        LocationService.sharedInstance.delegate = self
-        guard #available(iOS 13.0, *) else {
-            setUpInitialScreen()
-            return true
-        }
-        
         return true
     }
     
@@ -88,33 +86,70 @@ class AppDelegate: UIResponder, UIApplicationDelegate , LocationServiceDelegate 
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let deviceTokenString = deviceToken.hexString
-        print(deviceTokenString)
-        UserDefaults.standard.setValue(deviceTokenString, forKey: "deviceToken")
-    }
 }
 
 
-@available(iOS 10.0, *)
-extension AppDelegate : UNUserNotificationCenterDelegate {
-    
-    // Receive displayed notifications for iOS 10 devices.
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
-        completionHandler([.alert, .badge, .sound])
+//MARK:- Push notifications method(s)
+
+extension AppDelegate: UNUserNotificationCenterDelegate{
+    func configureNotification(application: UIApplication) {
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.delegate = self
+            center.requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in
+                DispatchQueue.main.async {
+                    application.registerForRemoteNotifications()
+                }
+            }
+        }else{
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+        }
+        UIApplication.shared.registerForRemoteNotifications()
     }
+
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
+   
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        if let userInfo = response.notification.request.content.userInfo as? [String:Any]{
+            print(userInfo)
+        }
         completionHandler()
     }
     
     
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        print(deviceTokenString)
+        UserDefaults.standard.set(deviceTokenString, forKey: DefaultKeys.deviceToken)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("APNs registration failed: \(error)")
+    }
+  
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let userDict = userInfo as! [String:Any]
+        print("received", userDict)
+        if application.applicationState == .inactive{
+
+        }else{
+            print("not invoked cause its in foreground")
+        }
+    }
+    
+    //MARK:- Receive displayed notifications for iOS 10 devices.
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.sound,.alert,.badge])
+    }
+}
+
+
+
+@available(iOS 10.0, *)
+extension AppDelegate {
     func getLoggedUser(){
         let credentials = UserDefaults.standard.value(forKey: "tokenFString") as? Int
         if credentials == 1{

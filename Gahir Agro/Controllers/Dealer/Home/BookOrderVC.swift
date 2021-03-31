@@ -27,10 +27,10 @@ class BookOrderVC: UIViewController {
     @IBOutlet weak var showImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameLbl.text = modelName
         quantityLbl.text = quantity
         showImage.sd_setImage(with: URL(string:image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
-        // Do any additional setup after loading the view.
+        titleLbl.text = name
+        print(name)
     }
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

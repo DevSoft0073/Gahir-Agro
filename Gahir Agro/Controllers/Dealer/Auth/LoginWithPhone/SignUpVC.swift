@@ -109,14 +109,14 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
         }
         
         let roleVal = UserDefaults.standard.value(forKey: "getRole") as? String ?? ""
-        if roleVal == "" {
+        if roleVal == "Dealer Code" {
             SignUpUrl = Constant.shared.baseUrl + Constant.shared.SignUp
             
-            params = ["username":nameTxtFld.text ?? "", "first_name" : emailTxtFld.text ?? "", "password":passwordTxtFld.text ?? "" , "device_token" : deviceID! ,"device_type" : "iOS","dealer_code" : dealerCode , "phone" : self.phoneNumber] as? [String : AnyObject] ?? [:]
+            params = ["username":emailTxtFld.text ?? "", "first_name" : nameTxtFld.text ?? "", "password":passwordTxtFld.text ?? "" , "device_token" : deviceID! ,"device_type" : "iOS","dealer_code" : dealerCode , "phone" : self.phoneNumber] as? [String : AnyObject] ?? [:]
         }else{
             SignUpUrl = Constant.shared.baseUrl + Constant.shared.CustomerNewSignUp            
             
-            params = ["username":nameTxtFld.text ?? "", "first_name" : emailTxtFld.text ?? "", "password":passwordTxtFld.text ?? "" , "device_token" : deviceID! ,"device_type" : "iOS","serial_no" : dealerCode , "phone" : self.phoneNumber] as? [String : AnyObject] ?? [:]
+            params = ["username":emailTxtFld.text ?? "", "first_name" : nameTxtFld.text ?? "", "password":passwordTxtFld.text ?? "" , "device_token" : deviceID! ,"device_type" : "iOS","serial_no" : dealerCode , "phone" : self.phoneNumber] as? [String : AnyObject] ?? [:]
         }
         print(params)
         PKWrapperClass.requestPOSTWithFormData(SignUpUrl, params: params, imageData: []) { (response) in

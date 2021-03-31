@@ -122,7 +122,7 @@ class OTPVerificationForCustomerVC: UIViewController,UITextFieldDelegate{
         if deviceID == nil  {
             deviceID = "777"
         }
-        let parms : [String:Any] = ["phone": phoneNumber,"device_token": deviceID ?? "","device_type":"1"]
+        let parms : [String:Any] = ["phone": phoneNumber,"device_token": deviceID ?? "","device_type":"iOS"]
         print(parms)
         AFWrapperClass.requestPOSTURL(signUpWithPhoneUrl, params: parms, success: { (response) in
             PKWrapperClass.svprogressHudDismiss(view: self)
