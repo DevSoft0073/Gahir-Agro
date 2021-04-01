@@ -49,6 +49,7 @@ class SignInWithPhone: UIViewController {
 //    MARK:- Button Action
     
     @IBAction func gernerateOtpButton(_ sender: Any) {
+        
         if numberTxtFld.text?.isEmpty == true{
             ValidateData(strMessage: "Please enter phone number")
             

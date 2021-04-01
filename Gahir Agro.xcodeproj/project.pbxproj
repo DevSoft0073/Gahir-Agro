@@ -34,6 +34,7 @@
 		180EEAEB25E3B73100D6327A /* Poppins-ExtraLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 180EEAD825E3B73100D6327A /* Poppins-ExtraLightItalic.otf */; };
 		180EEAEC25E3B73100D6327A /* Poppins-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 180EEAD925E3B73100D6327A /* Poppins-Black.otf */; };
 		180EEAED25E3B73100D6327A /* Poppins-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 180EEADA25E3B73100D6327A /* Poppins-BoldItalic.otf */; };
+		180F0EF82615DAFA00ED9080 /* AdminPrivacyPolicyLinkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180F0EF72615DAFA00ED9080 /* AdminPrivacyPolicyLinkVC.swift */; };
 		18157E1225E5095300E4451C /* ProductDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18157E1125E5095300E4451C /* ProductDetailsVC.swift */; };
 		18157E1725E50FBD00E4451C /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18157E1625E50FBD00E4451C /* SideMenuController.swift */; };
 		1815DEC2260B15160072771E /* AllVideosAndPDFListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815DEC1260B15160072771E /* AllVideosAndPDFListingVC.swift */; };
@@ -166,6 +167,7 @@
 		180EEAD825E3B73100D6327A /* Poppins-ExtraLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.otf"; sourceTree = "<group>"; };
 		180EEAD925E3B73100D6327A /* Poppins-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Black.otf"; sourceTree = "<group>"; };
 		180EEADA25E3B73100D6327A /* Poppins-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.otf"; sourceTree = "<group>"; };
+		180F0EF72615DAFA00ED9080 /* AdminPrivacyPolicyLinkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPrivacyPolicyLinkVC.swift; sourceTree = "<group>"; };
 		18157E1125E5095300E4451C /* ProductDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsVC.swift; sourceTree = "<group>"; };
 		18157E1625E50FBD00E4451C /* SideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
 		1815DEC1260B15160072771E /* AllVideosAndPDFListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllVideosAndPDFListingVC.swift; sourceTree = "<group>"; };
@@ -360,6 +362,8 @@
 				185B48DB2601C30A0021089C /* AdminSideMenuVC.swift */,
 				185B48E02601C3260021089C /* AdminSideMenuControllerVC.swift */,
 				185B48E52601C3410021089C /* AdminNotificationVC.swift */,
+				180F0EF72615DAFA00ED9080 /* AdminPrivacyPolicyLinkVC.swift */,
+				185B490E2601C9270021089C /* AdminEnquriesVC.swift */,
 			);
 			path = SideMenu;
 			sourceTree = "<group>";
@@ -369,7 +373,6 @@
 			children = (
 				18424F022600D1530039CCBF /* SideMenu */,
 				185B49062601C8F40021089C /* AdminHomeVC.swift */,
-				185B490E2601C9270021089C /* AdminEnquriesVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1082,6 +1085,7 @@
 				1872905F25FF38F400A83349 /* CustomerContactUSVC.swift in Sources */,
 				1872905025FF388900A83349 /* CustomerProfileVC.swift in Sources */,
 				181704C125E63DF3003825D7 /* ProfileVC.swift in Sources */,
+				180F0EF82615DAFA00ED9080 /* AdminPrivacyPolicyLinkVC.swift in Sources */,
 				184B11A225E37149003007A2 /* AppFunctions.swift in Sources */,
 				184A8AE025FB8949000583C5 /* SignInWithScreenVC.swift in Sources */,
 				184B118625E36EC9003007A2 /* ForgotPasswordVC.swift in Sources */,
@@ -1304,9 +1308,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Gahir Agro/Gahir Agro.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 1.3;
 				DEVELOPMENT_TEAM = 8USCMRVC59;
 				INFOPLIST_FILE = "Gahir Agro/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1316,7 +1320,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gahir.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Gahir dev 30 mar 2021";
+				PROVISIONING_PROFILE_SPECIFIER = "Gahir dist 30 mar 2021";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1329,9 +1333,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Gahir Agro/Gahir Agro.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 1.3;
 				DEVELOPMENT_TEAM = 8USCMRVC59;
 				INFOPLIST_FILE = "Gahir Agro/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1341,7 +1345,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gahir.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Gahir dev 30 mar 2021";
+				PROVISIONING_PROFILE_SPECIFIER = "Gahir dist 30 mar 2021";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

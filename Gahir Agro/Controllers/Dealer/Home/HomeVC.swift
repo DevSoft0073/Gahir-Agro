@@ -35,6 +35,9 @@ class HomeVC: UIViewController,UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        tableViewDataArray.removeAll()
+        page = 1
+        filterdData()
         timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(updateLocationApi), userInfo: nil, repeats: true)
     }
     
@@ -42,6 +45,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         updateUserLocationApi()
     }
     
+//    MARK:- Service Call Methods
     
     func updateUserLocationApi(){
         let url = Constant.shared.baseUrl + Constant.shared.UpdateLocation
@@ -59,31 +63,12 @@ class HomeVC: UIViewController,UITextFieldDelegate {
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
             }else{
-//                alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }
         } failure: { (error) in
             print(error)
-//            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
-
     }
     
-    @IBAction func openMenuButton(_ sender: Any) {
-        sideMenuController?.showLeftViewAnimated()
-    }
-    
-    @IBAction func searchButton(_ sender: Any) {
-        
-        
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        transition.type = CATransitionType.fade
-        transition.subtype = CATransitionSubtype.fromTop
-        self.navigationController!.view.layer.add(transition, forKey: nil)
-        let writeView = self.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as! SearchVC
-        self.navigationController?.pushViewController(writeView, animated: false)
-    }
     
     func filterdData() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
@@ -160,7 +145,6 @@ class HomeVC: UIViewController,UITextFieldDelegate {
                 self.allItemsTBView.reloadData()
             }else if status == "0"{
                 PKWrapperClass.svprogressHudDismiss(view: self)
-//                alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }else{
                 UserDefaults.standard.removeObject(forKey: "tokenFString")
                 let appDel = UIApplication.shared.delegate as! AppDelegate
@@ -171,7 +155,28 @@ class HomeVC: UIViewController,UITextFieldDelegate {
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
     }
+
+//    MARK:- Button Actions
+    
+    @IBAction func openMenuButton(_ sender: Any) {
+        sideMenuController?.showLeftViewAnimated()
+    }
+    
+    @IBAction func searchButton(_ sender: Any) {
+        
+        
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.fade
+        transition.subtype = CATransitionSubtype.fromTop
+        self.navigationController!.view.layer.add(transition, forKey: nil)
+        let writeView = self.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as! SearchVC
+        self.navigationController?.pushViewController(writeView, animated: false)
+    }
 }
+
+// MARK:- Collection View Cell Functions
 
 class ItemsCollectionViewCell: UICollectionViewCell {
     
@@ -180,6 +185,8 @@ class ItemsCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
 }
+
+// MARK:- TableView Cell Class
 
 class AlItemsTBViewCell: UITableViewCell {
     
@@ -194,6 +201,7 @@ class AlItemsTBViewCell: UITableViewCell {
     }
 }
 
+// MARK:- TableView Cell Functions
 
 extension HomeVC : UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -232,7 +240,7 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if lastPage == true{
+        if lastPage == false{
             let bottamEdge = Float(self.allItemsTBView.contentOffset.y + self.allItemsTBView.frame.size.height)
             if bottamEdge >= Float(self.allItemsTBView.contentSize.height) && tableViewDataArray.count > 0 {
                 page = page + 1
@@ -246,6 +254,8 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
         }
     }
 }
+
+// MARK:- Collection View Cell Functions
 
 extension HomeVC : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -298,6 +308,8 @@ extension HomeVC : UICollectionViewDelegate , UICollectionViewDataSource {
     }
 }
 
+//MARK:- Structurs
+
 struct CollectionViewData {
     var name : String
     var selected : Bool
@@ -340,7 +352,6 @@ struct TableViewData {
         self.prod_desc = prod_desc
     }
 }
-
 extension  UIView {
     func roundTop(radius:CGFloat = 12){
         self.clipsToBounds = true

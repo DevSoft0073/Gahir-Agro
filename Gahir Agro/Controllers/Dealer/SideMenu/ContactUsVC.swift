@@ -67,8 +67,17 @@ class ContactUsVC: UIViewController ,UITextFieldDelegate , UITextViewDelegate{
                     self.nameTxtFld.text = ""
                     self.emailTxtFld.text = ""
                     self.messageTxtView.text = ""
+                    self.emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                    self.emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                    self.messageVIew.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                    self.nameTxtFld.resignFirstResponder()
+                    self.emailTxtFld.resignFirstResponder()
+                    self.messageTxtView.resignFirstResponder()
                 }
             }else{
+                self.nameTxtFld.resignFirstResponder()
+                self.emailTxtFld.resignFirstResponder()
+                self.messageTxtView.resignFirstResponder()
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }
@@ -103,6 +112,8 @@ class ContactUsVC: UIViewController ,UITextFieldDelegate , UITextViewDelegate{
             ValidateData(strMessage: "Please enter name")
         }else if emailTxtFld.text?.isEmpty == true{
             ValidateData(strMessage: "Please enter email")
+        } else if isValidEmail(testStr: (emailTxtFld.text)!) == false{
+            ValidateData(strMessage: "Enter valid email")            
         }else if messageTxtView.text.isEmpty == true{
             ValidateData(strMessage: "Message field should not be empty")
         }else{

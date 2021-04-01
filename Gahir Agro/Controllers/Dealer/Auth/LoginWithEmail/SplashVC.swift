@@ -16,6 +16,8 @@ class SplashVC: UIViewController {
 
     }
     
+//    MARK:- Nevigate to login
+    
     @objc func navigateToLogin() {
         
         let credentials = UserDefaults.standard.value(forKey: "tokenFString") as? Int ?? 0

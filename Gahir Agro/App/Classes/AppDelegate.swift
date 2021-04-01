@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate , LocationServiceDelegate 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         IQKeyboardManager.shared.enable = true
         FirebaseApp.configure()
-        application.registerForRemoteNotifications()
         LocationService.sharedInstance.startUpdatingLocation()
         LocationService.sharedInstance.isLocateSuccess = false
         LocationService.sharedInstance.delegate = self
@@ -34,19 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , LocationServiceDelegate 
             setUpInitialScreen()
             return true
         }
-        
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().delegate = self
-            
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(
-                options: authOptions,
-                completionHandler: {_, _ in })
-        } else {
-            let settings: UIUserNotificationSettings =
-                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-        }
+        configureNotification(application: application)
         return true
     }
     
@@ -92,6 +79,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate , LocationServiceDelegate 
 //MARK:- Push notifications method(s)
 
 extension AppDelegate: UNUserNotificationCenterDelegate{
+    
+    
     func configureNotification(application: UIApplication) {
         if #available(iOS 10.0, *) {
             let center = UNUserNotificationCenter.current()
@@ -106,14 +95,27 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
         }
         UIApplication.shared.registerForRemoteNotifications()
     }
-
-    
-   
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if let userInfo = response.notification.request.content.userInfo as? [String:Any]{
             print(userInfo)
+            let allData = userInfo["aps"] as? [String:Any] ?? [:]
+            let alertData = userInfo["alert"] as? [String:Any] ?? [:]
+            print(alertData)
+//            let title = alertData["title"] as? String ?? ""
+//            let body = alertData["body"] as? String ?? ""
+//            redirectToHotOffer(title: title, body: body)
         }
         completionHandler()
+    }
+    
+    func redirectToHotOffer(title: String, body: String){
+        let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
+        vc.status = title
+        vc.productTitle = body
+        let nav = UINavigationController(rootViewController: vc)
+        nav.setNavigationBarHidden(true, animated: true)
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        appdelegate.window?.rootViewController = nav
     }
     
     
@@ -126,13 +128,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("APNs registration failed: \(error)")
     }
-  
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         let userDict = userInfo as! [String:Any]
         print("received", userDict)
         if application.applicationState == .inactive{
-
+            
         }else{
             print("not invoked cause its in foreground")
         }
@@ -177,5 +178,5 @@ extension AppDelegate {
         nav.setNavigationBarHidden(true, animated: true)
         appdelegate.window?.rootViewController = nav
     }
-    
 }
+

@@ -21,14 +21,19 @@ class MyOrderVC: UIViewController {
     var amountArray = [String]()
     var dateArray = [Any]()
     var totalArray = [String]()
-    var orderStatus = String()
+    var orderStatus = [String]()
     @IBOutlet weak var myOrderTBView: UITableView!
     var orderHistoryArray = [OrderHistoryData]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getAllEnquries()
         myOrderTBView.separatorStyle = .none
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        orderHistoryArray.removeAll()
+        page = 1
+        getAllEnquries()
     }
     
     func getAllEnquries() {
@@ -47,8 +52,8 @@ class MyOrderVC: UIViewController {
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
+            self.lastPage = response.data["last_page"] as? Bool ?? false
             if status == "1"{
-                self.orderHistoryArray.removeAll()
                 self.amountArray.removeAll()
                 var newArr = [OrderHistoryData]()
                 let allData = response.data["enquiry_list"] as? [String:Any] ?? [:]
@@ -61,7 +66,7 @@ class MyOrderVC: UIViewController {
                     self.quantityArray.append(obj["qty"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
                     self.totalArray.append(obj["total"] as! String) as? Any ?? ""
-                    self.orderStatus = obj["status"] as! String as? String ?? ""
+                    self.orderStatus.append(obj["status"] as! String as? String ?? "")
                     let productDetails = obj["product_detail"] as? [String:Any] ?? [:]
                     print(productDetails)
                     newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateVal), price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? "", accName: self.accName, modelName: productDetails["prod_model"] as? String ?? ""))
@@ -73,7 +78,6 @@ class MyOrderVC: UIViewController {
                 self.myOrderTBView.reloadData()
             }else if status == "0"{
                 PKWrapperClass.svprogressHudDismiss(view: self)
-//                alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }else{
                 UserDefaults.standard.removeObject(forKey: "tokenFString")
                 let appDel = UIApplication.shared.delegate as! AppDelegate
@@ -129,17 +133,20 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
         vc.enquiryID = enquiryID[indexPath.row]
-        vc.name = orderHistoryArray[indexPath.row].modelName
+        vc.name = orderHistoryArray[indexPath.row].name
         vc.quantity = quantityArray[indexPath.row]
         vc.amount = orderHistoryArray[indexPath.row].price
         vc.image = orderHistoryArray[indexPath.row].image
         vc.accessoriesName = orderHistoryArray[indexPath.row].accName[indexPath.row]
+        vc.status = orderStatus[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
-        if lastPage == true{
+        if lastPage == false{
             let bottamEdge = Float(self.myOrderTBView.contentOffset.y + self.myOrderTBView.frame.size.height)
             if bottamEdge >= Float(self.myOrderTBView.contentSize.height) && orderHistoryArray.count > 0 {
                 page = page + 1

@@ -14,14 +14,17 @@ class AllVideosAndPDFListingVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(allDataArray)
-//        listingTBView.separatorStyle = .none
-        // Do any additional setup after loading the view.
     }
+    
+//    MARK:- Button Action
     
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
 }
+
+//    MARK:- TableView Cell Class
+
 class ListingTBViewCell: UITableViewCell {
     
     @IBOutlet weak var timeAndDetailLbl: UILabel!
@@ -31,6 +34,8 @@ class ListingTBViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 }
+
+//    MARK:- Tableview Delegate Datasource
 
 extension AllVideosAndPDFListingVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

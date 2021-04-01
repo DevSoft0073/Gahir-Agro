@@ -53,11 +53,10 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 print(error.localizedDescription)
                 if error.localizedDescription == "Invalid format."{
-                    alert(Constant.shared.appTitle, message: "please enter valid phone number.", view: self)
+                    alert(Constant.shared.appTitle, message: "Please enter valid phone number.", view: self)
                 }else{
-                    alert(Constant.shared.appTitle, message: error.localizedDescription, view: self)
+                    alert(Constant.shared.appTitle, message: "Please enter valid phone number.", view: self)
                 }
-                
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
@@ -74,6 +73,25 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
         return true
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string.count > 0 {
+            textField.text = (string as NSString).substring(to: 1)
+            if textField == textOne {
+                textTwo.becomeFirstResponder()
+            } else if textField == textTwo {
+                textTheww.becomeFirstResponder()
+            }else if textField == textTheww {
+                textFour.becomeFirstResponder()
+            }else if textField == textFour {
+                textFifth.becomeFirstResponder()
+            }else if textField == textFifth {
+                textSixth.becomeFirstResponder()
+            }else if textField == textSixth {
+                dismissKeyboard()
+            }
+        }
+        return true
+    }
     
     @objc func textFieldDidChange(textField: UITextField){
         let text = textField.text
@@ -121,7 +139,6 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
             }
         }
         else{
-            
         }
     }
     
@@ -143,12 +160,12 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
     @IBAction func verifyButton(_ sender: Any) {
         let comesFrom = UserDefaults.standard.value(forKey: "comesFromPhoneLogin") as? Bool
         if comesFrom == false{
-            
+
             let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
             let credential = PhoneAuthProvider.provider().credential(
                 withVerificationID: verificationID!,
                 verificationCode: otpText)
-            
+
             Auth.auth().signIn(with: credential) { (success, error) in
                 if error == nil{
                     print(success ?? "")
@@ -156,11 +173,23 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
                     vc.phoneNumber = self.phoneNumber
                     self.navigationController?.pushViewController(vc, animated: true)
                 }else{
-                    alert(Constant.shared.appTitle, message: error?.localizedDescription ?? "", view: self)
+                    alert(Constant.shared.appTitle, message: "Invalid OTP please enter again", view: self)
                 }
             }
         }else{
-            phoneLogin()
+            let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
+            let credential = PhoneAuthProvider.provider().credential(
+                withVerificationID: verificationID!,
+                verificationCode: otpText)
+
+            Auth.auth().signIn(with: credential) { (success, error) in
+                if error == nil{
+                    print(success ?? "")
+                    self.phoneLogin()
+                }else{
+                    alert(Constant.shared.appTitle, message: "Invalid OTP please enter again", view: self)
+                }
+            }
         }
     }
     
@@ -192,7 +221,6 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
-            //            let signUpStatus = response.data["app_signup"] as? String ?? ""
             let status = response.data["status"] as? String ?? ""
             self.message = response.data["message"] as? String ?? ""
             UserDefaults.standard.setValue(response.data["access_token"] as? String ?? "", forKey: "accessToken")
@@ -201,6 +229,7 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
                 let allData = response.data as? [String:Any] ?? [:]
                 let data = allData["user_detail"] as? [String:Any] ?? [:]
                 print(data)
+                UserDefaults.standard.set(data["dealer_code"] as? String ?? "", forKey: "code")
                 UserDefaults.standard.set(1, forKey: "tokenFString")
                 UserDefaults.standard.set(data["id"], forKey: "id")
                 UserDefaults.standard.setValue(data["role"], forKey: "checkRole")

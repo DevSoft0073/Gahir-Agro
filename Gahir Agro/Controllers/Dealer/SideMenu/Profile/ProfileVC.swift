@@ -38,10 +38,14 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
     override func viewDidAppear(_ animated: Bool) {
     }
     
+//    MARK:- Text field delegate
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+    
+//    MARK:- Service call
     
     func getData() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
@@ -96,7 +100,7 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
         }
     }
 
-    
+//MARK:- Button Action
     
     @IBAction func gotoEditProfile(_ sender: Any) {
         let vc = EditProfileVC.instantiate(fromAppStoryboard: .Main)
@@ -107,8 +111,9 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
         sideMenuController?.showLeftViewAnimated()
         
     }
-    
 }
+
+//MARK:- Notifications Names
 
 extension Notification.Name {
     public static let showHomeSelected = Notification.Name(rawValue: "showHomeSelected")

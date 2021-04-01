@@ -25,6 +25,8 @@ class PlayVideoVC: UIViewController {
         playVideos()
     }
     
+//    MARK:- Play Video Function
+    
     func playVideos()  {
         self.playVideo.layer.backgroundColor = UIColor.black.cgColor
         self.playVideo.use(controls: self.controls)
@@ -35,6 +37,8 @@ class PlayVideoVC: UIViewController {
         }
     }
 
+//    MARK:- Button Actions
+    
     @IBAction func playPauseButtonAction(_ sender: Any) {
         if fiestTimeSelect == false {
             playPauseButton.setImage(UIImage(named: "play"), for: .normal)

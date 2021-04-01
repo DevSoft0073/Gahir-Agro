@@ -29,6 +29,12 @@ class AdminEnquriesVC: UIViewController {
         sideMenuController?.showLeftViewAnimated()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        adminOrderArray.removeAll()
+        page = 1
+        getAllOrder()
+    }
+    
     func getAllOrder() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
         let url = Constant.shared.baseUrl + Constant.shared.AllDealerOrder
@@ -47,7 +53,6 @@ class AdminEnquriesVC: UIViewController {
             self.messgae = response.data["message"] as? String ?? ""
             self.lastPage = response.data[""] as? Bool ?? false
             if status == "1"{
-                self.adminOrderArray.removeAll()
                 var newArr = [OrderHistoryData]()
                 let allData = response.data["order_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_orders"] as? [[String:Any]] ?? [[:]]{
@@ -121,18 +126,8 @@ extension AdminEnquriesVC : UITableViewDelegate , UITableViewDataSource {
         return 125
     }
     
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        let vc = SubmitDetailsVC.instantiate(fromAppStoryboard: .Main)
-    //        vc.enquiryID = enquiryID[indexPath.row]
-    //        vc.name = adminEnquriesArray[indexPath.row].name
-    //        vc.quantity = quantityArray[indexPath.row]
-    //        vc.amount = adminEnquriesArray[indexPath.row].price
-    //        vc.accessoriesName = self.accName
-    //        self.navigationController?.pushViewController(vc, animated: true)
-    //    }
-    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if lastPage == true{
+        if lastPage == false{
             let bottamEdge = Float(self.orderTBView.contentOffset.y + self.orderTBView.frame.size.height)
             if bottamEdge >= Float(self.orderTBView.contentSize.height) && adminOrderArray.count > 0 {
                 page = page + 1

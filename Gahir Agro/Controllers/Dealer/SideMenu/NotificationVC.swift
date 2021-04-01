@@ -23,6 +23,12 @@ class NotificationVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        notificationArray.removeAll()
+        page = 1
+        notifationData()
+    }
+    
     func notifationData() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
         let url = Constant.shared.baseUrl + Constant.shared.Notification
@@ -36,7 +42,6 @@ class NotificationVC: UIViewController {
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
-            self.notificationArray.removeAll()
             PKWrapperClass.svprogressHudDismiss(view: self)
             self.lastPage = response.data["product_list"] as? Bool ?? false
             let status = response.data["status"] as? String ?? ""
@@ -106,7 +111,7 @@ extension NotificationVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if lastPage == true{
+        if lastPage == false{
             let bottamEdge = Float(self.notificationTBView.contentOffset.y + self.notificationTBView.frame.size.height)
             if bottamEdge >= Float(self.notificationTBView.contentSize.height) && notificationArray.count > 0 {
                 page = page + 1

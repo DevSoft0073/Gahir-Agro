@@ -63,10 +63,14 @@ class ChangePasswordVC: UIViewController {
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
+                self.newPasswordTxtFld.resignFirstResponder()
+                self.confirmPasswordTxtFld.resignFirstResponder()
                 showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
                     self.navigationController?.popViewController(animated: true)
                 }
             }else{
+                self.newPasswordTxtFld.resignFirstResponder()
+                self.confirmPasswordTxtFld.resignFirstResponder()
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }

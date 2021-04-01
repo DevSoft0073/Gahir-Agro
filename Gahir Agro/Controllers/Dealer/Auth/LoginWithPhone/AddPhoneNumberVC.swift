@@ -43,6 +43,10 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
     override func viewWillAppear(_ animated: Bool) {
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
 //    MARK:- Button Action
     
@@ -69,6 +73,10 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
     
     
     @IBAction func generateOtpButton(_ sender: Any) {
+        
+//        let vc = OTPVerificationVC.instantiate(fromAppStoryboard: .Auth)
+//        self.navigationController?.pushViewController(vc, animated: true)
+//        
         if mobileTxtFld.text?.isEmpty == true{
             ValidateData(strMessage: "Please enter phone number")
         }else if serialNumberTxtFld.text?.isEmpty == true{
@@ -104,7 +112,9 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
             params = ["serial_no" : serialNumberTxtFld.text ?? "" , "phone" : number] as? [String : AnyObject] ?? [:]
         }
         print(params)
-        self.view.resignFirstResponder()
+        self.serialNumberTxtFld.resignFirstResponder()
+        self.mobileTxtFld.resignFirstResponder()
+
         PKWrapperClass.requestPOSTWithFormData(verifyUrl, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
@@ -112,7 +122,11 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
             let signupStatus = response.data["app_signup"] as? Int ?? 0
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
+                self.serialNumberTxtFld.resignFirstResponder()
+                self.mobileTxtFld.resignFirstResponder()
                 if signupStatus == 0{
+                    self.serialNumberTxtFld.resignFirstResponder()
+                    self.mobileTxtFld.resignFirstResponder()
                     let vc = OTPVerificationVC.instantiate(fromAppStoryboard: .Auth)
                     UserDefaults.standard.set(false, forKey: "comesFromPhoneLogin")
                     UserDefaults.standard.set(self.serialNumberTxtFld.text, forKey: "dealerCode")
@@ -122,7 +136,10 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
                 
+                
             }else{
+                self.serialNumberTxtFld.resignFirstResponder()
+                self.mobileTxtFld.resignFirstResponder()
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }
@@ -134,41 +151,35 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
     
 //    MARK:- Get Otp
     
-    func getOtp() {
-        let countryCode = UserDefaults.standard.value(forKey: "code") ?? "+91"
-        let number = "\(countryCode)" + "\(mobileTxtFld.text ?? "")"
-        PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { (verificationID, error) in
-            PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
-            if let error = error {
-                PKWrapperClass.svprogressHudDismiss(view: self)
-                print(error.localizedDescription)
-                if error.localizedDescription == "Invalid format."{
-                  alert(Constant.shared.appTitle, message: "please enter valid phone number.", view: self)
-                }else{
-                   alert(Constant.shared.appTitle, message: error.localizedDescription, view: self)
-                }
-                
-            }else{
-                PKWrapperClass.svprogressHudDismiss(view: self)
-                UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-                print(verificationID)
-                let vc = OTPVerificationVC.instantiate(fromAppStoryboard: .Auth)
-                UserDefaults.standard.set("2", forKey: "comesFromPhoneLogin")
-                let countryCode = UserDefaults.standard.value(forKey: "code")
-                let number = "\(countryCode)" + "\(self.mobileTxtFld.text ?? "")"
-                vc.phoneNumber = number
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-            PKWrapperClass.svprogressHudDismiss(view: self)
-        }
-        PKWrapperClass.svprogressHudDismiss(view: self)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
+//    func getOtp() {
+//        let countryCode = UserDefaults.standard.value(forKey: "code") ?? "+91"
+//        let number = "\(countryCode)" + "\(mobileTxtFld.text ?? "")"
+//        PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { (verificationID, error) in
+//            PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+//            if let error = error {
+//                PKWrapperClass.svprogressHudDismiss(view: self)
+//                print(error.localizedDescription)
+//                if error.localizedDescription == "Invalid format."{
+//                  alert(Constant.shared.appTitle, message: "please enter valid phone number.", view: self)
+//                }else{
+//                   alert(Constant.shared.appTitle, message: error.localizedDescription, view: self)
+//                }
+//
+//            }else{
+//                PKWrapperClass.svprogressHudDismiss(view: self)
+//                UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+//                print(verificationID)
+//                let vc = OTPVerificationVC.instantiate(fromAppStoryboard: .Auth)
+//                UserDefaults.standard.set("2", forKey: "comesFromPhoneLogin")
+//                let countryCode = UserDefaults.standard.value(forKey: "code")
+//                let number = "\(countryCode)" + "\(self.mobileTxtFld.text ?? "")"
+//                vc.phoneNumber = number
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }
+//            PKWrapperClass.svprogressHudDismiss(view: self)
+//        }
+//        PKWrapperClass.svprogressHudDismiss(view: self)
+//    }
 }
 
 //MARK:- Get data from popup view

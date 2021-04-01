@@ -35,6 +35,12 @@ class EnquriesVC: UIViewController {
         sideMenuController?.showLeftViewAnimated()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        enquriesDataFroDealerArray.removeAll()
+        page = 1
+        getAllEnquries()
+    }
+    
     
     func getAllEnquries() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
@@ -53,7 +59,6 @@ class EnquriesVC: UIViewController {
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
-                self.enquriesDataFroDealerArray.removeAll()
                 self.amountArray.removeAll()
                 var newArr = [EnquriesDataFroDealer]()
                 let allData = response.data["order_list"] as? [String:Any] ?? [:]
@@ -129,7 +134,7 @@ extension EnquriesVC : UITableViewDelegate , UITableViewDataSource {
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
        
-        if lastPage == true{
+        if lastPage == false{
             let bottamEdge = Float(self.enquiryTBView.contentOffset.y + self.enquiryTBView.frame.size.height)
             if bottamEdge >= Float(self.enquiryTBView.contentSize.height) && enquriesDataFroDealerArray.count > 0 {
                 page = page + 1

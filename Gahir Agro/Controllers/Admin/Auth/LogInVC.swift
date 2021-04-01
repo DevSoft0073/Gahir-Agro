@@ -38,10 +38,16 @@ class LogInVC: UIViewController {
             self.messgae = response.data["message"] as? String ?? ""
             UserDefaults.standard.setValue(response.data["access_token"] as? String ?? "", forKey: "accessToken")
             if status == "1"{
+                self.emailTxtFld.resignFirstResponder()
+                self.passwordTxtFld.resignFirstResponder()
                 if signUpStatus == "0"{
+                    self.emailTxtFld.resignFirstResponder()
+                    self.passwordTxtFld.resignFirstResponder()
                     let vc = SignUpVC.instantiate(fromAppStoryboard: .Auth)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }else{
+                    self.emailTxtFld.resignFirstResponder()
+                    self.passwordTxtFld.resignFirstResponder()
                     let allData = response.data as? [String:Any] ?? [:]
                     let data = allData["user_detail"] as? [String:Any] ?? [:]
                     UserDefaults.standard.set(1, forKey: "tokenFString")
@@ -53,7 +59,11 @@ class LogInVC: UIViewController {
                         self.navigationController?.pushViewController(rootViewController, animated: true)
                     }
                 }
+                self.emailTxtFld.resignFirstResponder()
+                self.passwordTxtFld.resignFirstResponder()
             }else{
+                self.emailTxtFld.resignFirstResponder()
+                self.passwordTxtFld.resignFirstResponder()
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }
@@ -73,10 +83,20 @@ class LogInVC: UIViewController {
             
             ValidateData(strMessage: " Please enter email")
             
-        } else if (passwordTxtFld.text?.isEmpty)!{
+        } else if isValidEmail(testStr: (emailTxtFld.text)!) == false{
+
+            ValidateData(strMessage: "Enter valid email")
+            
+        }else if (passwordTxtFld.text?.isEmpty)!{
             
             ValidateData(strMessage: " Please enter password")
             
+        }else if (passwordTxtFld!.text!.count) < 4 || (passwordTxtFld!.text!.count) > 15{
+            
+
+            ValidateData(strMessage: "Please enter minimum 4 digit password")
+            UserDefaults.standard.string(forKey: "password")
+
         }else{
             
             self.logIn()
@@ -85,7 +105,5 @@ class LogInVC: UIViewController {
     }
     
     @IBAction func forgotPasswordButton(_ sender: Any) {
-    }
-    
-    
+    }    
 }

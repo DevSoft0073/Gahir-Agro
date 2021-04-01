@@ -74,7 +74,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
             if selectedValue.isEmpty == true {
                 ValidateData(strMessage: "Please select value for type")
             }else if selectedValue1.isEmpty == true{
-                ValidateData(strMessage: "Please select value for ststem")
+                ValidateData(strMessage: "Please select value for system")
                 
             }else{
                 
@@ -270,6 +270,8 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         return accessory[row].name
     }
     
+//      MARK:- Button Actions
+    
     @IBAction func backbutton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -296,6 +298,8 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     }
 }
 
+//MARK:- Table View Cell Class
+
 class EnquiryDataTBViewCell: UITableViewCell,UITextFieldDelegate {
     
     var DotBTN:(()->Void)?
@@ -313,6 +317,8 @@ class EnquiryDataTBViewCell: UITableViewCell,UITextFieldDelegate {
 //        DotBTN!()
     }
 }
+
+//MARK:- Table View Delegate Datasource
 
 extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -333,12 +339,17 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
         cell.openPicker.tag = indexPath.row
         cell.openPicker.delegate = self
         cell.openPicker.inputView = picker
+        cell.openPicker.tintColor = .clear
 //        cell.openPicker.isUserInteractionEnabled = false
         cell.dropDownbutton.addTarget(self, action: #selector(openPickerView(sender:)), for: .touchUpInside)
         DispatchQueue.main.async {
             self.heightConstraint.constant = CGFloat(self.enquiryDataTBView.contentSize.height)
         }
         return cell
+    }
+    
+    func caretRect(for position: UITextPosition) -> CGRect {
+        return CGRect.zero
     }
     
     @objc func openPickerView(sender: UIButton) {
@@ -365,6 +376,7 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
     
 }
 
+//MARK:- Structurs
 
 
 struct EnquieyData {

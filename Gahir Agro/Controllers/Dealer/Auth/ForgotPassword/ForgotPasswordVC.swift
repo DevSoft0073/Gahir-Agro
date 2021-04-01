@@ -7,20 +7,19 @@
 
 import UIKit
 
-class ForgotPasswordVC: UIViewController , UITextFieldDelegate{
+class ForgotPasswordVC: UIViewController,UITextFieldDelegate{
 
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var emailtxtFld: UITextField!
     var messgae = String()
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     
     func forgotPassword() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
-        let url = Constant.shared.baseUrl + Constant.shared.SignIn
+        let url = Constant.shared.baseUrl + Constant.shared.ForgotPassword
         let accessToken = UserDefaults.standard.value(forKey: "accessToken")
         var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
         print(deviceID ?? "")
@@ -31,12 +30,17 @@ class ForgotPasswordVC: UIViewController , UITextFieldDelegate{
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
+           // self.view.resignFirstResponder()
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
-                self.navigationController?.popViewController(animated: true)
+                self.emailtxtFld.resignFirstResponder()
+                showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
+                    self.navigationController?.popViewController(animated: true)
+                }
             }else{
+                self.emailtxtFld.resignFirstResponder()
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }
@@ -46,9 +50,10 @@ class ForgotPasswordVC: UIViewController , UITextFieldDelegate{
         }
     }
     
+//    MARK:- Text field delegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        emailtxtFld.resignFirstResponder()
         return true
     }
     
@@ -57,6 +62,8 @@ class ForgotPasswordVC: UIViewController , UITextFieldDelegate{
             emailView.borderColor = #colorLiteral(red: 0.7788546085, green: 0.0326503776, blue: 0.1003007665, alpha: 1)
         }
     }
+    
+//    MARK:- Button Action
     
     @IBAction func submitButton(_ sender: Any) {
         if (emailtxtFld.text?.isEmpty)!{

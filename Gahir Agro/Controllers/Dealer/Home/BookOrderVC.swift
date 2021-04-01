@@ -19,6 +19,7 @@ class BookOrderVC: UIViewController {
     var accessoriesName = String()
     var status = String()
     var image = String()
+    var productTitle = String()
     
     @IBOutlet weak var showStatus: UILabel!
     @IBOutlet weak var quantityLbl: UILabel!
@@ -30,12 +31,15 @@ class BookOrderVC: UIViewController {
         quantityLbl.text = quantity
         showImage.sd_setImage(with: URL(string:image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
         titleLbl.text = name
+        showStatus.text = status
         print(name)
     }
+    
+//    MARK:- Button Action
+    
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
-    
   
     @IBAction func bookOrderButton(_ sender: Any) {
         let vc = SubmitDetailsVC.instantiate(fromAppStoryboard: .Main)

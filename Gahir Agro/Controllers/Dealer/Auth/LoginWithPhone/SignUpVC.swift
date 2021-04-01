@@ -26,6 +26,8 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
         // Do any additional setup after loading the view.
     }
     
+//    MARK:- Text field delegate
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == nameTxtFld{
             
@@ -52,7 +54,12 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
         return true
     }
     
+//    MARK:- Button Action
+    
     @IBAction func checkUncheckButton(_ sender: Any) {
+        nameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         if (unchecked == false)
         {
             checkButton.setBackgroundImage(UIImage(named: "check"), for: UIControl.State.normal)
@@ -69,6 +76,12 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
         guard let url = URL(string: "https://stackoverflow.com") else { return }
         UIApplication.shared.open(url)
     }
+
+    @IBAction func gotoSignInBUtton(_ sender: Any) {
+        let vc = SignInVC.instantiate(fromAppStoryboard: .Auth)
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
     
     @IBAction func signUpButton(_ sender: Any) {
         
@@ -81,10 +94,20 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
             
             ValidateData(strMessage: " Please enter email")
             
-        } else if (passwordTxtFld.text?.isEmpty)!{
+        } else if isValidEmail(testStr: (emailTxtFld.text)!) == false{
+
+            ValidateData(strMessage: "Enter valid email")
+            
+        }else if (passwordTxtFld.text?.isEmpty)!{
             
             ValidateData(strMessage: " Please enter password")
             
+        }else if (passwordTxtFld!.text!.count) < 4 || (passwordTxtFld!.text!.count) > 15{
+            
+
+            ValidateData(strMessage: "Please enter minimum 4 digit password")
+            UserDefaults.standard.string(forKey: "password")
+
         }  else if unchecked == false{
             
             ValidateData(strMessage: "Please agree with terms and conditions")
@@ -95,6 +118,8 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
             
         }
     }
+    
+//    MARK:- Service Call
     
     func signUp()  {
         
@@ -127,13 +152,23 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
             self.messgae = response.data["message"] as? String ?? ""
             UserDefaults.standard.setValue(response.data["access_token"] as? String ?? "", forKey: "accessToken")
             if status == "1"{
+                self.nameTxtFld.resignFirstResponder()
+                self.emailTxtFld.resignFirstResponder()
+                self.passwordTxtFld.resignFirstResponder()
                 if signUpStatus == 0{
+                    self.nameTxtFld.resignFirstResponder()
+                    self.emailTxtFld.resignFirstResponder()
+                    self.passwordTxtFld.resignFirstResponder()
                     let vc = SignUpVC.instantiate(fromAppStoryboard: .Auth)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }else{
+                    self.nameTxtFld.resignFirstResponder()
+                    self.emailTxtFld.resignFirstResponder()
+                    self.passwordTxtFld.resignFirstResponder()
                     UserDefaults.standard.set(true, forKey: "tokenFString")
                     let allData = response.data as? [String:Any] ?? [:]
                     let data = allData["user_detail"] as? [String:Any] ?? [:]
+                    UserDefaults.standard.set(data["dealer_code"] as? String ?? "", forKey: "code")
                     UserDefaults.standard.set(1, forKey: "tokenFString")
                     UserDefaults.standard.set(data["id"], forKey: "id")
                     UserDefaults.standard.setValue(data["role"], forKey: "checkRole")
@@ -143,6 +178,9 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
                     self.navigationController?.pushViewController(rootViewController, animated: true)
                 }
             }else{
+                self.nameTxtFld.resignFirstResponder()
+                self.emailTxtFld.resignFirstResponder()
+                self.passwordTxtFld.resignFirstResponder()
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }
@@ -150,13 +188,5 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
             print(error)
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
-    }
-    
-    
-    
-    @IBAction func gotoSignInBUtton(_ sender: Any) {
-        let vc = SignInVC.instantiate(fromAppStoryboard: .Auth)
-        self.navigationController?.pushViewController(vc, animated: true)
-        
     }
 }

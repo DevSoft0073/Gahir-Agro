@@ -21,6 +21,8 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
         // Do any additional setup after loading the view.
     }
     
+//    MARK:- Text field delegate
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == emailTxtFld{
             emailView.borderColor = #colorLiteral(red: 0.7788546085, green: 0.0326503776, blue: 0.1003007665, alpha: 1)
@@ -36,10 +38,7 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
         return true
     }
     
-    @IBAction func signUpButton(_ sender: Any) {
-        let vc = ChooseRoleForCustomerAndDealerVC.instantiate(fromAppStoryboard: .Auth)
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
+//    MARK:- Service Call
     
     func logIn() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
@@ -60,12 +59,16 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
             UserDefaults.standard.setValue(response.data["access_token"] as? String ?? "", forKey: "accessToken")
             if status == "1"{
                 if signUpStatus == "0"{
+                    self.emailTxtFld.resignFirstResponder()
+                    self.passwordTxtFld.resignFirstResponder()
                     let vc = SignUpVC.instantiate(fromAppStoryboard: .Auth)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }else{
-                    
+                    self.emailTxtFld.resignFirstResponder()
+                    self.passwordTxtFld.resignFirstResponder()
                     let allData = response.data as? [String:Any] ?? [:]
                     let data = allData["user_detail"] as? [String:Any] ?? [:]
+                    UserDefaults.standard.set(data["dealer_code"] as? String ?? "", forKey: "code")
                     UserDefaults.standard.set(1, forKey: "tokenFString")
                     UserDefaults.standard.set(data["id"], forKey: "id")
                     UserDefaults.standard.setValue(data["role"], forKey: "checkRole")
@@ -100,6 +103,8 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
                     }
                 }
             }else{
+                self.emailTxtFld.resignFirstResponder()
+                self.passwordTxtFld.resignFirstResponder()
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }
@@ -109,6 +114,13 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
         }
     }
     
+//    MARK:- Button Actions
+    
+    @IBAction func signUpButton(_ sender: Any) {
+        let vc = ChooseRoleForCustomerAndDealerVC.instantiate(fromAppStoryboard: .Auth)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     @IBAction func logInButtonAction(_ sender: Any) {
         
@@ -116,10 +128,20 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
             
             ValidateData(strMessage: " Please enter email")
             
-        } else if (passwordTxtFld.text?.isEmpty)!{
+        } else if isValidEmail(testStr: (emailTxtFld.text)!) == false{
+
+            ValidateData(strMessage: "Enter valid email")
+            
+        }else if (passwordTxtFld.text?.isEmpty)!{
             
             ValidateData(strMessage: " Please enter password")
             
+        }else if (passwordTxtFld!.text!.count) < 4 || (passwordTxtFld!.text!.count) > 15{
+            
+
+            ValidateData(strMessage: "Please enter minimum 4 digit password")
+            UserDefaults.standard.string(forKey: "password")
+
         }else{
             
             self.logIn()

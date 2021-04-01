@@ -10,7 +10,6 @@ import SDWebImage
 
 class SearchVC: UIViewController,UITextFieldDelegate {
     
-    
     var page = 1
     var lastPage = 1
     var messgae = String()
@@ -18,6 +17,7 @@ class SearchVC: UIViewController,UITextFieldDelegate {
     var comesFrom = Bool()
     var tableViewDataArray = [SearchTableViewData]()
     var currentIndex = String()
+    @IBOutlet weak var recentSearchLbl: UILabel!
     @IBOutlet weak var showSearchedDataTBView: UITableView!
     @IBOutlet weak var searchDataTBView: UITableView!
     @IBOutlet weak var searchTxtFld: UITextField!
@@ -29,11 +29,18 @@ class SearchVC: UIViewController,UITextFieldDelegate {
         showSearchedDataTBView.delegate = self
         showSearchedDataTBView.dataSource = self
         showSearchedDataTBView.isHidden = true
+        
+        searchTxtFld.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
+
     }
+    
+//    MARK:- Button Action
     
     @IBAction func cancelButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: false)
     }
+    
+//    MARK:- Text field delegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if comesFrom == true{
@@ -57,8 +64,6 @@ class SearchVC: UIViewController,UITextFieldDelegate {
             return true
         }
     }
-    
-    
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if comesFrom == true{
@@ -85,19 +90,17 @@ class SearchVC: UIViewController,UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == searchTxtFld {
-            tableViewDataArray.removeAll()
-            showSearchedDataTBView.reloadData()
+            self.recentSearchLbl.text = "Recent Searches"
+            self.showSearchedDataTBView.isHidden = true
+            self.searchDataTBView.isHidden = false
         }
     }
     
-    
-    func textFieldDidChange(textField: UITextField){
-        tableViewDataArray.removeAll()
-        searchDataTBView.reloadData()
-        print("Text changed: " + textField.text!)
-
+    @objc func textFieldDidChange(textField: UITextField){
+        recentSearched()
     }
     
+//    MARK:- Service Call Function
     
     func recentSearch() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
@@ -124,7 +127,9 @@ class SearchVC: UIViewController,UITextFieldDelegate {
                     self.searchArray.append(n)
                     print(n)
                 })
+                
                 self.searchDataTBView.reloadData()
+                self.recentSearchLbl.text = "Recent Searches"
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
@@ -134,6 +139,46 @@ class SearchVC: UIViewController,UITextFieldDelegate {
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
     }
+    
+    
+    func recentSearched() {
+//        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+        let url = Constant.shared.baseUrl + Constant.shared.RecentSearches
+        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+        print(deviceID ?? "")
+        if deviceID == nil  {
+            deviceID = "777"
+        }
+        let params = ["access_token": accessToken]  as? [String : AnyObject] ?? [:]
+        print(params)
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
+//            PKWrapperClass.svprogressHudDismiss(view: self)
+            let status = response.data["status"] as? String ?? ""
+            self.messgae = response.data["message"] as? String ?? ""
+            if status == "1"{
+                self.searchArray.removeAll()
+                let allData = response.data["search_list"] as? [String:Any] ?? [:]
+                print(allData)
+                let searchArrayData = allData["search_list"] as? [String]
+                print(searchArrayData)
+                searchArrayData?.forEach({ (n) in
+                    self.searchArray.append(n)
+                    print(n)
+                })
+                
+                self.searchDataTBView.reloadData()
+                self.recentSearchLbl.text = "Recent Searches"
+            }else{
+                PKWrapperClass.svprogressHudDismiss(view: self)
+//                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            }
+        } failure: { (error) in
+            print(error)
+            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+        }
+    }
+
 
     func searchData() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
@@ -166,6 +211,7 @@ class SearchVC: UIViewController,UITextFieldDelegate {
                     self.showSearchedDataTBView.isHidden = false
                     self.searchDataTBView.isHidden = true
                     print(self.tableViewDataArray)
+                    self.recentSearchLbl.text = ""
                     self.showSearchedDataTBView.reloadData()
 
                 }
@@ -229,6 +275,8 @@ class SearchVC: UIViewController,UITextFieldDelegate {
     
 }
 
+//MARK:- Tableview Cell Classes
+
 class SearchDataTBViewCell: UITableViewCell {
     
     
@@ -252,24 +300,26 @@ class ShowSearchedDataTBViewCell: UITableViewCell {
     }
 }
 
+//MARK:- Table view delegate datasource
+
 extension SearchVC : UITableViewDelegate , UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == searchDataTBView{
             
-            if searchArray.count == 0 {
-                self.searchDataTBView.setEmptyMessage("No data")
-            } else {
-                self.searchDataTBView.restore()
-            }
+//            if searchArray.count == 0 {
+//                self.searchDataTBView.setEmptyMessage("No data")
+//            } else {
+//                self.searchDataTBView.restore()
+//            }
             return searchArray.count
             
         }else{
-            if tableViewDataArray.count == 0 {
-                self.showSearchedDataTBView.setEmptyMessage("No data")
-            } else {
-                self.showSearchedDataTBView.restore()
-            }
+//            if tableViewDataArray.count == 0 {
+//                self.showSearchedDataTBView.setEmptyMessage("No data")
+//            } else {
+//                self.showSearchedDataTBView.restore()
+//            }
             return tableViewDataArray.count
         }
     }
@@ -321,13 +371,14 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource{
         if tableView == searchDataTBView{
             self.comesFrom = true
             self.searchTxtFld.text = searchArray[indexPath.row]
-//            self.tableViewDataArray.removeAll()
-            searchData()            
+            searchData()
         }else{
             
         }
     }
 }
+
+//MARK:- Structurs
 
 
 struct SearchTableViewData {
@@ -361,6 +412,7 @@ struct SearchTableViewData {
     }
 }
 
+//MARK:- Set empty lable if table view have no data
 
 extension UITableView {
 

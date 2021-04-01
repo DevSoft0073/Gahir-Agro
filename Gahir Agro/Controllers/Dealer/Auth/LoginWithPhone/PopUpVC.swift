@@ -73,8 +73,9 @@ class PopUpVC: UIViewController{
             })
         })
     }
-    
 }
+
+//MARK:- Tableview Cell Class
 
 class SelectTypeTBViewCell: UITableViewCell {
         
@@ -86,6 +87,8 @@ class SelectTypeTBViewCell: UITableViewCell {
     }
 }
 
+//MARK:- Tableview delegate datasource
+
 extension PopUpVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return nameArray.count
@@ -95,7 +98,6 @@ extension PopUpVC : UITableViewDelegate , UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SelectTypeTBViewCell", for: indexPath) as! SelectTypeTBViewCell
         cell.selectUnselect.image = (self.nameArray[indexPath.row].1 == true) ? self.returnImage(name: "check") : self.returnImage(name: "uncheck")
         DispatchQueue.main.async {
-//            self.heightConstraint.constant = self.nameArray.contentSize.height
             self.heightConstraint.constant = CGFloat((self.nameArray.count ) * 80)
         }
         cell.selectUnselectButton.tag = indexPath.row
@@ -103,12 +105,8 @@ extension PopUpVC : UITableViewDelegate , UITableViewDataSource {
         cell.selectUnselectButton.addTarget(self, action: #selector(increaseCounter(sender:)), for:  .touchUpInside)
         return cell
     }
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 50
-//    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
-    }
+    
+//    MARK:- Cell button action
     
     @objc func increaseCounter(sender: UIButton) {
         for i in 0..<nameArray.count{
@@ -119,9 +117,7 @@ extension PopUpVC : UITableViewDelegate , UITableViewDataSource {
         print(new)
         UserDefaults.standard.setValue(new, forKey: "data") as? String ?? ""
         selectTypeTBView.reloadData()
-        
     }
-
     
     func returnImage(name: String) -> UIImage{
         let image = UIImage(named: name)

@@ -34,14 +34,26 @@ class SubmitDetailsVC: UIViewController {
         nameTxtFld.text = name
         amountTxtFld.text = "$\(totalAmount)0"
         quantityTxtFld.text = quantity
-        dealerCodeTxtFld.text = "ASHJK8767"
+        dealerCodeTxtFld.text = UserDefaults.standard.value(forKey: "code") as? String ?? ""
         accesoriesTxtFld.text = accessoriesName
         // Do any additional setup after loading the view.
     }
     
+//    MARK:- Button Action
+    
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func submitButtonAction(_ sender: Any) {
+        if utrNumberTxtFld.text?.isEmpty == true{
+            ValidateData(strMessage: "UTR field should not be empty")
+        }else{
+            addOrder()
+        }
+    }
+    
+//    MARK:- Service call
     
     func addOrder()  {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
@@ -60,6 +72,7 @@ class SubmitDetailsVC: UIViewController {
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
+                self.utrNumberTxtFld.resignFirstResponder()
                 showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
 //                    let vc = SuccesfullyBookedVC.instantiate(fromAppStoryboard: .Main)
 //                    self.navigationController?.pushViewController(vc, animated: true)
@@ -68,6 +81,7 @@ class SubmitDetailsVC: UIViewController {
                     self.navigationController?.pushViewController(rootViewController, animated: true)
                 }
             }else{
+                self.utrNumberTxtFld.resignFirstResponder()
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
                 self.navigationController?.popViewController(animated: true)
@@ -75,16 +89,6 @@ class SubmitDetailsVC: UIViewController {
         } failure: { (error) in
             print(error)
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
-        }
-    }
-    
-    
-    
-    @IBAction func submitButtonAction(_ sender: Any) {
-        if utrNumberTxtFld.text?.isEmpty == true{
-            ValidateData(strMessage: "UTR field should not be empty")
-        }else{
-            addOrder()
         }
     }
 }

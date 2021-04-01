@@ -23,9 +23,13 @@ class PdfViewerVC: UIViewController , WKNavigationDelegate {
         openPdfUrl.navigationDelegate = self
     }
     
+//    MARK:- Button Action
+    
     @IBAction func backButtonAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+//    MARK:- Webview Function
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         PKWrapperClass.svprogressHudDismiss(view: self)

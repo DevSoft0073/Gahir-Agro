@@ -21,9 +21,9 @@ class ThankYouVC: UIViewController {
         view.isOpaque = true
         let mytapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         self.view.addGestureRecognizer(mytapGestureRecognizer)
-        
-        // Do any additional setup after loading the view.
     }
+    
+//    MARK:- Show Popup
     
     @objc func handleTap(_ sender:UITapGestureRecognizer){
         self.dismiss(animated: true) {
@@ -32,11 +32,16 @@ class ThankYouVC: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        
         super.viewDidLayoutSubviews()
         centerFrame = self.thankYouView.frame
     }
-
+    
+    @IBAction func okButtonAction(_ sender: Any) {
+        self.dismiss(animated: true) {
+            self.enquiryRedirection?()
+        }
+    }
+    
     func presentPopUp()  {
         
         thankYouView.frame = CGRect(x: centerFrame.origin.x, y: view.frame.size.height, width: centerFrame.width, height: centerFrame.height)

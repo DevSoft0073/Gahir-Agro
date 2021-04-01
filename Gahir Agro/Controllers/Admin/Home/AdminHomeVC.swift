@@ -32,6 +32,11 @@ class AdminHomeVC: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        adminEnquriesArray.removeAll()
+        page = 1
+        getAllEnquries()
+    }
     
     func getAllEnquries() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
@@ -51,7 +56,6 @@ class AdminHomeVC: UIViewController {
             self.messgae = response.data["message"] as? String ?? ""
             self.lastPage = response.data[""] as? Bool ?? false
             if status == "1"{
-                self.adminEnquriesArray.removeAll()
                 var newArr = [OrderHistoryData]()
                 let allData = response.data["enquiry_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_enquiries"] as? [[String:Any]] ?? [[:]]{
@@ -125,7 +129,7 @@ extension AdminHomeVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if lastPage == true{
+        if lastPage == false{
             let bottamEdge = Float(self.enquriesTBView.contentOffset.y + self.enquriesTBView.frame.size.height)
             if bottamEdge >= Float(self.enquriesTBView.contentSize.height) && adminEnquriesArray.count > 0 {
                 page = page + 1

@@ -39,7 +39,8 @@ class ProductDetailsVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
     }
     
-
+//    MARK:- Button Actions
+    
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -61,6 +62,8 @@ class ProductDetailsVC: UIViewController {
             
         }
     }
+    
+//    MARK:- Service Call
     
     func productDetails() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
@@ -124,6 +127,8 @@ class ProductDetailsVC: UIViewController {
     }    
 }
 
+//MARK:- Tableview Cell Class
+
 class ProductDetailsTBViewCell: UITableViewCell {
     
     @IBOutlet weak var dataLbl: UILabel!
@@ -133,8 +138,7 @@ class ProductDetailsTBViewCell: UITableViewCell {
     }
 }
 
-
-
+//MARK:- TableView Delegate Datasource
 
 extension ProductDetailsVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -146,7 +150,11 @@ extension ProductDetailsVC : UITableViewDelegate , UITableViewDataSource {
         cell.nameLbl.text = "\(detailsDataArray[indexPath.row].fieldData):"
         cell.dataLbl.text = "\(detailsDataArray[indexPath.row].fieldName)"
         DispatchQueue.main.async {
-            self.heightConstraint.constant = self.productDetailsTBView.contentSize.height
+            if self.detailsDataArray.count == 0{
+                self.heightConstraint.constant = 50
+            }else{
+                self.heightConstraint.constant = self.productDetailsTBView.contentSize.height
+            }
         }
         return cell
     }
@@ -156,6 +164,8 @@ extension ProductDetailsVC : UITableViewDelegate , UITableViewDataSource {
     }
     
 }
+
+//MARK:- Structure
 
 struct DetailsData {
     init(fieldName: String, fieldData: Any) {

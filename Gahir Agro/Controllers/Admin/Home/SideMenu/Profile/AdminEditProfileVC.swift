@@ -102,7 +102,7 @@ class AdminEditProfileVC: UIViewController ,UITextFieldDelegate , UITextViewDele
                 self.bioTxtView.text = allData["bio"] as? String
                 self.nameTxtFld.text = allData["first_name"] as? String ?? ""
                 self.emailTxtFld.text = allData["username"] as? String
-                self.passwordTxtFld.text = "**********"
+                self.passwordTxtFld.text = "Change Password"
                 self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"))
 
                 let url = URL(string:allData["image"] as? String ?? "")

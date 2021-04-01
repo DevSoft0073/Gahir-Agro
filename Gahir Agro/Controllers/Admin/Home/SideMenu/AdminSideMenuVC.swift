@@ -22,7 +22,7 @@ class AdminSideMenuVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
-        sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Home", selectedImage: "home", selected: true, unselected: "home-1"))
+        sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Enquiries", selectedImage: "home", selected: true, unselected: "home-1"))
         
         sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Order List", selectedImage: "order", selected: false, unselected: "order-1"))
         sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Notifications", selectedImage: "noti", selected: false, unselected: "noti-1"))
@@ -159,11 +159,8 @@ extension AdminSideMenuVC : UITableViewDataSource, UITableViewDelegate {
         }
         
         else if(indexPath.row == 1) {
-            let vc = AdminEnquriesVC.instantiate(fromAppStoryboard: .AdminMain)
+            let vc = AdminHomeVC.instantiate(fromAppStoryboard: .AdminMain)
             (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
-            //            guard let url = URL(string: "https://stackoverflow.com") else { return }
-            //            UIApplication.shared.open(url)
-            //
         }
         
         else if(indexPath.row == 2) {
@@ -174,8 +171,8 @@ extension AdminSideMenuVC : UITableViewDataSource, UITableViewDelegate {
        
         else if(indexPath.row == 3) {
             
-            guard let url = URL(string: "https://stackoverflow.com") else { return }
-            UIApplication.shared.open(url)
+            let vc = AdminPrivacyPolicyLinkVC.instantiate(fromAppStoryboard: .AdminMain)
+            (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
             
         }
         
