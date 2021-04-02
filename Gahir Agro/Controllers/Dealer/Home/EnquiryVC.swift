@@ -118,6 +118,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                     }
                 } failure: { (error) in
                     print(error)
+                    PKWrapperClass.svprogressHudDismiss(view: self)
                     showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
                 }
             }
@@ -144,7 +145,8 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         }
         let params = ["id": id,"access_token": accessToken]  as? [String : AnyObject] ?? [:]
         print(params)
-        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
+        PKWrapperClass.requestPOSTWithFormDataWithoutImages(url, params: params) { (response) in
+//        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""

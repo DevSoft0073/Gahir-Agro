@@ -47,6 +47,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate , LocationServiceDelegate 
         appdelegate.window?.rootViewController = nav
     }
     
+    func redirectToEnquiryScreens() {
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        let rootVc = storyBoard.instantiateViewController(withIdentifier: "SideMenuControllerID") as! SideMenuController
+        let nav = UINavigationController(rootViewController: rootVc)
+        nav.setNavigationBarHidden(true, animated: true)
+        appdelegate.window?.rootViewController = nav
+    }
+    
     
     func getAddressForLocation(locationAddress: String, currentAddress: [String : Any]) {
         print(locationAddress)
@@ -98,21 +107,18 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if let userInfo = response.notification.request.content.userInfo as? [String:Any]{
             print(userInfo)
-            let allData = userInfo["aps"] as? [String:Any] ?? [:]
-            let alertData = userInfo["alert"] as? [String:Any] ?? [:]
-            print(alertData)
-//            let title = alertData["title"] as? String ?? ""
-//            let body = alertData["body"] as? String ?? ""
-//            redirectToHotOffer(title: title, body: body)
+            let allData = userInfo["data"] as? [String:Any] ?? [:]
+            let id = allData["enquiry_id"]
+            redirectToBookOrderVC(enqID: id ?? "")
+            UserDefaults.standard.setValue(true, forKey: "comesFromPush")
         }
         completionHandler()
     }
     
-    func redirectToHotOffer(title: String, body: String){
+    func redirectToBookOrderVC(enqID : Any){
         let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
-        vc.status = title
-        vc.productTitle = body
         let nav = UINavigationController(rootViewController: vc)
+        vc.enquiryID = "\(enqID)"
         nav.setNavigationBarHidden(true, animated: true)
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
         appdelegate.window?.rootViewController = nav

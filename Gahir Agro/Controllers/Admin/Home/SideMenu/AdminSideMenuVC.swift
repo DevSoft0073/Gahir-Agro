@@ -106,6 +106,7 @@ class AdminSideMenuVC: UIViewController {
             }
         } failure: { (error) in
             print(error)
+            PKWrapperClass.svprogressHudDismiss(view: self)
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
     }
@@ -150,7 +151,12 @@ extension AdminSideMenuVC : UITableViewDataSource, UITableViewDelegate {
             mutableObj.selected = false
             return mutableObj
         })
-        sideMenuItemsArrayForCustomer[indexPath.row].selected = true
+        
+        if sideMenuItemsArrayForCustomer[indexPath.row].name == "Logout"{
+            sideMenuItemsArrayForCustomer[indexPath.row].selected = true
+        }else{
+            sideMenuItemsArrayForCustomer[indexPath.row].selected = true
+        }
         sideMenuController?.hideLeftViewAnimated()
         
         if(indexPath.row == 0) {

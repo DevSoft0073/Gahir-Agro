@@ -37,10 +37,12 @@ class Constant: NSObject {
     let AddEnquiry = "AddEnquiry.php"
     let EnquiryListing = "GetAllEnquiries.php"
     let AllOrders = "GetAllOrders.php"
+    
     let BookOrder = "AddOrder.php"
     let Notification = "GetAllNotifications.php"
     let ChangePassword = "ChangePassword.php"
     let UpdateLocation = "UpdateLocation.php"
+    let EnquiryDetails = "GetEnquiryDetail.php"
     
     //MARK:-> Customer Flow Api's
     

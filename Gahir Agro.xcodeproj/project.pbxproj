@@ -302,9 +302,9 @@
 				185854972605DF2800F78097 /* Product Details */,
 				18DEBB1825F73F9200475060 /* ThankYouVC.swift */,
 				18E84ADD25E7AC08004A2148 /* BookOrderVC.swift */,
-				18E84AD325E7AACE004A2148 /* EnquiryVC.swift */,
 				180847CD25E4DBA200D04E69 /* HomeVC.swift */,
 				18157E1125E5095300E4451C /* ProductDetailsVC.swift */,
+				18E84AD325E7AACE004A2148 /* EnquiryVC.swift */,
 				18B87C7525E684C200837E6C /* SearchVC.swift */,
 				18E84AE725E7AC57004A2148 /* RequestSubmitPopUpVC.swift */,
 				18E84AEC25E7AC9E004A2148 /* SuccesfullyBookedVC.swift */,
@@ -615,13 +615,13 @@
 		184B117225E36E1C003007A2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				184B119B25E37148003007A2 /* AppExtensions.swift */,
-				184B119D25E37149003007A2 /* AppFunctions.swift */,
-				184B119F25E37149003007A2 /* ImagePicker.swift */,
 				184B113825E36C74003007A2 /* AppDelegate.swift */,
 				184B113A25E36C74003007A2 /* SceneDelegate.swift */,
-				18AD8F0225EADA9C00072166 /* OpenPIcker.swift */,
+				184B119D25E37149003007A2 /* AppFunctions.swift */,
+				184B119B25E37148003007A2 /* AppExtensions.swift */,
 				1800FCB0261303E900B122C3 /* LocationManager.swift */,
+				184B119F25E37149003007A2 /* ImagePicker.swift */,
+				18AD8F0225EADA9C00072166 /* OpenPIcker.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1308,9 +1308,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Gahir Agro/Gahir Agro.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.3;
+				CURRENT_PROJECT_VERSION = 1.5;
 				DEVELOPMENT_TEAM = 8USCMRVC59;
 				INFOPLIST_FILE = "Gahir Agro/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1320,7 +1320,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gahir.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Gahir dist 30 mar 2021";
+				PROVISIONING_PROFILE_SPECIFIER = "Gahir dev 30 mar 2021";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1333,9 +1333,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Gahir Agro/Gahir Agro.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.3;
+				CURRENT_PROJECT_VERSION = 1.5;
 				DEVELOPMENT_TEAM = 8USCMRVC59;
 				INFOPLIST_FILE = "Gahir Agro/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1345,7 +1345,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gahir.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Gahir dist 30 mar 2021";
+				PROVISIONING_PROFILE_SPECIFIER = "Gahir dev 30 mar 2021";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

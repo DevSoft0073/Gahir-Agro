@@ -23,9 +23,7 @@ class EnquriesVC: UIViewController {
     var enquriesDataFroDealerArray = [EnquriesDataFroDealer]()
     @IBOutlet weak var enquiryTBView: UITableView!
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        getAllEnquries()
+        super.viewDidLoad()        
         enquiryTBView.separatorStyle = .none
 
         // Do any additional setup after loading the view.
@@ -64,7 +62,8 @@ class EnquriesVC: UIViewController {
                 let allData = response.data["order_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_orders"] as? [[String:Any]] ?? [[:]]{
                     print(obj)
-                    
+                    var bookingIDArray = [String]()
+                    bookingIDArray.append(obj["booking_id"] as? String ?? "")
                     let allDetails = obj["enquiry_detail"] as? [String:Any] ?? [:]
                     self.totalArray.append(allDetails["total"] as! String) as? Any ?? ""
                     let dateValue = allDetails["creation_date"] as? String ?? ""
@@ -76,7 +75,7 @@ class EnquriesVC: UIViewController {
                     }
                     self.quantityArray.append(allDetails["qty"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
-                    newArr.append(EnquriesDataFroDealer(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateVal), price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? ""))
+                    newArr.append(EnquriesDataFroDealer(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateVal), price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? "", bookingID: bookingIDArray))
                     self.amountArray.append("$\(productDetails["prod_price"] as? String ?? "")")
 
                 }
@@ -124,8 +123,16 @@ extension EnquriesVC : UITableViewDelegate , UITableViewDataSource {
         cell.quantityLbl.text = quantityArray[indexPath.row]
         cell.nameLbl.text = enquriesDataFroDealerArray[indexPath.row].name
         cell.priceLbl.text = "$\(totalArray[indexPath.row])"
-        cell.showImage.sd_setImage(with: URL(string:enquriesDataFroDealerArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"))
+        cell.showImage.sd_setImage(with: URL(string:enquriesDataFroDealerArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = SuccesfullyBookedVC.instantiate(fromAppStoryboard: .Main)
+        vc.productImage = enquriesDataFroDealerArray[indexPath.row].image
+        vc.details = enquriesDataFroDealerArray[indexPath.row].name
+        vc.bookingId = enquriesDataFroDealerArray[indexPath.row].bookingID[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -161,13 +168,15 @@ struct EnquriesDataFroDealer {
     var deliveryDate : String
     var price : String
     var image : String
+    var bookingID : [String]
     
-    init(name : String , id : String , quantity : String , deliveryDate : String , price : String , image : String) {
+    init(name : String , id : String , quantity : String , deliveryDate : String , price : String , image : String,bookingID : [String]) {
         self.name = name
         self.id = id
         self.quantity = quantity
         self.deliveryDate = deliveryDate
         self.price = price
         self.image = image
+        self.bookingID = bookingID
     }
 }

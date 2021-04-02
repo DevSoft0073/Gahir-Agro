@@ -292,6 +292,7 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
             }
         } failure: { (error) in
             print(error)
+            PKWrapperClass.svprogressHudDismiss(view: self)
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
     }

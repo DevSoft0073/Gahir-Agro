@@ -74,11 +74,14 @@ class SubmitDetailsVC: UIViewController {
             if status == "1"{
                 self.utrNumberTxtFld.resignFirstResponder()
                 showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
-//                    let vc = SuccesfullyBookedVC.instantiate(fromAppStoryboard: .Main)
-//                    self.navigationController?.pushViewController(vc, animated: true)
-                    let story = UIStoryboard(name: "Main", bundle: nil)
-                    let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
-                    self.navigationController?.pushViewController(rootViewController, animated: true)
+                    var comesFrom = UserDefaults.standard.value(forKey: "comesFromPush") as? Bool ?? false
+                    if comesFrom == true{
+                        AppDelegate().redirectToEnquiryScreens()
+                        comesFrom = false
+                    }else{
+                        let vc = EnquriesVC.instantiate(fromAppStoryboard: .Main)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
                 }
             }else{
                 self.utrNumberTxtFld.resignFirstResponder()
@@ -88,6 +91,7 @@ class SubmitDetailsVC: UIViewController {
             }
         } failure: { (error) in
             print(error)
+            PKWrapperClass.svprogressHudDismiss(view: self)
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
     }

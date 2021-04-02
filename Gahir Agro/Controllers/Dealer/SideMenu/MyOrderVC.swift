@@ -22,6 +22,7 @@ class MyOrderVC: UIViewController {
     var dateArray = [Any]()
     var totalArray = [String]()
     var orderStatus = [String]()
+    var enqArray = [String]()
     @IBOutlet weak var myOrderTBView: UITableView!
     var orderHistoryArray = [OrderHistoryData]()
     
@@ -61,6 +62,7 @@ class MyOrderVC: UIViewController {
                     let dateValue = obj["creation_date"] as? String ?? ""
                     let dateVal = NumberFormatter().number(from: dateValue)?.doubleValue ?? 0.0
                     self.convertTimeStampToDate(dateVal: dateVal)
+                    self.enqArray.append(obj["enquiry_id"] as? String ?? "")
                     let accessoriesData = obj["accessories"] as? [String:Any] ?? [:]
                     self.accName.append(accessoriesData["acc_name"] as? String ?? "")
                     self.quantityArray.append(obj["qty"] as? String ?? "")
@@ -69,7 +71,7 @@ class MyOrderVC: UIViewController {
                     self.orderStatus.append(obj["status"] as! String as? String ?? "")
                     let productDetails = obj["product_detail"] as? [String:Any] ?? [:]
                     print(productDetails)
-                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateVal), price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? "", accName: self.accName, modelName: productDetails["prod_model"] as? String ?? ""))
+                    newArr.append(OrderHistoryData(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateVal), price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? "", accName: self.accName, modelName: productDetails["prod_model"] as? String ?? "", enqID: self.enqArray))
                     self.amountArray.append("$\(productDetails["prod_price"] as? String ?? "")")
                 }
                 for i in 0..<newArr.count{
@@ -118,7 +120,7 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyOrderTBViewCell", for: indexPath) as! MyOrderTBViewCell
-        cell.idLbl.text = orderHistoryArray[indexPath.row].id
+        cell.idLbl.text = orderHistoryArray[indexPath.row].enqID[indexPath.row]
         cell.timeLbl.text = orderHistoryArray[indexPath.row].deliveryDate
         cell.quantityLbl.text = quantityArray[indexPath.row]
         cell.nameLbl.text = orderHistoryArray[indexPath.row].name
@@ -132,7 +134,7 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
-        vc.enquiryID = enquiryID[indexPath.row]
+        vc.enquiryID = orderHistoryArray[indexPath.row].enqID[indexPath.row]
         vc.name = orderHistoryArray[indexPath.row].name
         vc.quantity = quantityArray[indexPath.row]
         vc.amount = orderHistoryArray[indexPath.row].price
@@ -169,8 +171,9 @@ struct OrderHistoryData {
     var image : String
     var modelName : String
     var accName : [String]
+    var enqID : [String]
     
-    init(name : String , id : String , quantity : String , deliveryDate : String , price : String , image : String,accName : [String],modelName : String) {
+    init(name : String , id : String , quantity : String , deliveryDate : String , price : String , image : String,accName : [String],modelName : String,enqID : [String]) {
         self.name = name
         self.id = id
         self.quantity = quantity
@@ -179,6 +182,7 @@ struct OrderHistoryData {
         self.image = image
         self.accName = accName
         self.modelName = modelName
+        self.enqID = enqID
     }
 }
 

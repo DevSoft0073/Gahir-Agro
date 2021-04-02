@@ -134,6 +134,7 @@ class SideMenuVC: UIViewController {
             }
         } failure: { (error) in
             print(error)
+            PKWrapperClass.svprogressHudDismiss(view: self)
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
     }
@@ -176,7 +177,11 @@ extension SideMenuVC : UITableViewDelegate , UITableViewDataSource{
             mutableObj.selected = false
             return mutableObj
         })
-        sideMenuItemsArray[indexPath.row].selected = true
+        if sideMenuItemsArray[indexPath.row].name == "Logout"{
+            sideMenuItemsArray[indexPath.row].selected = false
+        }else{
+            sideMenuItemsArray[indexPath.row].selected = true
+        }
         sideMenuController?.hideLeftViewAnimated()
         
         if UserDefaults.standard.value(forKey: "checkRole") as? String ?? "" == "Dealer"{
@@ -281,11 +286,7 @@ extension SideMenuVC : UITableViewDelegate , UITableViewDataSource{
                 // Present dialog message to user
                 self.present(dialogMessage, animated: true, completion: nil)
             }
-            
-            
         }
-        
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

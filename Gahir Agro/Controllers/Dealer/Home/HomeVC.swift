@@ -14,7 +14,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
     var collectionViewDataArray = [CollectionViewData]()
     var tableViewDataArray = [TableViewData]()
     var page = 1
-    var lastPage = Bool()
+    var lastPage = String()
     var productType = String()
     var messgae = String()
     var timer: Timer?
@@ -28,9 +28,10 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         collectionViewDataArray.append(CollectionViewData(name: "TRACTOR", selected: true, type: "0"))
         collectionViewDataArray.append(CollectionViewData(name: "LASER", selected: false, type: "1"))
         collectionViewDataArray.append(CollectionViewData(name: "PUMP", selected: false, type: "2"))
-        filterdData()
         itemsCollectionView.reloadData()
         buttonTitle = UserDefaults.standard.value(forKey: "checkRole") as? String ?? ""
+//        filterdData()
+
         // Do any additional setup after loading the view.
     }
     
@@ -39,6 +40,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         page = 1
         filterdData()
         timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(updateLocationApi), userInfo: nil, repeats: true)
+
     }
     
     @objc func updateLocationApi(){
@@ -71,7 +73,6 @@ class HomeVC: UIViewController,UITextFieldDelegate {
     
     
     func filterdData() {
-        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
         let url = Constant.shared.baseUrl + Constant.shared.FilterProducts
         var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
         let accessToken = UserDefaults.standard.value(forKey: "accessToken")
@@ -81,17 +82,16 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         }
         let params = ["page_no": page,"access_token": accessToken,"type" : self.productType]  as? [String : AnyObject] ?? [:]
         print(params)
+        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
-            self.tableViewDataArray.removeAll()
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
-            self.lastPage = response.data["last_page"] as? Bool ?? false
             if status == "1"{
                 var newArr = [TableViewData]()
                 let allData = response.data["product_list"] as? [String:Any] ?? [:]
-                self.lastPage = response.data["product_list"] as? Bool ?? false
+                self.lastPage = allData["last_page"] as? String ?? ""
                 for obj in allData["all_products"] as? [[String:Any]] ?? [[:]] {
                     print(obj)
                     newArr.append(TableViewData(image: obj["prod_image"] as? String ?? "", name: obj["prod_name"] as? String ?? "", modelName: obj["prod_desc"] as? String ?? "", details: obj["prod_desc"] as? String ?? "", price: obj["prod_price"] as? String ?? "", prod_sno: obj["GAIC2K213000"] as? String ?? "", prod_type: obj["prod_type"] as? String ?? "", id: obj["id"] as? String ?? "", prod_video: obj["prod_video"] as? String ?? "", prod_qty: obj["prod_qty"] as? String ?? "", prod_pdf: obj["prod_pdf"] as? String ?? "", prod_desc:  obj["prod_desc"] as? String ?? ""))
@@ -109,7 +109,8 @@ class HomeVC: UIViewController,UITextFieldDelegate {
             }
         } failure: { (error) in
             print(error)
-            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+            PKWrapperClass.svprogressHudDismiss(view: self)
+//            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
     }
     
@@ -127,14 +128,13 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
-            self.tableViewDataArray.removeAll()
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
                 var newArr = [TableViewData]()
                 let allData = response.data["product_list"] as? [String:Any] ?? [:]
-                self.lastPage = response.data["product_list"] as? Bool ?? false
+                self.lastPage = response.data["product_list"] as? String ?? ""
                 for obj in allData["all_products"] as? [[String:Any]] ?? [[:]] {
                     print(obj)
                     newArr.append(TableViewData(image: obj["prod_image"] as? String ?? "", name: obj["prod_name"] as? String ?? "", modelName: obj["prod_desc"] as? String ?? "", details: obj["prod_desc"] as? String ?? "", price: obj["prod_price"] as? String ?? "", prod_sno: obj["GAIC2K213000"] as? String ?? "", prod_type: obj["prod_type"] as? String ?? "", id: obj["id"] as? String ?? "", prod_video: obj["prod_video"] as? String ?? "", prod_qty: obj["prod_qty"] as? String ?? "", prod_pdf: obj["prod_pdf"] as? String ?? "", prod_desc: obj["prod_desc"] as? String ?? ""))
@@ -152,6 +152,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
             }
         } failure: { (error) in
             print(error)
+            PKWrapperClass.svprogressHudDismiss(view: self)
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
     }
@@ -210,29 +211,32 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlItemsTBViewCell", for: indexPath) as! AlItemsTBViewCell
-        cell.showImage.sd_setImage(with: URL(string:tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
-        cell.nameLbl.text = tableViewDataArray[indexPath.row].name
-        cell.showImage.roundTop()
-     //   cell.modelLbl.text = tableViewDataArray[indexPath.row].modelName
-        cell.detailsLbl.text = tableViewDataArray[indexPath.row].prod_desc
-        currentIndex = tableViewDataArray[indexPath.row].id
-        cell.checkAvailabiltyButton.tag = indexPath.row
-        cell.priceLbl.text = tableViewDataArray[indexPath.row].price
-        cell.checkAvailabiltyButton.addTarget(self, action: #selector(goto), for: .touchUpInside)
-        
-        if buttonTitle == "Customer"{
-            cell.checkAvailabiltyButton.setTitle("More Details", for: .normal)
-        }else{
-            cell.checkAvailabiltyButton.setTitle("Check Availabilty", for: .normal)
+        if tableViewDataArray.count > 0{
+            cell.showImage.sd_setImage(with: URL(string:tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
+            cell.nameLbl.text = tableViewDataArray[indexPath.row].name
+            cell.showImage.roundTop()
+            //   cell.modelLbl.text = tableViewDataArray[indexPath.row].modelName
+            cell.detailsLbl.text = tableViewDataArray[indexPath.row].prod_desc
+            currentIndex = tableViewDataArray[indexPath.row].id
+            cell.checkAvailabiltyButton.tag = indexPath.row
+            cell.priceLbl.text = tableViewDataArray[indexPath.row].price
+            cell.checkAvailabiltyButton.addTarget(self, action: #selector(goto), for: .touchUpInside)
+            if buttonTitle == "Customer"{
+                cell.checkAvailabiltyButton.setTitle("More Details", for: .normal)
+            }else{
+                cell.checkAvailabiltyButton.setTitle("Check Availabilty", for: .normal)
+            }
         }
-        
         return cell
     }
     
     @objc func goto(sender : UIButton) {
-        let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
-        vc.id = tableViewDataArray[sender.tag].id
-        self.navigationController?.pushViewController(vc, animated: true)
+        if tableViewDataArray[sender.tag].id.isEmpty == true{
+        }else{
+            let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
+            vc.id = tableViewDataArray[sender.tag].id
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -240,7 +244,7 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if lastPage == false{
+        if lastPage == "FALSE"{
             let bottamEdge = Float(self.allItemsTBView.contentOffset.y + self.allItemsTBView.frame.size.height)
             if bottamEdge >= Float(self.allItemsTBView.contentSize.height) && tableViewDataArray.count > 0 {
                 page = page + 1
@@ -249,7 +253,6 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
         }else{
             let bottamEdge = Float(self.allItemsTBView.contentOffset.y + self.allItemsTBView.frame.size.height)
             if bottamEdge >= Float(self.allItemsTBView.contentSize.height) && tableViewDataArray.count > 0 {
-//                filterdData()
             }
         }
     }
@@ -363,3 +366,5 @@ extension  UIView {
         }
     }
 }
+
+

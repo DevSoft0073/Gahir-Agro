@@ -108,7 +108,32 @@ class PKWrapperClass{
             }
         })
     }
-
+    
+    class func requestPOSTWithFormDataWithoutImages(_ strURL : String, params : [String : AnyObject]?, success:@escaping (SuccessModal) -> Void, failure:@escaping (Error) -> Void) {
+        if !Reachability.isConnectedToNetwork(){
+            self.showCustomAlert(title: kAppName, msg: KeyMessages.shared.kNoInternet, vc: nil, buttonTitle: "Ok")
+            return
+        }
+        let urlwithPercentEscapes = strURL.addingPercentEncoding( withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        AF.upload(multipartFormData: { (multipartData) in
+            for (key, value) in params!{
+                multipartData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key)
+            }
+        }, to: urlwithPercentEscapes!, method: .post).responseJSON(completionHandler: { (response) in
+            switch response.result{
+            case .success(let json):
+                if let responseJson = json as? NSDictionary{
+                    let responseCode = response.response?.statusCode ?? -10
+                    success(SuccessModal(statusCode: responseCode, data: responseJson))
+                }
+                print(json)
+            case .failure(let error):
+                 failure(error)
+                print(error.localizedDescription)
+            }
+        })
+    }
+    
 
     class func requestGETURL(_ strURL : String, success:@escaping (NSDictionary) -> Void, failure:@escaping (NSError) -> Void){
         if !Reachability.isConnectedToNetwork(){

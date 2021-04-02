@@ -10,6 +10,7 @@ import UIKit
 class ThankYouVC: UIViewController {
     
 
+    @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var thankYouView: UIView!
     @IBOutlet weak var popUpView: UIView!
     var enquiryRedirection:(()->Void)?
@@ -21,6 +22,8 @@ class ThankYouVC: UIViewController {
         view.isOpaque = true
         let mytapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         self.view.addGestureRecognizer(mytapGestureRecognizer)
+        okButton.roundCorners(corners: [.bottomRight, .bottomLeft], radius: 7)
+
     }
     
 //    MARK:- Show Popup
@@ -62,6 +65,4 @@ class ThankYouVC: UIViewController {
             })
         })
     }
-    
-    
 }
