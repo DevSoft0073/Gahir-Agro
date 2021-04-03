@@ -60,7 +60,6 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         let params = ["access_token": accessToken , "lat" : Singleton.sharedInstance.lat , "long" : Singleton.sharedInstance.long]  as? [String : AnyObject] ?? [:]
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
-            print(response.data)
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
@@ -164,7 +163,6 @@ class HomeVC: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func searchButton(_ sender: Any) {
-        
         
         let transition = CATransition()
         transition.duration = 0.5

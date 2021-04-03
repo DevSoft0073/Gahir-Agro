@@ -7,15 +7,23 @@
 
 import UIKit
 import SDWebImage
+import Alamofire
 
-class ProductDetailsVC: UIViewController {
-
-    @IBOutlet weak var enquiryButtonn: UIButton!
-    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var productDetailsTBView: UITableView!
-    @IBOutlet weak var modelLbl: UILabel!
-    @IBOutlet weak var namelbl: UILabel!
-    @IBOutlet weak var showImage: UIImageView!
+class ProductDetailsVC: UIViewController ,NetworkSpeedProviderDelegate{
+    
+    
+    func callWhileSpeedChange(networkStatus: NetworkStatus) {
+            switch networkStatus {
+            case .poor:
+                break
+            case .good:
+                break
+            case .disConnected:
+                break
+            }
+        }
+    
+    let test = NetworkSpeedTestVC()
     var buttonTitle = String()
     var pdfArray = [String]()
     var videoArray = [String]()
@@ -23,10 +31,22 @@ class ProductDetailsVC: UIViewController {
     var mediaArray = [Media]()
     var messgae = String()
     var id = String()
+
+    @IBOutlet weak var enquiryButtonn: UIButton!
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var productDetailsTBView: UITableView!
+    @IBOutlet weak var modelLbl: UILabel!
+    @IBOutlet weak var namelbl: UILabel!
+    @IBOutlet weak var showImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.productDetails()
-        print(id)
+        
+        test.delegate = self
+//        test.networkSpeedTestStop()
+        test.networkSpeedTestStart(UrlForTestSpeed: "https://www.dharmani.com/gahir/api/GetProductDetail.php")
+        
         self.productDetailsTBView.separatorStyle = .none
         buttonTitle = UserDefaults.standard.value(forKey: "checkRole") as? String ?? ""
         if buttonTitle == "Customer"{
@@ -125,6 +145,7 @@ class ProductDetailsVC: UIViewController {
             PKWrapperClass.svprogressHudDismiss(view: self)
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
+        
 //        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
 //            PKWrapperClass.svprogressHudDismiss(view: self)
 //            let status = response.data["status"] as? String ?? ""
@@ -174,7 +195,81 @@ class ProductDetailsVC: UIViewController {
 //            PKWrapperClass.svprogressHudDismiss(view: self)
 //            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
 //        }
-    }    
+    }
+//    func getData()  {
+//        let url = Constant.shared.baseUrl + Constant.shared.ProductDetails
+//        let accessToken = UserDefaults.standard.value(forKey: "accessToken") as? String ?? ""
+//
+//        let params = ["id": id,"access_token": accessToken]  as [String : Any]
+//
+//        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+//                AF.upload(multipartFormData: { (multipartFormData) in
+//                    for (key, value) in params {
+//                        multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
+//                    }
+//
+//                }, to: url, usingThreshold: UInt64.init(), method: .post, headers: nil, interceptor: nil, fileManager: .default)
+//                .uploadProgress(closure: { (progress) in
+//                    print("Upload Progress: \(progress.fractionCompleted)")
+//                })
+//                .responseJSON { (response) in
+//                    PKWrapperClass.svprogressHudDismiss(view: self)
+//                    switch response.result {
+//                    case .success(let value):
+//                        if let JSON = value as? [String: Any] {
+//                            if let res = JSON as? NSDictionary{
+//                                let status = res["status"] as? String ?? ""
+//                                self.messgae = res["message"] as? String ?? ""
+//                                self.detailsDataArray.removeAll()
+//                                if status == "1"{
+//                                    let allData = res["product_detail"] as? [String:Any] ?? [:]
+//                                    let pdfData = allData["prod_pdf"] as? [String] ?? [""]
+//                                    for i in pdfData {
+//                                        self.mediaArray.append(Media(type: .pdf, url: i))
+//                                    }
+//                                    let videoData = allData["prod_video"] as? [String] ?? [""]
+//                                    for i in videoData {
+//                                        self.mediaArray.append(Media(type: .video, url: i))
+//                                    }
+//                                    self.modelLbl.text = allData["prod_name"] as? String ?? ""
+//                                    self.namelbl.text = "Model"
+//                                    self.showImage.sd_setImage(with: URL(string:allData["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
+//                                    let url = URL(string:allData["prod_image"] as? String ?? "")
+//                                    if url != nil{
+//                                        if let data = try? Data(contentsOf: url!)
+//                                        {
+//                                            if let image: UIImage = (UIImage(data: data)){
+//                                                self.showImage.image = image
+//                                                self.showImage.contentMode = .scaleToFill
+//                                                IJProgressView.shared.hideProgressView()
+//                                            }
+//                                        }
+//                                    }
+//                                    else{
+//                                        self.showImage.image = UIImage(named: "placeholder-img-logo (1)")
+//                                    }
+//                                    let productDetails = allData["prod_desc"] as? [String] ?? [""]
+//                                    for product in productDetails{
+//                                        let splittedProducts = product.split(separator: ":")
+//                                        if splittedProducts.indices.contains(0) && splittedProducts.indices.contains(1){
+//                                            self.detailsDataArray.append(DetailsData( fieldName: String(splittedProducts[1]), fieldData: splittedProducts[0]))
+//                                        }
+//                                    }
+//                                    self.productDetailsTBView.reloadData()
+//                                }else{
+//                                    PKWrapperClass.svprogressHudDismiss(view: self)
+//                                    alert(Constant.shared.appTitle, message: self.messgae, view: self)
+//                                }
+//                            }
+//                        }
+//                    case .failure(let error):
+//                        alert("", message: error.localizedDescription, view: self)
+//                        PKWrapperClass.svprogressHudDismiss(view: self)
+//                        break
+//                    }
+//                }
+//        }
+    
 }
 
 //MARK:- Tableview Cell Class

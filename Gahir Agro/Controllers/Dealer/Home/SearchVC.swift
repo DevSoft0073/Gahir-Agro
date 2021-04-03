@@ -132,7 +132,7 @@ class SearchVC: UIViewController,UITextFieldDelegate {
                 self.recentSearchLbl.text = "Recent Searches"
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
-                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+//                alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }
         } failure: { (error) in
             print(error)
@@ -143,7 +143,6 @@ class SearchVC: UIViewController,UITextFieldDelegate {
     
     
     func recentSearched() {
-//        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
         let url = Constant.shared.baseUrl + Constant.shared.RecentSearches
         var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
         let accessToken = UserDefaults.standard.value(forKey: "accessToken")
@@ -154,7 +153,6 @@ class SearchVC: UIViewController,UITextFieldDelegate {
         let params = ["access_token": accessToken]  as? [String : AnyObject] ?? [:]
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
-//            PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
@@ -172,7 +170,6 @@ class SearchVC: UIViewController,UITextFieldDelegate {
                 self.recentSearchLbl.text = "Recent Searches"
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
-//                alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }
         } failure: { (error) in
             print(error)

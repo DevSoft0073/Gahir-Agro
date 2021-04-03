@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1800FCB1261303E900B122C3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1800FCB0261303E900B122C3 /* LocationManager.swift */; };
 		1807058425E7690C00DBE739 /* Customer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1807058325E7690C00DBE739 /* Customer.storyboard */; };
+		180799E826184C0700573E3F /* NetworkSpeedTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180799E726184C0700573E3F /* NetworkSpeedTestVC.swift */; };
 		180847B725E4BE2A00D04E69 /* SignInWithVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180847B625E4BE2A00D04E69 /* SignInWithVC.swift */; };
 		180847BC25E4BE4700D04E69 /* AddPhoneNumberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180847BB25E4BE4700D04E69 /* AddPhoneNumberVC.swift */; };
 		180847C125E4BE5F00D04E69 /* OTPVerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180847C025E4BE5F00D04E69 /* OTPVerificationVC.swift */; };
@@ -142,6 +143,7 @@
 /* Begin PBXFileReference section */
 		1800FCB0261303E900B122C3 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		1807058325E7690C00DBE739 /* Customer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Customer.storyboard; sourceTree = "<group>"; };
+		180799E726184C0700573E3F /* NetworkSpeedTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSpeedTestVC.swift; sourceTree = "<group>"; };
 		180847B625E4BE2A00D04E69 /* SignInWithVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithVC.swift; sourceTree = "<group>"; };
 		180847BB25E4BE4700D04E69 /* AddPhoneNumberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhoneNumberVC.swift; sourceTree = "<group>"; };
 		180847C025E4BE5F00D04E69 /* OTPVerificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVerificationVC.swift; sourceTree = "<group>"; };
@@ -587,7 +589,6 @@
 				184B11C925E3726D003007A2 /* AFWrapperClass.swift */,
 				184B11C725E3726D003007A2 /* Constant.swift */,
 				187A8C0725ECF2DA00DCA747 /* PKWrapperClass.swift */,
-				184B11C825E3726D003007A2 /* Reachability.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -622,6 +623,8 @@
 				1800FCB0261303E900B122C3 /* LocationManager.swift */,
 				184B119F25E37149003007A2 /* ImagePicker.swift */,
 				18AD8F0225EADA9C00072166 /* OpenPIcker.swift */,
+				180799E726184C0700573E3F /* NetworkSpeedTestVC.swift */,
+				184B11C825E3726D003007A2 /* Reachability.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1087,6 +1090,7 @@
 				181704C125E63DF3003825D7 /* ProfileVC.swift in Sources */,
 				180F0EF82615DAFA00ED9080 /* AdminPrivacyPolicyLinkVC.swift in Sources */,
 				184B11A225E37149003007A2 /* AppFunctions.swift in Sources */,
+				180799E826184C0700573E3F /* NetworkSpeedTestVC.swift in Sources */,
 				184A8AE025FB8949000583C5 /* SignInWithScreenVC.swift in Sources */,
 				184B118625E36EC9003007A2 /* ForgotPasswordVC.swift in Sources */,
 				18157E1725E50FBD00E4451C /* SideMenuController.swift in Sources */,
@@ -1310,7 +1314,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Gahir Agro/Gahir Agro.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.5;
+				CURRENT_PROJECT_VERSION = 1.7;
 				DEVELOPMENT_TEAM = 8USCMRVC59;
 				INFOPLIST_FILE = "Gahir Agro/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1335,7 +1339,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Gahir Agro/Gahir Agro.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.5;
+				CURRENT_PROJECT_VERSION = 1.7;
 				DEVELOPMENT_TEAM = 8USCMRVC59;
 				INFOPLIST_FILE = "Gahir Agro/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

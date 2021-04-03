@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , LocationServiceDelegate 
         appdelegate.window?.rootViewController = nav
     }
     
-    func redirectToEnquiryScreens() {
+    func redirectToHomeVC() {
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
         let rootVc = storyBoard.instantiateViewController(withIdentifier: "SideMenuControllerID") as! SideMenuController
@@ -108,9 +108,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
         if let userInfo = response.notification.request.content.userInfo as? [String:Any]{
             print(userInfo)
             let allData = userInfo["data"] as? [String:Any] ?? [:]
-            let id = allData["enquiry_id"]
-            redirectToBookOrderVC(enqID: id ?? "")
-            UserDefaults.standard.setValue(true, forKey: "comesFromPush")
+            let pushType = allData["notification_type"] as? String ?? ""
+            if pushType == "order"{
+                let id = allData["order_id"]
+                redirectToOrderDetail(orderID: id ?? "")
+                UserDefaults.standard.setValue(true, forKey: "comesFromPushOrder")
+            }else{
+                let id = allData["enquiry_id"]
+                redirectToBookOrderVC(enqID: id ?? "")
+                UserDefaults.standard.setValue(true, forKey: "comesFromPush")
+            }
         }
         completionHandler()
     }
@@ -124,6 +131,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
         appdelegate.window?.rootViewController = nav
     }
     
+    func redirectToOrderDetail(orderID : Any){
+        let vc = SuccesfullyBookedVC.instantiate(fromAppStoryboard: .Main)
+        let nav = UINavigationController(rootViewController: vc)
+        vc.orderID = "\(orderID)"
+        nav.setNavigationBarHidden(true, animated: true)
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        appdelegate.window?.rootViewController = nav
+    }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})

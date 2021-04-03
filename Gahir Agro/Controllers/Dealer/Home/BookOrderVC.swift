@@ -21,6 +21,7 @@ class BookOrderVC: UIViewController {
     var image = String()
     var productTitle = String()
     
+    @IBOutlet weak var bookOrderButton: UIButton!
     @IBOutlet weak var showStatus: UILabel!
     @IBOutlet weak var quantityLbl: UILabel!
     @IBOutlet weak var titleLbl: UILabel!
@@ -29,15 +30,16 @@ class BookOrderVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         enquiryDetails()
+        
     }
     
 //    MARK:- Button Action
     
     @IBAction func backButton(_ sender: Any) {
-        var comesFrom = UserDefaults.standard.value(forKey: "comesFromPush") as? Bool ?? false
+        let comesFrom = UserDefaults.standard.value(forKey: "comesFromPush") as? Bool ?? false
         if comesFrom == true{
-            AppDelegate().redirectToEnquiryScreens()
-            comesFrom = false
+            UserDefaults.standard.set(false, forKey: "comesFromPush")
+            AppDelegate().redirectToHomeVC()
         }else{
             self.navigationController?.popViewController(animated: true)
         }
@@ -77,6 +79,11 @@ class BookOrderVC: UIViewController {
                 self.quantityLbl.text = enquiryData["qty"] as? String ?? ""
                 self.showStatus.text = enquiryData["status"] as? String ?? ""
                 let productDetails = enquiryData["product_detail"] as? [String:Any] ?? [:]
+                if self.showStatus.text == "Not Responded"{
+                    self.bookOrderButton.isHidden = true
+                }else{
+                    self.bookOrderButton.isHidden = false
+                }
                 print(productDetails)
                 self.showImage.sd_setImage(with: URL(string:productDetails["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
                 self.titleLbl.text = productDetails["prod_model"] as? String ?? ""

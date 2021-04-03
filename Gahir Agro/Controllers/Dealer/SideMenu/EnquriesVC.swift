@@ -10,7 +10,7 @@ import LGSideMenuController
 import SDWebImage
 
 class EnquriesVC: UIViewController {
-
+    
     var page = 1
     var lastPage = Bool()
     var messgae = String()
@@ -19,13 +19,14 @@ class EnquriesVC: UIViewController {
     var accName = String()
     var amountArray = [String]()
     var totalArray = [String]()
-
+    var bookingIDArray = [String]()
+    var orderIDArray = [String]()
     var enquriesDataFroDealerArray = [EnquriesDataFroDealer]()
     @IBOutlet weak var enquiryTBView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()        
         enquiryTBView.separatorStyle = .none
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -62,8 +63,8 @@ class EnquriesVC: UIViewController {
                 let allData = response.data["order_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_orders"] as? [[String:Any]] ?? [[:]]{
                     print(obj)
-                    var bookingIDArray = [String]()
-                    bookingIDArray.append(obj["booking_id"] as? String ?? "")
+                    self.orderIDArray.append(obj["id"] as? String ?? "")
+                    self.bookingIDArray.append(obj["booking_id"] as? String ?? "")
                     let allDetails = obj["enquiry_detail"] as? [String:Any] ?? [:]
                     self.totalArray.append(allDetails["total"] as! String) as? Any ?? ""
                     let dateValue = allDetails["creation_date"] as? String ?? ""
@@ -75,9 +76,9 @@ class EnquriesVC: UIViewController {
                     }
                     self.quantityArray.append(allDetails["qty"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
-                    newArr.append(EnquriesDataFroDealer(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateVal), price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? "", bookingID: bookingIDArray))
+                    newArr.append(EnquriesDataFroDealer(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateVal), price: "\(productDetails["prod_price"] as? String ?? "")" as? String ?? "", image: productDetails["prod_image"] as? String ?? "", bookingID: self.bookingIDArray, orderID: self.orderIDArray))
                     self.amountArray.append("$\(productDetails["prod_price"] as? String ?? "")")
-
+                    
                 }
                 for i in 0..<newArr.count{
                     self.enquriesDataFroDealerArray.append(newArr[i])
@@ -131,7 +132,8 @@ extension EnquriesVC : UITableViewDelegate , UITableViewDataSource {
         let vc = SuccesfullyBookedVC.instantiate(fromAppStoryboard: .Main)
         vc.productImage = enquriesDataFroDealerArray[indexPath.row].image
         vc.details = enquriesDataFroDealerArray[indexPath.row].name
-        vc.bookingId = enquriesDataFroDealerArray[indexPath.row].bookingID[indexPath.row]
+        vc.bookingId = self.bookingIDArray[indexPath.row]
+        vc.orderID = self.orderIDArray[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -140,7 +142,7 @@ extension EnquriesVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-       
+        
         if lastPage == false{
             let bottamEdge = Float(self.enquiryTBView.contentOffset.y + self.enquiryTBView.frame.size.height)
             if bottamEdge >= Float(self.enquiryTBView.contentSize.height) && enquriesDataFroDealerArray.count > 0 {
@@ -152,11 +154,7 @@ extension EnquriesVC : UITableViewDelegate , UITableViewDataSource {
             if bottamEdge >= Float(self.enquiryTBView.contentSize.height) && enquriesDataFroDealerArray.count > 0 {
             }
         }
-        
-        
-        
     }
-    
 }
 
 
@@ -169,8 +167,9 @@ struct EnquriesDataFroDealer {
     var price : String
     var image : String
     var bookingID : [String]
+    var orderID : [String]
     
-    init(name : String , id : String , quantity : String , deliveryDate : String , price : String , image : String,bookingID : [String]) {
+    init(name : String , id : String , quantity : String , deliveryDate : String , price : String , image : String,bookingID : [String],orderID : [String]) {
         self.name = name
         self.id = id
         self.quantity = quantity
@@ -178,5 +177,6 @@ struct EnquriesDataFroDealer {
         self.price = price
         self.image = image
         self.bookingID = bookingID
+        self.orderID = orderID
     }
 }

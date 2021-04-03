@@ -76,7 +76,7 @@ class SubmitDetailsVC: UIViewController {
                 showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
                     var comesFrom = UserDefaults.standard.value(forKey: "comesFromPush") as? Bool ?? false
                     if comesFrom == true{
-                        AppDelegate().redirectToEnquiryScreens()
+                        AppDelegate().redirectToHomeVC()
                         comesFrom = false
                     }else{
                         let vc = EnquriesVC.instantiate(fromAppStoryboard: .Main)

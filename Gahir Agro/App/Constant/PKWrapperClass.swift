@@ -133,7 +133,6 @@ class PKWrapperClass{
             }
         })
     }
-    
 
     class func requestGETURL(_ strURL : String, success:@escaping (NSDictionary) -> Void, failure:@escaping (NSError) -> Void){
         if !Reachability.isConnectedToNetwork(){

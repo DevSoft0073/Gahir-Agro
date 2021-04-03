@@ -119,64 +119,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "008717F1-055B-4AF4-A244-EBAF4F42B3D9"
+            uuid = "51DFA803-24C8-48A1-9152-DDD4FDB0819A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Dealer/Home/BookOrderVC.swift"
+            filePath = "Gahir Agro/App/Classes/NetworkSpeedTestVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "enquiryDetails()"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "testForSpeed()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "09C3C963-A5C9-40BA-AB23-84F0E39A4DAB"
+            uuid = "FD6F9CEA-F2F6-4720-A1B3-D7951D11DC79"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Dealer/Home/BookOrderVC.swift"
+            filePath = "Gahir Agro/Controllers/Dealer/Home/SuccesfullyBookedVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "enquiryDetails()"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "orderDetail()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0F056CFF-ED5C-4760-8AB1-A9E20E290C06"
+            uuid = "163681AF-7BF7-4723-A0AF-1022E98949EB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Dealer/Home/BookOrderVC.swift"
+            filePath = "Gahir Agro/Controllers/Dealer/Home/SuccesfullyBookedVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "enquiryDetails()"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "orderDetail()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "13A21833-0AE2-4B19-A703-C6A98A398D4E"
+            uuid = "C1E9C2E8-DB40-4CCB-8EDE-4444620ACA67"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Dealer/Home/BookOrderVC.swift"
+            filePath = "Gahir Agro/Controllers/Dealer/Home/SuccesfullyBookedVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "enquiryDetails()"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "orderDetail()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E14A8408-F2A0-41A1-B219-93E4A6399AA1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gahir Agro/Controllers/Dealer/Home/SuccesfullyBookedVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "orderDetail()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
