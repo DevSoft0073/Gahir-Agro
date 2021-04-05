@@ -74,12 +74,14 @@ class SubmitDetailsVC: UIViewController {
             if status == "1"{
                 self.utrNumberTxtFld.resignFirstResponder()
                 showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
-                    var comesFrom = UserDefaults.standard.value(forKey: "comesFromPush") as? Bool ?? false
+                    let comesFrom = UserDefaults.standard.value(forKey: "comesFromPush") as? Bool
                     if comesFrom == true{
                         AppDelegate().redirectToHomeVC()
-                        comesFrom = false
+                        UserDefaults.standard.setValue(false, forKey: "comesFromPush")
                     }else{
                         let vc = EnquriesVC.instantiate(fromAppStoryboard: .Main)
+                        NotificationCenter.default.post(name: .sendUserData, object: nil)
+                        UserDefaults.standard.setValue(true, forKey: "comesFromOrder")
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
                 }
@@ -95,4 +97,8 @@ class SubmitDetailsVC: UIViewController {
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
     }
+}
+
+extension Notification.Name {
+    public static let showHomeSelectedAdminSideMenu = Notification.Name(rawValue: "showHomeSelected")
 }

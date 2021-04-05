@@ -111,8 +111,8 @@ class ProductDetailsVC: UIViewController ,NetworkSpeedProviderDelegate{
                 for i in videoData {
                     self.mediaArray.append(Media(type: .video, url: i))
                 }
+                self.namelbl.text = allData["prod_model"] as? String ?? ""
                 self.modelLbl.text = allData["prod_name"] as? String ?? ""
-                self.namelbl.text = "Model"
                 self.showImage.sd_setImage(with: URL(string:allData["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
                 let url = URL(string:allData["prod_image"] as? String ?? "")
                 if url != nil{

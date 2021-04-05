@@ -51,6 +51,10 @@ class AdminEditProfileVC: UIViewController ,UITextFieldDelegate , UITextViewDele
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if bioTxtView.text.count <= 150{
+        }else{
+            alert(Constant.shared.appTitle, message: "Describe yourself within 150 characters", view: self)
+        }
         if text == "\n" {
             textView.resignFirstResponder()
             return false
@@ -102,7 +106,7 @@ class AdminEditProfileVC: UIViewController ,UITextFieldDelegate , UITextViewDele
                 self.bioTxtView.text = allData["bio"] as? String
                 self.nameTxtFld.text = allData["first_name"] as? String ?? ""
                 self.emailTxtFld.text = allData["username"] as? String
-                self.passwordTxtFld.text = "Change Password"
+                self.passwordTxtFld.text = "Change"
                 self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"))
 
                 let url = URL(string:allData["image"] as? String ?? "")

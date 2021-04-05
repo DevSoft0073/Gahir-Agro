@@ -17,6 +17,8 @@ target 'Gahir Agro' do
     pod 'Firebase/Auth'
     pod 'SVProgressHUD'
     pod 'VersaPlayer'
+    pod 'OTPFieldView'
+
    
 
   target 'Gahir AgroTests' do

@@ -66,7 +66,6 @@ class AdminHomeVC: UIViewController {
                     let dateVal = NumberFormatter().number(from: dateValue)?.doubleValue ?? 0.0
                     self.accName.append(accessoriesData["acc_name"] as? String ?? "")
                     let dealerData = obj["dealer_detail"] as? [String:Any] ?? [:]
-                    self.getAddressFromLatLon(pdblLatitude: dealerData["user_lat"] as? String ?? "", withLongitude: dealerData["user_long"] as? String ?? "")
                     self.dealerName.append("\(dealerData["first_name"] as? String ?? "") " + "\(dealerData["last_name"] as? String ?? "")")
                     self.quantityArray.append(obj["qty"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")

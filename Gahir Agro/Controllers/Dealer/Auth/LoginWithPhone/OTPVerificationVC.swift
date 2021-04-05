@@ -7,9 +7,19 @@
 
 import UIKit
 import Firebase
+import OTPFieldView
+
+enum DisplayType: Int {
+    case circular
+    case roundedCorner
+    case square
+    case diamond
+    case underlinedBottom
+}
 
 class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
     
+    @IBOutlet weak var otpView: OTPFieldView!
     @IBOutlet weak var numberButton: UIButton!
     @IBOutlet weak var textSixth: UITextField!
     @IBOutlet weak var textFifth: UITextField!
@@ -22,26 +32,41 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
     var message = String()
     override func viewDidLoad() {
         super.viewDidLoad()
-        getOtp()
+        //        getOtp()
         numberButton.setTitle(phoneNumber, for: .normal)
-        
-        if #available(iOS 12.0, *) {
-            textOne.textContentType = .oneTimeCode
-            textTwo.textContentType = .oneTimeCode
-            textTheww.textContentType = .oneTimeCode
-            textFour.textContentType = .oneTimeCode
-            textFifth.textContentType = .oneTimeCode
-            textSixth.textContentType = .oneTimeCode
-        }
-        
-        textOne.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
-        textTwo.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
-        textTheww.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
-        textFour.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
-        textFifth.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
-        textSixth.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
-        
-        self.view.resignFirstResponder()
+        setupOtpView()
+//        if #available(iOS 12.0, *) {
+//            textOne.textContentType = .oneTimeCode
+//            textTwo.textContentType = .oneTimeCode
+//            textTheww.textContentType = .oneTimeCode
+//            textFour.textContentType = .oneTimeCode
+//            textFifth.textContentType = .oneTimeCode
+//            textSixth.textContentType = .oneTimeCode
+//        }
+//
+//        textOne.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
+//        textTwo.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
+//        textTheww.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
+//        textFour.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
+//        textFifth.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
+//        textSixth.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
+//
+//        self.view.resignFirstResponder()
+    }
+    
+    func setupOtpView(){
+        self.otpView.fieldsCount = 6
+        self.otpView.fieldBorderWidth = 2
+        self.otpView.defaultBorderColor = UIColor.black
+        self.otpView.filledBorderColor = UIColor.black
+        self.otpView.cursorColor = UIColor.red
+        self.otpView.displayType = .underlinedBottom
+        self.otpView.fieldSize = 40
+        self.otpView.separatorSpace = 8
+        self.otpView.shouldAllowIntermediateEditing = false
+        self.otpView.delegate = self
+        self.otpView.initializeUI()
+        self.otpView.resignFirstResponder()
     }
     
     //    MARK:- Get Otp
@@ -160,12 +185,12 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
     @IBAction func verifyButton(_ sender: Any) {
         let comesFrom = UserDefaults.standard.value(forKey: "comesFromPhoneLogin") as? Bool
         if comesFrom == false{
-
+            
             let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
             let credential = PhoneAuthProvider.provider().credential(
                 withVerificationID: verificationID!,
                 verificationCode: otpText)
-
+            
             Auth.auth().signIn(with: credential) { (success, error) in
                 if error == nil{
                     print(success ?? "")
@@ -181,7 +206,7 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
             let credential = PhoneAuthProvider.provider().credential(
                 withVerificationID: verificationID!,
                 verificationCode: otpText)
-
+            
             Auth.auth().signIn(with: credential) { (success, error) in
                 if error == nil{
                     print(success ?? "")
@@ -271,5 +296,17 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
             PKWrapperClass.svprogressHudDismiss(view: self)
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
+    }
+}
+
+extension OTPVerificationVC: OTPFieldViewDelegate {
+    func hasEnteredAllOTP(hasEnteredAll hasEntered: Bool) -> Bool {
+        print("Has entered all OTP? \(hasEntered)")
+        return false
+    }
+    
+    func enteredOTP(otp otpString: String) {
+        print("OTPString: \(otpString)")
+        self.otpText = otpString
     }
 }

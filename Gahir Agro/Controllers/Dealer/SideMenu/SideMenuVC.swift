@@ -43,6 +43,8 @@ class SideMenuVC: UIViewController {
         
         self.settingTBView.separatorStyle = .none
         
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.notificationReceived(_:)), name: .sendUserData, object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.notificationReceived(_:)), name: .sendUserData, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.showSelected(_:)), name: .sendUserData, object: nil)
@@ -59,14 +61,27 @@ class SideMenuVC: UIViewController {
     @objc func showSelected(_ notification: Notification) {
         
         if UserDefaults.standard.value(forKey: "checkRole") as? String ?? "" == "Dealer"{
-            sideMenuItemsArray[0].selected = false
-            sideMenuItemsArray[1].selected = false
-            sideMenuItemsArray[2].selected = false
-            sideMenuItemsArray[3].selected = false
-            sideMenuItemsArray[4].selected = false
-            sideMenuItemsArray[5].selected = false
-            sideMenuItemsArray[6].selected = false
-            settingTBView.reloadData()
+            
+            if UserDefaults.standard.value(forKey: "comesFromOrder") as? Bool == true{
+                UserDefaults.standard.setValue(false, forKey: "comesFromOrder")
+                sideMenuItemsArray[0].selected = false
+                sideMenuItemsArray[1].selected = false
+                sideMenuItemsArray[2].selected = true
+                sideMenuItemsArray[3].selected = false
+                sideMenuItemsArray[4].selected = false
+                sideMenuItemsArray[5].selected = false
+                sideMenuItemsArray[6].selected = false
+                settingTBView.reloadData()
+            }else{
+                sideMenuItemsArray[0].selected = false
+                sideMenuItemsArray[1].selected = false
+                sideMenuItemsArray[2].selected = false
+                sideMenuItemsArray[3].selected = false
+                sideMenuItemsArray[4].selected = false
+                sideMenuItemsArray[5].selected = false
+                sideMenuItemsArray[6].selected = false
+                settingTBView.reloadData()
+            }
         }else{
             sideMenuItemsArray[0].selected = false
             sideMenuItemsArray[1].selected = false
@@ -75,8 +90,6 @@ class SideMenuVC: UIViewController {
             sideMenuItemsArray[4].selected = false
             settingTBView.reloadData()
         }
-        
-        
     }
     
     @objc func notificationReceived(_ notification: Notification) {

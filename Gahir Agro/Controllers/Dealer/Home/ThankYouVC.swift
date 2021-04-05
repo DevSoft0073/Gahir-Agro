@@ -22,7 +22,14 @@ class ThankYouVC: UIViewController {
         view.isOpaque = true
         let mytapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         self.view.addGestureRecognizer(mytapGestureRecognizer)
-        okButton.roundCorners(corners: [.bottomRight, .bottomLeft], radius: 7)
+        DispatchQueue.main.async {
+            self.okButton.layer.cornerRadius = self.okButton.bounds.size.height * 0.3
+                    if #available(iOS 11, *) {
+                        self.okButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+                    }
+                }
+
+
 
     }
     
@@ -36,12 +43,14 @@ class ThankYouVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+//        okButton.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 10.0)
         centerFrame = self.thankYouView.frame
     }
     
     @IBAction func okButtonAction(_ sender: Any) {
         self.dismiss(animated: true) {
             self.enquiryRedirection?()
+            
         }
     }
     
@@ -65,4 +74,8 @@ class ThankYouVC: UIViewController {
             })
         })
     }
+}
+
+extension Notification.Name {
+    public static let showEnquiryScreenSelected = Notification.Name(rawValue: "showEnquiryScreenSelected")
 }

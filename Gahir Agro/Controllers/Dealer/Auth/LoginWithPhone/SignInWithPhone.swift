@@ -56,12 +56,6 @@ class SignInWithPhone: UIViewController {
             
         }else{
             phoneLogin()
-//            let vc = OTPVerificationVC.instantiate(fromAppStoryboard: .Auth)
-//            let countryCode = UserDefaults.standard.value(forKey: "code") ?? "+91"
-//            let number = "\(countryCode)" + "\(self.numberTxtFld.text ?? "")"
-//            vc.phoneNumber = number
-//            UserDefaults.standard.set(true, forKey: "comesFromPhoneLogin")
-//            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -87,6 +81,7 @@ class SignInWithPhone: UIViewController {
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
+            self.numberTxtFld.resignFirstResponder()
             let status = response.data["status"] as? String ?? ""
             self.message = response.data["message"] as? String ?? ""
             UserDefaults.standard.setValue(response.data["access_token"] as? String ?? "", forKey: "accessToken")

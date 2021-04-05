@@ -96,7 +96,3 @@ class AdminProfileVC: UIViewController {
 extension Notification.Name {
     public static let sendUserDataToSideMenu = Notification.Name(rawValue: "sendUserData")
 }
-
-extension Notification.Name {
-    public static let showHomeSelectedAdminSideMenu = Notification.Name(rawValue: "showHomeSelected")
-}

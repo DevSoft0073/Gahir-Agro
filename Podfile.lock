@@ -44,6 +44,7 @@ PODS:
     - nanopb/encode (= 1.30906.0)
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
+  - OTPFieldView (1.0.1)
   - PromisesObjC (1.2.10)
   - SCLAlertView (0.8)
   - SDWebImage (4.4.8):
@@ -59,6 +60,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - IQKeyboardManagerSwift
   - LGSideMenuController
+  - OTPFieldView
   - SCLAlertView
   - SDWebImage (~> 4.0)
   - SKCountryPicker
@@ -79,6 +81,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - LGSideMenuController
     - nanopb
+    - OTPFieldView
     - PromisesObjC
     - SCLAlertView
     - SDWebImage
@@ -99,6 +102,7 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   LGSideMenuController: ae40c80983ab8b8801c7cef0a6804d43aaa72d45
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
+  OTPFieldView: 700a752fe62c41d1c4914c78aa500fb30d97c255
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
@@ -107,6 +111,6 @@ SPEC CHECKSUMS:
   SVProgressHUD-0.8.1: ee9e6e58b5b5ffaf3f1a62c2dc409763470df143
   VersaPlayer: 0e9a0ea7da786729ffb377dbd17b34641a8265e4
 
-PODFILE CHECKSUM: f35568d147ebc6286bebd4d116bf950f4353e970
+PODFILE CHECKSUM: d73e6f201407211941480871cf35f3c1ef77a68d
 
 COCOAPODS: 1.9.3

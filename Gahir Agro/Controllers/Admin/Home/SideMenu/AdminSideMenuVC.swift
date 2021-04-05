@@ -165,7 +165,7 @@ extension AdminSideMenuVC : UITableViewDataSource, UITableViewDelegate {
         }
         
         else if(indexPath.row == 1) {
-            let vc = AdminHomeVC.instantiate(fromAppStoryboard: .AdminMain)
+            let vc = AdminEnquriesVC.instantiate(fromAppStoryboard: .AdminMain)
             (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
         }
         

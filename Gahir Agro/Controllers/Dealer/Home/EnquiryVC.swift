@@ -154,7 +154,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
             if status == "1"{
                 let allData = response.data["product_detail"] as? [String:Any] ?? [:]
                 print(allData)
-                self.nameLbl.text = "Model"
+                self.nameLbl.text = allData["prod_model"] as? String ?? ""
                 self.detailsLbl.text = allData["prod_name"] as? String ?? ""
                 self.showImage.sd_setImage(with: URL(string:allData["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "im"))
                 let url = URL(string:allData["prod_image"] as? String ?? "")
