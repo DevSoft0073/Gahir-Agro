@@ -43,6 +43,7 @@ class Constant: NSObject {
     let UpdateLocation = "UpdateLocation.php"
     let EnquiryDetails = "GetEnquiryDetail.php"
     let OrderDetails = "GetOrderDetail.php"
+    let PrivacyPolicy = "PrivacyPolicy.html"
     
     //MARK:-> Customer Flow Api's
     

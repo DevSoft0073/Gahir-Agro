@@ -62,6 +62,7 @@ class SuccesfullyBookedVC: UIViewController {
                 let orderData = productDetails["product_detail"] as? [String:Any] ?? [:]
                 self.showImage.sd_setImage(with: URL(string:orderData["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
                 self.detailsLbl.text = orderData["prod_model"] as? String ?? ""
+                self.nameLBlb.text = orderData["prod_name"] as? String ?? ""
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
@@ -71,7 +72,5 @@ class SuccesfullyBookedVC: UIViewController {
             PKWrapperClass.svprogressHudDismiss(view: self)
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
-    }
-
-    
+    }    
 }

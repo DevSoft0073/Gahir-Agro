@@ -15,7 +15,7 @@ class PrivacyPolicyVC: UIViewController , WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = URL(string: "https://www.google.com")!
+        let url = URL(string: Constant.shared.baseUrl + Constant.shared.PrivacyPolicy)!
         let urlRequest = URLRequest(url: url)
         openUrl.load(urlRequest)
         openUrl.autoresizingMask = [.flexibleWidth,.flexibleHeight]

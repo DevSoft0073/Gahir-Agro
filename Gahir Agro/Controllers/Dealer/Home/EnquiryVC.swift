@@ -45,7 +45,6 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         pickerToolBar.sizeToFit()
         let doneBtn = UIBarButtonItem(title: "Done", style:.plain, target: self, action: #selector(onDoneButtonTapped))
         doneBtn.tintColor = #colorLiteral(red: 0.08110561222, green: 0.2923257351, blue: 0.6798375845, alpha: 1)
-//        doneBtn.titleLabel?.font = UIFont(name: "Poppins-Medium", size: 20)
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         pickerToolBar.setItems([spaceButton,doneBtn], animated: false)
         pickerToolBar.isUserInteractionEnabled = true
@@ -154,8 +153,8 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
             if status == "1"{
                 let allData = response.data["product_detail"] as? [String:Any] ?? [:]
                 print(allData)
-                self.nameLbl.text = allData["prod_model"] as? String ?? ""
-                self.detailsLbl.text = allData["prod_name"] as? String ?? ""
+                self.nameLbl.text = allData["prod_name"] as? String ?? ""
+                self.detailsLbl.text = allData["prod_model"] as? String ?? ""
                 self.showImage.sd_setImage(with: URL(string:allData["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "im"))
                 let url = URL(string:allData["prod_image"] as? String ?? "")
                 if url != nil{

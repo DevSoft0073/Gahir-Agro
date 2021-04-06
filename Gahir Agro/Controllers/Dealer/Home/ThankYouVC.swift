@@ -17,20 +17,14 @@ class ThankYouVC: UIViewController {
     var centerFrame : CGRect!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        self.okButton.layer.cornerRadius = self.okButton.bounds.size.height * 0.3
+        if #available(iOS 11, *) {
+            self.okButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        }
         view.isOpaque = true
         let mytapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         self.view.addGestureRecognizer(mytapGestureRecognizer)
-        DispatchQueue.main.async {
-            self.okButton.layer.cornerRadius = self.okButton.bounds.size.height * 0.3
-                    if #available(iOS 11, *) {
-                        self.okButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-                    }
-                }
-
-
-
+        
     }
     
 //    MARK:- Show Popup

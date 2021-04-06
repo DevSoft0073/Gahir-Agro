@@ -69,7 +69,7 @@ class ForgotPasswordVC: UIViewController,UITextFieldDelegate{
     @IBAction func submitButton(_ sender: Any) {
         if (emailtxtFld.text?.isEmpty)!{
             
-            ValidateData(strMessage: " Please enter email")
+            ValidateData(strMessage: "Please enter email")
         }
         else if isValidEmail(testStr: (emailtxtFld.text)!) == false{
             

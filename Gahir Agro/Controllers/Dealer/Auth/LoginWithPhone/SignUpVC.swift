@@ -88,11 +88,11 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
         
         if (nameTxtFld.text?.isEmpty)!{
             
-            ValidateData(strMessage: " Please enter name")
+            ValidateData(strMessage: "Please enter name")
             
         } else if (emailTxtFld.text?.isEmpty)!{
             
-            ValidateData(strMessage: " Please enter email")
+            ValidateData(strMessage: "Please enter email")
             
         } else if isValidEmail(testStr: (emailTxtFld.text)!) == false{
 
@@ -100,7 +100,7 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
             
         }else if (passwordTxtFld.text?.isEmpty)!{
             
-            ValidateData(strMessage: " Please enter password")
+            ValidateData(strMessage: "Please enter password")
             
         }else if (passwordTxtFld!.text!.count) < 4 || (passwordTxtFld!.text!.count) > 15{
             

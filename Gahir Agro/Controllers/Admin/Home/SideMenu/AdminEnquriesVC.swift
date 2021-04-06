@@ -10,6 +10,7 @@ import UIKit
 class AdminEnquriesVC: UIViewController {
     
     var page = 1
+    var orderID = String()
     var lastPage = Bool()
     var messgae = String()
     var enquiryID = [String]()
@@ -17,7 +18,8 @@ class AdminEnquriesVC: UIViewController {
     var dealerCode = [String]()
     var dealerName = [String]()
     var accName = [String]()
-    
+    var bookingIDArray = [String]()
+    var orderIDArray = [String]()
     var adminOrderArray = [OrderHistoryData]()
     @IBOutlet weak var orderTBView: UITableView!
     override func viewDidLoad() {
@@ -57,10 +59,12 @@ class AdminEnquriesVC: UIViewController {
                 let allData = response.data["order_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_orders"] as? [[String:Any]] ?? [[:]]{
                     let accessoriesData = obj["accessories"] as? [String:Any] ?? [:]
+                    self.orderIDArray.append(obj["id"] as? String ?? "")
                     let dateValue = obj["creation_date"] as? String ?? ""
                     let dateVal = NumberFormatter().number(from: dateValue)?.doubleValue ?? 0.0
                     self.accName.append(accessoriesData["acc_name"] as? String ?? "")
                     self.quantityArray.append(obj["qty"] as? String ?? "")
+                    self.bookingIDArray.append(obj["booking_id"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
                     self.dealerCode.append(obj["dealer_code"] as? String ?? "")
                     let dealerData = obj["dealer_detail"] as? [String:Any] ?? [:]
@@ -124,6 +128,12 @@ extension AdminEnquriesVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 125
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = AdminOrderDetailsVC.instantiate(fromAppStoryboard: .AdminMain)
+        vc.orderID = self.orderIDArray[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

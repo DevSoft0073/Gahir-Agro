@@ -79,6 +79,9 @@
 		184B11CA25E3726E003007A2 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C725E3726D003007A2 /* Constant.swift */; };
 		184B11CB25E3726E003007A2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C825E3726D003007A2 /* Reachability.swift */; };
 		184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B11C925E3726D003007A2 /* AFWrapperClass.swift */; };
+		1856C1D8261C49220030B3DF /* AdminEnquiryDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1856C1D7261C49220030B3DF /* AdminEnquiryDetailsVC.swift */; };
+		1856C1DD261C493A0030B3DF /* AdminOrderDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1856C1DC261C493A0030B3DF /* AdminOrderDetailsVC.swift */; };
+		1856C1E2261C79440030B3DF /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1856C1E1261C79440030B3DF /* WebKit.framework */; };
 		185854992605DF5F00F78097 /* PdfViewerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185854982605DF5F00F78097 /* PdfViewerVC.swift */; };
 		185B48DC2601C30A0021089C /* AdminSideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B48DB2601C30A0021089C /* AdminSideMenuVC.swift */; };
 		185B48E12601C3260021089C /* AdminSideMenuControllerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B48E02601C3260021089C /* AdminSideMenuControllerVC.swift */; };
@@ -219,6 +222,9 @@
 		184B11C725E3726D003007A2 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		184B11C825E3726D003007A2 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		184B11C925E3726D003007A2 /* AFWrapperClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWrapperClass.swift; sourceTree = "<group>"; };
+		1856C1D7261C49220030B3DF /* AdminEnquiryDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminEnquiryDetailsVC.swift; sourceTree = "<group>"; };
+		1856C1DC261C493A0030B3DF /* AdminOrderDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminOrderDetailsVC.swift; sourceTree = "<group>"; };
+		1856C1E1261C79440030B3DF /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		185854982605DF5F00F78097 /* PdfViewerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfViewerVC.swift; sourceTree = "<group>"; };
 		185B48DB2601C30A0021089C /* AdminSideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminSideMenuVC.swift; sourceTree = "<group>"; };
 		185B48E02601C3260021089C /* AdminSideMenuControllerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminSideMenuControllerVC.swift; sourceTree = "<group>"; };
@@ -275,6 +281,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1856C1E2261C79440030B3DF /* WebKit.framework in Frameworks */,
 				D4C3FF461F43E538AC8997E9 /* Pods_Gahir_Agro.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +373,8 @@
 				185B48E52601C3410021089C /* AdminNotificationVC.swift */,
 				180F0EF72615DAFA00ED9080 /* AdminPrivacyPolicyLinkVC.swift */,
 				185B490E2601C9270021089C /* AdminEnquriesVC.swift */,
+				1856C1D7261C49220030B3DF /* AdminEnquiryDetailsVC.swift */,
+				1856C1DC261C493A0030B3DF /* AdminOrderDetailsVC.swift */,
 			);
 			path = SideMenu;
 			sourceTree = "<group>";
@@ -784,6 +793,7 @@
 		E83D135456B608AC96BF0CD9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1856C1E1261C79440030B3DF /* WebKit.framework */,
 				8B541B8D40B28A414D29DC4B /* Pods_Gahir_Agro.framework */,
 				1B9B12110EF8CE43EAF794BD /* Pods_Gahir_Agro_Gahir_AgroUITests.framework */,
 				A5AAE070BC20C968B3596A80 /* Pods_Gahir_AgroTests.framework */,
@@ -1069,6 +1079,7 @@
 				184A8AEF25FB8A1C000583C5 /* OTPVerificationForCustomerVC.swift in Sources */,
 				180847D325E4DBB000D04E69 /* SideMenuVC.swift in Sources */,
 				1815DEC2260B15160072771E /* AllVideosAndPDFListingVC.swift in Sources */,
+				1856C1D8261C49220030B3DF /* AdminEnquiryDetailsVC.swift in Sources */,
 				184B11CA25E3726E003007A2 /* Constant.swift in Sources */,
 				1872905A25FF38C100A83349 /* CustomerNotificationVC.swift in Sources */,
 				18E84AF225E7B0DE004A2148 /* CustomerHomeVC.swift in Sources */,
@@ -1128,6 +1139,7 @@
 				1815DECA260B43F10072771E /* PlayVideoVC.swift in Sources */,
 				185B48E12601C3260021089C /* AdminSideMenuControllerVC.swift in Sources */,
 				187A8C0825ECF2DA00DCA747 /* PKWrapperClass.swift in Sources */,
+				1856C1DD261C493A0030B3DF /* AdminOrderDetailsVC.swift in Sources */,
 				181704CB25E63E11003825D7 /* MyOrderVC.swift in Sources */,
 				1876B2FF25EF5E9200E5A245 /* ResponseModal.swift in Sources */,
 				184B11A025E37149003007A2 /* AppExtensions.swift in Sources */,
@@ -1314,7 +1326,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Gahir Agro/Gahir Agro.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.9;
+				CURRENT_PROJECT_VERSION = 1.91;
 				DEVELOPMENT_TEAM = 8USCMRVC59;
 				INFOPLIST_FILE = "Gahir Agro/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1339,7 +1351,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Gahir Agro/Gahir Agro.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.9;
+				CURRENT_PROJECT_VERSION = 1.91;
 				DEVELOPMENT_TEAM = 8USCMRVC59;
 				INFOPLIST_FILE = "Gahir Agro/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

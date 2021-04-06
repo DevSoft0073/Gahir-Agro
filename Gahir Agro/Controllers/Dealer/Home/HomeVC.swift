@@ -12,6 +12,7 @@ import SDWebImage
 class HomeVC: UIViewController,UITextFieldDelegate {
     
     var collectionViewDataArray = [CollectionViewData]()
+    var detailsDataArray = [DetailsData]()
     var tableViewDataArray = [TableViewData]()
     var page = 1
     var lastPage = String()
@@ -93,7 +94,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
                 self.lastPage = allData["last_page"] as? String ?? ""
                 for obj in allData["all_products"] as? [[String:Any]] ?? [[:]] {
                     print(obj)
-                    newArr.append(TableViewData(image: obj["prod_image"] as? String ?? "", name: obj["prod_name"] as? String ?? "", modelName: obj["prod_desc"] as? String ?? "", details: obj["prod_desc"] as? String ?? "", price: obj["prod_price"] as? String ?? "", prod_sno: obj["GAIC2K213000"] as? String ?? "", prod_type: obj["prod_type"] as? String ?? "", id: obj["id"] as? String ?? "", prod_video: obj["prod_video"] as? String ?? "", prod_qty: obj["prod_qty"] as? String ?? "", prod_pdf: obj["prod_pdf"] as? String ?? "", prod_desc:  obj["prod_desc"] as? String ?? ""))
+                    newArr.append(TableViewData(image: obj["prod_image"] as? String ?? "", name: obj["prod_name"] as? String ?? "", modelName: obj["prod_model"] as? String ?? "", details: obj["prod_desc"] as? String ?? "", price: obj["prod_price"] as? String ?? "", prod_sno: obj["GAIC2K213000"] as? String ?? "", prod_type: obj["prod_type"] as? String ?? "", id: obj["id"] as? String ?? "", prod_video: obj["prod_video"] as? String ?? "", prod_qty: obj["prod_qty"] as? String ?? "", prod_pdf: obj["prod_pdf"] as? String ?? "", prod_desc:  obj["prod_desc"] as? String ?? ""))
                 }
                 for i in 0..<newArr.count{
                     self.tableViewDataArray.append(newArr[i])
@@ -189,6 +190,7 @@ class ItemsCollectionViewCell: UICollectionViewCell {
 
 class AlItemsTBViewCell: UITableViewCell {
     
+    @IBOutlet weak var modelName: UILabel!
     @IBOutlet weak var checkAvailabiltyButton: UIButton!
     @IBOutlet weak var detailsLbl: UILabel!
     @IBOutlet weak var priceLbl: UILabel!
@@ -213,7 +215,7 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
             cell.showImage.sd_setImage(with: URL(string:tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
             cell.nameLbl.text = tableViewDataArray[indexPath.row].name
             cell.showImage.roundTop()
-            //   cell.modelLbl.text = tableViewDataArray[indexPath.row].modelName
+            cell.modelName.text = tableViewDataArray[indexPath.row].modelName
             cell.detailsLbl.text = tableViewDataArray[indexPath.row].prod_desc
             currentIndex = tableViewDataArray[indexPath.row].id
             cell.checkAvailabiltyButton.tag = indexPath.row

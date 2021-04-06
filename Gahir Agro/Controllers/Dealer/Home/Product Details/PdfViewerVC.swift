@@ -10,17 +10,18 @@ import WebKit
 
 class PdfViewerVC: UIViewController , WKNavigationDelegate {
 
+   
     @IBOutlet weak var openPdfUrl: WKWebView!
-    var pdfUrl = String()
+    var pdfUrl = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url: URL! = URL(string: pdfUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
-        let urlRequest = URLRequest(url: url)
+        let trimmedUrl = pdfUrl.trimmingCharacters(in: CharacterSet(charactersIn: "")).replacingOccurrences(of: "", with: "%20")
+        let url = URL(string: trimmedUrl)
+        let urlRequest = URLRequest(url: url!)
+
         openPdfUrl.load(urlRequest)
         openPdfUrl.autoresizingMask = [.flexibleWidth,.flexibleHeight]
-        view.addSubview(openPdfUrl)
-        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
-        openPdfUrl.navigationDelegate = self
+               view.addSubview(openPdfUrl)
     }
     
 //    MARK:- Button Action
@@ -39,9 +40,21 @@ class PdfViewerVC: UIViewController , WKNavigationDelegate {
         alert(Constant.shared.appTitle, message: error.localizedDescription, view: self)
         PKWrapperClass.svprogressHudDismiss(view: self)
     }
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error){
-        alert(Constant.shared.appTitle, message: error.localizedDescription, view: self)
-        PKWrapperClass.svprogressHudDismiss(view: self)
+   
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse,
+                 decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+
+        if let response = navigationResponse.response as? HTTPURLResponse {
+            if response.statusCode == 401 {
+                // ...
+            }
+        }
+        decisionHandler(.allow)
     }
     
+}
+extension String {
+    func replace(string:String, replacement:String) -> String {
+        return self.replacingOccurrences(of: string, with: replacement, options: NSString.CompareOptions.literal, range: nil)
+    }
 }

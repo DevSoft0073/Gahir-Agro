@@ -119,7 +119,7 @@ extension EnquriesVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EnquiryTBViewCell", for: indexPath) as! EnquiryTBViewCell
-        cell.idLbl.text = enquriesDataFroDealerArray[indexPath.row].id
+        cell.idLbl.text = enquriesDataFroDealerArray[indexPath.row].orderID[indexPath.row]
         cell.dateLbl.text = enquriesDataFroDealerArray[indexPath.row].deliveryDate
         cell.quantityLbl.text = quantityArray[indexPath.row]
         cell.nameLbl.text = enquriesDataFroDealerArray[indexPath.row].name

@@ -127,7 +127,7 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
         
         if (emailTxtFld.text?.isEmpty)!{
             
-            ValidateData(strMessage: " Please enter email")
+            ValidateData(strMessage: "Please enter email")
             
         } else if isValidEmail(testStr: (emailTxtFld.text)!) == false{
 
