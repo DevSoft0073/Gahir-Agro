@@ -40,11 +40,12 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
             nameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             emailView.borderColor = #colorLiteral(red: 0.7788546085, green: 0.0326503776, blue: 0.1003007665, alpha: 1)
             passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            
+                        
         }else if textField == passwordTxtFld{
             nameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             passwordView.borderColor = #colorLiteral(red: 0.7788546085, green: 0.0326503776, blue: 0.1003007665, alpha: 1)
+            
         }
     }
     

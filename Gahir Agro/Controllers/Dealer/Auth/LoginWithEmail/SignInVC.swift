@@ -27,11 +27,29 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
         if textField == emailTxtFld{
             emailView.borderColor = #colorLiteral(red: 0.7788546085, green: 0.0326503776, blue: 0.1003007665, alpha: 1)
             passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+//            emailTxtFld.placeholder = ""
         }else if textField == passwordTxtFld{
             emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             passwordView.borderColor = #colorLiteral(red: 0.7788546085, green: 0.0326503776, blue: 0.1003007665, alpha: 1)
+//            passwordTxtFld.placeholder = ""
         }
     }
+    
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        if textField == emailTxtFld {
+//            if emailTxtFld.text?.isEmpty == true{
+//                emailTxtFld.placeholder = "Enter email"
+//            } else{
+//                emailTxtFld.placeholder = ""
+//            }
+//        } else if textField == passwordTxtFld {
+//            if passwordTxtFld.text?.isEmpty == true{
+//                passwordTxtFld.placeholder = "Enter password"
+//            } else{
+//                passwordTxtFld.placeholder = ""
+//            }
+//        }
+//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

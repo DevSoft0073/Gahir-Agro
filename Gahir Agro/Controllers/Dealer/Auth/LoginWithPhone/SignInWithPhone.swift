@@ -10,7 +10,7 @@ import Firebase
 import SKCountryPicker
 import FirebaseAuth
 
-class SignInWithPhone: UIViewController {
+class SignInWithPhone: UIViewController ,UITextFieldDelegate{
 
     var message = String()
     @IBOutlet weak var countryCode: UIButton!
@@ -25,6 +25,11 @@ class SignInWithPhone: UIViewController {
         countryCode.setTitle(country.countryCode, for: .highlighted)
         countryCode.clipsToBounds = true
         
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == numberTxtFld{
+        }
     }
     
 //    MARK:- Country Picker

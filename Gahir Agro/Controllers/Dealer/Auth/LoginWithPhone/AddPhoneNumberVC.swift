@@ -12,6 +12,8 @@ import FirebaseAuth
 
 class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
 
+    @IBOutlet weak var infoImg: UIImageView!
+    @IBOutlet weak var popupBtn: UIButton!
     @IBOutlet weak var serialViewHeight: NSLayoutConstraint!
     @IBOutlet weak var delaerorCustomerCodeLbl: UILabel!
     @IBOutlet weak var serialNumberTxtFld: UITextField!
@@ -39,15 +41,24 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
         countryPicker.clipsToBounds = true
         
         if delaerOrCustomerCode == "Dealer Code"{
-            
         }else{
             serialnumberView.isHidden = true
             self.serialnumberView.updateConstraint(attribute: NSLayoutConstraint.Attribute.height, constant: 0.0)
             delaerorCustomerCodeLbl.isHidden = true
+            infoImg.isHidden = true
+            popupBtn.isHidden = true
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
+    }
+    
+    //MARK: Text field delegate
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == mobileTxtFld{
+        } else if textField == serialNumberTxtFld {
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -61,7 +72,11 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
         self.navigationController?.popViewController(animated: true)
     }
     
-
+    @IBAction func infoBtn(_ sender: Any) {
+        showAlertMessage(title: "How to get your dealer code", message: "You can check your dealer code at top of your invoice.", okButton: "Ok", controller: self) {
+        }
+    }
+    
     
     @IBAction func countrypickerButtonAction(_ sender: Any) {
         let countryController = CountryPickerWithSectionViewController.presentController(on: self) { [weak self] (country: Country) in
@@ -91,7 +106,7 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
             if selectedValue == "Dealer SignUp"{
                 ValidateData(strMessage: "Please enter Dealer Code")
             }else{
-                ValidateData(strMessage: "Please enter serial number")
+                verifyUser()
             }
         }else{
             verifyUser()
