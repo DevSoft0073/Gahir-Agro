@@ -40,7 +40,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         tableViewDataArray.removeAll()
         page = 1
         filterdData()
-        timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(updateLocationApi), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(updateLocationApi), userInfo: nil, repeats: true)
 
     }
     
@@ -216,7 +216,7 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
             cell.nameLbl.text = tableViewDataArray[indexPath.row].name
             cell.showImage.roundTop()
             cell.modelName.text = tableViewDataArray[indexPath.row].modelName
-            cell.detailsLbl.text = tableViewDataArray[indexPath.row].prod_desc
+//            cell.detailsLbl.text = tableViewDataArray[indexPath.row].prod_desc
             currentIndex = tableViewDataArray[indexPath.row].id
             cell.checkAvailabiltyButton.tag = indexPath.row
             cell.priceLbl.text = tableViewDataArray[indexPath.row].price

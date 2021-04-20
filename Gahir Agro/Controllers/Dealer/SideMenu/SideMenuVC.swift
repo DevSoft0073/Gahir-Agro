@@ -26,11 +26,12 @@ class SideMenuVC: UIViewController {
         
         if UserDefaults.standard.value(forKey: "checkRole") as? String ?? "" == "Dealer"{
             sideMenuItemsArray.append(SideMenuItems(name: "Home", selectedImage: "home", selected: true, unselected: "home-1"))
-            sideMenuItemsArray.append(SideMenuItems(name: "My Enquiries", selectedImage: "order", selected: false, unselected: "order-1"))
             sideMenuItemsArray.append(SideMenuItems(name: "My Orders", selectedImage: "enq", selected: false, unselected: "enq1"))
+            sideMenuItemsArray.append(SideMenuItems(name: "My Enquiries", selectedImage: "order", selected: false, unselected: "order-1"))
             sideMenuItemsArray.append(SideMenuItems(name: "Notifications", selectedImage: "noti", selected: false, unselected: "noti-1"))
             sideMenuItemsArray.append(SideMenuItems(name: "Contact Us", selectedImage: "contact", selected: false, unselected: "contact-1"))
             sideMenuItemsArray.append(SideMenuItems(name: "Privacy Policy", selectedImage: "privacy", selected: false, unselected: "privacy-1"))
+            sideMenuItemsArray.append(SideMenuItems(name: "Dealer Certificate", selectedImage: "doc", selected: false, unselected: "doc1"))
             sideMenuItemsArray.append(SideMenuItems(name: "Logout", selectedImage: "logout", selected: false, unselected: "logout-1"))
         }else{
             sideMenuItemsArray.append(SideMenuItems(name: "Home", selectedImage: "home", selected: true, unselected: "home-1"))
@@ -124,23 +125,8 @@ class SideMenuVC: UIViewController {
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
                 let allData = response.data["user_detail"] as? [String:Any] ?? [:]
-                
-                self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"))
+                self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"), options: SDWebImageOptions.continueInBackground, completed: nil)
                 self.nameLbl.text = allData["first_name"] as? String ?? ""
-                let url = URL(string:allData["image"] as? String ?? "")
-                if url != nil{
-                    if let data = try? Data(contentsOf: url!)
-                    {
-                        if let image: UIImage = (UIImage(data: data)){
-                            self.profileImage.image = image
-                            self.profileImage.contentMode = .scaleToFill
-                            IJProgressView.shared.hideProgressView()
-                        }
-                    }
-                }
-                else{
-                    self.profileImage.image = UIImage(named: "placehlder")
-                }
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
@@ -231,6 +217,12 @@ extension SideMenuVC : UITableViewDelegate , UITableViewDataSource{
             }
             
             else if(indexPath.row == 6) {
+                
+                let vc = OpenDocumentVC.instantiate(fromAppStoryboard: .Main)
+                (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
+            }
+            
+            else if(indexPath.row == 7) {
                 let dialogMessage = UIAlertController(title: Constant.shared.appTitle, message: "Are you sure you want to Logout?", preferredStyle: .alert)
                 
                 // Create OK button with action handler

@@ -39,6 +39,48 @@ class SubmitDetailsVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        enquiryDetails()
+    }
+    
+    //    MARK:- Service Call
+        
+        
+        func enquiryDetails() {
+            PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+            let url = Constant.shared.baseUrl + Constant.shared.EnquiryDetails
+            var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+            let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+            print(deviceID ?? "")
+            if deviceID == nil  {
+                deviceID = "777"
+            }
+            let params = ["access_token": accessToken , "id" : self.enquiryID]  as? [String : AnyObject] ?? [:]
+            print(params)
+            PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
+                print(response.data)
+                PKWrapperClass.svprogressHudDismiss(view: self)
+                let status = response.data["status"] as? String ?? ""
+                self.messgae = response.data["message"] as? String ?? ""
+                if status == "1"{
+                    let allDetails = response.data["enquiry_detail"] as? [String:Any] ?? [:]
+                    self.nameTxtFld.text = allDetails["prod_name"] as? String ?? ""
+                    self.dealerCodeTxtFld.text = allDetails["dealer_code"] as? String ?? ""
+                    self.quantityTxtFld.text = allDetails["qty"] as? String ?? ""
+                    self.amountTxtFld.text = allDetails["total"] as? String ?? ""
+                    self.accesoriesTxtFld.text = allDetails["acc_name"] as? String ?? ""
+                }else{
+                    PKWrapperClass.svprogressHudDismiss(view: self)
+                    alert(Constant.shared.appTitle, message: self.messgae, view: self)
+                }
+            } failure: { (error) in
+                print(error)
+                PKWrapperClass.svprogressHudDismiss(view: self)
+                showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+            }
+        }
+
+    
 //    MARK:- Button Action
     
     @IBAction func backButton(_ sender: Any) {

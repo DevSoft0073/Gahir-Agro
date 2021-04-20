@@ -24,7 +24,7 @@ class AdminHomeVC: UIViewController {
     var enqArray = [String]()
     var addressArray = String()
     let geocoder = CLGeocoder()
-    var fullAddress = [String]()
+    
     
     @IBOutlet weak var enquriesTBView: UITableView!
     override func viewDidLoad() {
@@ -42,57 +42,6 @@ class AdminHomeVC: UIViewController {
         page = 1
         getAllEnquries()
     }
-    
-//    func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String) {
-//            var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
-//            let lat: Double = Double("\(pdblLatitude)")!
-//            //21.228124
-//            let lon: Double = Double("\(pdblLongitude)")!
-//            //72.833770
-//            let ceo: CLGeocoder = CLGeocoder()
-//            center.latitude = lat
-//            center.longitude = lon
-//
-//            let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
-//
-//
-//            ceo.reverseGeocodeLocation(loc, completionHandler:
-//                {(placemarks, error) in
-//                    if (error != nil)
-//                    {
-//                        print("reverse geodcode fail: \(error!.localizedDescription)")
-//                    }
-//                    let pm = placemarks! as [CLPlacemark]
-//
-//                    if pm.count > 0 {
-//                        let pm = placemarks![0]
-//                        print(pm.country)
-//                        print(pm.locality)
-//                        print(pm.subLocality)
-//                        print(pm.thoroughfare)
-//                        print(pm.postalCode)
-//                        print(pm.subThoroughfare)
-//                        var addressString : String = ""
-//                        if pm.subLocality != nil {
-//                            addressString = addressString + pm.subLocality! + ", "
-//                        }
-//                        if pm.thoroughfare != nil {
-//                            addressString = addressString + pm.thoroughfare! + ", "
-//                        }
-//                        if pm.locality != nil {
-//                            addressString = addressString + pm.locality! + ", "
-//                        }
-//                        if pm.country != nil {
-//                            addressString = addressString + pm.country! + ", "
-//                        }
-//                        if pm.postalCode != nil {
-//                            addressString = addressString + pm.postalCode! + " "
-//                        }
-//                        print(addressString)
-//                  }
-//            })
-//
-//        }
     
     func getAllEnquries() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
@@ -123,23 +72,24 @@ class AdminHomeVC: UIViewController {
                     let dateVal = NumberFormatter().number(from: dateValue)?.doubleValue ?? 0.0
                     self.accName.append(accessoriesData["acc_name"] as? String ?? "")
                     let dealerData = obj["dealer_detail"] as? [String:Any] ?? [:]
-                    let latitude = dealerData["user_lat"] as? String ?? ""
-                    let longitude = dealerData["user_long"] as? String ?? ""
+//                    convertLatLongToAddress(latitude: Double(dealerData["user_lat"] as? String ?? "") ?? 0.0, longitude: Double(dealerData["user_long"] as? String ?? "") ?? 0.0)
                     self.dealerName.append("\(dealerData["first_name"] as? String ?? "") " + "\(dealerData["last_name"] as? String ?? "")")
                     self.quantityArray.append(obj["qty"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
                     let productDetails = obj["product_detail"] as? [String:Any] ?? [:]
                     print(productDetails)
-                    newArr.append(OrderDataForAdmin(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateVal), price: "$\(productDetails["prod_price"] as? String ?? "")", image: productDetails["prod_image"] as? String ?? "", accName: self.accName, modelName: productDetails["prod_name"] as? String ?? "", enqID: self.enquiryID, address: addressArray))
-                    getAddressFromLatLon(pdblLatitude: dealerData["user_lat"] as? String ?? "", withLongitude: dealerData["user_long"] as? String ?? "")
+                    newArr.append(OrderDataForAdmin(name: productDetails["prod_name"] as? String ?? "", id: productDetails["id"] as? String ?? "", quantity: "\(productDetails["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateVal), price: "$\(productDetails["prod_price"] as? String ?? "")", image: productDetails["prod_image"] as? String ?? "", accName: self.accName, modelName: productDetails["prod_name"] as? String ?? "", enqID: self.enquiryID, address: ""))
                 }
                 for i in 0..<newArr.count{
                     self.adminEnquriesArray.append(newArr[i])
                 }
-                self.enquriesTBView.reloadData()
+//                DispatchQueue.main.async {
+//                    if fullAddress.count > 0 {
+                        self.enquriesTBView.reloadData()
+//                    }
+//                }
             }else if status == "0"{
                 PKWrapperClass.svprogressHudDismiss(view: self)
-                //                alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }else{
                 UserDefaults.standard.removeObject(forKey: "tokenFString")
                 let appDel = UIApplication.shared.delegate as! AppDelegate
@@ -180,12 +130,12 @@ extension AdminHomeVC : UITableViewDelegate , UITableViewDataSource {
         cell.timelbl.text = adminEnquriesArray[indexPath.row].deliveryDate
         cell.nameLbl.text = adminEnquriesArray[indexPath.row].name
         cell.showImage.sd_setImage(with: URL(string:adminEnquriesArray[indexPath.row].image), placeholderImage: UIImage(named: "im"))
-//        cell.addressLbl.text = fullAddress[indexPath.row]
+        cell.addressLbl.text = adminEnquriesArray[indexPath.row].address
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 125
+        return 140
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -248,11 +198,11 @@ struct OrderDataForAdmin {
 }
 
 extension AdminHomeVC {
-    func getAddressFromLatLon(pdblLatitude: String, withLongitude pdblLongitude: String) {
+    func getAddressFromLatLon(pdblLatitude: String,pdblLongitude: String)-> String {
             var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
-            let lat: Double = Double("\(pdblLatitude)")!
+        let lat: Double = Double("\(pdblLatitude)") ?? 0.0
             //21.228124
-            let lon: Double = Double("\(pdblLongitude)")!
+        let lon: Double = Double("\(pdblLongitude)") ?? 0.0
             //72.833770
             let ceo: CLGeocoder = CLGeocoder()
             center.latitude = lat
@@ -260,15 +210,15 @@ extension AdminHomeVC {
 
             let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
 
-
+         var addressString : String = ""
             ceo.reverseGeocodeLocation(loc, completionHandler:
                 {(placemarks, error) in
                     if (error != nil)
                     {
                         print("reverse geodcode fail: \(error!.localizedDescription)")
                     }
-                    let pm = placemarks! as [CLPlacemark]
-
+                    let pm = (placemarks ?? nil) ?? [NSObject]()
+                   
                     if pm.count > 0 {
                         let pm = placemarks![0]
                         print(pm.country)
@@ -277,7 +227,7 @@ extension AdminHomeVC {
                         print(pm.thoroughfare)
                         print(pm.postalCode)
                         print(pm.subThoroughfare)
-                        var addressString : String = ""
+                       
                         if pm.subLocality != nil {
                             addressString = addressString + pm.subLocality! + ", "
                         }
@@ -293,12 +243,53 @@ extension AdminHomeVC {
                         if pm.postalCode != nil {
                             addressString = addressString + pm.postalCode! + " "
                         }
-                        self.addressArray = "\(addressString)"
-                        print(self.addressArray)
-                        self.fullAddress.append("\(addressString)")
+//                        self.addressArray = "\(addressString)"
+//                        print(self.addressArray)
                   }
             })
-
-        }
+        return addressString
+         }
+    
+    func convertLatLongToAddress(latitude:Double,longitude:Double){
+        
+        let geoCoder = CLGeocoder()
+        let location = CLLocation(latitude: latitude, longitude: longitude)
+        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+            
+            // Place details
+            var placeMark: CLPlacemark!
+            placeMark = placemarks?[0]
+            
+            // Location name
+//            if let locationName = placemark.location {
+//                print(locationName)
+//            }
+            // Street address
+            if let street = placeMark.thoroughfare {
+                print(street)
+            }
+            // City
+            if let city = placeMark.locality {
+                print(city)
+            }
+            // State
+//            if let state = placemark.administrativeArea {
+//                print(state)
+//            }
+            // Zip code
+//            if let zipCode = placeMark.postalCode {
+//                print(zipCode)
+//            }
+            // Country
+            if let country = placeMark.country {
+                print(country)
+            }
+            let address = "\(placeMark.locality ?? "") " + "\(placeMark.country ?? "")"
+            print(address)
+            self.addressArray = address
+        })
+        
+    }
 
 }
+

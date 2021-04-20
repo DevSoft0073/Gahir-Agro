@@ -258,37 +258,8 @@ class EditProfileVC: UIViewController,UITextFieldDelegate ,UITextViewDelegate ,U
                 self.nameTxtFld.text = allData["first_name"] as? String ?? ""
                 self.emailTxtFld.text = allData["username"] as? String
                 self.passwordTxtFld.text = "Change"
-                self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"))
+                self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"), options: SDWebImageOptions.continueInBackground, completed: nil)
                 self.flagImage.sd_setImage(with: URL(string:allData["flag_image"] as? String ?? ""), placeholderImage: UIImage(named: "flag"))
-                
-                let url = URL(string:allData["image"] as? String ?? "")
-                if url != nil{
-                    if let data = try? Data(contentsOf: url!)
-                    {
-                        if let image: UIImage = (UIImage(data: data)){
-                            self.profileImage.image = image
-                            self.profileImage.contentMode = .scaleToFill
-                            IJProgressView.shared.hideProgressView()
-                        }
-                    }
-                }
-                else{
-                    self.profileImage.image = UIImage(named: "placehlder")
-                }
-                let urls = URL(string:allData["flag_image"] as? String ?? "")
-                if urls != nil{
-                    if let data = try? Data(contentsOf: urls!)
-                    {
-                        if let image: UIImage = (UIImage(data: data)){
-                            self.flagImage.image = image
-                            self.flagImage.contentMode = .scaleToFill
-                            IJProgressView.shared.hideProgressView()
-                        }
-                    }
-                }
-                else{
-                    self.flagImage.image = UIImage(named: "flag")
-                }
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)

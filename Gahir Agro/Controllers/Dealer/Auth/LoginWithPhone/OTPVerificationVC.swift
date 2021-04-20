@@ -32,26 +32,12 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
     var message = String()
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        getOtp()
         numberButton.setTitle(phoneNumber, for: .normal)
         setupOtpView()
-//        if #available(iOS 12.0, *) {
-//            textOne.textContentType = .oneTimeCode
-//            textTwo.textContentType = .oneTimeCode
-//            textTheww.textContentType = .oneTimeCode
-//            textFour.textContentType = .oneTimeCode
-//            textFifth.textContentType = .oneTimeCode
-//            textSixth.textContentType = .oneTimeCode
-//        }
-//
-//        textOne.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
-//        textTwo.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
-//        textTheww.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
-//        textFour.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
-//        textFifth.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
-//        textSixth.addTarget(self, action: #selector(self.textFieldDidChange(textField:)), for: .editingChanged)
-//
-//        self.view.resignFirstResponder()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getOtp()
     }
     
     func setupOtpView(){
@@ -72,8 +58,8 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
     //    MARK:- Get Otp
     
     func getOtp() {
+        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
         PhoneAuthProvider.provider().verifyPhoneNumber(self.phoneNumber, uiDelegate: nil) { (verificationID, error) in
-            PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
             if let error = error {
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 print(error.localizedDescription)

@@ -22,7 +22,6 @@ class SignInWithPhone: UIViewController {
         guard let country = CountryManager.shared.currentCountry else {
             return
         }
-
         countryCode.setTitle(country.countryCode, for: .highlighted)
         countryCode.clipsToBounds = true
         

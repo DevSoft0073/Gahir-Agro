@@ -49,7 +49,7 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
     
     func getData() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
-        let url = Constant.shared.baseUrl + Constant.shared.UpdateLocation
+        let url = Constant.shared.baseUrl + Constant.shared.ProfileApi
         var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
         let accessToken = UserDefaults.standard.value(forKey: "accessToken")
         print(deviceID ?? "")
@@ -70,7 +70,8 @@ class ProfileVC: UIViewController, CAAnimationDelegate {
                 self.bioTxtView.text = allData["bio"] as? String
                 self.emailtxtFld.text = allData["username"] as? String
                 self.passwordTxtFld.text = "**********"
-                self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"))
+                self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"), options: SDWebImageOptions.continueInBackground, completed: nil)
+                
                 let userInfo = [ "name" : fullName, "profileImage" : allData["image"] as? String ?? "" ]
                 NotificationCenter.default.post(name: .sendUserData, object: nil, userInfo: userInfo as [AnyHashable : Any])
                 

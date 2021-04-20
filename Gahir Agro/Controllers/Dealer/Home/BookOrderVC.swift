@@ -29,8 +29,12 @@ class BookOrderVC: UIViewController {
     @IBOutlet weak var showImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        enquiryDetails()
+//        enquiryDetails()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        enquiryDetails()
     }
     
 //    MARK:- Button Action
@@ -56,7 +60,6 @@ class BookOrderVC: UIViewController {
     }
     
 //    MARK:- Service Call
-    
     
     func enquiryDetails() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)

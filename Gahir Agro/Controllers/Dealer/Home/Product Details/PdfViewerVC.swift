@@ -18,7 +18,7 @@ class PdfViewerVC: UIViewController , WKNavigationDelegate {
         let trimmedUrl = pdfUrl.trimmingCharacters(in: CharacterSet(charactersIn: "")).replacingOccurrences(of: "", with: "%20")
         let url = URL(string: trimmedUrl)
         let urlRequest = URLRequest(url: url!)
-
+        PKWrapperClass.svprogressHudDismiss(view: self)
         openPdfUrl.load(urlRequest)
         openPdfUrl.autoresizingMask = [.flexibleWidth,.flexibleHeight]
                view.addSubview(openPdfUrl)

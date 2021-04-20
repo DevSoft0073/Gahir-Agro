@@ -12,6 +12,7 @@ import FirebaseAuth
 
 class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
 
+    @IBOutlet weak var serialViewHeight: NSLayoutConstraint!
     @IBOutlet weak var delaerorCustomerCodeLbl: UILabel!
     @IBOutlet weak var serialNumberTxtFld: UITextField!
     @IBOutlet weak var serialnumberView: UIView!
@@ -34,10 +35,16 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
         guard let country = CountryManager.shared.currentCountry else {
             return
         }
-
         countryPicker.setTitle(country.countryCode, for: .highlighted)
         countryPicker.clipsToBounds = true
         
+        if delaerOrCustomerCode == "Dealer Code"{
+            
+        }else{
+            serialnumberView.isHidden = true
+            self.serialnumberView.updateConstraint(attribute: NSLayoutConstraint.Attribute.height, constant: 0.0)
+            delaerorCustomerCodeLbl.isHidden = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

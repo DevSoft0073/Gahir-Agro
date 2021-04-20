@@ -6,11 +6,11 @@
 //
 
 import UIKit
+import SDWebImage
 
 class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate {
     
     var jassIndex = Int()
-    
     var tbaleViewArray = ["TYPE","SYSTEM"]
     var picker  = UIPickerView()
 
@@ -145,7 +145,6 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         let params = ["id": id,"access_token": accessToken]  as? [String : AnyObject] ?? [:]
         print(params)
         PKWrapperClass.requestPOSTWithFormDataWithoutImages(url, params: params) { (response) in
-//        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
@@ -155,21 +154,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                 print(allData)
                 self.nameLbl.text = allData["prod_name"] as? String ?? ""
                 self.detailsLbl.text = allData["prod_model"] as? String ?? ""
-                self.showImage.sd_setImage(with: URL(string:allData["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "im"))
-                let url = URL(string:allData["prod_image"] as? String ?? "")
-                if url != nil{
-                    if let data = try? Data(contentsOf: url!)
-                    {
-                        if let image: UIImage = (UIImage(data: data)){
-                            self.showImage.image = image
-                            self.showImage.contentMode = .scaleToFill
-                            IJProgressView.shared.hideProgressView()
-                        }
-                    }
-                }
-                else{
-                    self.showImage.image = UIImage(named: "im")
-                }
+                self.showImage.sd_setImage(with: URL(string: allData["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
                 self.productId = allData["prod_type"] as? String ?? ""
                 let accessories = allData["accessories"] as? [[String:Any]] ?? [[:]]
                 for obj in accessories {
@@ -182,7 +167,6 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                 }
                 self.categoryArray.append(EnquieyData(accessory: self.accessory, system: self.systemArray))
                 self.enquiryDataTBView.reloadData()
-//                self.picker.reloadAllComponents()
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)

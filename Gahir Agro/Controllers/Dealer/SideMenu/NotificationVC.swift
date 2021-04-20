@@ -55,7 +55,7 @@ class NotificationVC: UIViewController {
                     let dateValue = obj["creation_date"] as? String ?? ""
                     let dateVal = NumberFormatter().number(from: dateValue)?.doubleValue ?? 0.0
                     self.convertTimeStampToDate(dateVal: dateVal)
-                    newArr.append(NotificationData(name: obj["notify_title"] as? String ?? "", image: "img-1", details: obj["notify_message"] as? String ?? "", date: self.convertTimeStampToDate(dateVal: dateVal)))
+                    newArr.append(NotificationData(name: obj["notify_title"] as? String ?? "", image: "img-1", details: obj["notify_message"] as? String ?? "", date: obj["display_date"] as? String ?? "" ))
                 }
                 for i in 0..<newArr.count{
                     self.notificationArray.append(newArr[i])
@@ -108,7 +108,7 @@ extension NotificationVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return UITableView.automaticDimension
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
