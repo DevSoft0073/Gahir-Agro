@@ -160,7 +160,12 @@ class HomeVC: UIViewController,UITextFieldDelegate {
 //    MARK:- Button Actions
     
     @IBAction func openMenuButton(_ sender: Any) {
-        sideMenuController?.showLeftViewAnimated()
+        
+        let vc = SelectCategoryVC.instantiate(fromAppStoryboard: .Main)
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        
+        //sideMenuController?.showLeftViewAnimated()
     }
     
     @IBAction func searchButton(_ sender: Any) {

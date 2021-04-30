@@ -124,7 +124,7 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
         cell.timeLbl.text = orderHistoryArray[indexPath.row].deliveryDate
         cell.quantityLbl.text = quantityArray[indexPath.row]
         cell.nameLbl.text = orderHistoryArray[indexPath.row].name
-        cell.priceLbl.text = "$\(totalArray[indexPath.row])"
+        cell.priceLbl.text = "₹\(totalArray[indexPath.row])"
         cell.showImage.sd_setImage(with: URL(string:orderHistoryArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"))
         return cell
     }

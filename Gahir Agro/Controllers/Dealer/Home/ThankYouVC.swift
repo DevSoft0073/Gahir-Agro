@@ -9,7 +9,7 @@ import UIKit
 
 class ThankYouVC: UIViewController {
     
-
+    
     @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var thankYouView: UIView!
     @IBOutlet weak var popUpView: UIView!
@@ -24,10 +24,13 @@ class ThankYouVC: UIViewController {
         view.isOpaque = true
         let mytapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         self.view.addGestureRecognizer(mytapGestureRecognizer)
-        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0){
+//            let vc = EnquriesVC.instantiate(fromAppStoryboard: .Main)
+//            self.navigationController?.pushViewController(vc, animated: false)
+//        }
     }
     
-//    MARK:- Show Popup
+    //    MARK:- Show Popup
     
     @objc func handleTap(_ sender:UITapGestureRecognizer){
         self.dismiss(animated: true) {
@@ -37,14 +40,14 @@ class ThankYouVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-//        okButton.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 10.0)
         centerFrame = self.thankYouView.frame
     }
     
     @IBAction func okButtonAction(_ sender: Any) {
-        self.dismiss(animated: true) {
-            self.enquiryRedirection?()
-            
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0){
+            self.dismiss(animated: true) {
+                self.enquiryRedirection?()
+            }
         }
     }
     

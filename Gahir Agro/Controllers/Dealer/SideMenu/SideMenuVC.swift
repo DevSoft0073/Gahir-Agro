@@ -190,12 +190,12 @@ extension SideMenuVC : UITableViewDelegate , UITableViewDataSource{
             }
             
             else if(indexPath.row == 1) {
-                let vc = MyOrderVC.instantiate(fromAppStoryboard: .Main)
+                let vc = EnquriesVC.instantiate(fromAppStoryboard: .Main)
                 (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
             }
             
             else if(indexPath.row == 2) {
-                let vc = EnquriesVC.instantiate(fromAppStoryboard: .Main)
+                let vc = MyOrderVC.instantiate(fromAppStoryboard: .Main)
                 (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
             }
             

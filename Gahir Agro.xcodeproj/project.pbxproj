@@ -100,6 +100,8 @@
 		1872907B25FF39A900A83349 /* SalesAuth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1872907A25FF39A900A83349 /* SalesAuth.storyboard */; };
 		1872908025FF39B400A83349 /* SalesMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1872907F25FF39B400A83349 /* SalesMain.storyboard */; };
 		1876B2FF25EF5E9200E5A245 /* ResponseModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876B2FE25EF5E9200E5A245 /* ResponseModal.swift */; };
+		187A32F6263BC34F00A4C9DB /* DownloadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A32F5263BC34F00A4C9DB /* DownloadVC.swift */; };
+		187A32FB263BE5A500A4C9DB /* SelectCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A32FA263BE5A500A4C9DB /* SelectCategoryVC.swift */; };
 		187A8BEF25ECC4FD00DCA747 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 187A8BEE25ECC4FD00DCA747 /* GoogleService-Info.plist */; };
 		187A8C0825ECF2DA00DCA747 /* PKWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A8C0725ECF2DA00DCA747 /* PKWrapperClass.swift */; };
 		187A8C2525ECF9B600DCA747 /* SignInWithPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A8C2425ECF9B600DCA747 /* SignInWithPhone.swift */; };
@@ -244,6 +246,8 @@
 		1872907A25FF39A900A83349 /* SalesAuth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SalesAuth.storyboard; sourceTree = "<group>"; };
 		1872907F25FF39B400A83349 /* SalesMain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SalesMain.storyboard; sourceTree = "<group>"; };
 		1876B2FE25EF5E9200E5A245 /* ResponseModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseModal.swift; sourceTree = "<group>"; };
+		187A32F5263BC34F00A4C9DB /* DownloadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadVC.swift; sourceTree = "<group>"; };
+		187A32FA263BE5A500A4C9DB /* SelectCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryVC.swift; sourceTree = "<group>"; };
 		187A8BE925ECC13200DCA747 /* Gahir Agro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Gahir Agro.entitlements"; sourceTree = "<group>"; };
 		187A8BEE25ECC4FD00DCA747 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Certifacate and gooleinfolist/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		187A8C0725ECF2DA00DCA747 /* PKWrapperClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWrapperClass.swift; sourceTree = "<group>"; };
@@ -320,6 +324,7 @@
 				18E84AE725E7AC57004A2148 /* RequestSubmitPopUpVC.swift */,
 				18E84AEC25E7AC9E004A2148 /* SuccesfullyBookedVC.swift */,
 				18DEBB2325F7559000475060 /* SubmitDetailsVC.swift */,
+				187A32FA263BE5A500A4C9DB /* SelectCategoryVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -637,6 +642,7 @@
 				18AD8F0225EADA9C00072166 /* OpenPIcker.swift */,
 				180799E726184C0700573E3F /* NetworkSpeedTestVC.swift */,
 				184B11C825E3726D003007A2 /* Reachability.swift */,
+				187A32F5263BC34F00A4C9DB /* DownloadVC.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1070,6 +1076,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				187A32FB263BE5A500A4C9DB /* SelectCategoryVC.swift in Sources */,
 				18A877362600E66200566339 /* EnquriesVC.swift in Sources */,
 				184B11B925E37244003007A2 /* ValidationManager.swift in Sources */,
 				185B48EC2601C3610021089C /* AdminProfileVC.swift in Sources */,
@@ -1134,6 +1141,7 @@
 				18B0D094260C948B00904C92 /* AdminChangePasswordVC.swift in Sources */,
 				184B113B25E36C74003007A2 /* SceneDelegate.swift in Sources */,
 				181704C625E63E02003825D7 /* EditProfileVC.swift in Sources */,
+				187A32F6263BC34F00A4C9DB /* DownloadVC.swift in Sources */,
 				1808AB9A26035E0E00DEBF10 /* ChangePasswordVC.swift in Sources */,
 				18DEBB2425F7559000475060 /* SubmitDetailsVC.swift in Sources */,
 				184B11CC25E3726E003007A2 /* AFWrapperClass.swift in Sources */,
@@ -1328,7 +1336,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Gahir Agro/Gahir Agro.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.93;
 				DEVELOPMENT_TEAM = 8USCMRVC59;
@@ -1340,7 +1348,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gahir.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Gahir dist 30 mar 2021";
+				PROVISIONING_PROFILE_SPECIFIER = "Gahir dev 30 mar 2021";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1353,7 +1361,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Gahir Agro/Gahir Agro.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.93;
 				DEVELOPMENT_TEAM = 8USCMRVC59;
@@ -1365,7 +1373,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gahir.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Gahir dist 30 mar 2021";
+				PROVISIONING_PROFILE_SPECIFIER = "Gahir dev 30 mar 2021";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

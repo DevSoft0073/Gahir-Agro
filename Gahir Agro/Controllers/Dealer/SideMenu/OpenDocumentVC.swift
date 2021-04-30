@@ -13,7 +13,7 @@ import WebKit
 class OpenDocumentVC : UIViewController ,WKNavigationDelegate{
     
     var messgae = String()
-    
+    var pdfDownloadUrl = String()
     @IBOutlet weak var openPdf: WKWebView!
     
     //------------------------------------------------------
@@ -81,12 +81,14 @@ class OpenDocumentVC : UIViewController ,WKNavigationDelegate{
                 let allData = response.data["user_detail"] as? [String:Any] ?? [:]
                 print(allData)
                 let pdfUrl = allData["dealer_doc"] as? String ?? ""
+                self.pdfDownloadUrl = allData["dealer_doc"] as? String ?? ""
                 if pdfUrl.isEmpty == true{
                     
                 }else{
                     let trimmedUrl = pdfUrl.trimmingCharacters(in: CharacterSet(charactersIn: "")).replacingOccurrences(of: "", with: "%20")
                     let url = URL(string: trimmedUrl)
                     let urlRequest = URLRequest(url: url!)
+                    
                     PKWrapperClass.svprogressHudDismiss(view: self)
                     self.openPdf.load(urlRequest)
                     self.openPdf.autoresizingMask = [.flexibleWidth,.flexibleHeight]
@@ -124,5 +126,13 @@ class OpenDocumentVC : UIViewController ,WKNavigationDelegate{
     
     @IBAction func btnBack(_ sender: Any) {
         sideMenuController?.showLeftViewAnimated()
+    }
+    
+    @IBAction func downloadPdfFile(_ sender: Any) {
+        let url = URL(string: self.pdfDownloadUrl)
+        FileDownloader.loadFileAsync(url: url!) { (path, error) in
+            print("PDF File downloaded to : \(path!)")
+            alert(Constant.shared.appTitle, message: "File saved", view: self)
+        }
     }
 }

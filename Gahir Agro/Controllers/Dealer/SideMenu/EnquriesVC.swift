@@ -123,7 +123,7 @@ extension EnquriesVC : UITableViewDelegate , UITableViewDataSource {
         cell.dateLbl.text = enquriesDataFroDealerArray[indexPath.row].deliveryDate
         cell.quantityLbl.text = quantityArray[indexPath.row]
         cell.nameLbl.text = enquriesDataFroDealerArray[indexPath.row].name
-        cell.priceLbl.text = "$\(totalArray[indexPath.row])"
+        cell.priceLbl.text = "₹\(totalArray[indexPath.row])"
         cell.showImage.sd_setImage(with: URL(string:enquriesDataFroDealerArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
         return cell
     }

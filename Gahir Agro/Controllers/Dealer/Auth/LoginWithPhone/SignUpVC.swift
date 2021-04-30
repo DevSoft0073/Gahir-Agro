@@ -142,7 +142,7 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
         }else{
             SignUpUrl = Constant.shared.baseUrl + Constant.shared.CustomerNewSignUp            
             
-            params = ["username":emailTxtFld.text ?? "", "first_name" : nameTxtFld.text ?? "", "password":passwordTxtFld.text ?? "" , "device_token" : deviceID! ,"device_type" : "iOS","serial_no" : dealerCode , "phone" : self.phoneNumber] as? [String : AnyObject] ?? [:]
+            params = ["username":emailTxtFld.text ?? "", "first_name" : nameTxtFld.text ?? "", "password":passwordTxtFld.text ?? "" , "device_token" : deviceID! ,"device_type" : "iOS" , "phone" : self.phoneNumber] as? [String : AnyObject] ?? [:]
         }
         print(params)
         PKWrapperClass.requestPOSTWithFormData(SignUpUrl, params: params, imageData: []) { (response) in

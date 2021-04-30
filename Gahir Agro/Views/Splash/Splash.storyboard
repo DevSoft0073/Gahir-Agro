@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wVz-iz-R2t">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -14,14 +14,14 @@
             <objects>
                 <viewController storyboardIdentifier="SplashVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="778-CC-PGw" customClass="SplashVC" customModule="Gahir_Agro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nug-SJ-Y8g">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-1" translatesAutoresizingMaskIntoConstraints="NO" id="czP-3E-4Or">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="319-e7-wfL">
-                                <rect key="frame" x="62" y="375.5" width="290" height="155"/>
+                                <rect key="frame" x="56.5" y="263.5" width="262.5" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="319-e7-wfL" secondAttribute="height" multiplier="15:8" id="bpb-AG-gOa"/>
                                 </constraints>
@@ -36,7 +36,7 @@
                             <constraint firstItem="czP-3E-4Or" firstAttribute="leading" secondItem="UyG-sM-4dU" secondAttribute="leading" id="YON-Ta-VkL"/>
                             <constraint firstItem="UyG-sM-4dU" firstAttribute="trailing" secondItem="czP-3E-4Or" secondAttribute="trailing" id="Yr6-IW-kDb"/>
                             <constraint firstAttribute="bottom" secondItem="czP-3E-4Or" secondAttribute="bottom" id="dAc-HT-Ls6"/>
-                            <constraint firstItem="319-e7-wfL" firstAttribute="centerY" secondItem="Nug-SJ-Y8g" secondAttribute="centerY" constant="5" id="uB8-ZI-3ST"/>
+                            <constraint firstItem="319-e7-wfL" firstAttribute="centerY" secondItem="Nug-SJ-Y8g" secondAttribute="centerY" id="uB8-ZI-3ST"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IC1-dI-DPN"/>

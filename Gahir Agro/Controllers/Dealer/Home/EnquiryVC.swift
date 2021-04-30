@@ -13,7 +13,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     var jassIndex = Int()
     var tbaleViewArray = ["TYPE","SYSTEM"]
     var picker  = UIPickerView()
-
+    
     @IBOutlet weak var remarkTxtView: UITextView!
     var pickerToolBar = UIToolbar()
     var selectedValue = String()
@@ -32,6 +32,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     var systemArray = [SystemData]()
     var productDetailsAaay = [ProductData]()
     var comesFirstTime = Bool()
+    let timer = Timer()
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var enquiryDataTBView: UITableView!
     @IBOutlet weak var quantitylbl: UILabel!
@@ -54,14 +55,14 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     
     override func viewWillAppear(_ animated: Bool) {
         self.heightConstraint.constant = self.enquiryDataTBView.contentSize.height
-
+        
     }
     
     @objc func onDoneButtonTapped(sender:UIButton) {
         self.view.endEditing(true)
     }
     
-     //MARK:- Service call methods
+    //MARK:- Service call methods
     
     func submitEnquiry() {
         
@@ -97,18 +98,18 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
                         vc.modalPresentationStyle = .overCurrentContext
                         vc.modalTransitionStyle = .crossDissolve
-                        vc.enquiryRedirection = { 
+                        vc.enquiryRedirection = {
                             DispatchQueue.main.async {
                                 if self.isAvailabele == true {
                                     
                                 }else{
                                     
                                 }
-                                self.popBack(2)
-                                //                                let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
-                                //                                self.navigationController?.pushViewController(vc, animated: true)
+                                let vc = MyOrderVC.instantiate(fromAppStoryboard: .Main)
+                                self.navigationController?.pushViewController(vc, animated: true)
                             }
                         }
+                        
                         self.present(vc, animated: true, completion: nil)
                         
                     }else{
@@ -214,9 +215,9 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
             selectType = systemArray[row].name
             print(selectedValue1)
             self.enquiryDataTBView.reloadData()
-
+            
         }else{
-                        
+            
         }
     }
     
@@ -255,7 +256,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         return accessory[row].name
     }
     
-//      MARK:- Button Actions
+    //      MARK:- Button Actions
     
     @IBAction func backbutton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -294,12 +295,12 @@ class EnquiryDataTBViewCell: UITableViewCell,UITextFieldDelegate {
     @IBOutlet weak var namelbl: UILabel!
     override class func awakeFromNib() {
         super.awakeFromNib()
-
+        
     }
     
     
     @IBAction func openPicker(_ sender: Any) {
-//        DotBTN!()
+        //        DotBTN!()
     }
 }
 
@@ -325,7 +326,7 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
         cell.openPicker.delegate = self
         cell.openPicker.inputView = picker
         cell.openPicker.tintColor = .clear
-//        cell.openPicker.isUserInteractionEnabled = false
+        //        cell.openPicker.isUserInteractionEnabled = false
         cell.dropDownbutton.addTarget(self, action: #selector(openPickerView(sender:)), for: .touchUpInside)
         DispatchQueue.main.async {
             self.heightConstraint.constant = CGFloat(self.enquiryDataTBView.contentSize.height)
