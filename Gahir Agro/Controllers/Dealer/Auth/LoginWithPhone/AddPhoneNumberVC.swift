@@ -73,8 +73,18 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
     }
     
     @IBAction func infoBtn(_ sender: Any) {
-        showAlertMessage(title: "How to get your dealer code", message: "You can check your dealer code at top of your invoice.", okButton: "Ok", controller: self) {
-        }
+        
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.fade
+        transition.subtype = CATransitionSubtype.fromTop
+        self.navigationController!.view.layer.add(transition, forKey: nil)
+        let writeView = self.storyboard?.instantiateViewController(withIdentifier: "InVoiceVC") as! InVoiceVC
+        self.navigationController?.pushViewController(writeView, animated: false)
+        
+//        showAlertMessage(title: "How to get your dealer code", message: "You can check your dealer code at top of your invoice.", okButton: "Ok", controller: self) {
+//        }
     }
     
     

@@ -45,6 +45,7 @@ class Constant: NSObject {
     let OrderDetails = "GetOrderDetail.php"
     let PrivacyPolicy = "PrivacyPolicy.html"
     let Category = "GetAllCategories.php"
+    let FilterdData = "FilterCategory.php"
     
     //MARK:-> Customer Flow Api's
     

@@ -185,7 +185,7 @@ extension SideMenuVC : UITableViewDelegate , UITableViewDataSource{
         
         if UserDefaults.standard.value(forKey: "checkRole") as? String ?? "" == "Dealer"{
             if(indexPath.row == 0) {
-                let vc = HomeVC.instantiate(fromAppStoryboard: .Main)
+                let vc = SelectCategoryVC.instantiate(fromAppStoryboard: .Main)
                 (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
             }
             
