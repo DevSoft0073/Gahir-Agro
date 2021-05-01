@@ -48,7 +48,7 @@ class SelectCategoryVC : UIViewController {
         if deviceID == nil  {
             deviceID = "777"
         }
-        let params = ["page_no": page,"access_token": accessToken,"type" : accessToken]  as? [String : AnyObject] ?? [:]
+        let params = ["access_token": accessToken]  as? [String : AnyObject] ?? [:]
         print(params)
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
@@ -161,7 +161,7 @@ extension SelectCategoryVC : UICollectionViewDelegate , UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == categotyCollectionVIew{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "featuredProductCell", for: indexPath) as! featuredProductCell
-           // cell.nameLbl.text = catArray[indexPath.item].name
+            // cell.nameLbl.text = catArray[indexPath.item].name
             cell.showImage.sd_setImage(with: URL(string: catArray[indexPath.item].image), placeholderImage: UIImage(named: ""), options: SDWebImageOptions.continueInBackground, completed: nil)
             cell.colorView.backgroundColor = getRandomColor()
             self.pageControl.numberOfPages = catArray.count
@@ -223,12 +223,9 @@ extension SelectCategoryVC : UICollectionViewDelegate , UICollectionViewDataSour
             let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
             
             return CGSize(width: size, height: size)
-            
-            //            return CGSize(width: collectionView.frame.width*4/9 + 5, height: collectionView.frame.height/2)
         }
-        
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
         if collectionView == categotyCollectionVIew{
@@ -247,35 +244,6 @@ extension SelectCategoryVC : UICollectionViewDelegate , UICollectionViewDataSour
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        if collectionView == categotyCollectionVIew{
-//            let noOfCellsInRow = 1
-//
-//            let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-//
-//            let totalSpace = flowLayout.sectionInset.left
-//                + flowLayout.sectionInset.right
-//                + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
-//
-//            let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
-//
-//            return CGSize(width: size, height: size)
-//        }else{
-//            let noOfCellsInRow = 2
-//
-//            let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-//
-//            let totalSpace = flowLayout.sectionInset.left
-//                + flowLayout.sectionInset.right
-//                + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
-//
-//            let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
-//
-//            return CGSize(width: size, height: size)
-//        }
-//    }
 }
 
 struct CatData {

@@ -99,7 +99,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KpI-gQ-viF">
                                                 <rect key="frame" x="8" y="10" width="304" height="227"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-img-logo (1)" translatesAutoresizingMaskIntoConstraints="NO" id="vk8-x4-137">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-img-logo (1)" translatesAutoresizingMaskIntoConstraints="NO" id="vk8-x4-137">
                                                         <rect key="frame" x="0.0" y="0.0" width="304" height="163.5"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -3674,7 +3674,7 @@
                                                     <constraint firstAttribute="width" secondItem="gWA-aB-GpM" secondAttribute="height" multiplier="48:6" id="64u-OY-PAf"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
-                                                <state key="normal" title="Submit">
+                                                <state key="normal" title="Check Availabilty">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -5538,25 +5538,25 @@
     </scenes>
     <designables>
         <designable name="3Sq-5G-sBb">
-            <size key="intrinsicContentSize" width="30" height="30"/>
+            <size key="intrinsicContentSize" width="128" height="128"/>
         </designable>
         <designable name="56V-00-ggN">
-            <size key="intrinsicContentSize" width="30" height="30"/>
+            <size key="intrinsicContentSize" width="101" height="99"/>
         </designable>
         <designable name="83B-Cg-TJc">
-            <size key="intrinsicContentSize" width="30" height="30"/>
+            <size key="intrinsicContentSize" width="128" height="128"/>
         </designable>
         <designable name="Nmc-3E-swh">
-            <size key="intrinsicContentSize" width="30" height="30"/>
+            <size key="intrinsicContentSize" width="128" height="128"/>
         </designable>
         <designable name="g2X-Dc-WPR">
             <size key="intrinsicContentSize" width="113" height="113"/>
         </designable>
         <designable name="s8A-pu-hij">
-            <size key="intrinsicContentSize" width="30" height="30"/>
+            <size key="intrinsicContentSize" width="128" height="128"/>
         </designable>
         <designable name="vGQ-jS-gwW">
-            <size key="intrinsicContentSize" width="30" height="30"/>
+            <size key="intrinsicContentSize" width="101" height="99"/>
         </designable>
     </designables>
     <resources>

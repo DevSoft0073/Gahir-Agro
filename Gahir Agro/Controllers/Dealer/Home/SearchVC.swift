@@ -335,7 +335,7 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: "ShowSearchedDataTBViewCell", for: indexPath) as! ShowSearchedDataTBViewCell
             cell.nameLbl.text = tableViewDataArray[indexPath.row].name
             currentIndex = tableViewDataArray[indexPath.row].id
-            cell.detailsLbl.text = tableViewDataArray[indexPath.row].price
+            cell.detailsLbl.text = "₹\(tableViewDataArray[indexPath.row].price)"
             cell.typeLbl.text = tableViewDataArray[indexPath.row].prod_desc
             cell.showImage.sd_setImage(with: URL(string:tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
             cell.showImage.roundTop()

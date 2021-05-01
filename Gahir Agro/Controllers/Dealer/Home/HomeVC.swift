@@ -142,18 +142,24 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlItemsTBViewCell", for: indexPath) as! AlItemsTBViewCell
         if filterProDArray.count > 0{
+            cell.showImage.sd_setShowActivityIndicatorView(true)
+            if #available(iOS 13.0, *) {
+                cell.showImage.sd_setIndicatorStyle(.large)
+            } else {
+                // Fallback on earlier versions
+            }
             cell.showImage.sd_setImage(with: URL(string: filterProDArray[indexPath.row].prod_image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
             cell.nameLbl.text = filterProDArray[indexPath.row].prod_name
             cell.showImage.roundTop()
             cell.modelName.text = filterProDArray[indexPath.row].prod_model
             currentIndex = filterProDArray[indexPath.row].id
             cell.checkAvailabiltyButton.tag = indexPath.row
-            cell.priceLbl.text = filterProDArray[indexPath.row].prod_price
+            cell.priceLbl.text = "₹\(filterProDArray[indexPath.row].prod_price)"
            // cell.checkAvailabiltyButton.addTarget(self, action: #selector(goto), for: .touchUpInside)
             if buttonTitle == "Customer"{
                 cell.checkAvailabiltyButton.setTitle("More Details", for: .normal)
             }else{
-                cell.checkAvailabiltyButton.setTitle("Check Availabilty", for: .normal)
+                cell.checkAvailabiltyButton.setTitle("More Information", for: .normal)
             }
         }
         return cell
