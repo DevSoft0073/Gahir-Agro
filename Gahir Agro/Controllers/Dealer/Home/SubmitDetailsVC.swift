@@ -27,15 +27,13 @@ class SubmitDetailsVC: UIViewController {
         super.viewDidLoad()
         amount = amount.replacingOccurrences(of: ",", with: "")
 
-        let amountVal = NumberFormatter().number(from: amount)?.floatValue ?? 0.0
-        let quantityVal = NumberFormatter().number(from: quantity)?.floatValue ?? 0.0
-
-        let totalAmount = amountVal * quantityVal
+//        let amountVal = NumberFormatter().number(from: amount)?.floatValue ?? 0.0
+//        let quantityVal = NumberFormatter().number(from: quantity)?.floatValue ?? 0.0
         nameTxtFld.text = name
-        amountTxtFld.text = "$\(totalAmount)0"
         quantityTxtFld.text = quantity
         dealerCodeTxtFld.text = UserDefaults.standard.value(forKey: "code") as? String ?? ""
         accesoriesTxtFld.text = accessoriesName
+        amountTxtFld.isUserInteractionEnabled = true
         // Do any additional setup after loading the view.
     }
     
@@ -67,7 +65,6 @@ class SubmitDetailsVC: UIViewController {
                     self.nameTxtFld.text = allDetails["prod_name"] as? String ?? ""
                     self.dealerCodeTxtFld.text = allDetails["dealer_code"] as? String ?? ""
                     self.quantityTxtFld.text = allDetails["qty"] as? String ?? ""
-                    self.amountTxtFld.text = allDetails["total"] as? String ?? ""
                     self.accesoriesTxtFld.text = allDetails["acc_name"] as? String ?? ""
                 }else{
                     PKWrapperClass.svprogressHudDismiss(view: self)
@@ -90,6 +87,8 @@ class SubmitDetailsVC: UIViewController {
     @IBAction func submitButtonAction(_ sender: Any) {
         if utrNumberTxtFld.text?.isEmpty == true{
             ValidateData(strMessage: "UTR field should not be empty")
+        }else if amountTxtFld.text?.isEmpty == true{
+            ValidateData(strMessage: "Please add ammount")
         }else{
             addOrder()
         }
@@ -106,7 +105,8 @@ class SubmitDetailsVC: UIViewController {
         if deviceID == nil  {
             deviceID = "777"
         }
-        let params = ["access_token" : accessToken , "enquiry_id" : self.enquiryID , "utr_no" : utrNumberTxtFld.text ?? ""]  as? [String : AnyObject] ?? [:]
+        
+        let params = ["access_token" : accessToken , "enquiry_id" : self.enquiryID , "utr_no" : utrNumberTxtFld.text ?? String(),"amount" : amountTxtFld.text ?? String() ]  as? [String : AnyObject] ?? [:]
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)
@@ -127,11 +127,18 @@ class SubmitDetailsVC: UIViewController {
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
                 }
-            }else{
+            } else if status == "0"{
                 self.utrNumberTxtFld.resignFirstResponder()
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
                 self.navigationController?.popViewController(animated: true)
+            } else if status == "100"{
+                self.utrNumberTxtFld.resignFirstResponder()
+                showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
+                    UserDefaults.standard.removeObject(forKey: "tokenFString")
+                    let appDel = UIApplication.shared.delegate as! AppDelegate
+                    appDel.Logout1()
+                }
             }
         } failure: { (error) in
             print(error)

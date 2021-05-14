@@ -80,10 +80,13 @@ class MyOrderVC: UIViewController {
                 self.myOrderTBView.reloadData()
             }else if status == "0"{
                 PKWrapperClass.svprogressHudDismiss(view: self)
-            }else{
-                UserDefaults.standard.removeObject(forKey: "tokenFString")
-                let appDel = UIApplication.shared.delegate as! AppDelegate
-                appDel.Logout1()
+                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            } else if status == "100"{
+                showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
+                    UserDefaults.standard.removeObject(forKey: "tokenFString")
+                    let appDel = UIApplication.shared.delegate as! AppDelegate
+                    appDel.Logout1()
+                }
             }
         } failure: { (error) in
             print(error)
@@ -140,7 +143,7 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
         vc.amount = orderHistoryArray[indexPath.row].price
         vc.image = orderHistoryArray[indexPath.row].image
         vc.accessoriesName = orderHistoryArray[indexPath.row].accName[indexPath.row]
-        vc.status = orderStatus[indexPath.row]
+        //vc.status = orderStatus[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

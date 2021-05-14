@@ -33,6 +33,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     var productDetailsAaay = [ProductData]()
     var comesFirstTime = Bool()
     let timer = Timer()
+    var orderID = Int()
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var enquiryDataTBView: UITableView!
     @IBOutlet weak var quantitylbl: UILabel!
@@ -94,6 +95,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                     PKWrapperClass.svprogressHudDismiss(view: self)
                     let status = response.data["status"] as? String ?? ""
                     self.messgae = response.data["message"] as? String ?? ""
+                    self.orderID = response.data["enquiry_id"] as? Int ?? 0
                     if status == "1"{
                         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
                         vc.modalPresentationStyle = .overCurrentContext
@@ -105,16 +107,23 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                                 }else{
                                     
                                 }
-                                let vc = MyOrderVC.instantiate(fromAppStoryboard: .Main)
+                                let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
+                                vc.enquiryID = "\(self.orderID)"
                                 self.navigationController?.pushViewController(vc, animated: true)
                             }
                         }
                         
                         self.present(vc, animated: true, completion: nil)
                         
-                    }else{
+                    }else if status == "0"{
                         PKWrapperClass.svprogressHudDismiss(view: self)
                         alert(Constant.shared.appTitle, message: self.messgae, view: self)
+                    } else if status == "100"{
+                        showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
+                            UserDefaults.standard.removeObject(forKey: "tokenFString")
+                            let appDel = UIApplication.shared.delegate as! AppDelegate
+                            appDel.Logout1()
+                        }
                     }
                 } failure: { (error) in
                     print(error)
@@ -168,9 +177,15 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                 }
                 self.categoryArray.append(EnquieyData(accessory: self.accessory, system: self.systemArray))
                 self.enquiryDataTBView.reloadData()
-            }else{
+            }else if status == "0"{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            } else if status == "100"{
+                showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
+                    UserDefaults.standard.removeObject(forKey: "tokenFString")
+                    let appDel = UIApplication.shared.delegate as! AppDelegate
+                    appDel.Logout1()
+                }
             }
         } failure: { (error) in
             print(error)

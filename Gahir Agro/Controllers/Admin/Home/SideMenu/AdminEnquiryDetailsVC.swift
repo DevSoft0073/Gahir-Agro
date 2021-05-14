@@ -63,9 +63,15 @@ class AdminEnquiryDetailsVC: UIViewController {
                 self.showImage.sd_setImage(with: URL(string:productDetails["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
                 self.nameLbl.text = productDetails["prod_model"] as? String ?? ""
                 self.modelNameLbl.text = productDetails["prod_name"] as? String ?? ""
-            }else{
+            }else if status == "0"{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            } else if status == "100"{
+                showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
+                    UserDefaults.standard.removeObject(forKey: "tokenFString")
+                    let appDel = UIApplication.shared.delegate as! AppDelegate
+                    appDel.Logout1()
+                }
             }
         } failure: { (error) in
             print(error)

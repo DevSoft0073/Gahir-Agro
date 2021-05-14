@@ -40,13 +40,15 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
         countryPicker.setTitle(country.countryCode, for: .highlighted)
         countryPicker.clipsToBounds = true
         
-        if delaerOrCustomerCode == "Dealer Code"{
+        if delaerOrCustomerCode == "Dealer Firm Name"{
+            self.serialViewHeight.constant = 100
         }else{
             serialnumberView.isHidden = true
-            self.serialnumberView.updateConstraint(attribute: NSLayoutConstraint.Attribute.height, constant: 0.0)
-            delaerorCustomerCodeLbl.isHidden = true
-            infoImg.isHidden = true
-            popupBtn.isHidden = true
+//            self.serialnumberView.updateConstraint(attribute: NSLayoutConstraint.Attribute.height, constant: 0.0)
+//            delaerorCustomerCodeLbl.isHidden = true
+//            infoImg.isHidden = true
+//            popupBtn.isHidden = true
+            self.serialViewHeight.constant = 0
         }
     }
     

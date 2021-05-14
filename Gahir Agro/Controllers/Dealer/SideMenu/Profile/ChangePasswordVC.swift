@@ -68,11 +68,19 @@ class ChangePasswordVC: UIViewController {
                 showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
                     self.navigationController?.popViewController(animated: true)
                 }
-            }else{
+            }else if status == "0"{
                 self.newPasswordTxtFld.resignFirstResponder()
                 self.confirmPasswordTxtFld.resignFirstResponder()
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            } else if status == "100"{
+                self.newPasswordTxtFld.resignFirstResponder()
+                self.confirmPasswordTxtFld.resignFirstResponder()
+                showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
+                    UserDefaults.standard.removeObject(forKey: "tokenFString")
+                    let appDel = UIApplication.shared.delegate as! AppDelegate
+                    appDel.Logout1()
+                }
             }
         } failure: { (error) in
             print(error)

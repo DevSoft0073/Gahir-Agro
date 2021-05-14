@@ -72,14 +72,43 @@ class SelectCategoryVC : UIViewController {
                 self.allCatCollectionView.reloadData()
             }else if status == "0"{
                 PKWrapperClass.svprogressHudDismiss(view: self)
-            }else{
-                UserDefaults.standard.removeObject(forKey: "tokenFString")
-                let appDel = UIApplication.shared.delegate as! AppDelegate
-                appDel.Logout1()
+                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            } else if status == "100"{
+                showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
+                    UserDefaults.standard.removeObject(forKey: "tokenFString")
+                    let appDel = UIApplication.shared.delegate as! AppDelegate
+                    appDel.Logout1()
+                }
             }
         } failure: { (error) in
             print(error)
             PKWrapperClass.svprogressHudDismiss(view: self)
+        }
+    }
+    
+    func startTimer() {
+
+        let timer =  Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(self.scrollAutomatically), userInfo: nil, repeats: true)
+    }
+    
+    @objc func scrollAutomatically(_ timer1: Timer) {
+
+        if let coll = categotyCollectionVIew {
+            for cell in coll.visibleCells {
+                let indexPath: IndexPath? = coll.indexPath(for: cell)
+                if ((indexPath?.row)! < catImages.count - 1){
+                    let indexPath1: IndexPath?
+                    indexPath1 = IndexPath.init(row: (indexPath?.row)! + 1, section: (indexPath?.section)!)
+
+                    coll.scrollToItem(at: indexPath1!, at: .right, animated: true)
+                }
+                else{
+                    let indexPath1: IndexPath?
+                    indexPath1 = IndexPath.init(row: 0, section: (indexPath?.section)!)
+                    coll.scrollToItem(at: indexPath1!, at: .left, animated: true)
+                }
+
+            }
         }
     }
     
@@ -99,6 +128,7 @@ class SelectCategoryVC : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.catData()
+        self.startTimer()
     }
     
     //------------------------------------------------------
@@ -116,14 +146,39 @@ class SelectCategoryVC : UIViewController {
     }
     
     @IBAction func searchBtn(_ sender: Any) {
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        transition.type = CATransitionType.fade
-        transition.subtype = CATransitionSubtype.fromTop
-        self.navigationController!.view.layer.add(transition, forKey: nil)
-        let writeView = self.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as! SearchVC
-        self.navigationController?.pushViewController(writeView, animated: false)
+        
+        let credentials = UserDefaults.standard.value(forKey: "tokenFString") as? Int ?? 0
+        
+        if credentials == 0{
+            
+            AppAlert.shared.simpleAlert(view: self, title: Constant.shared.appTitle, message: "You need to login to access this feature", buttonOneTitle: "Cancel", buttonTwoTitle: "OK")
+            AppAlert.shared.onTapAction = { [weak self] tag in
+                guard let self = self else {
+                    return
+                }
+                if tag == 0 {
+                    
+                }else if tag == 1 {
+                    let story = UIStoryboard(name: "Auth", bundle: nil)
+                    let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SignInWithVC")
+                    self.navigationController?.pushViewController(rootViewController, animated: true)
+//                    let appDel = UIApplication.shared.delegate as! AppDelegate
+//                    appDel.Logout1()
+                }
+            }
+            
+        }else{
+            
+            let transition = CATransition()
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+            transition.type = CATransitionType.fade
+            transition.subtype = CATransitionSubtype.fromTop
+            self.navigationController!.view.layer.add(transition, forKey: nil)
+            let writeView = self.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as! SearchVC
+            self.navigationController?.pushViewController(writeView, animated: false)
+            
+        }
     }
 }
 
@@ -199,7 +254,13 @@ extension SelectCategoryVC : UICollectionViewDelegate , UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == categotyCollectionVIew{
-            
+            if catArray[indexPath.row].feature_product == "0"{
+                
+            }else{
+                let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
+                vc.id = catArray[indexPath.item].feature_product
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }else{
             let vc = HomeVC.instantiate(fromAppStoryboard: .Main)
             vc.id = catArray[indexPath.item].id

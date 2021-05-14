@@ -9,6 +9,7 @@ import UIKit
 
 class SignUpVC: UIViewController ,UITextFieldDelegate{
     
+    @IBOutlet weak var firmNameTxtFld: UITextField!
     @IBOutlet weak var selectUnselectImage: UIImageView!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var passwordTxtFld: UITextField!
@@ -138,7 +139,7 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
         if roleVal == "Dealer Code" {
             SignUpUrl = Constant.shared.baseUrl + Constant.shared.SignUp
             
-            params = ["username":emailTxtFld.text ?? "", "first_name" : nameTxtFld.text ?? "", "password":passwordTxtFld.text ?? "" , "device_token" : deviceID! ,"device_type" : "iOS","dealer_code" : dealerCode , "phone" : self.phoneNumber] as? [String : AnyObject] ?? [:]
+            params = ["username":emailTxtFld.text ?? "", "first_name" : nameTxtFld.text ?? "", "password":passwordTxtFld.text ?? "" , "device_token" : deviceID! ,"device_type" : "iOS","dealer_code" : dealerCode , "phone" : self.phoneNumber, "firm_name" : firmNameTxtFld.text ?? ""] as? [String : AnyObject] ?? [:]
         }else{
             SignUpUrl = Constant.shared.baseUrl + Constant.shared.CustomerNewSignUp            
             

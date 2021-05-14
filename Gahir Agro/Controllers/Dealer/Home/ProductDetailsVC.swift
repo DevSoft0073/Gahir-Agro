@@ -13,15 +13,15 @@ class ProductDetailsVC: UIViewController ,NetworkSpeedProviderDelegate{
     
     
     func callWhileSpeedChange(networkStatus: NetworkStatus) {
-            switch networkStatus {
-            case .poor:
-                break
-            case .good:
-                break
-            case .disConnected:
-                break
-            }
+        switch networkStatus {
+        case .poor:
+            break
+        case .good:
+            break
+        case .disConnected:
+            break
         }
+    }
     
     let test = NetworkSpeedTestVC()
     var buttonTitle = String()
@@ -31,7 +31,7 @@ class ProductDetailsVC: UIViewController ,NetworkSpeedProviderDelegate{
     var mediaArray = [Media]()
     var messgae = String()
     var id = String()
-
+    
     @IBOutlet weak var enquiryButtonn: UIButton!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var productDetailsTBView: UITableView!
@@ -44,7 +44,7 @@ class ProductDetailsVC: UIViewController ,NetworkSpeedProviderDelegate{
         self.productDetails()
         
         test.delegate = self
-//        test.networkSpeedTestStop()
+        //        test.networkSpeedTestStop()
         test.networkSpeedTestStart(UrlForTestSpeed: "https://www.dharmani.com/gahir/api/GetProductDetail.php")
         
         self.productDetailsTBView.separatorStyle = .none
@@ -59,7 +59,7 @@ class ProductDetailsVC: UIViewController ,NetworkSpeedProviderDelegate{
     override func viewDidAppear(_ animated: Bool) {
     }
     
-//    MARK:- Button Actions
+    //    MARK:- Button Actions
     
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -67,23 +67,46 @@ class ProductDetailsVC: UIViewController ,NetworkSpeedProviderDelegate{
     
     @IBAction func enquiryButtonVc(_ sender: Any) {
         
-        buttonTitle = UserDefaults.standard.value(forKey: "checkRole") as? String ?? ""
-        if buttonTitle == "Customer"{
+        
+        let credentials = UserDefaults.standard.value(forKey: "tokenFString") as? Int ?? 0
+        
+        if credentials == 0{
             
-            let vc = AllVideosAndPDFListingVC.instantiate(fromAppStoryboard: .Main)
-            vc.allDataArray = mediaArray
-            self.navigationController?.pushViewController(vc, animated: true)
+            AppAlert.shared.simpleAlert(view: self, title: Constant.shared.appTitle, message: "You need to login to access this feature", buttonOneTitle: "Cancel", buttonTwoTitle: "OK")
+            AppAlert.shared.onTapAction = { [weak self] tag in
+                guard let self = self else {
+                    return
+                }
+                if tag == 0 {
+                    
+                }else if tag == 1 {
+                    let story = UIStoryboard(name: "Auth", bundle: nil)
+                    let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SignInWithVC")
+                    self.navigationController?.pushViewController(rootViewController, animated: true)
+                }
+            }
             
         }else{
             
-            let vc = EnquiryVC.instantiate(fromAppStoryboard: .Main)
-            vc.id = self.id
-            self.navigationController?.pushViewController(vc, animated: true)
+            buttonTitle = UserDefaults.standard.value(forKey: "checkRole") as? String ?? ""
+            if buttonTitle == "Customer"{
+                
+                let vc = AllVideosAndPDFListingVC.instantiate(fromAppStoryboard: .Main)
+                vc.allDataArray = mediaArray
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            }else{
+                
+                let vc = EnquiryVC.instantiate(fromAppStoryboard: .Main)
+                vc.id = self.id
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            }
             
         }
     }
     
-//    MARK:- Service Call
+    //    MARK:- Service Call
     
     func productDetails() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
@@ -120,19 +143,25 @@ class ProductDetailsVC: UIViewController ,NetworkSpeedProviderDelegate{
                 for product in productDetails{
                     if product.contains(":") == true{
                         let splittedProducts = product.split(separator: ":")
-//                        if splittedProducts.contains(":"){
-                            if splittedProducts.indices.contains(0) && splittedProducts.indices.contains(1){
-                                self.detailsDataArray.append(DetailsData( fieldName: String(splittedProducts[1]), fieldData: splittedProducts[0]))
-//                            }
+                        //                        if splittedProducts.contains(":"){
+                        if splittedProducts.indices.contains(0) && splittedProducts.indices.contains(1){
+                            self.detailsDataArray.append(DetailsData( fieldName: String(splittedProducts[1]), fieldData: splittedProducts[0]))
+                            //                            }
                         }
                     }else{
                         self.detailsDataArray.append(DetailsData(fieldName: "", fieldData: product))
                     }
                 }
                 self.productDetailsTBView.reloadData()
-            }else{
+            }else if status == "0"{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            } else if status == "100"{
+                showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
+                    UserDefaults.standard.removeObject(forKey: "tokenFString")
+                    let appDel = UIApplication.shared.delegate as! AppDelegate
+                    appDel.Logout1()
+                }
             }
         } failure: { (error) in
             print(error)

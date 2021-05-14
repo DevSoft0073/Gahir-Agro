@@ -81,10 +81,13 @@ class AdminEnquriesVC: UIViewController {
                 self.orderTBView.reloadData()
             }else if status == "0"{
                 PKWrapperClass.svprogressHudDismiss(view: self)
-            }else{
-                UserDefaults.standard.removeObject(forKey: "tokenFString")
-                let appDel = UIApplication.shared.delegate as! AppDelegate
-                appDel.Logout1()
+                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            } else if status == "100"{
+                showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
+                    UserDefaults.standard.removeObject(forKey: "tokenFString")
+                    let appDel = UIApplication.shared.delegate as! AppDelegate
+                    appDel.Logout1()
+                }
             }
         } failure: { (error) in
             print(error)

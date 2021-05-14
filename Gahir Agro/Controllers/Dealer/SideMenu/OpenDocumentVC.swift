@@ -85,6 +85,7 @@ class OpenDocumentVC : UIViewController ,WKNavigationDelegate{
                 if pdfUrl.isEmpty == true{
                     
                 }else{
+                    
                     let trimmedUrl = pdfUrl.trimmingCharacters(in: CharacterSet(charactersIn: "")).replacingOccurrences(of: "", with: "%20")
                     let url = URL(string: trimmedUrl)
                     let urlRequest = URLRequest(url: url!)
@@ -94,9 +95,15 @@ class OpenDocumentVC : UIViewController ,WKNavigationDelegate{
                     self.openPdf.autoresizingMask = [.flexibleWidth,.flexibleHeight]
                     self.view.addSubview(self.openPdf)
                 }
-            }else{
+            }else if status == "0"{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            } else if status == "100"{
+                showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
+                    UserDefaults.standard.removeObject(forKey: "tokenFString")
+                    let appDel = UIApplication.shared.delegate as! AppDelegate
+                    appDel.Logout1()
+                }
             }
         } failure: { (error) in
             print(error)

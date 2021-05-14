@@ -38,7 +38,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         updateUserLocationApi()
     }
     
-//    MARK:- Service Call Methods
+    //    MARK:- Service Call Methods
     
     func updateUserLocationApi(){
         let url = Constant.shared.baseUrl + Constant.shared.UpdateLocation
@@ -48,7 +48,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         if deviceID == nil  {
             deviceID = "777"
         }
-        let params = ["access_token": accessToken , "lat" : Singleton.sharedInstance.lat , "long" : Singleton.sharedInstance.long]  as? [String : AnyObject] ?? [:]
+        let params = ["access_token": "" , "lat" : Singleton.sharedInstance.lat , "long" : Singleton.sharedInstance.long]  as? [String : AnyObject] ?? [:]
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             let status = response.data["status"] as? String ?? ""
@@ -85,10 +85,12 @@ class HomeVC: UIViewController,UITextFieldDelegate {
                 self.allItemsTBView.reloadData()
             }else if status == "0"{
                 PKWrapperClass.svprogressHudDismiss(view: self)
-            }else{
-                UserDefaults.standard.removeObject(forKey: "tokenFString")
-                let appDel = UIApplication.shared.delegate as! AppDelegate
-                appDel.Logout1()
+            }else if status == "100"{
+                showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
+                    UserDefaults.standard.removeObject(forKey: "tokenFString")
+                    let appDel = UIApplication.shared.delegate as! AppDelegate
+                    appDel.Logout1()
+                }
             }
         } failure: { (error) in
             print(error)
@@ -96,23 +98,23 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         }
     }
     
-//    MARK:- Button Actions
+    //    MARK:- Button Actions
     
     @IBAction func openMenuButton(_ sender: Any) {
-     
+        
         self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func searchButton(_ sender: Any) {
         
-//        let transition = CATransition()
-//        transition.duration = 0.5
-//        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-//        transition.type = CATransitionType.fade
-//        transition.subtype = CATransitionSubtype.fromTop
-//        self.navigationController!.view.layer.add(transition, forKey: nil)
-//        let writeView = self.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as! SearchVC
-//        self.navigationController?.pushViewController(writeView, animated: false)
+        //        let transition = CATransition()
+        //        transition.duration = 0.5
+        //        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        //        transition.type = CATransitionType.fade
+        //        transition.subtype = CATransitionSubtype.fromTop
+        //        self.navigationController!.view.layer.add(transition, forKey: nil)
+        //        let writeView = self.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as! SearchVC
+        //        self.navigationController?.pushViewController(writeView, animated: false)
     }
 }
 
@@ -120,6 +122,7 @@ class HomeVC: UIViewController,UITextFieldDelegate {
 
 class AlItemsTBViewCell: UITableViewCell {
     
+    @IBOutlet weak var nxtBtn: UIButton!
     @IBOutlet weak var modelName: UILabel!
     @IBOutlet weak var checkAvailabiltyButton: UIButton!
     @IBOutlet weak var detailsLbl: UILabel!
@@ -153,9 +156,9 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
             cell.showImage.roundTop()
             cell.modelName.text = filterProDArray[indexPath.row].prod_model
             currentIndex = filterProDArray[indexPath.row].id
-            cell.checkAvailabiltyButton.tag = indexPath.row
+            cell.nxtBtn.tag = indexPath.row
             cell.priceLbl.text = "₹\(filterProDArray[indexPath.row].prod_price)"
-           // cell.checkAvailabiltyButton.addTarget(self, action: #selector(goto), for: .touchUpInside)
+            cell.nxtBtn.addTarget(self, action: #selector(goto), for: .touchUpInside)
             if buttonTitle == "Customer"{
                 cell.checkAvailabiltyButton.setTitle("More Details", for: .normal)
             }else{
@@ -165,20 +168,20 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource{
         return cell
     }
     
-//    @objc func goto(sender : UIButton) {
-//        if [sender.tag].id.isEmpty == true{
-//        }else{
-//            let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
-//            vc.id = filterProDArray[sender.tag].id
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
-//    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
-        vc.id = filterProDArray[indexPath.row].id
-        self.navigationController?.pushViewController(vc, animated: true)
+    @objc func goto(sender : UIButton) {
+        if [sender.tag].isEmpty == true{
+        }else{
+            let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
+            vc.id = filterProDArray[sender.tag].id
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)
+//        vc.id = filterProDArray[indexPath.row].id
+//        self.navigationController?.pushViewController(vc, animated: true)
+//    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
@@ -243,7 +246,7 @@ extension  UIView {
 
 
 struct FilterProductData {
-     init(id: String, prod_cat: String, prod_desc: String, prod_image: String, prod_model: String, prod_name: String, prod_price: String, prod_sno: String) {
+    init(id: String, prod_cat: String, prod_desc: String, prod_image: String, prod_model: String, prod_name: String, prod_price: String, prod_sno: String) {
         self.id = id
         self.prod_cat = prod_cat
         self.prod_desc = prod_desc

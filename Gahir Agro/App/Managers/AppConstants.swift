@@ -9,7 +9,7 @@
 import UIKit
 
 
-let kAppName : String = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? "Restored Glory Christian Center"
+let kAppName : String = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? "Gahir Agro"
 let kAppBundleIdentifier : String = Bundle.main.bundleIdentifier ?? String()
 
 class KeyMessages{

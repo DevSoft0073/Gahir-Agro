@@ -10,24 +10,21 @@ import UIKit
 class ThankYouVC: UIViewController {
     
     
-    @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var thankYouView: UIView!
     @IBOutlet weak var popUpView: UIView!
     var enquiryRedirection:(()->Void)?
     var centerFrame : CGRect!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.okButton.layer.cornerRadius = self.okButton.bounds.size.height * 0.3
-        if #available(iOS 11, *) {
-            self.okButton.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        }
+        
         view.isOpaque = true
         let mytapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         self.view.addGestureRecognizer(mytapGestureRecognizer)
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0){
-//            let vc = EnquriesVC.instantiate(fromAppStoryboard: .Main)
-//            self.navigationController?.pushViewController(vc, animated: false)
-//        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
+            self.dismiss(animated: true) {
+                self.enquiryRedirection?()
+            }
+        }
     }
     
     //    MARK:- Show Popup
@@ -42,15 +39,7 @@ class ThankYouVC: UIViewController {
         super.viewDidLayoutSubviews()
         centerFrame = self.thankYouView.frame
     }
-    
-    @IBAction func okButtonAction(_ sender: Any) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0){
-            self.dismiss(animated: true) {
-                self.enquiryRedirection?()
-            }
-        }
-    }
-    
+
     func presentPopUp()  {
         
         thankYouView.frame = CGRect(x: centerFrame.origin.x, y: view.frame.size.height, width: centerFrame.width, height: centerFrame.height)

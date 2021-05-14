@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import Alamofire
 
 class BookOrderVC: UIViewController {
 
@@ -17,20 +18,21 @@ class BookOrderVC: UIViewController {
     var amount = String()
     var quantity = String()
     var accessoriesName = String()
-    var status = String()
+    var enqStatus = String()
     var image = String()
     var productTitle = String()
     
+    @IBOutlet weak var orderDetailsStackView: UIStackView!
+    @IBOutlet weak var statusStackView: UIStackView!
+    @IBOutlet weak var orderStatusTxt: UILabel!
+    @IBOutlet weak var orderTimeLbl: UILabel!
     @IBOutlet weak var bookOrderButton: UIButton!
     @IBOutlet weak var showStatus: UILabel!
     @IBOutlet weak var quantityLbl: UILabel!
-    @IBOutlet weak var titleLbl: UILabel!
-    @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var showImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-//        enquiryDetails()
-        
+        self.statusStackView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,17 +82,22 @@ class BookOrderVC: UIViewController {
             if status == "1"{
                 let enquiryData = response.data["enquiry_detail"] as? [String:Any] ?? [:]
                 self.quantityLbl.text = enquiryData["qty"] as? String ?? ""
-                self.showStatus.text = enquiryData["status"] as? String ?? ""
+                self.showStatus.text = enquiryData["dispatch_day"] as? String ?? ""
+                self.orderTimeLbl.text = "\(enquiryData["order_time"] as? Int ?? 0) hr"
+                self.orderStatusTxt.text = enquiryData["status_text"] as? String ?? ""
                 let productDetails = enquiryData["product_detail"] as? [String:Any] ?? [:]
-                if self.showStatus.text == "Not Responded"{
+                self.enqStatus = enquiryData["enq_status"] as? String ?? ""
+                if self.enqStatus == "0" || self.enqStatus == "8" || self.enqStatus == "9"{
+                    self.orderDetailsStackView.isHidden = true
+                    self.statusStackView.isHidden = false
                     self.bookOrderButton.isHidden = true
                 }else{
                     self.bookOrderButton.isHidden = false
+                    self.statusStackView.isHidden = true
+                    self.orderDetailsStackView.isHidden = false
                 }
                 print(productDetails)
                 self.showImage.sd_setImage(with: URL(string:productDetails["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
-                self.titleLbl.text = productDetails["prod_model"] as? String ?? ""
-                self.nameLbl.text = productDetails["prod_name"] as? String ?? ""
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
@@ -100,5 +107,5 @@ class BookOrderVC: UIViewController {
             PKWrapperClass.svprogressHudDismiss(view: self)
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
-    }    
+    }
 }
