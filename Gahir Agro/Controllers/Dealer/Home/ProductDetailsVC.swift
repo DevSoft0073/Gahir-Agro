@@ -80,6 +80,7 @@ class ProductDetailsVC: UIViewController ,NetworkSpeedProviderDelegate{
                 if tag == 0 {
                     
                 }else if tag == 1 {
+                    UserDefaults.standard.set(true, forKey: "fromguestLogin")
                     let story = UIStoryboard(name: "Auth", bundle: nil)
                     let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SignInWithVC")
                     self.navigationController?.pushViewController(rootViewController, animated: true)

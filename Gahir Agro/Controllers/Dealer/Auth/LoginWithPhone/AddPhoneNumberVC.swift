@@ -115,8 +115,8 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
         if mobileTxtFld.text?.isEmpty == true{
             ValidateData(strMessage: "Please enter phone number")
         }else if serialNumberTxtFld.text?.isEmpty == true{
-            if selectedValue == "Dealer SignUp"{
-                ValidateData(strMessage: "Please enter Dealer Code")
+            if delaerOrCustomerCode == "Dealer Firm Name"{
+                ValidateData(strMessage: "Please enter dealer firm name")
             }else{
                 verifyUser()
             }
@@ -139,7 +139,7 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
         if deviceID == nil  {
             deviceID = "777"
         }
-        if delaerOrCustomerCode == "Dealer Code"{
+        if delaerOrCustomerCode == "Dealer Firm Name"{
             verifyUrl = Constant.shared.baseUrl + Constant.shared.VerifyDealer
             params = ["dealer_code" : serialNumberTxtFld.text ?? "" , "phone" : number] as? [String : AnyObject] ?? [:]
         }else{
@@ -190,7 +190,7 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
                 if error.localizedDescription == "Invalid format."{
                     alert(Constant.shared.appTitle, message: "Please enter valid phone number.", view: self)
                 }else{
-                    alert(Constant.shared.appTitle, message: error.localizedDescription, view: self)
+                    alert(Constant.shared.appTitle, message: "Please enter valid phone number.", view: self)
                 }
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)

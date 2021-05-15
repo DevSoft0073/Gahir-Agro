@@ -12,6 +12,7 @@ class SideMenuVC: UIViewController {
     
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
+    var name = String()
     var sideMenuItemsArray : [SideMenuItems] = []{
         didSet{
             settingTBView.reloadData()
@@ -23,20 +24,11 @@ class SideMenuVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let credentials = UserDefaults.standard.value(forKey: "tokenFString") as? Int ?? 0
-        
-        if credentials == 0{
-            
-            self.nameLbl.text = "login/Signup"
-            
-        }else{
-            
-            self.nameLbl.text = ""
-            
-        }
         getData()
         
-        
+        let credentials = UserDefaults.standard.value(forKey: "tokenFString") as? Int ?? 0
+
+
         if credentials == 0{
             
             sideMenuItemsArray.append(SideMenuItems(name: "Home", selectedImage: "home", selected: true, unselected: "home-1"))
@@ -65,20 +57,19 @@ class SideMenuVC: UIViewController {
                 sideMenuItemsArray.append(SideMenuItems(name: "Privacy Policy", selectedImage: "privacy", selected: false, unselected: "privacy-1"))
                 sideMenuItemsArray.append(SideMenuItems(name: "Logout", selectedImage: "logout", selected: false, unselected: "logout-1"))
             }
-            
         }
         
-        
         self.settingTBView.separatorStyle = .none
-        
-        //        NotificationCenter.default.addObserver(self, selector: #selector(self.notificationReceived(_:)), name: .sendUserData, object: nil)
-        
+                
         NotificationCenter.default.addObserver(self, selector: #selector(self.notificationReceived(_:)), name: .sendUserData, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.showSelected(_:)), name: .sendUserData, object: nil)
         
         // Do any additional setup after loading the view.
     }
+    
+    
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -130,8 +121,11 @@ class SideMenuVC: UIViewController {
         
         if credentials == 0{
             
-            let appDel = UIApplication.shared.delegate as! AppDelegate
-            appDel.Logout1()
+            UserDefaults.standard.set(true, forKey: "fromguestLogin")
+            let story = UIStoryboard(name: "Auth", bundle: nil)
+            let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SignInWithVC")
+            self.navigationController?.pushViewController(rootViewController, animated: true)
+            
             
         }else{
             
@@ -150,9 +144,10 @@ class SideMenuVC: UIViewController {
     }
     
     func logout()  {
-        UserDefaults.standard.removeObject(forKey: "tokenFString")
+        self.nameLbl.text = "Login/Signup"
+        UserDefaults.standard.set(0, forKey: "tokenFString")
         let appDel = UIApplication.shared.delegate as! AppDelegate
-        appDel.Logout1()
+        appDel.redirectToHomeVC()
     }
     
     func getData() {
@@ -172,7 +167,17 @@ class SideMenuVC: UIViewController {
             if status == "1"{
                 let allData = response.data["user_detail"] as? [String:Any] ?? [:]
                 self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"), options: SDWebImageOptions.continueInBackground, completed: nil)
-                self.nameLbl.text = allData["first_name"] as? String ?? ""
+                self.name = allData["first_name"] as? String ?? ""
+                let credentials = UserDefaults.standard.value(forKey: "tokenFString") as? Int ?? 0
+                
+                if credentials == 0{
+                    
+                    self.nameLbl.text = "Login/Signup"
+                    
+                }else if credentials == 1{
+                    
+                    self.nameLbl.text = allData["first_name"] as? String ?? ""
+                }
                 
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
@@ -228,6 +233,8 @@ extension SideMenuVC : UITableViewDelegate , UITableViewDataSource{
                 if tag == 0 {
                     
                 }else if tag == 1 {
+                    UserDefaults.standard.set(true, forKey: "fromguestLogin")
+                    UserDefaults.standard.set(1, forKey: "fromDetails")
                     let story = UIStoryboard(name: "Auth", bundle: nil)
                     let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SignInWithVC")
                     self.navigationController?.pushViewController(rootViewController, animated: true)

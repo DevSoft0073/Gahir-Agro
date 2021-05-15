@@ -9,35 +9,27 @@ import UIKit
 
 class SignInWithVC: UIViewController{
 
-    @IBOutlet weak var backOmg: UIButton!
+    @IBOutlet weak var backImg: UIImageView!
     @IBOutlet weak var backBtn: UIButton!
     var role = PKWrapperClass.getRole()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        backOmg.isHidden = true
-        backBtn.isHidden = true
-        
         print(role)
         
-        let comesFrom = UserDefaults.standard.value(forKey: "comesFromLogout") as? Bool ?? false
         
-        if comesFrom == true {
-            backOmg.isHidden = true
-            backBtn.isHidden = true
-        }else{
-            backOmg.isHidden = false
+        if UserDefaults.standard.value(forKey: "fromguestLogin") as? Bool ?? false == true {
+            backImg.isHidden = false
             backBtn.isHidden = false
+        }else{
+            backImg.isHidden = true
+            backBtn.isHidden = true
         }
-
+        
         // Do any additional setup after loading the view.
     }
     
 //    MARK:- Button Actions
     
-    @IBAction func backButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
     
     @IBAction func logInWithPhoneButtonAction(_ sender: Any) {
         let vc = SignInWithPhone.instantiate(fromAppStoryboard: .Auth)
@@ -53,7 +45,10 @@ class SignInWithVC: UIViewController{
         self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func backBtn(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        
+        
+        AppDelegate().redirectToHomeVC()
+        
+        
     }
-    
 }

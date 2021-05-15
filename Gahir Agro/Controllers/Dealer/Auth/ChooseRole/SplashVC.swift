@@ -43,9 +43,7 @@ class SplashVC: UIViewController {
             
         }else if credentials == 0{
             UserDefaults.standard.removeObject(forKey: "accessToken")
-            
             UserDefaults.standard.setValue(false, forKey: "comesFromLogout")
-            
             let story = UIStoryboard(name: "Main", bundle: nil)
             let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SideMenuControllerID")
             self.navigationController?.pushViewController(rootViewController, animated: true)

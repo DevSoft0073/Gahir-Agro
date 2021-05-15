@@ -509,7 +509,6 @@
                                 </constraints>
                                 <connections>
                                     <action selector="backBtn:" destination="NbH-0n-Y0U" eventType="touchUpInside" id="agb-F4-IJN"/>
-                                    <action selector="backButton:" destination="NbH-0n-Y0U" eventType="touchUpInside" id="K0t-RY-GkL"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -541,7 +540,7 @@
                     <navigationItem key="navigationItem" id="uNS-3r-eyJ"/>
                     <connections>
                         <outlet property="backBtn" destination="Jd6-EO-0mO" id="B7Y-cp-MYV"/>
-                        <outlet property="backOmg" destination="Jd6-EO-0mO" id="qcM-1g-xxA"/>
+                        <outlet property="backImg" destination="fmj-BU-jTh" id="GH2-FN-Bpk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aru-Zf-IDS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2727,7 +2726,7 @@
         <image name="icon" width="393" height="404"/>
         <image name="icon0" width="69" height="69"/>
         <image name="icon1" width="62" height="62"/>
-        <image name="img" width="230" height="230"/>
+        <image name="img" width="640" height="930"/>
         <image name="informations" width="243" height="243"/>
         <image name="left-arrow" width="128" height="128"/>
         <image name="logo" width="511" height="435"/>

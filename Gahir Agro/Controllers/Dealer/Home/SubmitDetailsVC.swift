@@ -88,7 +88,7 @@ class SubmitDetailsVC: UIViewController {
         if utrNumberTxtFld.text?.isEmpty == true{
             ValidateData(strMessage: "UTR field should not be empty")
         }else if amountTxtFld.text?.isEmpty == true{
-            ValidateData(strMessage: "Please add ammount")
+            ValidateData(strMessage: "Please deposit amount")
         }else{
             addOrder()
         }

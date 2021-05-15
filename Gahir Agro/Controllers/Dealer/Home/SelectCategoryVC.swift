@@ -135,6 +135,7 @@ class SelectCategoryVC : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
     }
     
     //------------------------------------------------------
@@ -159,11 +160,10 @@ class SelectCategoryVC : UIViewController {
                 if tag == 0 {
                     
                 }else if tag == 1 {
+                    UserDefaults.standard.set(true, forKey: "fromguestLogin")
                     let story = UIStoryboard(name: "Auth", bundle: nil)
                     let rootViewController:UIViewController = story.instantiateViewController(withIdentifier: "SignInWithVC")
                     self.navigationController?.pushViewController(rootViewController, animated: true)
-//                    let appDel = UIApplication.shared.delegate as! AppDelegate
-//                    appDel.Logout1()
                 }
             }
             
@@ -180,13 +180,21 @@ class SelectCategoryVC : UIViewController {
             
         }
     }
+    
+    
+    func applyShadowOnView(_ view: UIView) {
+        view.layer.cornerRadius = 5
+        view.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        view.layer.shadowOpacity = 0.1
+        view.layer.shadowOffset = .zero
+        view.layer.shadowRadius = 5
+    }
 }
 
 class featuredProductCell: UICollectionViewCell {
     
     @IBOutlet weak var showImage: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
-    @IBOutlet weak var colorView: UIView!
     override class func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -216,14 +224,14 @@ extension SelectCategoryVC : UICollectionViewDelegate , UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == categotyCollectionVIew{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "featuredProductCell", for: indexPath) as! featuredProductCell
-            // cell.nameLbl.text = catArray[indexPath.item].name
             cell.showImage.sd_setImage(with: URL(string: catArray[indexPath.item].image), placeholderImage: UIImage(named: ""), options: SDWebImageOptions.continueInBackground, completed: nil)
-            cell.colorView.backgroundColor = getRandomColor()
+            applyShadowOnView(cell.contentView)
             self.pageControl.numberOfPages = catArray.count
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! categoryCell
             cell.colorView.backgroundColor = getRandomColor()
+            applyShadowOnView(cell.contentView)
             cell.nameLbl.text = catArray[indexPath.item].name
             cell.showImage.image = UIImage(named: catImages[indexPath.item])
             return cell
@@ -324,3 +332,31 @@ struct CatData {
     }
 }
 
+extension UIView {
+
+  // OUTPUT 1
+  func dropShadow(scale: Bool = true) {
+    layer.masksToBounds = false
+    layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+    layer.shadowOpacity = 0.8
+    layer.shadowOffset = CGSize(width: 3, height: 3)
+    layer.shadowRadius = 1
+
+    layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+    layer.shouldRasterize = true
+    layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+  }
+
+  // OUTPUT 2
+  func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
+    layer.masksToBounds = false
+    layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+    layer.shadowOpacity = opacity
+    layer.shadowOffset = offSet
+    layer.shadowRadius = radius
+
+    layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+    layer.shouldRasterize = true
+    layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+  }
+}

@@ -136,7 +136,7 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
         }
         
         let roleVal = UserDefaults.standard.value(forKey: "getRole") as? String ?? ""
-        if roleVal == "Dealer Code" {
+        if roleVal == "Dealer Firm Name" {
             SignUpUrl = Constant.shared.baseUrl + Constant.shared.SignUp
             
             params = ["username":emailTxtFld.text ?? "", "first_name" : nameTxtFld.text ?? "", "password":passwordTxtFld.text ?? "" , "device_token" : deviceID! ,"device_type" : "iOS","dealer_code" : dealerCode , "phone" : self.phoneNumber, "firm_name" : firmNameTxtFld.text ?? ""] as? [String : AnyObject] ?? [:]
