@@ -31,6 +31,7 @@ class ProductDetailsVC: UIViewController ,NetworkSpeedProviderDelegate{
     var mediaArray = [Media]()
     var messgae = String()
     var id = String()
+    var img = String()
     
     @IBOutlet weak var enquiryButtonn: UIButton!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
@@ -60,6 +61,19 @@ class ProductDetailsVC: UIViewController ,NetworkSpeedProviderDelegate{
     }
     
     //    MARK:- Button Actions
+    
+    @IBAction func showImgBtn(_ sender: Any) {
+//        let transition = CATransition()
+//        transition.duration = 0.5
+//        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+//        transition.type = CATransitionType.fade
+//        transition.subtype = CATransitionSubtype.fromTop
+//        self.navigationController!.view.layer.add(transition, forKey: nil)
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ShowImageVC") as! ShowImageVC
+//        vc.imageViews = showImage
+//        self.navigationController?.pushViewController(vc, animated: false)
+    }
+    
     
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -139,6 +153,7 @@ class ProductDetailsVC: UIViewController ,NetworkSpeedProviderDelegate{
                 }
                 self.namelbl.text = allData["prod_name"] as? String ?? ""
                 self.modelLbl.text = allData["prod_model"] as? String ?? ""
+                self.img = allData["prod_image"] as? String ?? ""
                 self.showImage.sd_setImage(with: URL(string: allData["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
                 let productDetails = allData["prod_desc"] as? [String] ?? [""]
                 for product in productDetails{

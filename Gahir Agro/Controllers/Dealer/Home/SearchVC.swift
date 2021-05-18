@@ -295,6 +295,7 @@ class SearchDataTBViewCell: UITableViewCell {
 
 class ShowSearchedDataTBViewCell: UITableViewCell {
     
+    @IBOutlet weak var nextbtn: UIButton!
     @IBOutlet weak var checkAvailabiltyButton: UIButton!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var detailsLbl: UILabel!
@@ -313,20 +314,10 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == searchDataTBView{
-            
-//            if searchArray.count == 0 {
-//                self.searchDataTBView.setEmptyMessage("No data")
-//            } else {
-//                self.searchDataTBView.restore()
-//            }
             return searchArray.count
             
         }else{
-//            if tableViewDataArray.count == 0 {
-//                self.showSearchedDataTBView.setEmptyMessage("No data")
-//            } else {
-//                self.showSearchedDataTBView.restore()
-//            }
+
             return tableViewDataArray.count
         }
     }
@@ -340,16 +331,24 @@ extension SearchVC : UITableViewDelegate , UITableViewDataSource{
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "ShowSearchedDataTBViewCell", for: indexPath) as! ShowSearchedDataTBViewCell
             cell.nameLbl.text = tableViewDataArray[indexPath.row].name
+            cell.showImage.sd_setShowActivityIndicatorView(true)
+            if #available(iOS 13.0, *) {
+                cell.showImage.sd_setIndicatorStyle(.large)
+            } else {
+                // Fallback on earlier versions
+            }
+            cell.showImage.sd_setImage(with: URL(string: tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
+            cell.showImage.roundTop()
             currentIndex = tableViewDataArray[indexPath.row].id
             cell.detailsLbl.text = "₹\(tableViewDataArray[indexPath.row].price)"
-            cell.typeLbl.text = tableViewDataArray[indexPath.row].prod_desc
-            cell.showImage.sd_setImage(with: URL(string:tableViewDataArray[indexPath.row].image), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
-            cell.showImage.roundTop()
-            cell.checkAvailabiltyButton.addTarget(self, action: #selector(goto), for: .touchUpInside)
+            cell.typeLbl.text = tableViewDataArray[indexPath.row].details
+//            cell.checkAvailabiltyButton.addTarget(self, action: #selector(goto), for: .touchUpInside)
+            cell.nextbtn.addTarget(self, action: #selector(goto), for: .touchUpInside)
             return cell
         }
     }
 
+    
     
     @objc func goto() {
         let vc = ProductDetailsVC.instantiate(fromAppStoryboard: .Main)

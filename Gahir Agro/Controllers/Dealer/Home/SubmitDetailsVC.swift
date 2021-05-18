@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SubmitDetailsVC: UIViewController {
+class SubmitDetailsVC: UIViewController  , UITextFieldDelegate{
 
     var enquiryID = String()
     var messgae = String()
@@ -26,9 +26,6 @@ class SubmitDetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         amount = amount.replacingOccurrences(of: ",", with: "")
-
-//        let amountVal = NumberFormatter().number(from: amount)?.floatValue ?? 0.0
-//        let quantityVal = NumberFormatter().number(from: quantity)?.floatValue ?? 0.0
         nameTxtFld.text = name
         quantityTxtFld.text = quantity
         dealerCodeTxtFld.text = UserDefaults.standard.value(forKey: "code") as? String ?? ""
@@ -40,6 +37,38 @@ class SubmitDetailsVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         enquiryDetails()
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == amountTxtFld{
+            // Uses the number format corresponding to your Locale
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .decimal
+            formatter.locale = Locale.current
+            formatter.maximumFractionDigits = 0
+            if let groupingSeparator = formatter.groupingSeparator {
+                
+                if string == groupingSeparator {
+                    return true
+                }
+                
+                
+                if let textWithoutGroupingSeparator = amountTxtFld.text?.replacingOccurrences(of: groupingSeparator, with: "") {
+                    var totalTextWithoutGroupingSeparators = textWithoutGroupingSeparator + string
+                    if string.isEmpty { // pressed Backspace key
+                        totalTextWithoutGroupingSeparators.removeLast()
+                    }
+                    if let numberWithoutGroupingSeparator = formatter.number(from: totalTextWithoutGroupingSeparators),
+                       let formattedText = formatter.string(from: numberWithoutGroupingSeparator) {
+                        
+                        amountTxtFld.text = formattedText
+                        return false
+                    }
+                }
+            }
+        }
+        return true
+    }
+    
     
     //    MARK:- Service Call
         
@@ -85,10 +114,11 @@ class SubmitDetailsVC: UIViewController {
     }
     
     @IBAction func submitButtonAction(_ sender: Any) {
-        if utrNumberTxtFld.text?.isEmpty == true{
-            ValidateData(strMessage: "UTR field should not be empty")
-        }else if amountTxtFld.text?.isEmpty == true{
+        if amountTxtFld.text?.isEmpty == true{
             ValidateData(strMessage: "Please deposit amount")
+        }
+        else if utrNumberTxtFld.text?.isEmpty == true{
+            ValidateData(strMessage: "UTR field should not be empty")
         }else{
             addOrder()
         }
@@ -150,4 +180,20 @@ class SubmitDetailsVC: UIViewController {
 
 extension Notification.Name {
     public static let showHomeSelectedAdminSideMenu = Notification.Name(rawValue: "showHomeSelected")
+}
+
+extension Formatter {
+    static let withSeparator: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyGroupingSeparator = ","
+        formatter.locale = Locale(identifier: "en_US") //for USA's currency patter
+        return formatter
+    }()
+}
+
+extension Numeric {
+    var formattedWithSeparator: String {
+        return Formatter.withSeparator.string(for: self) ?? ""
+    }
 }

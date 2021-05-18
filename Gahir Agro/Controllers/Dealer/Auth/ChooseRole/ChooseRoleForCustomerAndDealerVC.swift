@@ -28,7 +28,7 @@ class ChooseRoleForCustomerAndDealerVC: UIViewController {
         customerView.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         let vc = AddPhoneNumberVC.instantiate(fromAppStoryboard: .Auth)
         vc.selectedValue = "Dealer Signup"
-        vc.delaerOrCustomerCode = "Dealer Firm Name"
+        vc.delaerOrCustomerCode = "Dealer Code"
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

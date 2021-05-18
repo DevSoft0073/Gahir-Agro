@@ -40,7 +40,7 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
         countryPicker.setTitle(country.countryCode, for: .highlighted)
         countryPicker.clipsToBounds = true
         
-        if delaerOrCustomerCode == "Dealer Firm Name"{
+        if delaerOrCustomerCode == "Dealer Code"{
             self.serialViewHeight.constant = 100
         }else{
             serialnumberView.isHidden = true
@@ -115,7 +115,7 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
         if mobileTxtFld.text?.isEmpty == true{
             ValidateData(strMessage: "Please enter phone number")
         }else if serialNumberTxtFld.text?.isEmpty == true{
-            if delaerOrCustomerCode == "Dealer Firm Name"{
+            if delaerOrCustomerCode == "Dealer Code"{
                 ValidateData(strMessage: "Please enter dealer firm name")
             }else{
                 verifyUser()
@@ -139,7 +139,7 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
         if deviceID == nil  {
             deviceID = "777"
         }
-        if delaerOrCustomerCode == "Dealer Firm Name"{
+        if delaerOrCustomerCode == "Dealer Code"{
             verifyUrl = Constant.shared.baseUrl + Constant.shared.VerifyDealer
             params = ["dealer_code" : serialNumberTxtFld.text ?? "" , "phone" : number] as? [String : AnyObject] ?? [:]
         }else{

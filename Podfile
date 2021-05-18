@@ -19,6 +19,9 @@ target 'Gahir Agro' do
     pod 'VersaPlayer'
     pod 'OTPFieldView'
     pod 'Charts'
+    pod 'ISVImageScrollView'
+
+
 
    
 

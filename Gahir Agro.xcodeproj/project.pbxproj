@@ -92,6 +92,9 @@
 		185B48F42601C36E0021089C /* AdminEditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B48F32601C36E0021089C /* AdminEditProfileVC.swift */; };
 		185B49072601C8F40021089C /* AdminHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B49062601C8F40021089C /* AdminHomeVC.swift */; };
 		185B490F2601C9270021089C /* AdminEnquriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B490E2601C9270021089C /* AdminEnquriesVC.swift */; };
+		186FDAE42653EC7D009DBE8C /* ShowImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FDAE32653EC7D009DBE8C /* ShowImageVC.swift */; };
+		186FDAED265409FF009DBE8C /* ZoomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FDAEA265409FE009DBE8C /* ZoomImageView.swift */; };
+		186FDAF026540A34009DBE8C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 186FDAEF26540A34009DBE8C /* Info.plist */; };
 		1872905025FF388900A83349 /* CustomerProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1872904F25FF388900A83349 /* CustomerProfileVC.swift */; };
 		1872905525FF389F00A83349 /* CustomerEditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1872905425FF389F00A83349 /* CustomerEditProfileVC.swift */; };
 		1872905A25FF38C100A83349 /* CustomerNotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1872905925FF38C100A83349 /* CustomerNotificationVC.swift */; };
@@ -240,6 +243,10 @@
 		185B48F32601C36E0021089C /* AdminEditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminEditProfileVC.swift; sourceTree = "<group>"; };
 		185B49062601C8F40021089C /* AdminHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeVC.swift; sourceTree = "<group>"; };
 		185B490E2601C9270021089C /* AdminEnquriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminEnquriesVC.swift; sourceTree = "<group>"; };
+		186FDAE32653EC7D009DBE8C /* ShowImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowImageVC.swift; sourceTree = "<group>"; };
+		186FDAEA265409FE009DBE8C /* ZoomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomImageView.swift; sourceTree = "<group>"; };
+		186FDAEC265409FF009DBE8C /* ZoomImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomImageView.h; sourceTree = "<group>"; };
+		186FDAEF26540A34009DBE8C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1872904F25FF388900A83349 /* CustomerProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerProfileVC.swift; sourceTree = "<group>"; };
 		1872905425FF389F00A83349 /* CustomerEditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerEditProfileVC.swift; sourceTree = "<group>"; };
 		1872905925FF38C100A83349 /* CustomerNotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerNotificationVC.swift; sourceTree = "<group>"; };
@@ -565,6 +572,7 @@
 		184B116B25E36D8C003007A2 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				186FDAE9265409E3009DBE8C /* Zoom */,
 				184B117225E36E1C003007A2 /* Classes */,
 				184B117125E36DF1003007A2 /* Formatting */,
 				184B117025E36DE5003007A2 /* Managers */,
@@ -704,6 +712,7 @@
 				1815DECE260B45C40072771E /* PlayVideo */,
 				185854982605DF5F00F78097 /* PdfViewerVC.swift */,
 				1815DEC1260B15160072771E /* AllVideosAndPDFListingVC.swift */,
+				186FDAE32653EC7D009DBE8C /* ShowImageVC.swift */,
 			);
 			path = "Product Details";
 			sourceTree = "<group>";
@@ -716,6 +725,16 @@
 				18B0D093260C948B00904C92 /* AdminChangePasswordVC.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		186FDAE9265409E3009DBE8C /* Zoom */ = {
+			isa = PBXGroup;
+			children = (
+				186FDAEC265409FF009DBE8C /* ZoomImageView.h */,
+				186FDAEA265409FE009DBE8C /* ZoomImageView.swift */,
+				186FDAEF26540A34009DBE8C /* Info.plist */,
+			);
+			path = Zoom;
 			sourceTree = "<group>";
 		};
 		1872904E25FF386F00A83349 /* Profile */ = {
@@ -933,6 +952,7 @@
 				180EEAEA25E3B73100D6327A /* Poppins-Bold.otf in Resources */,
 				180EEAE125E3B73100D6327A /* SIL Open Font License.txt in Resources */,
 				180EEAE025E3B73100D6327A /* Poppins-ExtraBold.otf in Resources */,
+				186FDAF026540A34009DBE8C /* Info.plist in Resources */,
 				1807058425E7690C00DBE739 /* Customer.storyboard in Resources */,
 				184A8B0C25FB90E7000583C5 /* AuthForCustomer.storyboard in Resources */,
 				180EEAED25E3B73100D6327A /* Poppins-BoldItalic.otf in Resources */,
@@ -1094,6 +1114,7 @@
 				18424EFE2600CE6E0039CCBF /* LogInVC.swift in Sources */,
 				185B49072601C8F40021089C /* AdminHomeVC.swift in Sources */,
 				184B113D25E36C74003007A2 /* ViewController.swift in Sources */,
+				186FDAED265409FF009DBE8C /* ZoomImageView.swift in Sources */,
 				184A8AEF25FB8A1C000583C5 /* OTPVerificationForCustomerVC.swift in Sources */,
 				180847D325E4DBB000D04E69 /* SideMenuVC.swift in Sources */,
 				180DB99D264D1F6300A30F86 /* AppAlert.swift in Sources */,
@@ -1147,6 +1168,7 @@
 				185B48DC2601C30A0021089C /* AdminSideMenuVC.swift in Sources */,
 				18157E1225E5095300E4451C /* ProductDetailsVC.swift in Sources */,
 				184B11C225E37259003007A2 /* HelperMethods.swift in Sources */,
+				186FDAE42653EC7D009DBE8C /* ShowImageVC.swift in Sources */,
 				18B0D094260C948B00904C92 /* AdminChangePasswordVC.swift in Sources */,
 				184B113B25E36C74003007A2 /* SceneDelegate.swift in Sources */,
 				181704C625E63E02003825D7 /* EditProfileVC.swift in Sources */,
@@ -1348,7 +1370,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Gahir Agro/Gahir Agro.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2.4;
+				CURRENT_PROJECT_VERSION = 2.5;
 				DEVELOPMENT_TEAM = 8USCMRVC59;
 				INFOPLIST_FILE = "Gahir Agro/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1373,7 +1395,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Gahir Agro/Gahir Agro.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2.4;
+				CURRENT_PROJECT_VERSION = 2.5;
 				DEVELOPMENT_TEAM = 8USCMRVC59;
 				INFOPLIST_FILE = "Gahir Agro/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

@@ -20,7 +20,7 @@ class SelectCategoryVC : UIViewController {
     var page = 1
     var catArray = [CatData]()
     var lastPage = String()
-    var catImages = ["img2","card2","img3","img4","img6","img7"]
+    var catImages = ["img2","card2","img3","img4","img6","img7","img7"]
     
     //------------------------------------------------------
     
@@ -194,7 +194,6 @@ class SelectCategoryVC : UIViewController {
 class featuredProductCell: UICollectionViewCell {
     
     @IBOutlet weak var showImage: UIImageView!
-    @IBOutlet weak var nameLbl: UILabel!
     override class func awakeFromNib() {
         super.awakeFromNib()
     }

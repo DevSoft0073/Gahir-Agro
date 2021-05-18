@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (5.2.2)
+  - Charts (3.6.0):
+    - Charts/Core (= 3.6.0)
+  - Charts/Core (3.6.0)
   - Firebase/Auth (6.31.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.9.0)
@@ -38,6 +41,7 @@ PODS:
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.4.0)
   - IQKeyboardManagerSwift (6.5.6)
+  - ISVImageScrollView (0.3.0)
   - LGSideMenuController (2.1.1)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
@@ -57,8 +61,10 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
+  - Charts
   - Firebase/Auth
   - IQKeyboardManagerSwift
+  - ISVImageScrollView
   - LGSideMenuController
   - OTPFieldView
   - SCLAlertView
@@ -71,6 +77,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Charts
     - Firebase
     - FirebaseAuth
     - FirebaseCore
@@ -79,6 +86,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - IQKeyboardManagerSwift
+    - ISVImageScrollView
     - LGSideMenuController
     - nanopb
     - OTPFieldView
@@ -92,6 +100,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
   Firebase: 87483fa19acfdf99244523f2389e931927b91457
   FirebaseAuth: 09f086fae98643f1ef235674cf3ae171ce26f5ba
   FirebaseCore: 6fb954e350af0885803d5aa49865d15d9a6b264c
@@ -100,6 +109,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  ISVImageScrollView: 2c89840496647af985bfc0e09b346b9aa733ecec
   LGSideMenuController: ae40c80983ab8b8801c7cef0a6804d43aaa72d45
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   OTPFieldView: 700a752fe62c41d1c4914c78aa500fb30d97c255
@@ -111,6 +121,6 @@ SPEC CHECKSUMS:
   SVProgressHUD-0.8.1: ee9e6e58b5b5ffaf3f1a62c2dc409763470df143
   VersaPlayer: 0e9a0ea7da786729ffb377dbd17b34641a8265e4
 
-PODFILE CHECKSUM: d73e6f201407211941480871cf35f3c1ef77a68d
+PODFILE CHECKSUM: 2bd93c9af5a2764d4d33e0adb1786ccd408eb9d5
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1

@@ -217,6 +217,6 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     }
     print("Location: updateLocationDidFailWithError 2")
 
-    delegate.tracingLocationDidFailWithError!(error: error)
+    delegate.tracingLocationDidFailWithError?(error: error)
   }
 }
