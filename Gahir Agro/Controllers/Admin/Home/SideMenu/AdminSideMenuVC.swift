@@ -22,9 +22,9 @@ class AdminSideMenuVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
-        sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Enquiries", selectedImage: "home", selected: true, unselected: "home-1"))
+        sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Order List", selectedImage: "order", selected: true, unselected: "order-1"))
         
-        sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Order List", selectedImage: "order", selected: false, unselected: "order-1"))
+        sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Enquiries", selectedImage: "home", selected: false, unselected: "home-1"))
         sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Notifications", selectedImage: "noti", selected: false, unselected: "noti-1"))
         sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Privacy Policy", selectedImage: "privacy", selected: false, unselected: "privacy-1"))
         sideMenuItemsArrayForCustomer.append(SideMenuItemsForCustomer(name: "Logout", selectedImage: "logout", selected: false, unselected: "logout-1"))
@@ -55,9 +55,9 @@ class AdminSideMenuVC: UIViewController {
     }
     
     func logout()  {
-        UserDefaults.standard.removeObject(forKey: "tokenFString")
+        UserDefaults.standard.set(0, forKey: "tokenFString")
         let appDel = UIApplication.shared.delegate as! AppDelegate
-        appDel.Logout1()
+        appDel.redirectToHomeVC()
     }
     
     @IBAction func gotoProfileVC(_ sender: Any) {
@@ -166,12 +166,12 @@ extension AdminSideMenuVC : UITableViewDataSource, UITableViewDelegate {
         sideMenuController?.hideLeftViewAnimated()
         
         if(indexPath.row == 0) {
-            let vc = AdminHomeVC.instantiate(fromAppStoryboard: .AdminMain)
+            let vc = AdminEnquriesVC.instantiate(fromAppStoryboard: .AdminMain)
             (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
         }
         
         else if(indexPath.row == 1) {
-            let vc = AdminEnquriesVC.instantiate(fromAppStoryboard: .AdminMain)
+            let vc = AdminHomeVC.instantiate(fromAppStoryboard: .AdminMain)
             (sideMenuController?.rootViewController as! UINavigationController).pushViewController(vc, animated: true)
         }
         

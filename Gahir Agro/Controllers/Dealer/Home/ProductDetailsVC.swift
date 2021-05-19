@@ -63,15 +63,15 @@ class ProductDetailsVC: UIViewController ,NetworkSpeedProviderDelegate{
     //    MARK:- Button Actions
     
     @IBAction func showImgBtn(_ sender: Any) {
-//        let transition = CATransition()
-//        transition.duration = 0.5
-//        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-//        transition.type = CATransitionType.fade
-//        transition.subtype = CATransitionSubtype.fromTop
-//        self.navigationController!.view.layer.add(transition, forKey: nil)
-//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ShowImageVC") as! ShowImageVC
-//        vc.imageViews = showImage
-//        self.navigationController?.pushViewController(vc, animated: false)
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.fade
+        transition.subtype = CATransitionSubtype.fromTop
+        self.navigationController!.view.layer.add(transition, forKey: nil)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ShowImageVC") as! ShowImageVC
+        vc.imgString = img
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
     

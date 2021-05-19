@@ -1,18 +1,16 @@
 //
-//  ShowImageVC.swift
+//  TermsAndConditionsVC.swift
 //  Gahir Agro
 //
-//  Created by Apple on 18/05/21.
+//  Created by Apple on 19/05/21.
 //
 import UIKit
 import Foundation
-import SDWebImage
+import WebKit
 
-class ShowImageVC : UIViewController , UIScrollViewDelegate{
+class TermsAndConditionsVC : UIViewController {
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var showImage: UIImageView!
-    var imgString = String()
+    @IBOutlet weak var openLink: WKWebView!
     
     //------------------------------------------------------
     
@@ -30,36 +28,19 @@ class ShowImageVC : UIViewController , UIScrollViewDelegate{
     
     //------------------------------------------------------
     
-    //MARK: Custome
-    
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return showImage
-    }
-    
-    //------------------------------------------------------
-    
-    //MARK: Action
-    
+    //MARK: Actions
     
     @IBAction func btnBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: false)
     }
+    
+    
     //------------------------------------------------------
     
     //MARK: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        showImage.sd_setShowActivityIndicatorView(true)
-        if #available(iOS 13.0, *) {
-            showImage.sd_setIndicatorStyle(.large)
-        } else {
-            // Fallback on earlier versions
-        }
-        showImage.sd_setImage(with: URL(string: imgString), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
-        
-        scrollView.delegate = self
     }
     
     //------------------------------------------------------

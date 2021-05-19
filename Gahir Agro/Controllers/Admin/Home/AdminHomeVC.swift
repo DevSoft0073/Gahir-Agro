@@ -73,7 +73,7 @@ class AdminHomeVC: UIViewController {
                     let dateVal = NumberFormatter().number(from: dateValue)?.doubleValue ?? 0.0
                     self.accName.append(accessoriesData["acc_name"] as? String ?? "")
                     let dealerData = obj["dealer_detail"] as? [String:Any] ?? [:]
-                    addressArray.append(dealerData["address"] as? String ?? "")
+                    addressArray.append(obj["dealer_loc"] as? String ?? "")
                     self.dealerName.append("\(dealerData["first_name"] as? String ?? "") " + "\(dealerData["last_name"] as? String ?? "")")
                     self.quantityArray.append(obj["qty"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
@@ -124,10 +124,10 @@ extension AdminHomeVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AdminEnquriesTBViewCell", for: indexPath) as! AdminEnquriesTBViewCell
-        cell.idLbl.text = dealerCode[indexPath.row]
-        cell.quantityLbl.text = dealerName[indexPath.row]
+        cell.idLbl.text = adminEnquriesArray[indexPath.row].deliveryDate
+        cell.quantityLbl.text = adminEnquriesArray[indexPath.row].enqID[indexPath.row]
         cell.pricveLbl.text = adminEnquriesArray[indexPath.row].price
-        cell.timelbl.text = adminEnquriesArray[indexPath.row].deliveryDate
+        cell.timelbl.text = quantityArray[indexPath.row]
         cell.nameLbl.text = adminEnquriesArray[indexPath.row].name
         cell.showImage.sd_setImage(with: URL(string:adminEnquriesArray[indexPath.row].image), placeholderImage: UIImage(named: "im"))
         cell.addressLbl.text = addressArray[indexPath.row]
@@ -139,7 +139,8 @@ extension AdminHomeVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = AdminEnquiryDetailsVC.instantiate(fromAppStoryboard: .AdminMain)
+        let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
+        UserDefaults.standard.set(true, forKey: "comesFromAdmin")
         vc.enquiryID = self.enqArray[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }

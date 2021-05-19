@@ -33,10 +33,17 @@ class BookOrderVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.statusStackView.isHidden = true
+        bookOrderButton.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        enquiryDetails()
+        
+        let comesFrom = UserDefaults.standard.value(forKey: "comesFromAdmin") as? Bool ?? false
+        if comesFrom == true {
+            enquiryDetailsForAdmin()
+        }else{
+            enquiryDetails()
+        }
     }
     
 //    MARK:- Button Action
@@ -108,4 +115,51 @@ class BookOrderVC: UIViewController {
             showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
     }
+    
+    func enquiryDetailsForAdmin() {
+        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+        let url = Constant.shared.baseUrl + Constant.shared.EnquiryDetails
+        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+        print(deviceID ?? "")
+        if deviceID == nil  {
+            deviceID = "777"
+        }
+        let params = ["access_token": accessToken , "id" : self.enquiryID]  as? [String : AnyObject] ?? [:]
+        print(params)
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
+            print(response.data)
+            PKWrapperClass.svprogressHudDismiss(view: self)
+            let status = response.data["status"] as? String ?? ""
+            self.messgae = response.data["message"] as? String ?? ""
+            if status == "1"{
+                let enquiryData = response.data["enquiry_detail"] as? [String:Any] ?? [:]
+                self.quantityLbl.text = enquiryData["qty"] as? String ?? ""
+                self.showStatus.text = enquiryData["dispatch_day"] as? String ?? ""
+                self.orderTimeLbl.text = "\(enquiryData["order_time"] as? Int ?? 0) hr"
+                self.orderStatusTxt.text = enquiryData["status_text"] as? String ?? ""
+                let productDetails = enquiryData["product_detail"] as? [String:Any] ?? [:]
+                self.enqStatus = enquiryData["enq_status"] as? String ?? ""
+                if self.enqStatus == "0" || self.enqStatus == "8" || self.enqStatus == "9"{
+                    self.orderDetailsStackView.isHidden = true
+                    self.statusStackView.isHidden = false
+                    self.bookOrderButton.isHidden = true
+                }else{
+                    self.bookOrderButton.isHidden = true
+                    self.statusStackView.isHidden = true
+                    self.orderDetailsStackView.isHidden = false
+                }
+                print(productDetails)
+                self.showImage.sd_setImage(with: URL(string:productDetails["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
+            }else{
+                PKWrapperClass.svprogressHudDismiss(view: self)
+                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+            }
+        } failure: { (error) in
+            print(error)
+            PKWrapperClass.svprogressHudDismiss(view: self)
+            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+        }
+    }
+    
 }

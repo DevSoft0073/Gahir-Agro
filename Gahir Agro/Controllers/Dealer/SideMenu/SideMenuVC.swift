@@ -175,21 +175,13 @@ class SideMenuVC: UIViewController {
                 if status == "1"{
                     let allData = response.data["user_detail"] as? [String:Any] ?? [:]
                     self.profileImage.sd_setImage(with: URL(string:allData["image"] as? String ?? ""), placeholderImage: UIImage(named: "placehlder"), options: SDWebImageOptions.continueInBackground, completed: nil)
-                    self.name = allData["first_name"] as? String ?? ""
-                    let credentials = UserDefaults.standard.value(forKey: "tokenFString") as? Int ?? 0
-                    
-                    if credentials == 0{
-                        
-                        self.nameLbl.text = "Login/Signup"
-                        
-                    }else if credentials == 1{
-                        
-                        self.nameLbl.text = allData["first_name"] as? String ?? ""
-                    }
-                    
+                    self.nameLbl.text = allData["first_name"] as? String ?? ""
+                }else if status == "100"{
+                    PKWrapperClass.svprogressHudDismiss(view: self)
+                    self.nameLbl.text = "Login/Signup"
+                    self.profileImage.image = UIImage(named: "placehlder")
                 }else{
                     PKWrapperClass.svprogressHudDismiss(view: self)
-                    // alert(Constant.shared.appTitle, message: self.messgae, view: self)
                 }
             } failure: { (error) in
                 print(error)

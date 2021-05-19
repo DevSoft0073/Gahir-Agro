@@ -75,8 +75,14 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
     }
     
     @IBAction func openLink(_ sender: Any) {
-        guard let url = URL(string: "https://stackoverflow.com") else { return }
-        UIApplication.shared.open(url)
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.fade
+        transition.subtype = CATransitionSubtype.fromTop
+        self.navigationController!.view.layer.add(transition, forKey: nil)
+        let writeView = self.storyboard?.instantiateViewController(withIdentifier: "TermsAndConditionsVC") as! TermsAndConditionsVC
+        self.navigationController?.pushViewController(writeView, animated: false)
     }
 
     @IBAction func gotoSignInBUtton(_ sender: Any) {

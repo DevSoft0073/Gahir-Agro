@@ -59,7 +59,6 @@ class AdminEnquriesVC: UIViewController {
                 let allData = response.data["order_list"] as? [String:Any] ?? [:]
                 for obj in allData["all_orders"] as? [[String:Any]] ?? [[:]]{
                     let accessoriesData = obj["accessories"] as? [String:Any] ?? [:]
-                    self.orderIDArray.append(obj["id"] as? String ?? "")
                     let dateValue = obj["creation_date"] as? String ?? ""
                     let dateVal = NumberFormatter().number(from: dateValue)?.doubleValue ?? 0.0
                     self.accName.append(accessoriesData["acc_name"] as? String ?? "")
@@ -71,9 +70,9 @@ class AdminEnquriesVC: UIViewController {
                     self.dealerName.append("\(dealerData["first_name"] as? String ?? "") " + "\(dealerData["last_name"] as? String ?? "")")
                     let allEnquiryData = obj["enquiry_detail"] as? [String:Any] ?? [:]
                     let newObj = allEnquiryData["product_detail"]  as? [String:Any] ?? [:]
+                    self.orderIDArray.append(newObj["id"] as? String ?? "")
                     print(newObj)
                     newArr.append(OrderHistoryData(name: allEnquiryData["prod_name"] as? String ?? "", id: allEnquiryData["id"] as? String ?? "", quantity: "\(allEnquiryData["qty"] as? String ?? "")", deliveryDate: self.convertTimeStampToDate(dateVal: dateVal), price: "$\(allEnquiryData["total"] as? String ?? "")" as? String ?? "", image: newObj["prod_image"] as? String ?? "", accName: self.accName, modelName: allEnquiryData["prod_name"] as? String ?? "", enqID: self.enquiryID))
-                    //                    }
                 }
                 for i in 0..<newArr.count{
                     self.adminOrderArray.append(newArr[i])
@@ -119,10 +118,10 @@ extension AdminEnquriesVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AdminOrderTBViewCell", for: indexPath) as! AdminOrderTBViewCell
-        cell.productId.text = dealerCode[indexPath.row]
-        cell.quantitylbl.text = dealerName[indexPath.row]
+        cell.productId.text = adminOrderArray[indexPath.row].deliveryDate
+        cell.quantitylbl.text = orderIDArray[indexPath.row]
         cell.priceLbl.text = adminOrderArray[indexPath.row].price
-        cell.dateLbl.text = adminOrderArray[indexPath.row].deliveryDate
+        cell.dateLbl.text = adminOrderArray[indexPath.row].quantity
         cell.nameLbl.text = adminOrderArray[indexPath.row].name
         cell.showImage.sd_setImage(with: URL(string:adminOrderArray[indexPath.row].image), placeholderImage: UIImage(named: "im"))
         

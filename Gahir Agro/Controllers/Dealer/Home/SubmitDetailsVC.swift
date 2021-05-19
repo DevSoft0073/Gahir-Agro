@@ -119,7 +119,10 @@ class SubmitDetailsVC: UIViewController  , UITextFieldDelegate{
         }
         else if utrNumberTxtFld.text?.isEmpty == true{
             ValidateData(strMessage: "UTR field should not be empty")
+        }else if utrNumberTxtFld.text!.count > 16 {
+            ValidateData(strMessage: "UTR number should not be greater then 16 digits")
         }else{
+            
             addOrder()
         }
     }

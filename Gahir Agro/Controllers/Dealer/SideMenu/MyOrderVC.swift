@@ -144,6 +144,7 @@ extension MyOrderVC : UITableViewDelegate , UITableViewDataSource {
         vc.image = orderHistoryArray[indexPath.row].image
         vc.accessoriesName = orderHistoryArray[indexPath.row].accName[indexPath.row]
         //vc.status = orderStatus[indexPath.row]
+        UserDefaults.standard.set(false, forKey: "comesFromAdmin")
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -36,10 +36,6 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
         setupOtpView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        getOtp()
-    }
-    
     func setupOtpView(){
         self.otpView.fieldsCount = 6
         self.otpView.fieldBorderWidth = 2
@@ -55,7 +51,7 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
         self.otpView.resignFirstResponder()
     }
     
-    //    MARK:- Get Otp
+    //MARK:- Get Otp
     
     func getOtp() {
         PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)

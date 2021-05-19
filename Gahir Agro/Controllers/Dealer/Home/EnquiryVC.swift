@@ -7,11 +7,12 @@
 
 import UIKit
 import SDWebImage
+import CoreLocation
 
 class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate {
     
     var jassIndex = Int()
-    var tbaleViewArray = ["TYPE","SYSTEM"]
+    var tbaleViewArray = ["MODEL","SYSTEM"]
     var picker  = UIPickerView()
     
     @IBOutlet weak var remarkTxtView: UITextView!
@@ -67,70 +68,91 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     
     func submitEnquiry() {
         
-        if count < 1 {
-            showAlertMessage(title: Constant.shared.appTitle, message: "Quantity should not be set to 0", okButton: "Ok", controller: self) {
-            }
-        }else{
-            
-            if selectedValue.isEmpty == true {
-                ValidateData(strMessage: "Please select value for type")
-            }else if selectedValue1.isEmpty == true{
-                ValidateData(strMessage: "Please select value for system")
-                
-            }else{
-                
-                PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
-                let url = Constant.shared.baseUrl + Constant.shared.AddEnquiry
-                var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
-                let accessToken = UserDefaults.standard.value(forKey: "accessToken")
-                print(deviceID ?? "")
-                if deviceID == nil  {
-                    deviceID = "777"
-                }
-                
-                let params = ["product_id" : id , "quantity" : count, "accessory" : selectedValue1 ,"access_token": accessToken,"system" : selectedValue , "type" : self.productId, "remark": "" , "lat": Singleton.sharedInstance.lat, "long" : Singleton.sharedInstance.long]  as? [String : AnyObject] ?? [:]
-                print(params)
-                PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
-                    print(response.data)
-                    PKWrapperClass.svprogressHudDismiss(view: self)
-                    let status = response.data["status"] as? String ?? ""
-                    self.messgae = response.data["message"] as? String ?? ""
-                    self.orderID = response.data["enquiry_id"] as? Int ?? 0
-                    if status == "1"{
-                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
-                        vc.modalPresentationStyle = .overCurrentContext
-                        vc.modalTransitionStyle = .crossDissolve
-                        vc.enquiryRedirection = {
-                            DispatchQueue.main.async {
-                                if self.isAvailabele == true {
-                                    
-                                }else{
-                                    
-                                }
-                                let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
-                                vc.enquiryID = "\(self.orderID)"
-                                self.navigationController?.pushViewController(vc, animated: true)
-                            }
-                        }
-                        
-                        self.present(vc, animated: true, completion: nil)
-                        
-                    }else if status == "0"{
-                        PKWrapperClass.svprogressHudDismiss(view: self)
-                        alert(Constant.shared.appTitle, message: self.messgae, view: self)
-                    } else if status == "100"{
-                        showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
-                            UserDefaults.standard.removeObject(forKey: "tokenFString")
-                            let appDel = UIApplication.shared.delegate as! AppDelegate
-                            appDel.Logout1()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+                case .notDetermined, .restricted, .denied:
+                    print("No access")
+                    showAlertMessage(title: Constant.shared.appTitle, message: "Allow location to add enquiry", okButton: "Ok", controller: self) {
+                        if let url = URL(string: "App-prefs:root=LOCATION_SERVICES") {
+                             UIApplication.shared.open(url, options: [:], completionHandler: nil)
                         }
                     }
-                } failure: { (error) in
-                    print(error)
-                    PKWrapperClass.svprogressHudDismiss(view: self)
-                    showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
-                }
+                case .authorizedAlways, .authorizedWhenInUse:
+                    
+                    if count < 1 {
+                        showAlertMessage(title: Constant.shared.appTitle, message: "Quantity should not be set to 0", okButton: "Ok", controller: self) {
+                        }
+                    }else{
+                        
+                        if selectedValue.isEmpty == true {
+                            ValidateData(strMessage: "Please select value for model")
+                        }else if selectedValue1.isEmpty == true{
+                            ValidateData(strMessage: "Please select value for system")
+                            
+                        }else{
+                            
+                            PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+                            let url = Constant.shared.baseUrl + Constant.shared.AddEnquiry
+                            var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+                            let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+                            print(deviceID ?? "")
+                            if deviceID == nil  {
+                                deviceID = "777"
+                            }
+                            
+                            let params = ["product_id" : id , "quantity" : count, "accessory" : selectedValue1 ,"access_token": accessToken,"system" : selectedValue , "type" : self.productId, "remark": "" , "lat": Singleton.sharedInstance.lat, "long" : Singleton.sharedInstance.long]  as? [String : AnyObject] ?? [:]
+                            print(params)
+                            PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
+                                print(response.data)
+                                PKWrapperClass.svprogressHudDismiss(view: self)
+                                let status = response.data["status"] as? String ?? ""
+                                self.messgae = response.data["message"] as? String ?? ""
+                                self.orderID = response.data["enquiry_id"] as? Int ?? 0
+                                if status == "1"{
+                                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
+                                    vc.modalPresentationStyle = .overCurrentContext
+                                    vc.modalTransitionStyle = .crossDissolve
+                                    vc.enquiryRedirection = {
+                                        DispatchQueue.main.async {
+                                            if self.isAvailabele == true {
+                                                
+                                            }else{
+                                                
+                                            }
+                                            let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
+                                            vc.enquiryID = "\(self.orderID)"
+                                            self.navigationController?.pushViewController(vc, animated: true)
+                                        }
+                                    }
+                                    
+                                    self.present(vc, animated: true, completion: nil)
+                                    
+                                }else if status == "0"{
+                                    PKWrapperClass.svprogressHudDismiss(view: self)
+                                    alert(Constant.shared.appTitle, message: self.messgae, view: self)
+                                } else if status == "100"{
+                                    showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
+                                        UserDefaults.standard.removeObject(forKey: "tokenFString")
+                                        let appDel = UIApplication.shared.delegate as! AppDelegate
+                                        appDel.Logout1()
+                                    }
+                                }
+                            } failure: { (error) in
+                                print(error)
+                                PKWrapperClass.svprogressHudDismiss(view: self)
+                                showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+                            }
+                        }
+                    }
+
+                    
+                    print("Access")
+                @unknown default:
+                break
             }
+            } else {
+                print("Location services are not enabled")
         }
     }
     
