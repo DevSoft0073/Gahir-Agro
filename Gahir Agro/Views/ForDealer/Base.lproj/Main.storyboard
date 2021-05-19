@@ -3950,12 +3950,20 @@
                                         <color key="textColor" red="0.86119788890000004" green="0.17337265609999999" blue="0.1116427258" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IkH-Nm-BSQ">
+                                        <rect key="frame" x="256" y="7" width="38" height="20"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="2uE-QT-6Js" firstAttribute="centerY" secondItem="H94-tw-mDT" secondAttribute="centerY" id="3MM-PE-ao1"/>
                                     <constraint firstAttribute="trailing" secondItem="j7W-2e-gb7" secondAttribute="trailing" constant="10" id="Zhj-V5-PTz"/>
+                                    <constraint firstItem="IkH-Nm-BSQ" firstAttribute="centerY" secondItem="Kje-e2-Xri" secondAttribute="centerY" id="jX3-vi-xIu"/>
                                     <constraint firstItem="j7W-2e-gb7" firstAttribute="bottom" secondItem="2uE-QT-6Js" secondAttribute="bottom" id="lrw-gt-6K8"/>
+                                    <constraint firstItem="IkH-Nm-BSQ" firstAttribute="trailing" secondItem="j7W-2e-gb7" secondAttribute="trailing" id="zmh-xV-Qls"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -3994,8 +4002,10 @@
                     <connections>
                         <outlet property="bookingIDLbl" destination="j7W-2e-gb7" id="bKb-zF-mfY"/>
                         <outlet property="detailsLbl" destination="r2C-9o-evC" id="iSk-Mz-njh"/>
+                        <outlet property="dispatchDateLbl" destination="IkH-Nm-BSQ" id="rZ6-Q3-e0x"/>
                         <outlet property="nameLBlb" destination="PEu-P8-8Mr" id="yjh-Mr-5mH"/>
                         <outlet property="showImage" destination="Idr-Hc-ukn" id="2H6-Y2-kbn"/>
+                        <outlet property="statusLbl" destination="Kje-e2-Xri" id="w4y-cT-FQg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S5o-4V-9lR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

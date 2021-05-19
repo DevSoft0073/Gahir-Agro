@@ -10,15 +10,19 @@ import SDWebImage
 
 class SuccesfullyBookedVC: UIViewController {
     
+    @IBOutlet weak var dispatchDateLbl: UILabel!
+    @IBOutlet weak var statusLbl: UILabel!
+    @IBOutlet weak var bookingIDLbl: UILabel!
+    @IBOutlet weak var detailsLbl: UILabel!
+    @IBOutlet weak var nameLBlb: UILabel!
+    @IBOutlet weak var showImage: UIImageView!
+    
     var productImage = String()
     var bookingId = String()
     var details = String()
     var messgae = String()
     var orderID = String()
-    @IBOutlet weak var bookingIDLbl: UILabel!
-    @IBOutlet weak var detailsLbl: UILabel!
-    @IBOutlet weak var nameLBlb: UILabel!
-    @IBOutlet weak var showImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         orderDetail()
@@ -57,6 +61,8 @@ class SuccesfullyBookedVC: UIViewController {
             self.messgae = response.data["message"] as? String ?? ""
             if status == "1"{
                 let enquiryData = response.data["order_detail"] as? [String:Any] ?? [:]
+                self.statusLbl.text = enquiryData["order_status"] as? String ?? ""
+                self.dispatchDateLbl.text = enquiryData["display_date"] as? String ?? ""
                 let productDetails = enquiryData["enquiry_detail"] as? [String:Any] ?? [:]
                 self.bookingIDLbl.text = enquiryData["booking_id"] as? String ?? ""
                 let orderData = productDetails["product_detail"] as? [String:Any] ?? [:]

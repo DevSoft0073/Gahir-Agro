@@ -9,6 +9,7 @@ import UIKit
 
 class SignUpVC: UIViewController ,UITextFieldDelegate{
     
+    @IBOutlet weak var firmView: UIView!
     @IBOutlet weak var firmNameTxtFld: UITextField!
     @IBOutlet weak var selectUnselectImage: UIImageView!
     @IBOutlet weak var checkButton: UIButton!
@@ -34,17 +35,26 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
             
             nameView.borderColor = #colorLiteral(red: 0.7788546085, green: 0.0326503776, blue: 0.1003007665, alpha: 1)
             emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            firmView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             
         }else if textField == emailTxtFld{
             
             nameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             emailView.borderColor = #colorLiteral(red: 0.7788546085, green: 0.0326503776, blue: 0.1003007665, alpha: 1)
+            firmView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                         
+        }else if textField == firmNameTxtFld{
+            nameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            firmView.borderColor = #colorLiteral(red: 0.7788546085, green: 0.0326503776, blue: 0.1003007665, alpha: 1)
+            passwordView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            
         }else if textField == passwordTxtFld{
             nameView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             emailView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            firmView.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             passwordView.borderColor = #colorLiteral(red: 0.7788546085, green: 0.0326503776, blue: 0.1003007665, alpha: 1)
             
         }
@@ -106,11 +116,15 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
 
             ValidateData(strMessage: "Enter valid email")
             
-        }else if (passwordTxtFld.text?.isEmpty)!{
+        } else if (passwordTxtFld.text?.isEmpty)!{
             
             ValidateData(strMessage: "Please enter password")
             
-        }else if (passwordTxtFld!.text!.count) < 4 || (passwordTxtFld!.text!.count) > 15{
+        }else if (firmNameTxtFld.text?.isEmpty)!{
+            
+            ValidateData(strMessage: "Please add firm name")
+            
+        } else if (passwordTxtFld!.text!.count) < 4 || (passwordTxtFld!.text!.count) > 15{
             
 
             ValidateData(strMessage: "Please enter minimum 4 digit password")
