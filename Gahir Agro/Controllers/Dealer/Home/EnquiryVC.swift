@@ -12,7 +12,8 @@ import CoreLocation
 class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate {
     
     var jassIndex = Int()
-    var tbaleViewArray = ["MODEL","SYSTEM"]
+    var tbaleViewArray = ["MODEL","SELECT YOUR TRACTOR"]
+    var tbaleViewArray1 = ["ACCESSORY","CHOOSE PUMP"]
     var picker  = UIPickerView()
     
     @IBOutlet weak var remarkTxtView: UITextView!
@@ -26,6 +27,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     var id = String()
     var isAvailabele = Bool()
     var productId = String()
+    var productType = String()
     var indexesNeedPicker: [NSIndexPath]?
     var messgae = String()
     var categoryArray = [EnquieyData]()
@@ -188,6 +190,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                 self.detailsLbl.text = allData["prod_model"] as? String ?? ""
                 self.showImage.sd_setImage(with: URL(string: allData["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)
                 self.productId = allData["prod_type"] as? String ?? ""
+                self.productType = allData["prod_type"] as? String ?? ""
                 let accessories = allData["accessories"] as? [[String:Any]] ?? [[:]]
                 for obj in accessories {
                     print(obj)
@@ -350,7 +353,15 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EnquiryDataTBViewCell", for: indexPath) as! EnquiryDataTBViewCell
-        cell.namelbl.text = tbaleViewArray[indexPath.row]
+        if productType == "0" || productType == "1"  || productType == "3" || productType == "4" || productType == "5" || productType == "6" {
+            
+            cell.namelbl.text = tbaleViewArray[indexPath.row]
+            
+        }else{
+            
+            cell.namelbl.text = tbaleViewArray1[indexPath.row]
+          
+        }
         cell.titleLbl.text = selectedValue
         let index = indexPath.row
         if index == 0{
@@ -363,7 +374,6 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
         cell.openPicker.delegate = self
         cell.openPicker.inputView = picker
         cell.openPicker.tintColor = .clear
-        //        cell.openPicker.isUserInteractionEnabled = false
         cell.dropDownbutton.addTarget(self, action: #selector(openPickerView(sender:)), for: .touchUpInside)
         DispatchQueue.main.async {
             self.heightConstraint.constant = CGFloat(self.enquiryDataTBView.contentSize.height)

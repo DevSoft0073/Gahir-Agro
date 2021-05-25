@@ -4911,7 +4911,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" maximumZoomScale="10" translatesAutoresizingMaskIntoConstraints="NO" id="521-6S-zDP">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" maximumZoomScale="10" translatesAutoresizingMaskIntoConstraints="NO" id="521-6S-zDP">
                                 <rect key="frame" x="0.0" y="73.5" width="375" height="593.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R1C-rk-Cuy">
@@ -4974,12 +4974,9 @@
                                     <constraint firstItem="Nfw-LH-GRk" firstAttribute="centerY" secondItem="LPj-u9-zPL" secondAttribute="centerY" id="zeu-dv-aJA"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQs-PW-thC" customClass="ZoomImageView" customModule="Gahir_Agro" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="73.5" width="375" height="300"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQs-PW-thC" customClass="ZoomImageView" customModule="Gahir_Agro" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="73.5" width="375" height="593.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="BJG-W8-hI6"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vGa-yd-6HD"/>
@@ -4991,6 +4988,7 @@
                             <constraint firstItem="UCn-iF-UfJ" firstAttribute="height" secondItem="ndf-T2-OG2" secondAttribute="height" multiplier="0.0704225" id="N9A-NW-w9W"/>
                             <constraint firstItem="vGa-yd-6HD" firstAttribute="bottom" secondItem="521-6S-zDP" secondAttribute="bottom" id="Puh-AR-UCr"/>
                             <constraint firstItem="R1C-rk-Cuy" firstAttribute="width" secondItem="ndf-T2-OG2" secondAttribute="width" id="Q51-t1-nFN"/>
+                            <constraint firstItem="vGa-yd-6HD" firstAttribute="bottom" secondItem="gQs-PW-thC" secondAttribute="bottom" id="YGd-9t-Wqq"/>
                             <constraint firstItem="vGa-yd-6HD" firstAttribute="trailing" secondItem="521-6S-zDP" secondAttribute="trailing" id="Zcc-XS-Kwm"/>
                             <constraint firstItem="R1C-rk-Cuy" firstAttribute="height" secondItem="ndf-T2-OG2" secondAttribute="height" multiplier="0.89" id="aX7-xt-Uvb"/>
                             <constraint firstItem="521-6S-zDP" firstAttribute="top" secondItem="UCn-iF-UfJ" secondAttribute="bottom" id="anm-Dd-qGy"/>
