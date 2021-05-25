@@ -115,7 +115,7 @@ class SubmitDetailsVC: UIViewController  , UITextFieldDelegate{
     
     @IBAction func submitButtonAction(_ sender: Any) {
         if amountTxtFld.text?.isEmpty == true{
-            ValidateData(strMessage: "Please deposit amount")
+            ValidateData(strMessage: "Please Add Deposit Amount")
         }
         else if utrNumberTxtFld.text?.isEmpty == true{
             ValidateData(strMessage: "UTR field should not be empty")

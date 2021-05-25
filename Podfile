@@ -20,6 +20,7 @@ target 'Gahir Agro' do
     pod 'OTPFieldView'
     pod 'Charts'
     pod 'ISVImageScrollView'
+    pod 'ZoomImageView'
 
 
 

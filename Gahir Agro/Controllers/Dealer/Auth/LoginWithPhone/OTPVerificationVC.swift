@@ -8,6 +8,8 @@
 import UIKit
 import Firebase
 import OTPFieldView
+import FirebaseCore
+import FirebaseAuth
 
 enum DisplayType: Int {
     case circular
@@ -62,7 +64,7 @@ class OTPVerificationVC: UIViewController  ,UITextFieldDelegate{
                 if error.localizedDescription == "Invalid format."{
                     alert(Constant.shared.appTitle, message: "Please enter valid phone number.", view: self)
                 }else{
-                    alert(Constant.shared.appTitle, message: "Please enter valid phone number.", view: self)
+                    alert(Constant.shared.appTitle, message: error.localizedDescription, view: self)
                 }
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)

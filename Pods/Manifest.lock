@@ -58,6 +58,7 @@ PODS:
   - SVProgressHUD (2.2.5)
   - SVProgressHUD-0.8.1 (0.8)
   - VersaPlayer (3.0.2)
+  - ZoomImageView (0.6.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
@@ -73,6 +74,7 @@ DEPENDENCIES:
   - SVProgressHUD
   - SVProgressHUD-0.8.1
   - VersaPlayer
+  - ZoomImageView
 
 SPEC REPOS:
   trunk:
@@ -97,6 +99,7 @@ SPEC REPOS:
     - SVProgressHUD
     - SVProgressHUD-0.8.1
     - VersaPlayer
+    - ZoomImageView
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
@@ -120,7 +123,8 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SVProgressHUD-0.8.1: ee9e6e58b5b5ffaf3f1a62c2dc409763470df143
   VersaPlayer: 0e9a0ea7da786729ffb377dbd17b34641a8265e4
+  ZoomImageView: 2a88d0c10ad30b9a06c8f5660d51623fb32beed5
 
-PODFILE CHECKSUM: 2bd93c9af5a2764d4d33e0adb1786ccd408eb9d5
+PODFILE CHECKSUM: 4e5fef8f98e4e87540b8d5af40b29811056e3457
 
 COCOAPODS: 1.10.1

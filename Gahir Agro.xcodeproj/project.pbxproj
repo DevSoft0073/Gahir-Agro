@@ -48,6 +48,8 @@
 		181704CB25E63E11003825D7 /* MyOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704CA25E63E11003825D7 /* MyOrderVC.swift */; };
 		181704D025E64824003825D7 /* ContactUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704CF25E64824003825D7 /* ContactUsVC.swift */; };
 		181704D525E654EC003825D7 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181704D425E654EC003825D7 /* NotificationVC.swift */; };
+		1817F5E1265BE09900993A09 /* TermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1817F5E0265BE09900993A09 /* TermsVC.swift */; };
+		1829F0CA265CE64E00FF92BF /* StraightenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829F0C9265CE64E00FF92BF /* StraightenViewController.swift */; };
 		18424EFE2600CE6E0039CCBF /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18424EFD2600CE6E0039CCBF /* LogInVC.swift */; };
 		184A8ABA25FB4C98000583C5 /* ChooseRoleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A8AB925FB4C98000583C5 /* ChooseRoleVC.swift */; };
 		184A8AE025FB8949000583C5 /* SignInWithScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A8ADF25FB8949000583C5 /* SignInWithScreenVC.swift */; };
@@ -196,6 +198,8 @@
 		181704CA25E63E11003825D7 /* MyOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderVC.swift; sourceTree = "<group>"; };
 		181704CF25E64824003825D7 /* ContactUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsVC.swift; sourceTree = "<group>"; };
 		181704D425E654EC003825D7 /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
+		1817F5E0265BE09900993A09 /* TermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsVC.swift; sourceTree = "<group>"; };
+		1829F0C9265CE64E00FF92BF /* StraightenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StraightenViewController.swift; sourceTree = "<group>"; };
 		18424EFD2600CE6E0039CCBF /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
 		184A8AB925FB4C98000583C5 /* ChooseRoleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRoleVC.swift; sourceTree = "<group>"; };
 		184A8ADF25FB8949000583C5 /* SignInWithScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithScreenVC.swift; sourceTree = "<group>"; };
@@ -717,6 +721,7 @@
 				1815DECE260B45C40072771E /* PlayVideo */,
 				185854982605DF5F00F78097 /* PdfViewerVC.swift */,
 				1815DEC1260B15160072771E /* AllVideosAndPDFListingVC.swift */,
+				1829F0C9265CE64E00FF92BF /* StraightenViewController.swift */,
 				186FDAE32653EC7D009DBE8C /* ShowImageVC.swift */,
 				1888E3DF2654D049008381B3 /* ZoomImg.swift */,
 			);
@@ -777,6 +782,7 @@
 				180847C025E4BE5F00D04E69 /* OTPVerificationVC.swift */,
 				184B118025E36EB7003007A2 /* SignUpVC.swift */,
 				18FCAE9A263C34A3004C7F83 /* InVoiceVC.swift */,
+				1817F5E0265BE09900993A09 /* TermsVC.swift */,
 			);
 			path = LoginWithPhone;
 			sourceTree = "<group>";
@@ -1116,6 +1122,7 @@
 				185B48EC2601C3610021089C /* AdminProfileVC.swift in Sources */,
 				187A8C682654FE56007AB858 /* TermsAndConditionsVC.swift in Sources */,
 				181704D525E654EC003825D7 /* NotificationVC.swift in Sources */,
+				1829F0CA265CE64E00FF92BF /* StraightenViewController.swift in Sources */,
 				184B11BA25E37244003007A2 /* DisplayAlertManager.swift in Sources */,
 				18AD8F0325EADA9C00072166 /* OpenPIcker.swift in Sources */,
 				18424EFE2600CE6E0039CCBF /* LogInVC.swift in Sources */,
@@ -1178,6 +1185,7 @@
 				184B11C225E37259003007A2 /* HelperMethods.swift in Sources */,
 				186FDAE42653EC7D009DBE8C /* ShowImageVC.swift in Sources */,
 				18B0D094260C948B00904C92 /* AdminChangePasswordVC.swift in Sources */,
+				1817F5E1265BE09900993A09 /* TermsVC.swift in Sources */,
 				184B113B25E36C74003007A2 /* SceneDelegate.swift in Sources */,
 				181704C625E63E02003825D7 /* EditProfileVC.swift in Sources */,
 				187A32F6263BC34F00A4C9DB /* DownloadVC.swift in Sources */,

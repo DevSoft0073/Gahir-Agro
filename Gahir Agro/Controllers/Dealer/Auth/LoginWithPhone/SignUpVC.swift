@@ -85,14 +85,8 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
     }
     
     @IBAction func openLink(_ sender: Any) {
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        transition.type = CATransitionType.fade
-        transition.subtype = CATransitionSubtype.fromTop
-        self.navigationController!.view.layer.add(transition, forKey: nil)
-        let writeView = self.storyboard?.instantiateViewController(withIdentifier: "TermsAndConditionsVC") as! TermsAndConditionsVC
-        self.navigationController?.pushViewController(writeView, animated: false)
+        let vc = TermsVC.instantiate(fromAppStoryboard: .Auth)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     @IBAction func gotoSignInBUtton(_ sender: Any) {
@@ -100,6 +94,8 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
+    
+    
     
     @IBAction func signUpButton(_ sender: Any) {
         
@@ -156,7 +152,7 @@ class SignUpVC: UIViewController ,UITextFieldDelegate{
         }
         
         let roleVal = UserDefaults.standard.value(forKey: "getRole") as? String ?? ""
-        if roleVal == "Dealer Firm Name" {
+        if roleVal == "Dealer Code" {
             SignUpUrl = Constant.shared.baseUrl + Constant.shared.SignUp
             
             params = ["username":emailTxtFld.text ?? "", "first_name" : nameTxtFld.text ?? "", "password":passwordTxtFld.text ?? "" , "device_token" : deviceID! ,"device_type" : "iOS","dealer_code" : dealerCode , "phone" : self.phoneNumber, "firm_name" : firmNameTxtFld.text ?? ""] as? [String : AnyObject] ?? [:]

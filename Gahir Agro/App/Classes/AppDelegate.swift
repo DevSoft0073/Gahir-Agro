@@ -6,8 +6,9 @@
 //
 
 import UIKit
-import IQKeyboardManagerSwift
 import Firebase
+import FirebaseCore
+import IQKeyboardManagerSwift
 import UserNotifications
 import CoreLocation
 

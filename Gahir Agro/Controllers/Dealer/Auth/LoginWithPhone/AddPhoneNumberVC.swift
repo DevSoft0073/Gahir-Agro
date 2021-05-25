@@ -116,7 +116,7 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
             ValidateData(strMessage: "Please enter phone number")
         }else if serialNumberTxtFld.text?.isEmpty == true{
             if delaerOrCustomerCode == "Dealer Code"{
-                ValidateData(strMessage: "Please enter dealer firm name")
+                ValidateData(strMessage: "Please enter dealer code")
             }else{
                 verifyUser()
             }
@@ -190,7 +190,7 @@ class AddPhoneNumberVC: UIViewController,UITextFieldDelegate{
                 if error.localizedDescription == "Invalid format."{
                     alert(Constant.shared.appTitle, message: "Please enter valid phone number.", view: self)
                 }else{
-                    alert(Constant.shared.appTitle, message: "Please enter valid phone number.", view: self)
+                    alert(Constant.shared.appTitle, message: error.localizedDescription, view: self)
                 }
             }else{
                 PKWrapperClass.svprogressHudDismiss(view: self)
