@@ -31,35 +31,9 @@ class HomeVC: UIViewController,UITextFieldDelegate {
         filterProDArray.removeAll()
         filterdData()
         page = 1
-        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(updateLocationApi), userInfo: nil, repeats: true)
-    }
-    
-    @objc func updateLocationApi(){
-        updateUserLocationApi()
     }
     
     //    MARK:- Service Call Methods
-    
-    func updateUserLocationApi(){
-        let url = Constant.shared.baseUrl + Constant.shared.UpdateLocation
-        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
-        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
-        print(deviceID ?? "")
-        if deviceID == nil  {
-            deviceID = "777"
-        }
-        let params = ["access_token": "" , "lat" : Singleton.sharedInstance.lat , "long" : Singleton.sharedInstance.long]  as? [String : AnyObject] ?? [:]
-        print(params)
-        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
-            let status = response.data["status"] as? String ?? ""
-            self.messgae = response.data["message"] as? String ?? ""
-            if status == "1"{
-            }else{
-            }
-        } failure: { (error) in
-            print(error)
-        }
-    }
     
     func filterdData() {
         let url = Constant.shared.baseUrl + Constant.shared.FilterdData

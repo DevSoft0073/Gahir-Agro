@@ -9,13 +9,17 @@ import UIKit
 import SDWebImage
 import CoreLocation
 
-class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate {
+
+class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate , CLLocationManagerDelegate{
     
     var jassIndex = Int()
     var tbaleViewArray = ["MODEL","SELECT YOUR TRACTOR"]
     var tbaleViewArray1 = ["ACCESSORY","CHOOSE PUMP"]
+    var tbaleViewArray2 = ["MODEL","SELECT SYSTEM"]
+    var manager:CLLocationManager!
     var picker  = UIPickerView()
     var dismissPicker:(()->Void)?
+    var message = String()
     
     @IBOutlet weak var remarkTxtView: UITextView!
     var pickerToolBar = UIToolbar()
@@ -25,6 +29,8 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     var selectType = String()
     var currentIndex = Int()
     var count = 1
+    var lat = String()
+    var long = String()
     var id = String()
     var isAvailabele = Bool()
     var productId = String()
@@ -36,7 +42,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     var systemArray = [SystemData]()
     var productDetailsAaay = [ProductData]()
     var comesFirstTime = Bool()
-    let timer = Timer()
+    var timer = Timer()
     var orderID = Int()
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var enquiryDataTBView: UITableView!
@@ -55,6 +61,11 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         pickerToolBar.setItems([spaceButton,doneBtn], animated: false)
         pickerToolBar.isUserInteractionEnabled = true
         self.enquiryDataTBView.reloadData()
+        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(updateUserLocationApi), userInfo: nil, repeats: true)
+        manager = CLLocationManager()
+           manager.delegate = self
+           manager.desiredAccuracy = kCLLocationAccuracyBest
+           manager.startUpdatingLocation()
         super.viewDidLoad()
     }
     
@@ -63,11 +74,40 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        self.lat = "\(locValue.latitude)"
+        self.long = "\(locValue.longitude)"
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+    }
+    
     @objc func onDoneButtonTapped(sender:UIButton) {
         self.view.endEditing(true)
     }
     
     //MARK:- Service call methods
+    
+    
+    @objc func updateUserLocationApi(){
+        let url = Constant.shared.baseUrl + Constant.shared.UpdateLocation
+        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+        print(deviceID ?? "")
+        if deviceID == nil  {
+            deviceID = "777"
+        }
+        let params = ["access_token": "" , "lat" : lat , "long" : long]  as? [String : AnyObject] ?? [:]
+        print(params)
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
+            let status = response.data["status"] as? String ?? ""
+            self.message = response.data["message"] as? String ?? ""
+            if status == "1"{
+            }else{
+            }
+        } failure: { (error) in
+            print(error)
+        }
+    }
     
     func submitEnquiry() {
         
@@ -104,7 +144,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                                 deviceID = "777"
                             }
                             
-                            let params = ["product_id" : id , "quantity" : count, "accessory" : selectedValue1 ,"access_token": accessToken,"system" : selectedValue , "type" : self.productId, "remark": "" , "lat": Singleton.sharedInstance.lat, "long" : Singleton.sharedInstance.long]  as? [String : AnyObject] ?? [:]
+                            let params = ["product_id" : id , "quantity" : count, "accessory" : selectedValue1 ,"access_token": accessToken,"system" : selectedValue , "type" : self.productId, "remark": "" , "lat": self.lat ?? "", "long" : self.long ?? ""]  as? [String : AnyObject] ?? [:]
                             print(params)
                             PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
                                 print(response.data)
@@ -354,11 +394,15 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EnquiryDataTBViewCell", for: indexPath) as! EnquiryDataTBViewCell
-        if productType == "0" || productType == "1"  || productType == "3" || productType == "4" || productType == "5" || productType == "6" {
+        if productType == "0" || productType == "3" || productType == "4" || productType == "5" || productType == "6" {
             
             cell.namelbl.text = tbaleViewArray[indexPath.row]
             
-        }else{
+        }else if productId == "1"{
+            
+            cell.namelbl.text = tbaleViewArray2[indexPath.row]
+          
+        }else if productId == "2"{
             
             cell.namelbl.text = tbaleViewArray1[indexPath.row]
           

@@ -44,9 +44,9 @@ class ProductDetailsVC: UIViewController ,NetworkSpeedProviderDelegate{
         super.viewDidLoad()
         self.productDetails()
         
-        test.delegate = self
+//        test.delegate = self
         //        test.networkSpeedTestStop()
-        test.networkSpeedTestStart(UrlForTestSpeed: "https://www.dharmani.com/gahir/api/GetProductDetail.php")
+//        test.networkSpeedTestStart(UrlForTestSpeed: "https://www.dharmani.com/gahir/api/GetProductDetail.php")
         
         self.productDetailsTBView.separatorStyle = .none
         buttonTitle = UserDefaults.standard.value(forKey: "checkRole") as? String ?? ""

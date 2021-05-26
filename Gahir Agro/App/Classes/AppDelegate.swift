@@ -21,15 +21,12 @@ func appDelegate() -> AppDelegate {
 class AppDelegate: UIResponder, UIApplicationDelegate , LocationServiceDelegate {
 
     var window: UIWindow?
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         IQKeyboardManager.shared.enable = true
         FirebaseApp.configure()
         LocationService.sharedInstance.startUpdatingLocation()
         LocationService.sharedInstance.isLocateSuccess = false
         LocationService.sharedInstance.delegate = self
-        
         guard #available(iOS 13.0, *) else {
             setUpInitialScreen()
             return true
@@ -56,7 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate , LocationServiceDelegate 
         nav.setNavigationBarHidden(true, animated: true)
         appdelegate.window?.rootViewController = nav
     }
-    
     
     func getAddressForLocation(locationAddress: String, currentAddress: [String : Any]) {
         print(locationAddress)
