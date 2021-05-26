@@ -15,6 +15,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     var tbaleViewArray = ["MODEL","SELECT YOUR TRACTOR"]
     var tbaleViewArray1 = ["ACCESSORY","CHOOSE PUMP"]
     var picker  = UIPickerView()
+    var dismissPicker:(()->Void)?
     
     @IBOutlet weak var remarkTxtView: UITextView!
     var pickerToolBar = UIToolbar()

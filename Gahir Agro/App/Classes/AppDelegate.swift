@@ -108,7 +108,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if let userInfo = response.notification.request.content.userInfo as? [String:Any]{
             print(userInfo)
-            let allData = userInfo["data"] as? [String:Any] ?? [:]
+            guard let apsData = userInfo["aps"] as? [String:Any] else {return}
+            guard let allData = apsData["data"] as? [String:Any] else {return}
+//            let allData = userInfo["data"] as? [String:Any] ?? [:]
             let pushType = allData["notification_type"] as? String ?? ""
             if pushType == "order"{
                 let id = allData["order_id"]
@@ -120,6 +122,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
                 UserDefaults.standard.setValue(true, forKey: "comesFromPush")
             }
         }
+        
         completionHandler()
     }
     
@@ -165,7 +168,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.sound,.alert,.badge])
+        completionHandler([.alert,.badge,.sound])
     }
 }
 
