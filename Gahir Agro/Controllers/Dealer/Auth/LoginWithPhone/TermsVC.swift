@@ -29,14 +29,13 @@ class TermsVC : UIViewController ,WKNavigationDelegate{
     
     //MARK: Custome
     
-    
     func setup() {
         let url = URL(string: "http://www.gahirindia.com/home.phps")!
         let urlRequest = URLRequest(url: url)
         openUrl.load(urlRequest)
         openUrl.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         view.addSubview(openUrl)
-        IJProgressView.shared.showProgressView()
+        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
         openUrl.navigationDelegate = self
     }
     
@@ -68,6 +67,7 @@ class TermsVC : UIViewController ,WKNavigationDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
     }
     
     //------------------------------------------------------

@@ -144,7 +144,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                                 deviceID = "777"
                             }
                             
-                            let params = ["product_id" : id , "quantity" : count, "accessory" : selectedValue1 ,"access_token": accessToken,"system" : selectedValue , "type" : self.productId, "remark": "" , "lat": self.lat ?? "", "long" : self.long ?? ""]  as? [String : AnyObject] ?? [:]
+                            let params = ["product_id" : id , "quantity" : count, "accessory" : selectedValue1 ,"access_token": accessToken,"system" : selectedValue , "type" : self.productId, "remark": "" , "lat": Singleton.sharedInstance.lat, "long" : Singleton.sharedInstance.lat]  as? [String : AnyObject] ?? [:]
                             print(params)
                             PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
                                 print(response.data)
@@ -195,6 +195,9 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                 break
             }
             } else {
+                if let url = URL(string: "App-prefs:root=LOCATION_SERVICES") {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
                 print("Location services are not enabled")
         }
     }

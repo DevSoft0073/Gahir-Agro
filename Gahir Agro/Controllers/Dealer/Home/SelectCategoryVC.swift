@@ -20,7 +20,7 @@ class SelectCategoryVC : UIViewController {
     var page = 1
     var catArray = [CatData]()
     var lastPage = String()
-    var catImages = ["img2","card2","img3","img4","img6","img7","img6"]
+    var catImages = ["TMCH","LEVALER SMALL","SPRAY PUMP2","REAPER SMALL","MUD LOADER","SUPER SEEDER","SYS TILE2"]
     
     //------------------------------------------------------
     
@@ -223,12 +223,24 @@ extension SelectCategoryVC : UICollectionViewDelegate , UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == categotyCollectionVIew{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "featuredProductCell", for: indexPath) as! featuredProductCell
+            cell.showImage.sd_setShowActivityIndicatorView(true)
+            if #available(iOS 13.0, *) {
+                cell.showImage.sd_setIndicatorStyle(.large)
+            } else {
+                // Fallback on earlier versions
+            }
             cell.showImage.sd_setImage(with: URL(string: catArray[indexPath.item].image), placeholderImage: UIImage(named: ""), options: SDWebImageOptions.continueInBackground, completed: nil)
             applyShadowOnView(cell.contentView)
             self.pageControl.numberOfPages = catArray.count
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! categoryCell
+            cell.showImage.sd_setShowActivityIndicatorView(true)
+            if #available(iOS 13.0, *) {
+                cell.showImage.sd_setIndicatorStyle(.large)
+            } else {
+                // Fallback on earlier versions
+            }
             cell.colorView.backgroundColor = getRandomColor()
             applyShadowOnView(cell.contentView)
             cell.nameLbl.text = catArray[indexPath.item].name
