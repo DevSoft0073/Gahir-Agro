@@ -20,6 +20,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     var picker  = UIPickerView()
     var dismissPicker:(()->Void)?
     var message = String()
+    var dataVal = String()
     
     @IBOutlet weak var remarkTxtView: UITextView!
     var pickerToolBar = UIToolbar()
@@ -51,7 +52,9 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var showImage: UIImageView!
     override func viewDidLoad() {
+        super.viewDidLoad()
         productDetails()
+        self.enquiryDataTBView.reloadData()
         picker = UIPickerView.init()
         picker.delegate = self
         pickerToolBar.sizeToFit()
@@ -60,17 +63,18 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         pickerToolBar.setItems([spaceButton,doneBtn], animated: false)
         pickerToolBar.isUserInteractionEnabled = true
-        self.enquiryDataTBView.reloadData()
-        super.viewDidLoad()
+        self.heightConstraint.constant = self.enquiryDataTBView.contentSize.height
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.heightConstraint.constant = self.enquiryDataTBView.contentSize.height
-        
     }
 
     @objc func onDoneButtonTapped(sender:UIButton) {
         self.view.endEditing(true)
+        DispatchQueue.main.async {
+            self.enquiryDataTBView.reloadData()
+        }
     }
     
     //MARK:- Service call methods
@@ -95,9 +99,36 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                     }else{
                         
                         if selectedValue.isEmpty == true {
-                            ValidateData(strMessage: "Please select value for model")
+                            
+                            if productType == "0" || productType == "3" || productType == "4" || productType == "5" || productType == "6" {
+                                
+                                ValidateData(strMessage: "Please select value for model")
+                                
+                            }else if productId == "1"{
+                                
+                                ValidateData(strMessage: "Please select model")
+                              
+                            }else if productId == "2"{
+                                
+                                ValidateData(strMessage: "Please select value for accessory")
+                              
+                            }
+                            
                         }else if selectedValue1.isEmpty == true{
-                            ValidateData(strMessage: "Please select value for system")
+                            
+                            if productType == "0" || productType == "3" || productType == "4" || productType == "5" || productType == "6" {
+                                
+                                ValidateData(strMessage: "Please select tractor")
+                                
+                            }else if productId == "1"{
+                                
+                                ValidateData(strMessage: "Please select value for system")
+                              
+                            }else if productId == "2"{
+                                
+                                ValidateData(strMessage: "Please choose pump")
+                              
+                            }
                             
                         }else{
                             
@@ -110,7 +141,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                                 deviceID = "777"
                             }
                             
-                            let params = ["product_id" : id , "quantity" : count, "accessory" : selectedValue1 ,"access_token": accessToken,"system" : selectedValue , "type" : self.productId, "remark": "" , "lat": LocationService.sharedInstance.current?.latitude, "long" : LocationService.sharedInstance.current?.longitude]  as? [String : AnyObject] ?? [:]
+                            let params = ["product_id" : id , "quantity" : count, "accessory" : selectedValue ,"access_token": accessToken,"system" : selectedValue1 , "type" : self.productId, "remark": "" , "lat": LocationService.sharedInstance.current?.latitude, "long" : LocationService.sharedInstance.current?.longitude]  as? [String : AnyObject] ?? [:]
                             print(params)
                             PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
                                 print(response.data)
@@ -134,7 +165,8 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                                             self.navigationController?.pushViewController(vc, animated: true)
                                         }
                                     }
-                                    
+                                    self.selectedValue = ""
+                                    self.selectedValue1 = ""
                                     self.present(vc, animated: true, completion: nil)
                                     
                                 }else if status == "0"{
@@ -193,6 +225,8 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
             PKWrapperClass.svprogressHudDismiss(view: self)
             let status = response.data["status"] as? String ?? ""
             self.messgae = response.data["message"] as? String ?? ""
+            self.accessory.removeAll()
+            self.systemArray.removeAll()
             if status == "1"{
                 let allData = response.data["product_detail"] as? [String:Any] ?? [:]
                 print(allData)
@@ -256,7 +290,6 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
             
             selectedValue =  accessory[row].id
             selectedname =  accessory[row].name
-            self.enquiryDataTBView.reloadData()
             print(selectedValue)
             
         }else if currentIndex == 1{
@@ -264,8 +297,6 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
             selectedValue1 = systemArray[row].id
             selectType = systemArray[row].name
             print(selectedValue1)
-            self.enquiryDataTBView.reloadData()
-            
         }else{
             
         }
@@ -373,7 +404,7 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
           
         }else if productId == "2"{
             
-            cell.namelbl.text = tbaleViewArray1[indexPath.row]
+            cell.titleLbl.text = tbaleViewArray1[indexPath.row]
           
         }
         cell.titleLbl.text = selectedValue
@@ -415,6 +446,12 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+    
+    //MARK: text field delegate
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.enquiryDataTBView.reloadData()
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
