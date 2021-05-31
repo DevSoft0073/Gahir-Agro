@@ -61,11 +61,6 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         pickerToolBar.setItems([spaceButton,doneBtn], animated: false)
         pickerToolBar.isUserInteractionEnabled = true
         self.enquiryDataTBView.reloadData()
-        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(updateUserLocationApi), userInfo: nil, repeats: true)
-        manager = CLLocationManager()
-           manager.delegate = self
-           manager.desiredAccuracy = kCLLocationAccuracyBest
-           manager.startUpdatingLocation()
         super.viewDidLoad()
     }
     
@@ -73,41 +68,12 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         self.heightConstraint.constant = self.enquiryDataTBView.contentSize.height
         
     }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        self.lat = "\(locValue.latitude)"
-        self.long = "\(locValue.longitude)"
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-    }
-    
+
     @objc func onDoneButtonTapped(sender:UIButton) {
         self.view.endEditing(true)
     }
     
     //MARK:- Service call methods
-    
-    
-    @objc func updateUserLocationApi(){
-        let url = Constant.shared.baseUrl + Constant.shared.UpdateLocation
-        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
-        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
-        print(deviceID ?? "")
-        if deviceID == nil  {
-            deviceID = "777"
-        }
-        let params = ["access_token": "" , "lat" : lat , "long" : long]  as? [String : AnyObject] ?? [:]
-        print(params)
-        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
-            let status = response.data["status"] as? String ?? ""
-            self.message = response.data["message"] as? String ?? ""
-            if status == "1"{
-            }else{
-            }
-        } failure: { (error) in
-            print(error)
-        }
-    }
     
     func submitEnquiry() {
         
@@ -144,7 +110,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                                 deviceID = "777"
                             }
                             
-                            let params = ["product_id" : id , "quantity" : count, "accessory" : selectedValue1 ,"access_token": accessToken,"system" : selectedValue , "type" : self.productId, "remark": "" , "lat": Singleton.sharedInstance.lat, "long" : Singleton.sharedInstance.lat]  as? [String : AnyObject] ?? [:]
+                            let params = ["product_id" : id , "quantity" : count, "accessory" : selectedValue1 ,"access_token": accessToken,"system" : selectedValue , "type" : self.productId, "remark": "" , "lat": LocationService.sharedInstance.current?.latitude, "long" : LocationService.sharedInstance.current?.longitude]  as? [String : AnyObject] ?? [:]
                             print(params)
                             PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
                                 print(response.data)
