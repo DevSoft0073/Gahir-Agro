@@ -20,6 +20,7 @@ class AdminHomeVC: UIViewController {
     var accName = [String]()
     var dealerCode = [String]()
     var dealerName = [String]()
+    var dispatchDateArray = [String]()
     var adminEnquriesArray = [OrderDataForAdmin]()
     var enqArray = [String]()
     var addressArray = [String]()
@@ -74,6 +75,7 @@ class AdminHomeVC: UIViewController {
                     self.accName.append(accessoriesData["acc_name"] as? String ?? "")
                     let dealerData = obj["dealer_detail"] as? [String:Any] ?? [:]
                     addressArray.append(obj["dealer_loc"] as? String ?? "")
+                    self.dispatchDateArray.append(obj["dispatch_day"] as? String ?? "")
                     self.dealerName.append("\(dealerData["first_name"] as? String ?? "") " + "\(dealerData["last_name"] as? String ?? "")")
                     self.quantityArray.append(obj["qty"] as? String ?? "")
                     self.enquiryID.append(obj["enquiry_id"] as? String ?? "")
@@ -124,7 +126,7 @@ extension AdminHomeVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AdminEnquriesTBViewCell", for: indexPath) as! AdminEnquriesTBViewCell
-        cell.idLbl.text = adminEnquriesArray[indexPath.row].deliveryDate
+        cell.idLbl.text = dispatchDateArray[indexPath.row]
         cell.quantityLbl.text = adminEnquriesArray[indexPath.row].enqID[indexPath.row]
         cell.pricveLbl.text = adminEnquriesArray[indexPath.row].price
         cell.timelbl.text = quantityArray[indexPath.row]
@@ -135,7 +137,7 @@ extension AdminHomeVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 140
+        return 160
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

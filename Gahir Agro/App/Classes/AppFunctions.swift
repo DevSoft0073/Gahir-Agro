@@ -69,7 +69,7 @@ extension UIViewController {
         print(dateFromServer)
         let dateFormater = DateFormatter()
         dateFormater.timeZone = .current
-        dateFormater.dateFormat = "dd-MM-YYYY"
+        dateFormater.dateFormat = "d MMM yyyy"
         return dateFormater.string(from: dateFromServer)
     }
 }

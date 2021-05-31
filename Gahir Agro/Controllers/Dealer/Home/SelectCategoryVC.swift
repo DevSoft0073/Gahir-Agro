@@ -21,6 +21,7 @@ class SelectCategoryVC : UIViewController {
     var catArray = [CatData]()
     var lastPage = String()
     var catImages = ["TMCH","LEVALER SMALL","SPRAY PUMP2","REAPER SMALL","MUD LOADER","SUPER SEEDER","SYS TILE2"]
+    var timer = Timer()
     
     //------------------------------------------------------
     
@@ -39,6 +40,28 @@ class SelectCategoryVC : UIViewController {
     //------------------------------------------------------
     
     //MARK: Custome
+    
+    
+    @objc func updateUserLocationApi(){
+        let url = Constant.shared.baseUrl + Constant.shared.UpdateLocation
+        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+        print(deviceID ?? "")
+        if deviceID == nil  {
+            deviceID = "777"
+        }
+        let params = ["access_token": "" , "lat" : Singleton.sharedInstance.lat , "long" : Singleton.sharedInstance.lat]  as? [String : AnyObject] ?? [:]
+        print(params)
+        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
+            let status = response.data["status"] as? String ?? ""
+            self.messgae = response.data["message"] as? String ?? ""
+            if status == "1"{
+            }else{
+            }
+        } failure: { (error) in
+            print(error)
+        }
+    }
     
     func catData() {
         let url = Constant.shared.baseUrl + Constant.shared.Category
@@ -129,6 +152,7 @@ class SelectCategoryVC : UIViewController {
         super.viewDidLoad()
         self.catData()
         self.startTimer()
+        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(updateUserLocationApi), userInfo: nil, repeats: true)
     }
     
     //------------------------------------------------------

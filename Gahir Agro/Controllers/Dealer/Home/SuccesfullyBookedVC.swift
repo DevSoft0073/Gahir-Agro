@@ -62,8 +62,8 @@ class SuccesfullyBookedVC: UIViewController {
             if status == "1"{
                 let enquiryData = response.data["order_detail"] as? [String:Any] ?? [:]
                 self.statusLbl.text = enquiryData["order_status"] as? String ?? ""
-                self.dispatchDateLbl.text = enquiryData["display_date"] as? String ?? ""
                 let productDetails = enquiryData["enquiry_detail"] as? [String:Any] ?? [:]
+                self.dispatchDateLbl.text = productDetails["dispatch_day"] as? String ?? ""
                 self.bookingIDLbl.text = enquiryData["booking_id"] as? String ?? ""
                 let orderData = productDetails["product_detail"] as? [String:Any] ?? [:]
                 self.showImage.sd_setImage(with: URL(string:orderData["prod_image"] as? String ?? ""), placeholderImage: UIImage(named: "placeholder-img-logo (1)"), options: SDWebImageOptions.continueInBackground, completed: nil)

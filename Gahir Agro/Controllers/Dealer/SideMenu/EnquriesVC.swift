@@ -17,6 +17,7 @@ class EnquriesVC: UIViewController {
     var enquiryID = [String]()
     var quantityArray = [String]()
     var accName = String()
+    var dispatchDateArray = [String]()
     var amountArray = [String]()
     var totalArray = [String]()
     var bookingIDArray = [String]()
@@ -35,6 +36,7 @@ class EnquriesVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        dispatchDateArray.removeAll()
         enquriesDataFroDealerArray.removeAll()
         page = 1
         getAllEnquries()
@@ -66,6 +68,7 @@ class EnquriesVC: UIViewController {
                     self.orderIDArray.append(obj["id"] as? String ?? "")
                     self.bookingIDArray.append(obj["booking_id"] as? String ?? "")
                     let allDetails = obj["enquiry_detail"] as? [String:Any] ?? [:]
+                    self.dispatchDateArray.append(allDetails["dispatch_day"] as? String ?? "")
                     self.totalArray.append(allDetails["total"] as! String) as? Any ?? ""
                     let dateValue = allDetails["creation_date"] as? String ?? ""
                     let dateVal = NumberFormatter().number(from: dateValue)?.doubleValue ?? 0.0
@@ -123,7 +126,7 @@ extension EnquriesVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EnquiryTBViewCell", for: indexPath) as! EnquiryTBViewCell
         cell.idLbl.text = enquriesDataFroDealerArray[indexPath.row].orderID[indexPath.row]
-        cell.dateLbl.text = enquriesDataFroDealerArray[indexPath.row].deliveryDate
+        cell.dateLbl.text = dispatchDateArray[indexPath.row]
         cell.quantityLbl.text = quantityArray[indexPath.row]
         cell.nameLbl.text = enquriesDataFroDealerArray[indexPath.row].name
         cell.priceLbl.text = "₹\(totalArray[indexPath.row])"
@@ -143,7 +146,7 @@ extension EnquriesVC : UITableViewDelegate , UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 125
+        return 130
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

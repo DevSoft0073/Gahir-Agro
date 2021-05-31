@@ -21,6 +21,7 @@ class AdminEnquriesVC: UIViewController {
     var bookingIDArray = [String]()
     var orderIDArray = [String]()
     var adminOrderArray = [OrderHistoryData]()
+    var dispatchDateArray = [String()]
     @IBOutlet weak var orderTBView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +70,7 @@ class AdminEnquriesVC: UIViewController {
                     let dealerData = obj["dealer_detail"] as? [String:Any] ?? [:]
                     self.dealerName.append("\(dealerData["first_name"] as? String ?? "") " + "\(dealerData["last_name"] as? String ?? "")")
                     let allEnquiryData = obj["enquiry_detail"] as? [String:Any] ?? [:]
+                    self.dispatchDateArray.append(allEnquiryData["dispatch_day"] as? String ?? "")
                     let newObj = allEnquiryData["product_detail"]  as? [String:Any] ?? [:]
                     self.orderIDArray.append(newObj["id"] as? String ?? "")
                     print(newObj)
@@ -118,7 +120,7 @@ extension AdminEnquriesVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AdminOrderTBViewCell", for: indexPath) as! AdminOrderTBViewCell
-        cell.productId.text = adminOrderArray[indexPath.row].deliveryDate
+        cell.productId.text = dispatchDateArray[indexPath.row]
         cell.quantitylbl.text = orderIDArray[indexPath.row]
         cell.priceLbl.text = adminOrderArray[indexPath.row].price
         cell.dateLbl.text = adminOrderArray[indexPath.row].quantity
@@ -129,7 +131,7 @@ extension AdminEnquriesVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 125
+        return 130
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
