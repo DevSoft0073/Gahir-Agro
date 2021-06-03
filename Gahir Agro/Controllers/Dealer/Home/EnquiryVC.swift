@@ -81,7 +81,6 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     
     func submitEnquiry() {
         
-        
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
                 case .notDetermined, .restricted, .denied:
@@ -150,24 +149,33 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
                                 self.messgae = response.data["message"] as? String ?? ""
                                 self.orderID = response.data["enquiry_id"] as? Int ?? 0
                                 if status == "1"{
-                                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
-                                    vc.modalPresentationStyle = .overCurrentContext
-                                    vc.modalTransitionStyle = .crossDissolve
-                                    vc.enquiryRedirection = {
-                                        DispatchQueue.main.async {
-                                            if self.isAvailabele == true {
-                                                
-                                            }else{
-                                                
-                                            }
-                                            let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
-                                            vc.enquiryID = "\(self.orderID)"
-                                            self.navigationController?.pushViewController(vc, animated: true)
+                                    
+                                    showAlertMessage(title: Constant.shared.appTitle, message: "Enquiry added succesfully", okButton: "Ok", controller: self) {
+                                        let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
+                                        vc.enquiryID = "\(self.orderID)"
+                                        vc.updateTblViewData = {
+                                            self.enquiryDataTBView.reloadData()
                                         }
+                                        self.navigationController?.pushViewController(vc, animated: true)
                                     }
-                                    self.selectedValue = ""
-                                    self.selectedValue1 = ""
-                                    self.present(vc, animated: true, completion: nil)
+//                                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
+//                                    vc.modalPresentationStyle = .overCurrentContext
+//                                    vc.modalTransitionStyle = .crossDissolve
+//                                    vc.enquiryRedirection = {
+//                                        DispatchQueue.main.async {
+//                                            if self.isAvailabele == true {
+//
+//                                            }else{
+//
+//                                            }
+//                                            let vc = SuccesfullyBookedVC.instantiate(fromAppStoryboard: .Main)
+//                                            vc.enquiryID = "\(self.orderID)"
+//                                            self.navigationController?.pushViewController(vc, animated: true)
+//                                        }
+//                                    }
+//                                    self.selectedValue = ""
+//                                    self.selectedValue1 = ""
+//                                    self.present(vc, animated: true, completion: nil)
                                     
                                 }else if status == "0"{
                                     PKWrapperClass.svprogressHudDismiss(view: self)

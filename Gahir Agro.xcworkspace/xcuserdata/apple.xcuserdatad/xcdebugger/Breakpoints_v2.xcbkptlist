@@ -183,16 +183,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9CE43EA8-2ADC-42A2-B746-2971936DC7B7"
+            uuid = "3C9214D7-8A90-48FB-BE9E-2BE5C9FB1E3C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Dealer/Home/EnquiryVC.swift"
+            filePath = "Gahir Agro/Controllers/Dealer/Home/SuccesfullyBookedVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "submitEnquiry()"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "orderDetail()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

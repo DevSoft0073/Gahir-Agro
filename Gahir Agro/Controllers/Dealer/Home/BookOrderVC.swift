@@ -21,6 +21,7 @@ class BookOrderVC: UIViewController {
     var enqStatus = String()
     var image = String()
     var productTitle = String()
+    var updateTblViewData:(()->Void)?
     
     @IBOutlet weak var orderDetailsStackView: UIStackView!
     @IBOutlet weak var statusStackView: UIStackView!
@@ -55,6 +56,7 @@ class BookOrderVC: UIViewController {
             AppDelegate().redirectToHomeVC()
         }else{
             self.navigationController?.popViewController(animated: true)
+            self.updateTblViewData?()
         }
     }
   
@@ -90,7 +92,7 @@ class BookOrderVC: UIViewController {
                 let enquiryData = response.data["enquiry_detail"] as? [String:Any] ?? [:]
                 self.quantityLbl.text = enquiryData["qty"] as? String ?? ""
                 self.showStatus.text = enquiryData["dispatch_day"] as? String ?? ""
-                self.orderTimeLbl.text = "\(enquiryData["order_time"] as? Int ?? 0) hr"
+                self.orderTimeLbl.text = (enquiryData["order_time"] as? String ?? "")
                 self.orderStatusTxt.text = enquiryData["status_text"] as? String ?? ""
                 let productDetails = enquiryData["product_detail"] as? [String:Any] ?? [:]
                 self.enqStatus = enquiryData["enq_status"] as? String ?? ""
