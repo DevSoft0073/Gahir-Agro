@@ -4568,6 +4568,7 @@
                         <outlet property="dealerCodeTxtFld" destination="74y-sP-qeT" id="hma-bX-q8z"/>
                         <outlet property="nameTxtFld" destination="Ih4-g1-hFG" id="h9m-sy-zpt"/>
                         <outlet property="quantityTxtFld" destination="65Q-lr-Ctv" id="6By-kX-MDR"/>
+                        <outlet property="remarksTxtView" destination="K8U-3H-h6K" id="Xvy-kB-Gjl"/>
                         <outlet property="utrNumberTxtFld" destination="joy-15-HUl" id="cdW-dx-1yt"/>
                     </connections>
                 </viewController>

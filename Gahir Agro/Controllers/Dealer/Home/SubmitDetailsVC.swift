@@ -17,6 +17,7 @@ class SubmitDetailsVC: UIViewController  , UITextFieldDelegate{
     var quantity = String()
     var accessoriesName = String()
     
+    @IBOutlet weak var remarksTxtView: UITextView!
     @IBOutlet weak var amountTxtFld: UITextField!
     @IBOutlet weak var quantityTxtFld: UITextField!
     @IBOutlet weak var accesoriesTxtFld: UITextField!
@@ -139,7 +140,7 @@ class SubmitDetailsVC: UIViewController  , UITextFieldDelegate{
             deviceID = "777"
         }
         
-        let params = ["access_token" : accessToken , "enquiry_id" : self.enquiryID , "utr_no" : utrNumberTxtFld.text ?? String(),"amount" : amountTxtFld.text ?? String() ]  as? [String : AnyObject] ?? [:]
+        let params = ["access_token" : accessToken , "enquiry_id" : self.enquiryID , "utr_no" : utrNumberTxtFld.text ?? String(),"amount" : amountTxtFld.text ?? String() ,"remark" : remarksTxtView.text ?? String()]  as? [String : AnyObject] ?? [:]
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             print(response.data)

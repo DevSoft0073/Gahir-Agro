@@ -406,13 +406,13 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
             
             cell.namelbl.text = tbaleViewArray[indexPath.row]
             
-        }else if productId == "1"{
+        }else if productType == "1"{
             
             cell.namelbl.text = tbaleViewArray2[indexPath.row]
           
-        }else if productId == "2"{
+        }else if productType == "2"{
             
-            cell.titleLbl.text = tbaleViewArray1[indexPath.row]
+            cell.namelbl.text = tbaleViewArray1[indexPath.row]
           
         }
         cell.titleLbl.text = selectedValue
