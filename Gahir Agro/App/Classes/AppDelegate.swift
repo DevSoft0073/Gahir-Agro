@@ -104,9 +104,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if let userInfo = response.notification.request.content.userInfo as? [String:Any]{
             print(userInfo)
-            guard let apsData = userInfo["aps"] as? [String:Any] else {return}
-            guard let allData = apsData["data"] as? [String:Any] else {return}
-//            let allData = userInfo["data"] as? [String:Any] ?? [:]
+            let allData = userInfo["data"] as? [String:Any] ?? [:]
+            print(allData)
+
             let pushType = allData["notification_type"] as? String ?? ""
             if pushType == "order"{
                 let id = allData["order_id"]
@@ -200,4 +200,5 @@ extension AppDelegate {
         appdelegate.window?.rootViewController = nav
     }
 }
+
 
