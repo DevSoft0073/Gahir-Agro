@@ -69,7 +69,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     
     override func viewWillAppear(_ animated: Bool) {
     }
-
+    
     @objc func onDoneButtonTapped(sender:UIButton) {
         self.view.endEditing(true)
         DispatchQueue.main.async {
@@ -83,128 +83,110 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
-                case .notDetermined, .restricted, .denied:
-                    print("No access")
-                    showAlertMessage(title: Constant.shared.appTitle, message: "Allow location to add enquiry", okButton: "Ok", controller: self) {
-                        if let url = URL(string: "App-prefs:root=LOCATION_SERVICES") {
-                             UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                        }
+            case .notDetermined, .restricted, .denied:
+                print("No access")
+                showAlertMessage(title: Constant.shared.appTitle, message: "Allow location to add enquiry", okButton: "Ok", controller: self) {
+                    if let url = URL(string: "App-prefs:root=LOCATION_SERVICES") {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     }
-                case .authorizedAlways, .authorizedWhenInUse:
+                }
+            case .authorizedAlways, .authorizedWhenInUse:
+                
+                if count < 1 {
+                    showAlertMessage(title: Constant.shared.appTitle, message: "Quantity should not be set to 0", okButton: "Ok", controller: self) {
+                    }
+                }else{
                     
-                    if count < 1 {
-                        showAlertMessage(title: Constant.shared.appTitle, message: "Quantity should not be set to 0", okButton: "Ok", controller: self) {
+                    if selectedValue.isEmpty == true {
+                        
+                        if productType == "0" || productType == "3" || productType == "4" || productType == "5" || productType == "6" {
+                            
+                            ValidateData(strMessage: "Please select value for model")
+                            
+                        }else if productId == "1"{
+                            
+                            ValidateData(strMessage: "Please select model")
+                            
+                        }else if productId == "2"{
+                            
+                            ValidateData(strMessage: "Please select value for accessory")
+                            
                         }
+                        
+                    }else if selectedValue1.isEmpty == true{
+                        
+                        if productType == "0" || productType == "3" || productType == "4" || productType == "5" || productType == "6" {
+                            
+                            ValidateData(strMessage: "Please select tractor")
+                            
+                        }else if productId == "1"{
+                            
+                            ValidateData(strMessage: "Please select value for system")
+                            
+                        }else if productId == "2"{
+                            
+                            ValidateData(strMessage: "Please choose pump")
+                            
+                        }
+                        
                     }else{
                         
-                        if selectedValue.isEmpty == true {
-                            
-                            if productType == "0" || productType == "3" || productType == "4" || productType == "5" || productType == "6" {
+                        PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
+                        let url = Constant.shared.baseUrl + Constant.shared.AddEnquiry
+                        var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
+                        let accessToken = UserDefaults.standard.value(forKey: "accessToken")
+                        print(deviceID ?? "")
+                        if deviceID == nil  {
+                            deviceID = "777"
+                        }
+                        
+                        let params = ["product_id" : id , "quantity" : count, "accessory" : selectedValue ,"access_token": accessToken,"system" : selectedValue1 , "type" : self.productId, "remark": "" , "lat": LocationService.sharedInstance.current?.latitude, "long" : LocationService.sharedInstance.current?.longitude]  as? [String : AnyObject] ?? [:]
+                        print(params)
+                        PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
+                            print(response.data)
+                            PKWrapperClass.svprogressHudDismiss(view: self)
+                            let status = response.data["status"] as? String ?? ""
+                            self.messgae = response.data["message"] as? String ?? ""
+                            self.orderID = response.data["enquiry_id"] as? Int ?? 0
+                            if status == "1"{
                                 
-                                ValidateData(strMessage: "Please select value for model")
-                                
-                            }else if productId == "1"{
-                                
-                                ValidateData(strMessage: "Please select model")
-                              
-                            }else if productId == "2"{
-                                
-                                ValidateData(strMessage: "Please select value for accessory")
-                              
-                            }
-                            
-                        }else if selectedValue1.isEmpty == true{
-                            
-                            if productType == "0" || productType == "3" || productType == "4" || productType == "5" || productType == "6" {
-                                
-                                ValidateData(strMessage: "Please select tractor")
-                                
-                            }else if productId == "1"{
-                                
-                                ValidateData(strMessage: "Please select value for system")
-                              
-                            }else if productId == "2"{
-                                
-                                ValidateData(strMessage: "Please choose pump")
-                              
-                            }
-                            
-                        }else{
-                            
-                            PKWrapperClass.svprogressHudShow(title: Constant.shared.appTitle, view: self)
-                            let url = Constant.shared.baseUrl + Constant.shared.AddEnquiry
-                            var deviceID = UserDefaults.standard.value(forKey: "deviceToken") as? String
-                            let accessToken = UserDefaults.standard.value(forKey: "accessToken")
-                            print(deviceID ?? "")
-                            if deviceID == nil  {
-                                deviceID = "777"
-                            }
-                            
-                            let params = ["product_id" : id , "quantity" : count, "accessory" : selectedValue ,"access_token": accessToken,"system" : selectedValue1 , "type" : self.productId, "remark": "" , "lat": LocationService.sharedInstance.current?.latitude, "long" : LocationService.sharedInstance.current?.longitude]  as? [String : AnyObject] ?? [:]
-                            print(params)
-                            PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
-                                print(response.data)
-                                PKWrapperClass.svprogressHudDismiss(view: self)
-                                let status = response.data["status"] as? String ?? ""
-                                self.messgae = response.data["message"] as? String ?? ""
-                                self.orderID = response.data["enquiry_id"] as? Int ?? 0
-                                if status == "1"{
-                                    
-                                    showAlertMessage(title: Constant.shared.appTitle, message: "Enquiry added succesfully", okButton: "Ok", controller: self) {
-                                        let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
-                                        vc.enquiryID = "\(self.orderID)"
-                                        vc.updateTblViewData = {
-                                            self.enquiryDataTBView.reloadData()
-                                        }
-                                        self.navigationController?.pushViewController(vc, animated: true)
+                                showAlertMessage(title: Constant.shared.appTitle, message: "Enquiry added succesfully", okButton: "Ok", controller: self) {
+                                    let vc = BookOrderVC.instantiate(fromAppStoryboard: .Main)
+                                    vc.enquiryID = "\(self.orderID)"
+                                    vc.updateTblViewData = {
+                                        self.enquiryDataTBView.reloadData()
                                     }
-//                                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
-//                                    vc.modalPresentationStyle = .overCurrentContext
-//                                    vc.modalTransitionStyle = .crossDissolve
-//                                    vc.enquiryRedirection = {
-//                                        DispatchQueue.main.async {
-//                                            if self.isAvailabele == true {
-//
-//                                            }else{
-//
-//                                            }
-//                                            let vc = SuccesfullyBookedVC.instantiate(fromAppStoryboard: .Main)
-//                                            vc.enquiryID = "\(self.orderID)"
-//                                            self.navigationController?.pushViewController(vc, animated: true)
-//                                        }
-//                                    }
-//                                    self.selectedValue = ""
-//                                    self.selectedValue1 = ""
-//                                    self.present(vc, animated: true, completion: nil)
-                                    
-                                }else if status == "0"{
-                                    PKWrapperClass.svprogressHudDismiss(view: self)
-                                    alert(Constant.shared.appTitle, message: self.messgae, view: self)
-                                } else if status == "100"{
-                                    showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
-                                        UserDefaults.standard.removeObject(forKey: "tokenFString")
-                                        let appDel = UIApplication.shared.delegate as! AppDelegate
-                                        appDel.Logout1()
-                                    }
+                                    self.navigationController?.pushViewController(vc, animated: true)
                                 }
-                            } failure: { (error) in
-                                print(error)
+                                
+                            }else if status == "0"{
                                 PKWrapperClass.svprogressHudDismiss(view: self)
-                                showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
+                                alert(Constant.shared.appTitle, message: self.messgae, view: self)
+                            } else if status == "100"{
+                                showAlertMessage(title: Constant.shared.appTitle, message: self.messgae, okButton: "Ok", controller: self) {
+                                    UserDefaults.standard.removeObject(forKey: "tokenFString")
+                                    let appDel = UIApplication.shared.delegate as! AppDelegate
+                                    appDel.Logout1()
+                                }
                             }
+                        } failure: { (error) in
+                            print(error)
+                            PKWrapperClass.svprogressHudDismiss(view: self)
+                            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
                         }
                     }
-
-                    
-                    print("Access")
-                @unknown default:
+                }
+                
+                
+                print("Access")
+            @unknown default:
                 break
             }
-            } else {
-                if let url = URL(string: "App-prefs:root=LOCATION_SERVICES") {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                }
-                print("Location services are not enabled")
+        } else {
+            if let url = URL(string: "App-prefs:root=LOCATION_SERVICES") {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+            print("Location services are not enabled")
         }
     }
     
@@ -358,8 +340,14 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     
     
     @IBAction func addLbl(_ sender: Any) {
-        count = count + 1
-        quantitylbl.text = "\(count)"
+        
+        if count >= 9 {
+            showAlertMessage(title: Constant.shared.appTitle, message: "Quantity should not be greater then 9", okButton: "Ok", controller: self) {
+            }
+        }else {
+            count = count + 1
+            quantitylbl.text = "\(count)"
+        }
     }
     
     @IBAction func minusButton(_ sender: Any) {
@@ -369,6 +357,7 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
         }else{
             count = count - 1
             quantitylbl.text = "\(count)"
+            
         }
     }
 }
@@ -409,11 +398,11 @@ extension EnquiryVC : UITableViewDelegate , UITableViewDataSource {
         }else if productType == "1"{
             
             cell.namelbl.text = tbaleViewArray2[indexPath.row]
-          
+            
         }else if productType == "2"{
             
             cell.namelbl.text = tbaleViewArray1[indexPath.row]
-          
+            
         }
         cell.titleLbl.text = selectedValue
         let index = indexPath.row
