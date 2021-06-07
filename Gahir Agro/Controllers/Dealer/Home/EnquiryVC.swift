@@ -341,13 +341,13 @@ class EnquiryVC: UIViewController, UINavigationControllerDelegate, UIPickerViewD
     
     @IBAction func addLbl(_ sender: Any) {
         
-        if count >= 9 {
-            showAlertMessage(title: Constant.shared.appTitle, message: "Quantity should not be greater then 9", okButton: "Ok", controller: self) {
-            }
-        }else {
+//        if count >= 9 {
+//            showAlertMessage(title: Constant.shared.appTitle, message: "Quantity should not be greater then 9", okButton: "Ok", controller: self) {
+//            }
+//        }else {
             count = count + 1
             quantitylbl.text = "\(count)"
-        }
+//        }
     }
     
     @IBAction func minusButton(_ sender: Any) {
