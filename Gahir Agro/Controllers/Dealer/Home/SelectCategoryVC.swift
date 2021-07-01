@@ -50,7 +50,7 @@ class SelectCategoryVC : UIViewController {
         if deviceID == nil  {
             deviceID = "777"
         }
-        let params = ["access_token": "" , "lat" : Singleton.sharedInstance.lat , "long" : Singleton.sharedInstance.lat]  as? [String : AnyObject] ?? [:]
+        let params = ["access_token": "" , "lat" : Singleton.sharedInstance.lat , "long" : Singleton.sharedInstance.long]  as? [String : AnyObject] ?? [:]
         print(params)
         PKWrapperClass.requestPOSTWithFormData(url, params: params, imageData: []) { (response) in
             let status = response.data["status"] as? String ?? ""

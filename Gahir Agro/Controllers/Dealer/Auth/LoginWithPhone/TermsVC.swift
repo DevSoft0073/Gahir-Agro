@@ -30,7 +30,7 @@ class TermsVC : UIViewController ,WKNavigationDelegate{
     //MARK: Custome
     
     func setup() {
-        let url = URL(string: "http://dharmani.com/gahir/api/terms_of_service.html")!
+        let url = URL(string: "https://gahiragro.in/api/terms_of_service.html")!
         let urlRequest = URLRequest(url: url)
         openUrl.load(urlRequest)
         openUrl.autoresizingMask = [.flexibleWidth,.flexibleHeight]

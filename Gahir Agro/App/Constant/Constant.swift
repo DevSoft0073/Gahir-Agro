@@ -15,7 +15,9 @@ class Constant: NSObject {
     
     //MARK:-> Dealer Flow Api's
     
-    let baseUrl = "https://www.dharmani.com/gahir/api/"
+//    let baseUrl = "https://www.dharmani.com/gahir/api/"
+    
+    let baseUrl = "https://gahiragro.in/api/"
     
     
     let VerifyDealer = "VerifyDealer.php"
@@ -46,6 +48,8 @@ class Constant: NSObject {
     let PrivacyPolicy = "PrivacyPolicy.html"
     let Category = "GetAllCategories.php"
     let FilterdData = "FilterCategory.php"
+    
+    
     
     //MARK:-> Customer Flow Api's
     

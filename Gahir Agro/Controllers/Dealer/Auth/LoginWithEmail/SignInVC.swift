@@ -127,7 +127,7 @@ class SignInVC: UIViewController ,UITextFieldDelegate{
                 alert(Constant.shared.appTitle, message: self.messgae, view: self)
             }
         } failure: { (error) in
-            print(error)
+            print(error.localizedDescription)
             PKWrapperClass.svprogressHudDismiss(view: self)
 //            showAlertMessage(title: Constant.shared.appTitle, message: error as? String ?? "", okButton: "Ok", controller: self, okHandler: nil)
         }
